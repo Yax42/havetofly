@@ -1,11 +1,11 @@
 //
-// Hit.cpp for action in /home/brunie_j/local/my/havetofly/src/action
+// Hit.cpp for src in /home/brunie_j/local/my/havetofly/src
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Thu Apr 11 01:13:19 2013 Brunier Jean
+// Last update Sat Apr 13 15:31:37 2013 Brunier Jean
 //
 
 #include "Hit.hh"
@@ -28,20 +28,23 @@ Hit::~Hit()
 {
 }
 
-void	focus(Player &ennemy)
+int	Hit::go()
 {
-  if (&ennemy != &_player && list.neContientPas(&ennemy))
-    {
-      ennemy = _speed * _player.pos();
-      ennemy.stop();
-      if (stun)
-	ennemy.stun(50);
+  ennemy = _speed * _player.speed();
+  return (_stun);
+}
 
+void	Hit::focus(Player &ennemy)
+{
+  if (&ennemy != &_player && list.neContientPas(&ennemy)
+      && _hb.touch(ennemy))
+    {
       _players.push_back(&ennemy);
+      ennemy.hit(this);
     }
 }
 
 void	reset()
 {
-  _players//liberer la liste
+  _players.clear();
 }

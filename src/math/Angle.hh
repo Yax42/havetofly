@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 09 17:07:10 2013 Brunier Jean
-// Last update Fri Apr 12 16:42:54 2013 Brunier Jean
+// Last update Sat Apr 13 17:00:03 2013 Brunier Jean
 //
 
 #ifndef ANGLE_HH_
@@ -21,27 +21,19 @@ private:
 public:
   Angle();
   Angle(Distance const & d);
-  Angle(int v);
+  Angle(int deg, int);
+
+  /* OPERATORS */
   Angle		&operator+=(const Angle &other);
   Angle		&operator-=(const Angle &other);
-  Angle		&operator+=(int other);
-  Angle		&operator-=(int other);
-  Angle		&operator=(int other);
-  Angle		&operator+=(float other);
-  Angle		&operator-=(float other);
-  Angle		&operator=(float other);
-
   Angle		operator+(const Angle &other) const;
   Angle		operator-(const Angle &other) const;
-  Angle		operator+(int other) const;
-  Angle		operator-(int other) const;
-  Angle		operator+(float other) const;
-  Angle		operator-(float other) const;
+  		operator Distance();
 
-  int		deg() const;
-  float		rad() const;
-  Distance	dist() const;
-  long		longVal() const;
+  void			deg(int v);
+  int			deg() const;
+  Distance		rad();
+  Distance const	&rad() const;
 };
 
 #endif /* !ANGLE_HH_ */

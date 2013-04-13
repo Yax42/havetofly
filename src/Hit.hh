@@ -1,11 +1,11 @@
 //
-// Hit.hh for action in /home/brunie_j/local/my/havetofly/src/action
+// Hit.hh for src in /home/brunie_j/local/my/havetofly/src
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 22:46:44 2013 Brunier Jean
-// Last update Thu Apr 11 00:27:31 2013 Brunier Jean
+// Last update Sat Apr 13 15:31:34 2013 Brunier Jean
 //
 
 #ifndef HIT_HH_
@@ -32,6 +32,7 @@ public:
       const Position &center,
       int stun, Distance speed, const Player &player);
   ~Hit();
+  int	go();
   void	focus(Player &ennemy);
   void	reset();
 };

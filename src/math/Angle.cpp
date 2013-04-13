@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 09 17:16:14 2013 Brunier Jean
-// Last update Fri Apr 12 16:43:13 2013 Brunier Jean
+// Last update Sat Apr 13 17:00:22 2013 Brunier Jean
 //
 
 #include "Angle.hh"
@@ -14,7 +14,7 @@
 /****************/
 /* CONSTRUCTORS */
 /****************/
-Angle::Angle() : _rad(0)
+Angle::Angle()
 {
 }
 
@@ -22,14 +22,16 @@ Angle::Angle(Distance const &d) : _rad(d)
 {
 }
 
-Angle::Angle(int v) : _rad(Math::toRad(v))
+Angle::Angle(int deg, int) : _rad(Math::toRad(deg))
 {
 }
-
-
-/****************/
-/* AFFECTATIONS */
-/****************/
+/*************/
+/* OPERATORS */
+/*************/
+void	Angle::deg(int v)
+{
+  _rad = Math::toRad(v);
+}
 
 Angle		&Angle::operator+=(const Angle &other)
 {
@@ -43,46 +45,6 @@ Angle		&Angle::operator-=(const Angle &other)
   return (*this);
 }
 
-Angle		&Angle::operator+=(int other)
-{
-  _rad += Math::toRad(MTO_FLOAT(other));
-  return (*this);
-}
-
-Angle		&Angle::operator-=(int other)
-{
-  _rad -= Math::toRad(MTO_FLOAT(other));
-  return (*this);
-}
-
-Angle		&Angle::operator=(int other)
-{
-  _rad = Math::toRad(MTO_FLOAT(other));
-  return (*this);
-}
-
-Angle		&Angle::operator+=(float other)
-{
-  _rad += other * MFLOAT_UNIT;
-  return (*this);
-}
-
-Angle		&Angle::operator-=(float other)
-{
-  _rad -= other * MFLOAT_UNIT;
-  return (*this);
-}
-
-Angle		&Angle::operator=(float other)
-{
-  _rad = other * MFLOAT_UNIT;
-  return (*this);
-}
-
-/**************/
-/* OPERATIONS */
-/**************/
-
 Angle		Angle::operator+(const Angle &other) const
 {
   return (Angle(_rad + other._rad));
@@ -93,46 +55,26 @@ Angle		Angle::operator-(const Angle &other) const
   return (Angle(_rad - other._rad));
 }
 
-Angle		Angle::operator+(int other) const
-{
-  return (Angle(Math::toDeg(_rad) + other));
-}
-
-Angle		Angle::operator-(int other) const
-{
-  return (Angle(Math::toDeg(_rad) - other));
-}
-
-Angle		Angle::operator+(float other) const
-{
-  return (Angle((float(_rad)) / MFLOAT_UNIT + other));
-}
-
-Angle		Angle::operator-(float other) const
-{
-  return (Angle((float(_rad)) / MFLOAT_UNIT - other));
-}
 
 /***********/
 /* GETTERS */
 /***********/
+Angle::operator Distance()
+{
+  return (_rad);
+}
 
 int		Angle::deg() const
 {
   return (Math::toDeg(_rad));
 }
 
-float		Angle::rad() const
-{
-  return (((float) _rad) / MFLOAT_UNIT);
-}
-long		Angle::longVal() const
+Distance	Angle::rad()
 {
   return (_rad);
 }
 
-Distance	Angle::dist() const
+Distance const	&Angle::rad() const
 {
-  return (Distance(_rad));
+  return (_rad);
 }
-

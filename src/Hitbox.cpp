@@ -1,11 +1,11 @@
 //
-// Hitbox.cpp for geometry in /home/brunie_j/local/my/havetofly/src/geometry
+// Hitbox.cpp for src in /home/brunie_j/local/my/havetofly/src
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:41:09 2013 Brunier Jean
-// Last update Wed Apr 10 15:50:26 2013 Brunier Jean
+// Last update Fri Apr 12 22:39:13 2013 Brunier Jean
 //
 
 #include "Hitbox.hh"

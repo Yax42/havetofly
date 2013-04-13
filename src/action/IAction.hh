@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Fri Apr 12 11:19:45 2013 Brunier Jean
+// Last update Sat Apr 13 15:04:58 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -13,26 +13,29 @@
 
 class IAction
 {
-  enum Action
+  enum Action_e
     {
-      A_FALL,
-      A_MOVE,
-      A_DOUBLE_JUMP,
-      A_DASH,
-      A_MOON_DASH,
-      A_BULL,
-      A_RODEO,
-      A_UP,
-      A_COUNT
+      GRAVITY,
+      MOVE,
+      DOUBLE_JUMP,
+      DASH,
+      MOON_DASH,
+      BULL,
+      RODEO,
+      UP,
+      COUNT
     };
-  virtual ~IAction();
-  virtual int		init() = 0;
+  virtual ~IAction(){}
   virtual bool		allow(int a) = 0;
   virtual IAction	*step() = 0;
-  virtual void		hit(Player &player) = 0;
+  virtual void		focus(Player &player) = 0;
   virtual bool		request() = 0;
+  virtual void		init(int) = 0;
   virtual void		check() = 0;
   virtual int		val() = 0;
+  virtual int		id() = 0;
+  virtual const HitBox	&getHB() const = 0;
+  virtual void		upBones() = 0;
 };
 
 #endif /* !IACTION_HH_ */

@@ -5,13 +5,16 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Thu Apr 11 01:18:50 2013 Brunier Jean
+// Last update Sat Apr 13 15:12:32 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
 # define PLAYER_HH_
 
-# include "IState.hh"
+# include <vector>
+# include <list>
+
+# include "IAction.hh"
 # include "Bones.hh"
 # include "Position.hh"
 
@@ -28,47 +31,64 @@ enum Keys
   K_COUNT
 };
 
-class Player
+namespace Event
 {
-public:
-  enum Event
+  enum
     {
+      FLOOR,
       CEILING,
       LEFT_WALL,
       RIGHT_WALL,
+      WALL,
       HIT,
       COUNT
     };
+}
+
+class Player
+{
 private:
-  Position	_pos;
-  Bones		_bones;
-  Position	_speed;
-  IState	*_state;
-  IAction	*_action;
-  int		_stun;
+  static std::list<Player&>	_player;
+  Position			_pos;
+  int				_team;
+  std::vector<bool>		_event;
+  std::vector<IAction*>		_action;
+  Bones				_bones;
+  Position			_speed;
+  IAction			*_doing;
+  const Hit			*_hit;
 
 public:
 
-  Player(const Position &pos);
+  Player(const Position &pos, int team);
   ~Player();
+
+  /* PROCESS */
+  void			init();
+  void			move();
+  void			process();
+  void			hit();
 
   /* SETTERS */
   void			operator++();
   void			operator=(Position const &speed);
-  void			x(const Distance &s);
-  void			y(const Distance &s);
-  bool			operator[](int k);
-  bool			operator()(int e);
-  void			touch() const;
-  void			stop();
-  void			stun(int v);
+  IAction		*operator[](int action);
+  int			operator()(int event);
+  int			key(int k);
+
+  /* SPEED */
+  const Distance	&sx() const;
+  const Distance	&sy() const;
+  void			sx(const Distance &s);
+  void			sy(const Distance &s);
+  Position const	&speed() const;
+
+  /* POSITION */
+  Position const	&pos() const;
+  int			x() const;
+  int			y() const;
 
   /* GETTERS */
-  bool			stun() const;
-  Position const	&pos() const;
-  Position const	&speed() const;
-  Distance		x() const;
-  Distance		y() const;
   Bones			&bones();
   Action		&action(int a);
 };

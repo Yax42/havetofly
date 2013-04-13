@@ -1,11 +1,11 @@
 //
-// Math.cpp for src in /home/brunie_j/local/my/havetofly/src
+// Math.cpp for math in /home/brunie_j/local/my/havetofly/src/math
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 01:17:42 2013 Brunier Jean
-// Last update Wed Apr 10 12:37:58 2013 Brunier Jean
+// Last update Sat Apr 13 17:23:04 2013 Brunier Jean
 //
 
 #include <cmath>
@@ -14,21 +14,20 @@
 
 #define MAX_SQRT	5000000
 
-std::vector<long>	Math::_cos;
-std::vector<long>	Math::_sin;
-std::vector<long>	Math::_tan;
-std::vector<long>	Math::_acos;
-std::vector<long>	Math::_asin;
-std::vector<long>	Math::_atan;
-std::vector<int> 	Math::_sqrt;
-std::vector<long>	Math::_toRad;
+std::vector<Distance>	Math::_cos;
+std::vector<Distance>	Math::_sin;
+std::vector<Distance>	Math::_tan;
+std::vector<Distance>	Math::_acos;
+std::vector<Distance>	Math::_asin;
+std::vector<Distance>	Math::_atan;
+std::vector<long> 	Math::_sqrt;
+std::vector<Distance>	Math::_toRad;
 std::vector<long>	Math::_toDeg;
-long			Math::_maxRad;
+const Distance		Math::maxRad = M_PI * 2;
 
 void		Math::init()
 {
-  _maxRad = M_PI * 2 * MFLOAT_UNIT;
-  for (long i = 0; i < _maxRad; i++)
+  for (long i = 0; i < maxRad.longVal(); i++)
     {
       _cos[i] = cos(float(i) / MFLOAT_UNIT) * MFLOAT_UNIT;
       _sin[i] = sin(float(i) / MFLOAT_UNIT) * MFLOAT_UNIT;
@@ -42,46 +41,43 @@ void		Math::init()
       _atan[i] = atan(float(i - MFLOAT_UNIT) / MFLOAT_UNIT) * MFLOAT_UNIT;
     }
   for (int i = 0; i < MAX_SQRT; i++)
-    _sqrt[i] = ::sqrt(i);
+    _sqrt[i] =::sqrt(double(i) / MFLOAT_UNIT);
   for (int i = 0; i < 360; i++)
     _toRad[i] = float(i) * M_PI / 180 * MFLOAT_UNIT;
 }
 
 
-long	Math::cos(long a)
+Distance	Math::cos(const Distance &v)
 {
-  a %= _maxRad;
-  return (_cos[((a < 0) ? a + _maxRad : a)]);
+  Distance	a(v % maxRad);
+  return (_cos[((a < 0) ? a + maxRad : a).longVal()]);
 }
 
-long	Math::sin(long a)
+Distance	Math::sin(const Distance &v)
 {
-  a %= _maxRad;
-  return (_sin[((a < 0) ? a + _maxRad : a)]);
+  Distance	a(v % maxRad);
+  return (_sin[((a < 0) ? a + maxRad : a).longVal()]);
 }
 
-long	Math::tan(long a)
+Distance	Math::tan(const Distance &v)
 {
-  a %= _maxRad;
-  return (_tan[((a < 0) ? a + _maxRad : a)]);
+  Distance	a(v % maxRad);
+  return (_tan[((a < 0) ? a + maxRad : a).longVal()]);
 }
 
-long	Math::acos(long v)
+Distance	Math::acos(const Distance &v)
 {
-  v += MFLOAT_UNIT;
-  return (_acos[MPUT_IN(v, 0, MFLOAT_UNIT * 2)]);
+  return (_acos[MPUT_IN(v + MFLOAT_UNIT, 0, MFLOAT_UNIT * 2).longVal()]);
 }
 
-long	Math::asin(long v)
+Distance	Math::asin(const Distance &v)
 {
-  v += MFLOAT_UNIT;
-  return (_asin[MPUT_IN(v, 0, MFLOAT_UNIT * 2)]);
+  return (_asin[MPUT_IN(v + MFLOAT_UNIT, 0, MFLOAT_UNIT * 2).longVal()]);
 }
 
-long	Math::atan(long v)
+Distance	Math::atan(const Distance &v)
 {
-  v += MFLOAT_UNIT;
-  return (_atan[MPUT_IN(v, 0, MFLOAT_UNIT * 2)]);
+  return (_atan[MPUT_IN(v + MFLOAT_UNIT, 0, MFLOAT_UNIT * 2).longVal()]);
 }
 
 Distance	Math::sqrt(const Distance &d)
@@ -94,17 +90,18 @@ Distance	Math::sqrt(const Distance &d)
       count++;
       v >>= 2;
     }
-  return (Distance(_sqrt[v] << count));
+  return (Distance(_sqrt[v] << count, 0));
 }
 
-long	Math::toRad(int deg)
+Distance	Math::toRad(int deg)
 {
   deg %= 360;
   return (_toRad[(deg < 0) ? deg + 360 : deg]);
 }
 
-int	Math::toDeg(long rad)
+int	Math::toDeg(Distance const &rad)
 {
-  rad %= _maxRad;
-  return (_toDeg[(rad < 0) ? rad + _maxRad : rad]);
+  long	tmp = rad.longVal() % maxRad.longVal();
+
+  return (_toDeg[(tmp < 0) ? tmp + maxRad.longVal() : tmp]);
 }

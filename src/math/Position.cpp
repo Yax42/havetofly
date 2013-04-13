@@ -15,6 +15,8 @@
 /* CONSTRUCTORS */
 /****************/
 
+Position::~Position(){}
+
 Position::Position()
 {
 }
@@ -24,11 +26,10 @@ Position::Position(const Distance &y, const Distance &x) : _y(y), _x(x)
 }
 
 
-
 Position::Position(Angle const &angle, const Distance &distance)
 {
-  _x = distance * Math::cos(angle.longVal());
-  _y = distance * Math::sin(angle.longVal());
+  _x = distance * Math::cos(angle);
+  _y = distance * Math::sin(angle);
 }
 
 Position::Position(Position const &other) : _y(other._y), _x(other._x)
@@ -40,10 +41,6 @@ Position	&Position::operator=(Position const &other)
   _y = other._y;
   _x = other._x;
   return (*this);
-}
-
-Position::~Position()
-{
 }
 
 /****************/
@@ -155,8 +152,8 @@ Position		&Position::operator*=(const Angle& angle)
   Distance		d = distance();
   Angle			a(angle + this->angle());
 
-  _x = (d * Math::cos(a.longVal()));
-  _y = (d * Math::sin(a.longVal()));
+  _x = (d * Math::cos(a.rad()));
+  _y = (d * Math::sin(a.rad()));
   return (*this);
 }
 
@@ -184,12 +181,22 @@ int			Position::y() const
   return (_y.intVal());
 }
 
-Distance		Position::xDist() const
+void			Position::x(Distance const &x)
+{
+  _x = x;
+}
+
+void			Position::y(Distance const &y)
+{
+  _y = y;
+}
+
+const Distance		&Position::xDist() const
 {
   return (_x);
 }
 
-Distance		Position::yDist() const
+const Distance		&Position::yDist() const
 {
   return (_y);
 }

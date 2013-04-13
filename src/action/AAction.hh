@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Fri Apr 12 11:23:35 2013 Brunier Jean
+// Last update Sat Apr 13 14:43:45 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -25,15 +25,16 @@ protected:
   int		_count;
 
 public:
-  AAction(Player &player, Hit *hit);
   virtual ~AAction();
-  virtual int		init();
+  AAction(Player &player, Hit *hit);
   virtual bool		allow(int a);
   virtual IAction	*step();
   virtual void		hit(Player &ennemy);
   virtual int		val();
   virtual bool		request() = 0;
   virtual void		check() = 0;
+  virtual const HitBox	&getHB() const = 0;
+  virtual void		upBones() = 0;
 };
 
 

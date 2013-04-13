@@ -24,11 +24,11 @@ class Position
 
 public:
   /* CONSTRUCTORS */
+  ~Position();
   Position();
   Position(const Distance &y, const Distance &x);
   Position(const Angle &angle, const Distance &distance);
   Position(Position const &other);
-  ~Position();
   Position		&operator=(Position const &other);
 
   /* COMPARISONS */
@@ -60,8 +60,11 @@ public:
   /* GETTERS */
   int			x() const;
   int			y() const;
-  Distance		xDist() const;
-  Distance		yDist() const;
+  void			x(Distance const &x);
+  void			y(Distance const &y);
+  const Distance	&xDist() const;
+  const Distance	&yDist() const;
+
   Angle			angle() const;
   Distance		distance() const;
 };
