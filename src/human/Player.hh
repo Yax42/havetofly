@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Sun Apr 14 11:13:16 2013 Brunier Jean
+// Last update Sun Apr 14 15:38:04 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -42,6 +42,7 @@ private:
   bool				_alive;
   int				_team;
   Key				_keys;
+  int				_orient;
   Bones				_bones;
   std::vector<bool>		_event;
   std::vector<IAction*>		_action;

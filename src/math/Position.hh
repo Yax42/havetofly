@@ -40,6 +40,10 @@ public:
   Position		&operator-=(Position const &other);
   Position		operator+(Position const &other) const;
   Position		operator-(Position const &other) const;
+  Position		&operator*=(Position const &other);
+  Position		&operator/=(Position const &other);
+  Position		operator*(Position const &other) const;
+  Position		operator/(Position const &other) const;
 
   /* INT OPERATIONS */
 

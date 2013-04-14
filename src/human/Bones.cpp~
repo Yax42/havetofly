@@ -1,0 +1,70 @@
+//
+// Bones.cpp for human in /home/brunie_j/local/my/havetofly/src/human
+//
+// Made by Brunier Jean
+// Login   <brunie_j@epitech.net>
+//
+// Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
+// Last update Sun Apr 14 15:12:41 2013 Brunier Jean
+//
+
+#include "Bones.hh"
+#include "Graphics.hh"
+
+#define U_ARM		100
+#define L_ARM		100
+#define ARM		(U_ARM + L_ARM)
+
+#define U_LEGG		100
+#define L_LEGG		100
+#define LEGG  		(U_LEGG + LOWE_LEGG)
+
+#define U_BACK		100
+#define L_BACK		100
+#define BACK		(U_BACK + L_BACK)
+
+#define HEAD		100
+
+Bones::Bones(const Position &centre, int color, int color2) :
+	_center(centre), _color(color), _color2(color2)
+{
+}
+
+Bones::~Bones()
+{
+}
+
+void	Bones::print(Graphics &g) const
+{
+
+  g.circle(_center, 30, _color);
+
+
+  curveLine(pos1, pos2, pos3, color);
+}
+
+void	Bones::check()
+{
+  _angle = angle;
+  _foot1 = foot1;
+  if (_foot1.distance() > LEGG)
+    _foot1 = Position(_foot1.angle(), LEGG);
+  _foot2 = foot2;
+  if (_foot2.distance() > LEGG)
+    _foot2 = position(_foot2.angle(), LEGG);
+  _hand1 = hand1;
+  if (_hand1.distance() > ARM)
+    _hand1 = position(_hand1.angle(), ARM);
+  _hand2 = hand2;
+  if (_hand2.distance() > ARM)
+    _hand2 = position(_hand2.angle(), ARM);
+  _back = back;
+  if (_back > BACK)
+    _back = BACK;
+  _head = head;
+  if (_head.deg > 90)
+    _head = Angle(90, 0);
+  else if (_head.deg < -90)
+    _head = Angle(-90, 0);
+}
+  //void	circle(Position const &pos, const Distance &size, int color);

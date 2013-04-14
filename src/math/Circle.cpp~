@@ -1,0 +1,30 @@
+//
+// Circle.cpp for math in /home/brunie_j/local/my/havetofly/src/math
+//
+// Made by Brunier Jean
+// Login   <brunie_j@epitech.net>
+//
+// Started on  Sun Apr 14 15:59:09 2013 Brunier Jean
+// Last update Sun Apr 14 16:31:54 2013 Brunier Jean
+//
+
+#include "Circle.hh"
+
+Circle::Circle(const Position &center, const Distance &ray) :
+	_center(center), _ray(ray)
+{
+}
+
+Position	Circle::operator==(const Circle &other) const
+{
+  Position	center2 = other._center - _center;
+  Distance	a = 2 * other._center.xDist();
+  Distance	b = 2 * other._center.yDist();
+  Distance	c = other._center.xDist() *
+		    other._center.xDist() +
+  		    other._center.yDist() *
+		    other._center.yDist() -
+		    other._ray * other._ray +
+		    _ray * _ray;
+  Distance	x = (2 * a * c -
+}

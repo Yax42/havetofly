@@ -13,6 +13,7 @@
 #include "Graphics.hh"
 #include "Exception.hh"
 #include "Math.hh"
+#include "Circle.hh"
 
 # define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ? max - (x) % max - 1 : (x) % max)
 
@@ -104,6 +105,19 @@ void		Graphics::line(Position const &pos1, Position const &pos2, int color)
 
   for (int i = 0; i <= range.intVal(); i++)
     printPixel(pos1 + Position(angle, i), color);
+}
+
+void		Graphics::curveLine(Position const &pos1, Position const &pos2,
+    Position const &pos3, int color)
+{
+  line(pos1, pos2, color);
+  line(pos2, pos3, color);
+}
+
+void		Graphics::bend(Position const &pos1, const Distance &ray1,
+	Position const &pos2, const Distance &ray2, int color)
+{
+  curveLine(pos1, Circle(pos1, ray1) == Circle(pos2, ray2), pos2, color);
 }
 
 void	Graphics::printPixel(Position const &pos, int color)

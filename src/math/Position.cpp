@@ -85,6 +85,30 @@ Position	Position::operator-(Position const &other) const
   return (Position(_y - other._y, _x - other._x));
 }
 
+Position	&Position::operator*=(Position const &other)
+{
+  _y *= other._y;
+  _x *= other._x;
+  return (*this);
+}
+
+Position	&Position::operator/=(Position const &other)
+{
+  _y /= other._y;
+  _x /= other._x;
+  return (*this);
+}
+
+Position	Position::operator*(Position const &other) const
+{
+  return (Position(_y * other._y, _x * other._x));
+}
+
+Position	Position::operator/(Position const &other) const
+{
+  return (Position(_y / other._y, _x / other._x));
+}
+
 /***********************/
 /* DISTANCE OPERATIONS */
 /***********************/

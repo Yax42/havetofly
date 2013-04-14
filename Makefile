@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Sun Apr 14 11:39:23 2013 Brunier Jean
+## Last update Sun Apr 14 16:53:38 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -26,7 +26,9 @@ DINC	= .			\
 SRCS	= math/Angle.cpp		\
 	  math/Math.cpp			\
 	  math/Distance.cpp		\
+	  math/Line.cpp			\
 	  math/Position.cpp		\
+	  math/Circle.cpp		\
 	  graphics/Graphics.cpp		\
 	  Exception.cpp			\
 	  MyTime.cpp			\

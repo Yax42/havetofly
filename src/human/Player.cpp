@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Sun Apr 14 11:16:57 2013 Brunier Jean
+// Last update Sun Apr 14 15:41:00 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -19,11 +19,10 @@
 /****************/
 /* CONSTRUCTORS */
 /****************/
-
 Player::~Player(){}
 
 Player::Player(const Position &pos, int team, const Key &k) : _pos(pos), _team(team), _keys(k),
-	_bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF)
+	_orient(1), _bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF, _orient)
 {
   for (int i = 0; i < IAction::COUNT; i++)
     _action.push_back(ActionFactory::get(i, *this));
@@ -33,7 +32,6 @@ Player::Player(const Position &pos, int team, const Key &k) : _pos(pos), _team(t
 /*************/
 /*  OPEARTOS */
 /*************/
-
 void	Player::operator++()
 {
   if (_speed.yDist() > -10)
@@ -161,7 +159,6 @@ Position const	&Player::speed() const
 /************/
 /* POSITION */
 /************/
-
 int		Player::x() const
 {
   return (_pos.x());
@@ -180,7 +177,6 @@ Position const	&Player::pos() const
 /***********/
 /* GETTERS */
 /***********/
-
 Bones		&Player::bones()
 {
   return (_bones);
@@ -190,7 +186,6 @@ Player::operator const Hitbox() const
 {
   return (_doing->getHB());
 }
-
 
 void	Player::kill()
 {

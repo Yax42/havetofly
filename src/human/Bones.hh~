@@ -4,7 +4,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 16:06:02 2013 Brunier Jean
-// Last update Sun Apr 14 15:33:46 2013 Brunier Jean
+// Last update Sun Apr 14 15:06:05 2013 Brunier Jean
 //
 
 #ifndef BONES_HH_
@@ -18,7 +18,6 @@ class Bones
 {
 private:
   const Position	&_center;
-  const int		&_orient;
   int			_color;
   int			_color2;
 private:
@@ -26,24 +25,21 @@ private:
   Position		_foot2;
   Position		_hand1;
   Position		_hand2;
-  Distance		_back;
-  Angle			_angle;
+  Position		_back;
   Angle			_head;
 public:
   Position		foot1;
   Position		foot2;
   Position		hand1;
   Position		hand2;
-  Distance		back;
-  Angle			angle;
+  Position		back;
   Angle			head;
 
 public:
-  Bones(const Position &centre, int color, int color2, const int &orient);
+  Bones(const Position &centre, int color, int color2);
   ~Bones();
   void		print(Graphics &g) const;
 private:
-  void		up(Position const &old, Position &next, int max);
   void		check();
 };
 
