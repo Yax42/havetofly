@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Sat Apr 13 14:43:45 2013 Brunier Jean
+// Last update Sat Apr 13 20:42:43 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -29,7 +29,7 @@ public:
   AAction(Player &player, Hit *hit);
   virtual bool		allow(int a);
   virtual IAction	*step();
-  virtual void		hit(Player &ennemy);
+  virtual void		hit(Player *ennemy);
   virtual int		val();
   virtual bool		request() = 0;
   virtual void		check() = 0;

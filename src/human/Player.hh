@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Sat Apr 13 15:12:32 2013 Brunier Jean
+// Last update Sun Apr 14 11:13:16 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -17,19 +17,9 @@
 # include "IAction.hh"
 # include "Bones.hh"
 # include "Position.hh"
+# include "Key.hh"
 
-enum Keys
-{
-  K_LEFT,
-  K_RIGHT,
-  K_UP,
-  K_DOWN,
-  K_A,
-  K_B,
-  K_R,
-  K_L,
-  K_COUNT
-};
+# include "Hit.hh"
 
 namespace Event
 {
@@ -48,33 +38,34 @@ namespace Event
 class Player
 {
 private:
-  static std::list<Player&>	_player;
   Position			_pos;
+  bool				_alive;
   int				_team;
+  Key				_keys;
+  Bones				_bones;
   std::vector<bool>		_event;
   std::vector<IAction*>		_action;
-  Bones				_bones;
   Position			_speed;
   IAction			*_doing;
-  const Hit			*_hit;
+  Hit const			*_hit;
 
 public:
 
-  Player(const Position &pos, int team);
+  Player(const Position &pos, int team, const Key &k);
   ~Player();
 
   /* PROCESS */
   void			init();
   void			move();
   void			process();
-  void			hit();
+  void			hit(const Hit *hit);
 
   /* SETTERS */
   void			operator++();
   void			operator=(Position const &speed);
   IAction		*operator[](int action);
   int			operator()(int event);
-  int			key(int k);
+  int			&key(int k);
 
   /* SPEED */
   const Distance	&sx() const;
@@ -90,8 +81,10 @@ public:
 
   /* GETTERS */
   Bones			&bones();
-  Action		&action(int a);
+  void			kill();
+  bool			alive() const;
+  int			team() const;
+  operator const Hitbox() const;
 };
-
 
 #endif /* !PLAYER_HH_ */

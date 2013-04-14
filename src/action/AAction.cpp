@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Sat Apr 13 15:19:22 2013 Brunier Jean
+// Last update Sat Apr 13 20:42:30 2013 Brunier Jean
 //
 
 # include "AAction.hh"
@@ -36,11 +36,11 @@ IAction		*AAction::step()
   return (_player[Action::INERTIE]);
 }
 
-void	AAction::hit(Player &ennemy)
+void	AAction::hit(Player *ennemy)
 {
   if (_hit == NULL)
     return ;
-  hit->focus(ennemy);
+  hit->focus(*ennemy);
 }
 
 int	AAction::val()

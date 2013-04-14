@@ -5,28 +5,29 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:41:09 2013 Brunier Jean
-// Last update Fri Apr 12 22:39:13 2013 Brunier Jean
+// Last update Sat Apr 13 19:54:42 2013 Brunier Jean
 //
 
 #include "Hitbox.hh"
-Hitbox(const Position &topL, const Position &botR, const Position &center) :
+
+Hitbox::Hitbox(const Position &topL, const Position &botR, const Position &center) :
 	_topL(topL), _botR(botR), _center(center)
 {
 }
 
-~Hitbox()
+Hitbox::~Hitbox()
 {
 }
 
-bool		touch(const Hitbox &other) const
+bool		Hitbox::touch(const Hitbox &other) const
 {
-  Position	topL1(_topL + center);
-  Position	botR1(_botR + center);
-  Position	topL2(other._topL + other.center);
-  Position	botR2(other._botR + other.center);
+  Position	topL1(_topL + _center);
+  Position	botR1(_botR + _center);
+  Position	topL2(other._topL + other._center);
+  Position	botR2(other._botR + other._center);
 
-  if (topL1.y < botR2.y || topL2.y < botR1.y ||
-      topL1.x < botR2.x || topL2.x < botR1.x)
+  if (topL1.yDist() < botR2.yDist() || topL2.yDist() < botR1.yDist() ||
+      topL1.xDist() < botR2.xDist() || topL2.xDist() < botR1.xDist())
     return (false);
   return (true);
 }

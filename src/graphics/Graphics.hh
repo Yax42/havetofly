@@ -8,20 +8,23 @@
 ** Last update Sat Mar 16 22:09:17 2013 Brunier Jean
 */
 
-#ifndef	AGRAPHICS_HH_
-# define AGRAPHICS_HH_
+#ifndef	GRAPHICS_HH_
+# define GRAPHICS_HH_
 
+# include <SDL/SDL.h>
 # include "Position.hh"
 # include "Angle.hh"
 
-class AGraphics : public IGraphics
+class Graphics
 {
 private:
   SDL_Surface	*_screen;
+  bool		_fs;
 
 public:
-  Graphics::Graphics(int h, int w, bool fs);
-  Graphics::~Graphics();
+  Graphics(int h, int w);
+  ~Graphics();
+  void	switchFS();
   void	printScreen();
   void	resetScreen(int color);
   void	square(Position const &pos1, Position const &pos3, int color);
@@ -30,4 +33,6 @@ public:
   void	circle(Position const &pos, const Distance &size, int color);
   void	line(Position const &pos1, Position const &pos2, int color);
   void	printPixel(Position const &pos, int color);
-}
+};
+
+#endif /* GRAPHICS_HH_ */

@@ -4,7 +4,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 16:06:02 2013 Brunier Jean
-// Last update Wed Apr 10 17:37:00 2013 Brunier Jean
+// Last update Sun Apr 14 11:30:21 2013 Brunier Jean
 //
 
 #ifndef BONES_HH_
@@ -12,20 +12,23 @@
 
 # include "Position.hh"
 
-class Charac;
+class Graphics;
 
 class Bones
 {
-  const Charac		&_charac;
+private:
+  const Position	&_center;
+  int			_color;
+  int			_color2;
   Position		_foot1;
   Position		_foot2;
   Position		_hand1;
   Position		_hand2;
-  Position		_hand2;
   Angle			_body;
   Angle			_head;
 
-  Bones(Charac const &charac);
+public:
+  Bones(const Position &centre, int color, int color2);
   ~Bones();
   void	foot1(Position const &pos);
   void	foot2(Position const &pos);
@@ -33,7 +36,7 @@ class Bones
   void	hand2(Position const &pos);
   void	body(Angle const &angle);
   void	head(Angle const &angle);
-  //print
+  void	print(Graphics &g) const;
 };
 
 #endif /* !BONES_HH_ */

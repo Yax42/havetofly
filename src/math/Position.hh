@@ -62,6 +62,8 @@ public:
   int			y() const;
   void			x(Distance const &x);
   void			y(Distance const &y);
+  Distance		&xDist();
+  Distance		&yDist();
   const Distance	&xDist() const;
   const Distance	&yDist() const;
 

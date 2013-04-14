@@ -201,6 +201,16 @@ const Distance		&Position::yDist() const
   return (_y);
 }
 
+Distance		&Position::xDist()
+{
+  return (_x);
+}
+
+Distance		&Position::yDist()
+{
+  return (_y);
+}
+
 Distance	Position::distance() const
 {
   return (Distance(Math::sqrt(_x * _x + _y * _y)));

@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Wed Apr 10 13:54:43 2013 Brunier Jean
+## Last update Sun Apr 14 11:39:23 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -15,26 +15,44 @@ NAME	= h2f
 DOBJ	= obj
 DSRC	= src
 DINC	= .			\
-	  math
+	  math			\
+	  graphics		\
+	  human			\
+	  action/passive	\
+	  action/active		\
+	  action
 
 
 SRCS	= math/Angle.cpp		\
 	  math/Math.cpp			\
 	  math/Distance.cpp		\
-	  math/Position.cpp
+	  math/Position.cpp		\
+	  graphics/Graphics.cpp		\
+	  Exception.cpp			\
+	  MyTime.cpp			\
+	  Hit.cpp			\
+	  Hitbox.cpp			\
+	  human/Bones.cpp		\
+	  Game.cpp			\
+	  human/Player.cpp		\
+	  Wait.cpp			\
+	  Key.cpp			\
+	  Input.cpp			\
+	  main.cpp
+
 
 INCLUDE = $(addprefix -I $(DSRC)/, $(DINC))
 
 OBJS	= $(addprefix $(DOBJ)/, $(SRCS:.cpp=.o))
 
-CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -O3
+CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -O3 -pthread
 
-LDFLAGS	= `sdl-config --cflags --libs` -lm
+LDXFLAGS= `sdl-config --cflags --libs` -lm -pthread
 
 all: $(NAME)
 
 $(NAME):  $(OBJS)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	$(CXX) $(LDXFLAGS) $^ -o $@
 
 $(DOBJ)/%.o: $(DSRC)/%.cpp
 	@mkdir -p $(@D)

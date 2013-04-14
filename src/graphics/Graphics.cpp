@@ -9,22 +9,34 @@
 */
 
 #include <iostream>
-#include "Graphics.hh"
 
+#include "Graphics.hh"
 #include "Exception.hh"
 #include "Math.hh"
 
 # define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ? max - (x) % max - 1 : (x) % max)
 
-Graphics::Graphics(int h, int w, bool fs)
+Graphics::Graphics(int h, int w)
 {
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     throw(Exception("Cannot init SDL"));
-  if (fs)
-    _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN);
-  else
-    _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+  _fs = false;
+    _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
+  SDL_JoystickEventState(SDL_ENABLE);
   SDL_WM_SetCaption("You'd butter fly", NULL);
+}
+
+void	Graphics::switchFS()
+{
+  int	w = _screen->w;
+  int	h = _screen->h;
+
+  SDL_Quit();
+  _fs = !_fs;
+  if (_fs)
+    _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN | SDL_INIT_JOYSTICK);
+  else
+    _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
 }
 
 Graphics::~Graphics()
@@ -45,13 +57,13 @@ void	Graphics::resetScreen(int color)
 void		Graphics::square(Position const &pos1, Position const &pos3, int color)
 {
   Position	tmp((pos3 - pos1) / 2);
-  Position	pos2(Position(tmp.angle + Math::toRad(90), tmp.distance()) + tmp + pos1);
-  Position	pos4(Position(tmp.angle + Math::toRad(-90), tmp.distance()) + tmp + pos1);
+  Position	pos2(Position(tmp.angle() + Math::toRad(90), tmp.distance()) + tmp + pos1);
+  Position	pos4(Position(tmp.angle() + Math::toRad(-90), tmp.distance()) + tmp + pos1);
 
-  Graphics::line(pos1, pos2, 0, color);
-  Graphics::line(pos3, pos2, 0, color);
-  Graphics::line(pos3, pos4, 0, color);
-  Graphics::line(pos1, pos4, 0, color);
+  Graphics::line(pos1, pos2, color);
+  Graphics::line(pos3, pos2, color);
+  Graphics::line(pos3, pos4, color);
+  Graphics::line(pos1, pos4, color);
 }
 
 void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, Distance &size, const Angle &angle, int color)
@@ -60,13 +72,13 @@ void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, Distanc
   Position	pos1;
   Position	pos2;
 
-  for (Angle i = angle; i < (Math::toRad(360) + angle); i += angleOffset)
+  for (Angle i = angle; i.rad() < (Math::toRad(360) + angle); i += angleOffset)
     {
       pos1 = Position(i, ray - size) + pos;
-      pos2 = Position(i + angleOffset / 2, ray + size) + pos;
-      line(pos1, pos2, 0, color);
+      pos2 = Position(i + angleOffset.rad() / 2, ray + size) + pos;
+      line(pos1, pos2, color);
       pos1 = Position(i + angleOffset, ray - size) + pos;
-      line(pos2, pos1, 0, color);
+      line(pos2, pos1, color);
     }
 }
 

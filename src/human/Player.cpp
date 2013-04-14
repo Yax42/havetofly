@@ -5,12 +5,16 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Sat Apr 13 15:33:21 2013 Brunier Jean
+// Last update Sun Apr 14 11:16:57 2013 Brunier Jean
 //
+
+#include <cstdlib>
+#include <algorithm>
 
 #include "ActionFactory.hh"
 #include "Player.hh"
-
+#include "const.hh"
+#include "Game.hh"
 
 /****************/
 /* CONSTRUCTORS */
@@ -18,13 +22,17 @@
 
 Player::~Player(){}
 
-Player::Player(const Position &pos, int team) : _pos(pos), _team(team)
+Player::Player(const Position &pos, int team, const Key &k) : _pos(pos), _team(team), _keys(k),
+	_bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF)
 {
   for (int i = 0; i < IAction::COUNT; i++)
-    _action[i] = ActionFactory.get(i);
+    _action.push_back(ActionFactory::get(i, *this));
   _doing = _action[IAction::INERTIE];
-  _player.push_back(*this);
 }
+
+/*************/
+/*  OPEARTOS */
+/*************/
 
 void	Player::operator++()
 {
@@ -37,14 +45,19 @@ void	Player::operator=(Position const &speed)
   _speed = speed;
 }
 
-int		Player::operator[](int a)
+IAction		*Player::operator[](int a)
 {
-  return (action[a].val());
+  return (_action[a]);
 }
 
 int		Player::operator()(int event)
 {
   return (_event[event]);
+}
+
+int		&Player::key(int k)
+{
+  return (_keys[k]);
 }
 
 /************/
@@ -61,29 +74,30 @@ void		Player::init()
 void		Player::move()
 {
   _pos += _speed;
-  if (pos.x() <= BODY)
+  if (_pos.x() <= BODY_SIZE)
     {
-      pos.x(BODY);
+      _pos.x(BODY_SIZE);
       _event[Event::LEFT_WALL] = true;
-      _event[WALL] = true;
+      _event[Event::WALL] = true;
     }
-  else if (pos.x() >= MAP_W - BODY)
+  else if (_pos.x() >= Game::w() - BODY_SIZE)
     {
-      pos.x(MAP_W - BODY);
+      _pos.x(Game::w() - BODY_SIZE);
       _event[Event::RIGHT_WALL] = true;
-      _event[WALL] = true;
+      _event[Event::WALL] = true;
     }
-  if (pos.y() <= BODY)
+  if (_pos.y() <= BODY_SIZE)
     {
-      pos.y(BODY);
+      _pos.y(BODY_SIZE);
       _event[Event::CEILING] = true;
     }
-  else if (pos.y() >= MAP_H - BODY)
+  else if (_pos.y() >= Game::h() - BODY_SIZE)
     {
-      pos.y(MAP_H - BODY);
+      _pos.y(Game::h() - BODY_SIZE);
       _event[Event::FLOOR] = true;
     }
-  std::for_each(_player.begin(), _player.end(), _doing->hit);
+  for (Players::iterator i = Game::players.begin(); i != Game::players.end(); ++i)
+    _doing->hit(&(*i));
 }
 
 void		Player::process()
@@ -91,21 +105,21 @@ void		Player::process()
   int		tmp;
   if (_hit != NULL)
     {
-      tmp = _hit->go();
+      tmp = _hit->go(*this);
       if (tmp > 0)
         {
-	  _doing = _action[STUN];
+	  _doing = _action[IAction::STUN];
 	  _doing->init(tmp);
 	}
       else
-        _doing = _action[INERTIE];
+        _doing = _action[IAction::INERTIE];
     }
-  for (int i = 0; i < Action::COUNT; i++)
+  for (int i = 0; i < IAction::COUNT; i++)
     _action[i]->check();
-  for (int i = 0; i < Action::COUNT; i++)
+  for (int i = 0; i < IAction::COUNT; i++)
     if (_doing->allow(i) && _action[i]->request())
       {
-	_doing = &_action[i];
+	_doing = _action[i];
 	_doing->init();
       }
   _doing = _doing->step();
@@ -148,12 +162,12 @@ Position const	&Player::speed() const
 /* POSITION */
 /************/
 
-int		Player::x()
+int		Player::x() const
 {
   return (_pos.x());
 }
 
-int		Player::y()
+int		Player::y() const
 {
   return (_pos.y());
 }
@@ -163,4 +177,32 @@ Position const	&Player::pos() const
   return (_pos);
 }
 
-Bones			&bones();
+/***********/
+/* GETTERS */
+/***********/
+
+Bones		&Player::bones()
+{
+  return (_bones);
+}
+
+Player::operator const Hitbox() const
+{
+  return (_doing->getHB());
+}
+
+
+void	Player::kill()
+{
+  _alive = false;
+}
+
+bool	Player::alive() const
+{
+  return (_alive);
+}
+
+int	Player::team() const
+{
+  return (_team);
+}

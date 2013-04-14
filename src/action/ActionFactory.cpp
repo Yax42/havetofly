@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Sat Apr 13 10:45:17 2013 Brunier Jean
+// Last update Sat Apr 13 20:49:46 2013 Brunier Jean
 //
 
 #include "Gravity.hh"
@@ -13,7 +13,7 @@
 #include "DoubleJump.hh"
 #include "Player.hh"
 
-IAction		*ActionFactory::get(int action, Player &p)
+IAction		*ActionFactory::get(int action, Player const &p)
 {
   if (action == IAction::GRAVITY)
     return (new Gravity(p));

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 22:46:44 2013 Brunier Jean
-// Last update Sat Apr 13 15:31:34 2013 Brunier Jean
+// Last update Sat Apr 13 21:13:47 2013 Brunier Jean
 //
 
 #ifndef HIT_HH_
@@ -20,11 +20,11 @@ class Player;
 class Hit
 {
 private:
-  Hitbox		_hb;
-  int			_stun;
-  Distance		_speed;
-  const Player		&_player;
-  std::list<Player *>	_players;
+  Hitbox			_hb;
+  int				_stun;
+  Distance			_speed;
+  const Player			&_player;
+  std::list<Player const*>	_players;
 
 public:
   Hit(const Position &topL,
@@ -32,7 +32,7 @@ public:
       const Position &center,
       int stun, Distance speed, const Player &player);
   ~Hit();
-  int	go();
+  int	go(Player &ennemy) const;
   void	focus(Player &ennemy);
   void	reset();
 };

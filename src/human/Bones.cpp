@@ -5,13 +5,14 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
-// Last update Wed Apr 10 17:35:32 2013 Brunier Jean
+// Last update Sun Apr 14 11:30:18 2013 Brunier Jean
 //
 
 # include "Bones.hh"
-# include "Charac.hh"
+# include "Graphics.hh"
 
-Bones::Bones(Charac const &charac) : _charac(charac)
+Bones::Bones(const Position &centre, int color, int color2) :
+	_center(centre), _color(color), _color2(color2)
 {
 }
 
@@ -48,4 +49,8 @@ void	Bones::head(Angle const &angle)
 {
   _head = angle;
 }
-//print
+
+void	Bones::print(Graphics &g) const
+{
+  g.circle(_center, 30, _color);
+}
