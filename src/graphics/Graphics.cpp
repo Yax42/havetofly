@@ -21,9 +21,9 @@ Graphics::Graphics(int h, int w)
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     throw(Exception("Cannot init SDL"));
   _fs = false;
-    _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
+  _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
   SDL_JoystickEventState(SDL_ENABLE);
-  SDL_WM_SetCaption("You'd butter fly", NULL);
+  SDL_WM_SetCaption("You'd butter fly", NULL); // Sucky Joke
 }
 
 void	Graphics::switchFS()
