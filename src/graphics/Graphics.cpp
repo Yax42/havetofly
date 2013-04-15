@@ -13,7 +13,6 @@
 #include "Graphics.hh"
 #include "Exception.hh"
 #include "Math.hh"
-#include "Circle.hh"
 
 # define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ? max - (x) % max - 1 : (x) % max)
 
@@ -86,12 +85,14 @@ void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, Distanc
 void		Graphics::circle(Position const &pos, const Distance &size, int color)
 {
   Position	pxPos;
-  Distance	max =  Math::maxRad * size;
+  Distance	max = size * Math::maxRad;
 
   for (Distance i = 0; i < max; i += 1)
     {
-      pxPos.x(Math::cos(i / size) * size);
-      pxPos.y(Math::sin(i / size) * size);
+      pxPos.x(size * Math::cos(i / size));
+      pxPos.y(size * Math::sin(i / size));
+      //std::cout << (i / size).longVal() << " " << Math::sin(i / size).longVal() << std::endl;
+      //std::cout << pxPos.x() << " " << pxPos.y() << std::endl;
       pxPos += pos;
       printPixel(pxPos, color);
     }
@@ -101,10 +102,14 @@ void		Graphics::line(Position const &pos1, Position const &pos2, int color)
 {
   Position	vect = pos2 - pos1;
   Angle		angle = vect.angle();
-  Distance	range = vect.distance();
+  int		range = vect.distance().intVal();
 
-  for (int i = 0; i <= range.intVal(); i++)
+  //std::cout << pos1 << pos2 << std::endl;
+  //std::cout << pos1 + Position(angle, 0);
+  for (int i = 0; i <= range; i++)
     printPixel(pos1 + Position(angle, i), color);
+  //std::cout << pos1 + Position(angle, range) << std::endl;
+  //std::cout << pos1 << pos2 << "\n" << std::endl;
 }
 
 void		Graphics::curveLine(Position const &pos1, Position const &pos2,
@@ -114,14 +119,18 @@ void		Graphics::curveLine(Position const &pos1, Position const &pos2,
   line(pos2, pos3, color);
 }
 
+/*
 void		Graphics::bend(Position const &pos1, const Distance &ray1,
 	Position const &pos2, const Distance &ray2, int color)
 {
   curveLine(pos1, Circle(pos1, ray1) == Circle(pos2, ray2), pos2, color);
-}
+}*/
 
 void	Graphics::printPixel(Position const &pos, int color)
 {
   if (pos.x() >= 0 && pos.x() <_screen->w && pos.y() >= 0 && pos.y() <_screen->h)
+  {
     *(static_cast<int *> (_screen->pixels) + pos.y() * _screen->pitch / 4 + pos.x()) = color;
+  }
+//  std::cout << pos.x() << " " << pos.y() << std::endl;
 }

@@ -5,15 +5,15 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:54:09 2013 Brunier Jean
-// Last update Fri Apr 12 12:24:28 2013 Brunier Jean
+// Last update Sun Apr 14 17:23:16 2013 Brunier Jean
 //
 
 #ifndef TECH_HH_
 # define TECH_HH_
 
-# include "AAction.hh"
+# include "PassiveAction.hh"
 
-class Tech : public AAction
+class Tech : public PassiveAction
 {
 public:
   Tech(Player &player);

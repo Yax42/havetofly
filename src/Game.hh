@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:34:23 2013 Brunier Jean
-// Last update Sun Apr 14 11:03:26 2013 Brunier Jean
+// Last update Sun Apr 14 20:00:00 2013 Brunier Jean
 //
 
 #ifndef GAME_HH_
@@ -16,7 +16,7 @@
 # include "Player.hh"
 # include "Wait.hh"
 
-typedef std::list<Player> Players;
+typedef std::list<Player *> Players;
 
 class Game
 {
@@ -24,6 +24,7 @@ public:
   static Players	players;
   static int		h();
   static int		w();
+  static bool		quit;
 private:
   Wait			_wait;
   static int		_height;

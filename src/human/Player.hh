@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Sun Apr 14 15:38:04 2013 Brunier Jean
+// Last update Mon Apr 15 01:27:16 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -50,8 +50,10 @@ private:
   IAction			*_doing;
   Hit const			*_hit;
 
+private:
+  Player	&operator=(const Player &other);
+  Player(const Player &other);
 public:
-
   Player(const Position &pos, int team, const Key &k);
   ~Player();
 
@@ -62,11 +64,10 @@ public:
   void			hit(const Hit *hit);
 
   /* SETTERS */
-  void			operator++();
   void			operator=(Position const &speed);
   IAction		*operator[](int action);
   int			operator()(int event);
-  int			&key(int k);
+  int			*key(int k);
 
   /* SPEED */
   const Distance	&sx() const;

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:33:21 2013 Brunier Jean
-// Last update Sat Apr 13 20:49:27 2013 Brunier Jean
+// Last update Sun Apr 14 17:40:38 2013 Brunier Jean
 //
 
 #ifndef ACTIONFACTORY_HH_
@@ -22,7 +22,7 @@ private:
   ActionFactory		&operator=(const ActionFactory &other);
   ~ActionFactory();
 public:
-  static IAction	*get(int action, Player const &p);
+  static IAction	*get(int action, Player &p);
 };
 
 #endif /* !ACTIONFACTORY_HH_ */

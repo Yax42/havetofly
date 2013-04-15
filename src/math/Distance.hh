@@ -5,11 +5,15 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 09:20:03 2013 Brunier Jean
-// Last update Fri Apr 12 22:18:51 2013 Brunier Jean
+// Last update Mon Apr 15 22:56:49 2013 Brunier Jean
 //
 
 #ifndef DISTANCE_HH_
 # define DISTANCE_HH_
+
+# include <iostream>
+
+# include "Ratio.hh"
 
 class Angle;
 
@@ -25,7 +29,7 @@ public:
   Distance(double v);
   Distance(int v);
   Distance(long v);
-  Distance(const Angle &v);
+  Distance(Ratio const &rat);
 
   Distance(long v, int);
 
@@ -38,7 +42,7 @@ public:
   Distance		operator+(const Distance &other) const;
   Distance		operator-(const Distance &other) const;
   Distance		operator*(const Distance &other) const;
-  Distance		operator/(const Distance &other) const;
+  Ratio			operator/(const Distance &other) const;
   Distance		operator%(const Distance &other) const;
 
   bool			operator==(const Distance &other) const;
@@ -48,6 +52,11 @@ public:
   bool			operator>(const Distance &other) const;
   bool			operator>=(const Distance &other) const;
 
+  Distance		&operator*=(const Ratio &other);
+  Distance		&operator/=(const Ratio &other);
+
+  Distance		operator*(const Ratio &other) const;
+  Distance		operator/(const Ratio &other) const;
   /*
   operator int() const;
   operator long() const;
@@ -58,5 +67,7 @@ public:
   int			intVal() const;
   float			floatVal() const;
 };
+
+std::ostream	&operator<<(std::ostream &s, Distance const &d);
 
 #endif /* !DISTANCE_HH_ */

@@ -5,103 +5,115 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 01:17:42 2013 Brunier Jean
-// Last update Sat Apr 13 17:23:04 2013 Brunier Jean
+// Last update Mon Apr 15 23:47:18 2013 Brunier Jean
 //
 
 #include <cmath>
 
 #include "Math.hh"
+#include <iostream>
 
-#define MAX_SQRT	5000000
+#define MAX_SQRT	1000000
 
-std::vector<Distance>	Math::_cos;
-std::vector<Distance>	Math::_sin;
-std::vector<Distance>	Math::_tan;
-std::vector<Distance>	Math::_acos;
-std::vector<Distance>	Math::_asin;
-std::vector<Distance>	Math::_atan;
+std::vector<Ratio>	Math::_cos;
+std::vector<Ratio>	Math::_sin;
+std::vector<Ratio>	Math::_tan;
+std::vector<Ratio>	Math::_acos;
+std::vector<Ratio>	Math::_asin;
+std::vector<Ratio>	Math::_atan;
 std::vector<long> 	Math::_sqrt;
-std::vector<Distance>	Math::_toRad;
+std::vector<Ratio>	Math::_toRad;
 std::vector<long>	Math::_toDeg;
-const Distance		Math::maxRad = M_PI * 2;
+const Ratio		Math::maxRad = M_PI * 2;
 
 void		Math::init()
 {
+  _cos.resize(maxRad.longVal());
+  _sin.resize(maxRad.longVal());
+  _tan.resize(maxRad.longVal());
+  _toDeg.resize(maxRad.longVal());
   for (long i = 0; i < maxRad.longVal(); i++)
     {
-      _cos[i] = cos(float(i) / MFLOAT_UNIT) * MFLOAT_UNIT;
-      _sin[i] = sin(float(i) / MFLOAT_UNIT) * MFLOAT_UNIT;
-      _tan[i] = tan(float(i) / MFLOAT_UNIT) * MFLOAT_UNIT;
-      _toDeg[i] = float(i) * 180 / M_PI * MFLOAT_UNIT;
+      _cos[i] = ::cos(double(i) / MRATIO_UNIT);
+      _sin[i] = ::sin(double(i) / MRATIO_UNIT);
+      _tan[i] = ::tan(double(i) / MRATIO_UNIT);
+      _toDeg[i] = double(i) * 180 / M_PI / MRATIO_UNIT;
     }
-  for (long i = 1; i < MFLOAT_UNIT * 2; i++)
+  _acos.resize(MRATIO_UNIT * 2);
+  _asin.resize(MRATIO_UNIT * 2);
+  _atan.resize(MRATIO_UNIT * 2);
+  for (long i = 0; i < MRATIO_UNIT * 2; i++)
     {
-      _acos[i] = acos(float(i - MFLOAT_UNIT) / MFLOAT_UNIT) * MFLOAT_UNIT;
-      _asin[i] = asin(float(i - MFLOAT_UNIT) / MFLOAT_UNIT) * MFLOAT_UNIT;
-      _atan[i] = atan(float(i - MFLOAT_UNIT) / MFLOAT_UNIT) * MFLOAT_UNIT;
+      _acos[i] = ::acos(double(i - MRATIO_UNIT) / MRATIO_UNIT);
+      //std::cout << i << " " << _cos[(int)(i * M_PI * MFLOAT_UNIT / 180) ] << " " <<  _cos[(int)(i * M_PI * MFLOAT_UNIT / 180) ].doubleVal() * 1000 << std::endl;
+      _asin[i] = ::asin(double(i - MRATIO_UNIT) / MRATIO_UNIT);
+      _atan[i] = ::atan(double(i - MRATIO_UNIT) / MRATIO_UNIT);
     }
+  _sqrt.resize(MAX_SQRT);
   for (int i = 0; i < MAX_SQRT; i++)
-    _sqrt[i] =::sqrt(double(i) / MFLOAT_UNIT);
+    _sqrt[i] =::sqrt(i);
+    //_sqrt[i] =::sqrt(double(i) / MFLOAT_UNIT);
+  _toRad.resize(360);
   for (int i = 0; i < 360; i++)
-    _toRad[i] = float(i) * M_PI / 180 * MFLOAT_UNIT;
+    {
+      _toRad[i] = double(i) * M_PI / 180;
+    }
 }
 
-
-Distance	Math::cos(const Distance &v)
+Ratio	Math::cos(const Ratio &v)
 {
-  Distance	a(v % maxRad);
-  return (_cos[((a < 0) ? a + maxRad : a).longVal()]);
+  return (_cos[(v % maxRad).longVal()]);
 }
 
-Distance	Math::sin(const Distance &v)
+Ratio	Math::sin(const Ratio &v)
 {
-  Distance	a(v % maxRad);
-  return (_sin[((a < 0) ? a + maxRad : a).longVal()]);
+  return (_sin[(v % maxRad).longVal()]);
 }
 
-Distance	Math::tan(const Distance &v)
+Ratio	Math::tan(const Ratio &v)
 {
-  Distance	a(v % maxRad);
-  return (_tan[((a < 0) ? a + maxRad : a).longVal()]);
+  return (_tan[(v % maxRad).longVal()]);
 }
 
-Distance	Math::acos(const Distance &v)
+Ratio	Math::acos(const Ratio &v)
 {
-  return (_acos[MPUT_IN(v + MFLOAT_UNIT, 0, MFLOAT_UNIT * 2).longVal()]);
+  long		idx = v.longVal() + MRATIO_UNIT;
+  return (_acos[MPUT_IN(idx, 0, 2 * MRATIO_UNIT)]);
 }
 
-Distance	Math::asin(const Distance &v)
+Ratio	Math::asin(const Ratio &v)
 {
-  return (_asin[MPUT_IN(v + MFLOAT_UNIT, 0, MFLOAT_UNIT * 2).longVal()]);
+  long		idx = v.longVal() + MRATIO_UNIT;
+  return (_asin[MPUT_IN(idx, 0, 2 * MRATIO_UNIT)]);
 }
 
-Distance	Math::atan(const Distance &v)
+Ratio	Math::atan(const Ratio &v)
 {
-  return (_atan[MPUT_IN(v + MFLOAT_UNIT, 0, MFLOAT_UNIT * 2).longVal()]);
+  long		idx = v.longVal() + MRATIO_UNIT;
+  return (_atan[MPUT_IN(idx, 0, 2 * MRATIO_UNIT)]);
 }
 
 Distance	Math::sqrt(const Distance &d)
 {
-  long		v = d.longVal();
+  int		v = d.intVal();
   int		count = 0;
 
-  while (v >= MAX_SQRT);
+  while (v >= MAX_SQRT)
     {
       count++;
       v >>= 2;
     }
-  return (Distance(_sqrt[v] << count, 0));
+  //std::cout << v << " " << _sqrt[v] << std::endl;
+  return (Distance(_sqrt[v] << count));
 }
 
-Distance	Math::toRad(int deg)
+Ratio		Math::toRad(int deg)
 {
   deg %= 360;
   return (_toRad[(deg < 0) ? deg + 360 : deg]);
 }
 
-int	Math::toDeg(Distance const &rad)
+int		Math::toDeg(Ratio const &rad)
 {
-  long	tmp = rad.longVal() % maxRad.longVal();
-
-  return (_toDeg[(tmp < 0) ? tmp + maxRad.longVal() : tmp]);
+  return (_toDeg[(rad % maxRad).longVal()]);
 }

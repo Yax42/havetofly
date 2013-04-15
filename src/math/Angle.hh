@@ -5,22 +5,23 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 09 17:07:10 2013 Brunier Jean
-// Last update Sat Apr 13 17:00:03 2013 Brunier Jean
+// Last update Mon Apr 15 22:11:50 2013 Brunier Jean
 //
 
 #ifndef ANGLE_HH_
 # define ANGLE_HH_
 
-# include "Distance.hh"
+# include "Ratio.hh"
 
 class	Angle
 {
 private:
-  Distance	_rad;
+  Ratio		_rad;
 
 public:
+  ~Angle(){}
   Angle();
-  Angle(Distance const & d);
+  Angle(Ratio const & d);
   Angle(int deg, int);
 
   /* OPERATORS */
@@ -28,12 +29,14 @@ public:
   Angle		&operator-=(const Angle &other);
   Angle		operator+(const Angle &other) const;
   Angle		operator-(const Angle &other) const;
-  		operator Distance();
+  		operator Ratio() const;
 
   void			deg(int v);
   int			deg() const;
-  Distance		rad();
-  Distance const	&rad() const;
+  Ratio			rad();
+  Ratio const		&rad() const;
 };
+
+std::ostream	&operator<<(std::ostream &s, Angle const &a);
 
 #endif /* !ANGLE_HH_ */

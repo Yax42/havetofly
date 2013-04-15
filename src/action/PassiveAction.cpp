@@ -5,32 +5,27 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:40:32 2013 Brunier Jean
-// Last update Fri Apr 12 11:43:16 2013 Brunier Jean
+// Last update Sun Apr 14 19:14:57 2013 Brunier Jean
 //
 
 #include "PassiveAction.hh"
 
-PassiveAction(const Player &player) : AAction(player, NULL)
+PassiveAction::PassiveAction(Player &player) : AAction(player, NULL)
 {
 }
 
-PassiveAction::~Gravity()
+void	PassiveAction::init(int)
 {
 }
 
-int	PassiveAction::init()
-{
-  return (0);
-}
-
-bool	PassiveAction::allow(int a)
+bool	PassiveAction::allow(int)
 {
   return (true);
 }
 
 IAction		*PassiveAction::step()
 {
-  return (NULL);
+  return (_player[IAction::INERTIE]);
 }
 
 bool		PassiveAction::request()
@@ -45,4 +40,7 @@ void		PassiveAction::check()
 int	PassiveAction::val()
 {
   return (0);
+}
+void		PassiveAction::upBones()
+{
 }

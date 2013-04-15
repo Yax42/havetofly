@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Sun Apr 14 11:03:46 2013 Brunier Jean
+// Last update Mon Apr 15 09:26:27 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -13,10 +13,13 @@
 
 int	Game::_width;
 int	Game::_height;
+bool	Game::quit = false;
 Players	Game::players;
 
 Game::~Game()
 {
+  for(Players::iterator i = players.begin(); i != players.end(); ++i)
+    free (*i);
   players.clear();
 }
 
@@ -32,9 +35,9 @@ bool		Game::manyTeams() const
 
   for (Players::iterator i = Game::players.begin(); i != Game::players.end(); ++i)
     {
-      if (team == -1 && i->alive())
-	team = i->team();
-      else if (i->alive() && i->team() != team)
+      if (team == -1 && (*i)->alive())
+	team = (*i)->team();
+      else if ((*i)->alive() && (*i)->team() != team)
 	return (true);
     }
   return (false);
@@ -47,14 +50,14 @@ bool		Game::loop()
   while (_nbPlayers == 1 || manyTeams())
     {
       for(Players::iterator i = players.begin(); i != players.end(); ++i)
-  	i->init();
+  	(*i)->init();
       for(Players::iterator i = players.begin(); i != players.end(); ++i)
-  	i->move();
+  	(*i)->move();
       for(Players::iterator i = players.begin(); i != players.end(); ++i)
-  	i->process();
+  	(*i)->process();
       MyTime::run();
       _wait.proc();
-      if (Input::isQuit())
+      if (quit)
 	return (false);
     }
   return (true);
@@ -62,7 +65,7 @@ bool		Game::loop()
 
 void	Game::add(const Position &pos, int team, const Key &k)
 {
-  players.push_back(Player(pos, team, k));
+  players.push_back(new Player(pos, team, k));
 }
 
 int	Game::w()

@@ -5,69 +5,87 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
-// Last update Sun Apr 14 17:12:29 2013 Brunier Jean
+// Last update Mon Apr 15 09:39:39 2013 Brunier Jean
 //
 
 #include "Bones.hh"
 #include "Graphics.hh"
 #include "Circle.hh"
+#include "Math.hh"
 
-#define U_ARM		100
-#define L_ARM		100
-#define ARM		(U_ARM + L_ARM)
+#include <iostream>
 
-#define U_LEGG		100
-#define L_LEGG		100
-#define LEGG  		(U_LEGG + L_LEGG)
-
-#define U_BACK		100
-#define L_BACK		100
-#define BACK		(U_BACK + L_BACK)
-
-#define HEAD		50
+const int	Bones::_size[Bones::COUNT] =
+  {
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    16,
+    64
+  };
 
 Bones::Bones(const Position &centre, int color, int color2, const int &orient) :
 	_center(centre), _orient(orient), _color(color), _color2(color2)
 {
+  _color = 0;
 }
 
 Bones::~Bones()
 {
 }
 
-void		Bones::print(Graphics &g) const
+void		Bones::print(Graphics &g)
 {
-  Position	sex = Position(_angle, _back);
+  Position	center = _center;
+  check();
+  Position	pos[Bones::COUNT];
 
-  g.circle(_center + Position(_angle, HEAD), HEAD, _color);
-  g.bend(_center, U_BACK, sex, L_BACK, _color);
+  pos[BODY] = center + Position(_angle[BODY], _size[BODY]);
+  pos[HEAD] = center - Position(_angle[HEAD], _size[HEAD]);
+  g.circle(pos[HEAD], _size[HEAD], _color);
+  g.line(center, pos[BODY], _color);
+  for (int i = 0; i < 4; i++)
+    {
+      pos[i * 2 + 1] = ((i % 2) ? center : pos[BODY]) +
+	Position(_angle[i * 2 + 1] +
+	_angle[BODY], _size[i + 1]);
+      pos[i * 2] = pos[i * 2 + 1] + Position(_angle[i * 2] +
+	  _angle[BODY] + _angle[i * 2 + 1], _size[i]);
+       g.line(((i % 2) ? center : pos[BODY]), pos[i * 2 + 1], _color);
+       g.line(pos[i * 2 + 1], pos[i * 2], _color);
+    }
+
+
+  /*
   g.bend(_center, U_ARM, _hand1, L_ARM, _color);
   g.bend(_center, U_ARM, _hand2, L_ARM, _color);
   g.bend(_center, U_LEGG, _foot1, L_LEGG, _color);
   g.bend(_center, U_LEGG, _foot2, L_LEGG, _color);
+  */
 }
 
-void	Bones::up(Position const &old, Position &next, int max)
+void	Bones::up(Position const &, Position &, int)
 {
+  /*
   next = old * _angle;
   if (next.distance() > max)
     next = Position(next.angle(), max);
+  */
 }
 
 void	Bones::check()
 {
-  _angle = (Position(angle, 1) * Position(1, _orient)).angle();
-  up(foot1, _foot1, LEGG);
-  up(foot2, _foot2, LEGG);
-  up(hand1, _hand1, LEGG);
-  up(hand2, _hand2, LEGG);
-  _back = back;
-  if (_back > BACK)
-    _back = BACK;
-  _head = head;
-  if (_head.deg() > 90)
-    _head = Angle(90, 0);
-  else if (_head.deg() < -90)
-    _head = Angle(-90, 0);
+  for (int i = 0; i < Bones::COUNT; i++)
+    _angle[i] = angle[i];
+  if (_angle[Bones::HEAD].deg() > 90)
+    _angle[Bones::HEAD] = Angle(90, 0);
+  else if (_angle[Bones::HEAD].deg() < -90)
+    _angle[Bones::HEAD] = Angle(-90, 0);
+  _angle[BODY] += Angle(90, 0);
 }
   //void	circle(Position const &pos, const Distance &size, int color);

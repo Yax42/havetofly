@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Sat Apr 13 21:32:02 2013 Brunier Jean
+// Last update Sun Apr 14 19:08:56 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -22,22 +22,22 @@ public:
       INERTIE,
       GRAVITY,
       MOVE,
-      STUN,
       DOUBLE_JUMP,
+      COUNT,
+      STUN,
       DASH,
       MOON_DASH,
       BULL,
       RODEO,
-      UP,
-      COUNT
+      UP
     };
   virtual ~IAction(){}
   virtual bool		allow(int a) = 0;
   virtual IAction	*step() = 0;
-  virtual void		focus(Player &player) = 0;
+  //virtual void		focus(Player &player) = 0;
   virtual bool		request() = 0;
   virtual void		init(int v = 0) = 0;
-  virtual void		hit(Player *ennemy) = 0;
+  virtual void		hit(Player &ennemy) = 0;
   virtual void		check() = 0;
   virtual int		val() = 0;
   virtual int		id() = 0;

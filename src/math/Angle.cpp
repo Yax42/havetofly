@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 09 17:16:14 2013 Brunier Jean
-// Last update Sat Apr 13 17:00:22 2013 Brunier Jean
+// Last update Mon Apr 15 22:11:57 2013 Brunier Jean
 //
 
 #include "Angle.hh"
@@ -18,7 +18,7 @@ Angle::Angle()
 {
 }
 
-Angle::Angle(Distance const &d) : _rad(d)
+Angle::Angle(Ratio const &d) : _rad(d)
 {
 }
 
@@ -59,7 +59,7 @@ Angle		Angle::operator-(const Angle &other) const
 /***********/
 /* GETTERS */
 /***********/
-Angle::operator Distance()
+Angle::operator Ratio() const
 {
   return (_rad);
 }
@@ -69,12 +69,18 @@ int		Angle::deg() const
   return (Math::toDeg(_rad));
 }
 
-Distance	Angle::rad()
+Ratio	Angle::rad()
 {
   return (_rad);
 }
 
-Distance const	&Angle::rad() const
+Ratio const	&Angle::rad() const
 {
   return (_rad);
+}
+
+std::ostream	&operator<<(std::ostream &s, Angle const &a)
+{
+  s << a.deg();
+  return (s);
 }

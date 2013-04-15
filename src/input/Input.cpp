@@ -1,12 +1,14 @@
 //
-// Input.cpp for src in /home/brunie_j/local/my/havetofly/src
+// Input.cpp for input in /home/brunie_j/local/my/havetofly/src/input
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Sun Apr 14 11:18:27 2013 Brunier Jean
+// Last update Sun Apr 14 23:04:48 2013 Brunier Jean
 //
+
+#include <iostream>
 
 #include "Input.hh"
 #include "MyTime.hh"
@@ -18,7 +20,6 @@ Input::Input() : _quit(false), _wait(60)
 {
   for (int i = 0; i < SDLK_LAST; i++)
     _kb[i] = 0;
-  update();
 }
 
 void	Input::loop()
@@ -56,14 +57,14 @@ Key	Input::getKBKey()
 {
   Key	k;
 
-  k[Key::HOR] = _axe[0];
-  k[Key::VERT] = _axe[1];
-  k[Key::A] = _kb[SDLK_h];
-  k[Key::B] = _kb[SDLK_j];
-  k[Key::X] = _kb[SDLK_k];
-  k[Key::Y] = _kb[SDLK_l];
-  k[Key::R] = _kb[SDLK_i];
-  k[Key::L] = _kb[SDLK_o];
+  k.ptr(Key::HOR) = &_axe[0];
+  k.ptr(Key::VERT) = &_axe[1];
+  k.ptr(Key::A) = &_kb[SDLK_h];
+  k.ptr(Key::B) = &_kb[SDLK_j];
+  k.ptr(Key::X) = &_kb[SDLK_k];
+  k.ptr(Key::Y) = &_kb[SDLK_l];
+  k.ptr(Key::R) = &_kb[SDLK_i];
+  k.ptr(Key::L) = &_kb[SDLK_o];
   return (k);
 }
 
@@ -73,23 +74,23 @@ Key	Input::getCtrlKey(unsigned long id)
 
   if (_ctrl.size() >= id)
     throw(Exception("Controler missing."));
-
-  k[Key::HOR] = _ctrl[id].axe[0];
-  k[Key::VERT] = _ctrl[id].axe[1];
-  k[Key::A] = _ctrl[id].button[0];
-  k[Key::B] = _ctrl[id].button[1];
-  k[Key::X] = _ctrl[id].button[2];
-  k[Key::Y] = _ctrl[id].button[3];
-  k[Key::R] = _ctrl[id].button[2];
-  k[Key::L] = _ctrl[id].button[3];
+  k.ptr(Key::HOR) = &_ctrl[id].axe[0];
+  k.ptr(Key::VERT) = &_ctrl[id].axe[1];
+  k.ptr(Key::A) = &_ctrl[id].button[0];
+  k.ptr(Key::B) = &_ctrl[id].button[1];
+  k.ptr(Key::X) = &_ctrl[id].button[2];
+  k.ptr(Key::Y) = &_ctrl[id].button[3];
+  k.ptr(Key::R) = &_ctrl[id].button[2];
+  k.ptr(Key::L) = &_ctrl[id].button[3];
   return (k);
 }
 
 void		Input::update()
 {
-  _ctrl.resize(SDL_NumJoysticks());
+  std::cout << SDL_NumJoysticks() << std::endl;
   for (int i = _ctrl.size(); i < SDL_NumJoysticks(); i++)
     {
+      _ctrl.resize(i + 1);
       _ctrl[i].js = SDL_JoystickOpen(i);
       _ctrl[i].button.resize(SDL_JoystickNumButtons(_ctrl[i].js));
       _ctrl[i].axe.resize(SDL_JoystickNumAxes(_ctrl[i].js));

@@ -28,6 +28,7 @@ public:
   Position();
   Position(const Distance &y, const Distance &x);
   Position(const Angle &angle, const Distance &distance);
+  Position(const Distance &y, const Distance &x, int);
   Position(Position const &other);
   Position		&operator=(Position const &other);
 
@@ -40,12 +41,15 @@ public:
   Position		&operator-=(Position const &other);
   Position		operator+(Position const &other) const;
   Position		operator-(Position const &other) const;
-  Position		&operator*=(Position const &other);
-  Position		&operator/=(Position const &other);
-  Position		operator*(Position const &other) const;
-  Position		operator/(Position const &other) const;
+  //Position		&operator*=(Position const &other);
+  //Position		&operator/=(Position const &other);
+  //Position		operator*(Position const &other) const;
+  //Position		operator/(Position const &other) const;
 
   /* INT OPERATIONS */
+
+  //Position		&operator/=(Position const &other);
+  //Position		operator/(Position const &other) const;
 
   Position		operator+(const Distance &v) const;
   Position		operator-(const Distance &v) const;

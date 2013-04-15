@@ -5,25 +5,22 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Sat Apr 13 20:42:30 2013 Brunier Jean
+// Last update Sun Apr 14 19:09:26 2013 Brunier Jean
 //
 
 # include "AAction.hh"
 # include "Hit.hh"
 
-AAction::AAction(Player &player, Hit *hit) : _player(player), _hit(hitA), _busy(0), _count(0)
+AAction::AAction(Player &player, Hit *hit) : _player(player), _hit(hit), _open(1), _count(0),
+  _hb(Position(32, 32), Position(32, 32), player.pos())
 {
 }
 
-AAction::~AAction()
+void	AAction::init(int)
 {
 }
 
-int	AAction::init()
-{
-}
-
-bool	AAction::allow(int a)
+bool	AAction::allow(int)
 {
   return (false);
 }
@@ -33,17 +30,23 @@ IAction		*AAction::step()
   _count--;
   if (_count != 0)
     return (this);
-  return (_player[Action::INERTIE]);
+  return (_player[IAction::INERTIE]);
 }
 
-void	AAction::hit(Player *ennemy)
+void	AAction::hit(Player &ennemy)
 {
   if (_hit == NULL)
     return ;
-  hit->focus(*ennemy);
+  _hit->focus(ennemy);
 }
 
 int	AAction::val()
 {
   return (_count);
 }
+
+const Hitbox	&AAction::getHB() const
+{
+  return (_hb);
+}
+

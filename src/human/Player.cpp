@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Sun Apr 14 15:41:00 2013 Brunier Jean
+// Last update Mon Apr 15 02:03:31 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -16,28 +16,27 @@
 #include "const.hh"
 #include "Game.hh"
 
+#include <iostream>
+
 /****************/
 /* CONSTRUCTORS */
 /****************/
 Player::~Player(){}
 
-Player::Player(const Position &pos, int team, const Key &k) : _pos(pos), _team(team), _keys(k),
+Player::Player(const Position &pos, int team, const Key &k) :
+ 	 _pos(pos), _alive(true), _team(team), _keys(k),
 	_orient(1), _bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF, _orient)
 {
+  _event.resize(Event::COUNT);
+  _action.resize(IAction::COUNT);
   for (int i = 0; i < IAction::COUNT; i++)
-    _action.push_back(ActionFactory::get(i, *this));
+    _action[i] = ActionFactory::get(i, *this);
   _doing = _action[IAction::INERTIE];
 }
 
 /*************/
 /*  OPEARTOS */
 /*************/
-void	Player::operator++()
-{
-  if (_speed.yDist() > -10)
-    _speed.yDist() -= 0.1;
-}
-
 void	Player::operator=(Position const &speed)
 {
   _speed = speed;
@@ -53,7 +52,7 @@ int		Player::operator()(int event)
   return (_event[event]);
 }
 
-int		&Player::key(int k)
+int		*Player::key(int k)
 {
   return (_keys[k]);
 }
@@ -94,8 +93,10 @@ void		Player::move()
       _pos.y(Game::h() - BODY_SIZE);
       _event[Event::FLOOR] = true;
     }
+  /*
   for (Players::iterator i = Game::players.begin(); i != Game::players.end(); ++i)
-    _doing->hit(&(*i));
+    _doing->hit(**i);
+    */
 }
 
 void		Player::process()
@@ -121,6 +122,7 @@ void		Player::process()
 	_doing->init();
       }
   _doing = _doing->step();
+  _doing->upBones();
 }
 
 void		Player::hit(const Hit *hit)

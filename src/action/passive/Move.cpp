@@ -5,22 +5,26 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:00:20 2013 Brunier Jean
-// Last update Fri Apr 12 15:56:16 2013 Brunier Jean
+// Last update Sun Apr 14 22:32:57 2013 Brunier Jean
 //
 
 #include "Move.hh"
 #include "Player.hh"
 
-Move(const Player &player) : PassiveAction(player)
-{
-}
-
-Move::~Move()
+Move::Move(Player &player) : PassiveAction(player)
 {
 }
 
 bool		Move::request()
 {
-  move on x
+  if (*_player.key(Key::HOR))
+    {
+      _player.sx(_player.sx() + Distance(*_player.key(Key::HOR), 0));
+    }
   return (false);
+}
+
+int		Move::id()
+{
+  return (IAction::MOVE);
 }

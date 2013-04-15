@@ -31,14 +31,8 @@ Position::Position(const Distance &y, const Distance &x, int) : _y(y.longVal(), 
 
 Position::Position(Angle const &angle, const Distance &distance)
 {
-  //std::cout << distance << " " << angle << std::endl;
-  _y = distance * Math::sin(angle);
-  //std::cout << _y << " " << Math::sin(angle) << std::endl;
   _x = distance * Math::cos(angle);
-  //std::cout << _x << " " << Math::cos(angle) << std::endl;
-  //std::cout << std::endl;
-//  std::cout << _x << "\t" << distance << "\t" << Math::cos(angle) << "\t" << angle << std::endl;
-//  std::cout << _y << "\t" << distance << "\t" << Math::sin(angle) << "\t" << angle << std::endl;
+  _y = distance * Math::sin(angle);
 }
 
 Position::Position(Position const &other) : _y(other._y), _x(other._x)
@@ -94,7 +88,6 @@ Position	Position::operator-(Position const &other) const
   return (Position(_y - other._y, _x - other._x, 0));
 }
 
-/*
 Position	&Position::operator*=(Position const &other)
 {
   _y *= other._y;
@@ -118,7 +111,6 @@ Position	Position::operator/(Position const &other) const
 {
   return (Position(_y / other._y, _x / other._x, 0));
 }
-*/
 
 /***********************/
 /* DISTANCE OPERATIONS */
@@ -133,6 +125,15 @@ Position	Position::operator-(const Distance &v) const
   return (Position(_y - v, _x - v));
 }
 
+Position	Position::operator*(const Distance &v) const
+{
+  return (Position(_y * v, _x * v));
+}
+
+Position	Position::operator/(const Distance &v) const
+{
+  return (Position(_y / v, _x / v));
+}
 
 Position	&Position::operator+=(const Distance &v)
 {
@@ -147,17 +148,6 @@ Position	&Position::operator-=(const Distance &v)
   _x -= v;
   _y -= v;
   return (*this);
-}
-
-/////
-Position	Position::operator*(const Distance &v) const
-{
-  return (Position(_y * v, _x * v));
-}
-
-Position	Position::operator/(const Distance &v) const
-{
-  return (Position(Distance(_y / v), _x / v));
 }
 
 Position	&Position::operator*=(const Distance &v)
@@ -250,14 +240,14 @@ Distance		&Position::yDist()
 
 Distance	Position::distance() const
 {
-  return (Math::sqrt(_x * _x + _y * _y));
+  return (Distance(Math::sqrt(_x * _x + _y * _y)));
 }
 
 Angle		Position::angle() const
 {
   if (_x.longVal() == 0 && _y.longVal() == 0)
     return (Angle());
-  return (Angle(Math::acos(_x / distance()) * (_y.longVal() < 0 ? -1 : 1)));
+  return (Angle(Math::acos((_x / distance()).longVal()) * (_y.longVal() < 0 ? -1 : 1)));
 }
 
 std::ostream	&operator<<(std::ostream &s, Position const &pos)

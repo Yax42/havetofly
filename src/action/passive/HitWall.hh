@@ -1,19 +1,19 @@
 //
-// HitWall.hh for action in /home/brunie_j/local/my/havetofly/src/action
+// HitWall.hh for passive in /home/brunie_j/local/my/havetofly/src/action/passive
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 01:08:00 2013 Brunier Jean
-// Last update Fri Apr 12 11:27:27 2013 Brunier Jean
+// Last update Sun Apr 14 17:22:38 2013 Brunier Jean
 //
 
 #ifndef HITWALL_HH_
 # define HITWALL_HH_
 
-# include "AAction.hh"
+# include "PassiveAction.hh"
 
-class HitWall : public AAction
+class HitWall : public PassiveAction
 {
 public:
   HitWall(Player &player);

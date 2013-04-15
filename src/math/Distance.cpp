@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 11:27:34 2013 Brunier Jean
-// Last update Sat Apr 13 17:25:19 2013 Brunier Jean
+// Last update Mon Apr 15 23:27:50 2013 Brunier Jean
 //
 
 #include "Distance.hh"
@@ -38,19 +38,16 @@ Distance::Distance(long v) : _val(MTO_FLOAT(v))
 {
 }
 
-Distance::Distance(const Angle &v) : _val(v.rad().longVal())
-{
-}
-
 Distance::Distance(long v, int) : _val(v)
 {
 }
 
-
+Distance::Distance(Ratio const &rat) : _val(rat.longVal() >> MBIT_OS)
+{
+}
 /****************/
 /* AFFECTATIONS */
 /****************/
-
 Distance		&Distance::operator+=(const Distance &other)
 {
   _val += other._val;
@@ -71,13 +68,15 @@ Distance		&Distance::operator*=(const Distance &other)
 
 Distance		&Distance::operator/=(const Distance &other)
 {
-  _val = (_val << MBIT_OS) / other._val;
+  _val = (_val << MBIT_OS) / (other._val ? other._val : 1);
   return (*this);
 }
 
 Distance		&Distance::operator%=(const Distance &other)
 {
-  _val = MTO_FLOAT(MTO_INT(_val) % MTO_INT(other._val));
+  _val %= other._val;
+  if (_val < 0)
+    _val += other._val;
   return (*this);
 }
 
@@ -86,26 +85,31 @@ Distance		&Distance::operator%=(const Distance &other)
 /**************/
 Distance		Distance::operator+(const Distance &other) const
 {
-  return (Distance(_val + other._val));
+  return (Distance(_val + other._val, 0));
 }
 
 Distance		Distance::operator-(const Distance &other) const
 {
-  return (Distance(_val - other._val));
+  return (Distance(_val - other._val, 0));
 }
 Distance		Distance::operator*(const Distance &other) const
 {
-  return (MUL_FLOAT(_val, other._val));
+  return (Distance(MUL_FLOAT(_val, other._val), 0));
 }
 
-Distance		Distance::operator/(const Distance &other) const
+Ratio		Distance::operator/(const Distance &other) const
 {
-  return ((_val << MBIT_OS) / other._val);
+  //return (Distance((_val << MBIT_OS) / (other._val ? other._val : 1), 0));
+  return ((_val << (MBIT_OS + MBIT_OS_RATIO)) / other._val);
 }
 
 Distance		Distance::operator%(const Distance &other) const
 {
-  return (MTO_INT(_val) % MTO_INT(other._val));
+  long			val =_val % other._val;
+
+  if (_val < 0)
+    val += other._val;
+  return (Distance(val, 0));
 }
 
 /***************/
@@ -142,6 +146,32 @@ bool		Distance::operator>=(const Distance &other) const
   return (_val >= other._val);
 }
 
+/*********/
+/* RATIO */
+/*********/
+
+Distance		&Distance::operator*=(const Ratio &other)
+{
+  _val = (_val * other.longVal()) >> MBIT_OS_RATIO;
+  return (*this);
+}
+
+Distance		&Distance::operator/=(const Ratio &other)
+{
+  _val = (_val << MBIT_OS_RATIO) / other.longVal();
+  return (*this);
+}
+
+Distance		Distance::operator*(const Ratio &other) const
+{
+  return (Distance((_val * other.longVal()) >> MBIT_OS_RATIO, 0));
+}
+
+Distance		Distance::operator/(const Ratio &other) const
+{
+  return (Distance((_val << MBIT_OS_RATIO) / other.longVal(), 0));
+}
+
 /***********/
 /* GETTERS */
 /***********/
@@ -158,4 +188,10 @@ int		Distance::intVal() const
 float		Distance::floatVal() const
 {
   return ((float(_val)) / MFLOAT_UNIT);
+}
+
+std::ostream	&operator<<(std::ostream &s, Distance const &d)
+{
+  s << d.intVal();
+  return (s);
 }
