@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Tue Apr 16 21:55:03 2013 Brunier Jean
+// Last update Wed Apr 17 21:24:04 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -39,6 +39,7 @@ public:
   virtual IAction	*step();
   virtual void		hit(Player &ennemy);
   virtual int		val();
+  virtual void		reset();
   virtual bool		request() = 0;
   virtual void		check();
   virtual const Hitbox	&getHB() const;

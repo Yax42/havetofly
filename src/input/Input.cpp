@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Wed Apr 17 18:06:06 2013 Brunier Jean
+// Last update Wed Apr 17 20:53:34 2013 Brunier Jean
 //
 
 #include <iostream>
@@ -42,21 +42,10 @@ void	Input::destroy()
 /***************/
 /* CONSTRUCTOR */
 /***************/
-Input::Input() : ALoop(60)
+Input::Input()
 {
   for (int i = 0; i < SDLK_LAST; i++)
     _kb[i] = 0;
-}
-
-/********/
-/* LOOP */
-/********/
-bool	Input::iterLoop()
-{
-  proc();
-  if ((*this)[SDLK_o] && _kb[SDLK_LALT])
-    update();
-  return (true);
 }
 
 /***********/

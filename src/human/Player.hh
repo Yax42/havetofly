@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Tue Apr 16 21:49:44 2013 Brunier Jean
+// Last update Wed Apr 17 20:48:13 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -67,7 +67,7 @@ public:
   void			operator=(Position const &speed);
   IAction		*operator[](int action);
   int			operator()(int event);
-  int			*key(int k);
+  int			key(int k);
   void			orient(int o);
 
   /* SPEED */

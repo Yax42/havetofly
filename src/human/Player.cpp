@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Tue Apr 16 21:50:11 2013 Brunier Jean
+// Last update Wed Apr 17 22:19:52 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -52,7 +52,7 @@ int		Player::operator()(int event)
   return (_event[event]);
 }
 
-int		*Player::key(int k)
+int		Player::key(int k)
 {
   return (_keys[k]);
 }
@@ -98,15 +98,14 @@ void		Player::move()
       _pos.y(Game::h());
       _event[Event::FLOOR] = true;
     }
-  /*
-  for (Players::iterator i = Game::players.begin(); i != Game::players.end(); ++i)
+  for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     _doing->hit(**i);
-    */
 }
 
 void		Player::process()
 {
   int		tmp;
+
   if (_hit != NULL)
     {
       tmp = _hit->go(*this);
@@ -128,6 +127,7 @@ void		Player::process()
       }
   _doing = _doing->step();
   _doing->upBones();
+  _keys.resetActKey();
 }
 
 void		Player::hit(const Hit *hit)

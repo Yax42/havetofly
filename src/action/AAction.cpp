@@ -5,14 +5,15 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Tue Apr 16 20:37:43 2013 Brunier Jean
+// Last update Wed Apr 17 22:17:18 2013 Brunier Jean
 //
 
 # include "AAction.hh"
 # include "Hit.hh"
+# include "const.hh"
 
 AAction::AAction(Player &player, Hit *hit) : _player(player), _hit(hit), _open(1), _count(0),
-  _hb(Position(32, 32), Position(32, 32), player.pos())
+  _hb(Position(-BODY_SIZE / 2, -BODY_SIZE / 2), Position(BODY_SIZE / 2, BODY_SIZE / 2), player.pos())
 {
 }
 
@@ -52,5 +53,10 @@ int	AAction::val()
 const Hitbox	&AAction::getHB() const
 {
   return (_hb);
+}
+
+void		AAction::reset()
+{
+  _open = 1;
 }
 

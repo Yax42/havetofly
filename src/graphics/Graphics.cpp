@@ -106,12 +106,23 @@ void		Graphics::line(Position const &pos1, Position const &pos2, int color)
   Angle		angle = vect.angle();
   int		range = vect.distance().intVal();
 
-  //std::cout << pos1 << pos2 << std::endl;
-  //std::cout << pos1 + Position(angle, 0);
   for (int i = 0; i <= range; i++)
     printPixel(pos1 + Position(angle, i), color);
-  //std::cout << pos1 + Position(angle, range) << std::endl;
-  //std::cout << pos1 << pos2 << "\n" << std::endl;
+}
+
+void		Graphics::line(Position const &pos1, Position const &pos2, int color, int thick)
+{
+  Position	vect = pos2 - pos1;
+  Angle		angle = vect.angle();
+  Angle		angleOut[] =
+    {
+      vect.angle() + Angle(0, 0),
+      vect.angle() + Angle(0, 0)
+    };
+
+  for (int j = 0; j < thick; j++)
+    line(pos1 + Position(0, j) * angle + (Position(j / 2, 0) * angleOut[j % 2]),
+         pos2 + Position(0, j) * (angle + Angle(180, 0)) + (Position(j / 2, 0) * angleOut[j % 2]), color);
 }
 
 void		Graphics::curveLine(Position const &pos1, Position const &pos2,

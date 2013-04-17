@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Wed Apr 17 15:16:21 2013 Brunier Jean
+## Last update Wed Apr 17 21:09:54 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -23,6 +23,7 @@ DINC	= .			\
 	  game			\
 	  action/passive	\
 	  action/active		\
+	  hit			\
 	  action
 
 
@@ -41,8 +42,8 @@ SRCS	= math/Angle.cpp		\
 	  util/MyTime.cpp		\
 	  util/Wait.cpp			\
 	  util/ALoop.cpp		\
-	  Hitbox.cpp			\
-	  Hit.cpp			\
+	  hit/Hitbox.cpp		\
+	  hit/Hit.cpp			\
 	  human/Bones.cpp		\
 	  game/Game.cpp			\
 	  game/GameLoader.cpp		\
@@ -55,6 +56,7 @@ SRCS	= math/Angle.cpp		\
 	  action/PassiveAction.cpp	\
 	  action/active/DoubleJump.cpp	\
 	  action/active/StickCeiling.cpp\
+	  action/active/DownDash.cpp	\
 	  action/active/StickWall.cpp	\
 	  action/active/WallJump.cpp	\
 	  action/passive/Move.cpp	\
@@ -68,7 +70,7 @@ INCLUDE = $(addprefix -I $(DSRC)/, $(DINC))
 
 OBJS	= $(addprefix $(DOBJ)/, $(SRCS:.cpp=.o))
 
-CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g
+CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g -O3
 
 LDXFLAGS= `sdl-config --cflags --libs` -lm -pthread
 

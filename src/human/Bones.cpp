@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
-// Last update Wed Apr 17 18:39:24 2013 Brunier Jean
+// Last update Wed Apr 17 22:03:23 2013 Brunier Jean
 //
 
 #include "Bones.hh"
@@ -18,15 +18,15 @@
 const int	Bones::_size[Bones::COUNT] =
 {
   20,	// FOOT1
-  30,	// KNEE1
+  20,	// KNEE1
   20,	// HAND1
-  30,	// ELBOW1
+  14,	// ELBOW1
   20,	// FOOT2
-  30,	// KNEE2
+  20,	// KNEE2
   20,	// HAND2
-  30,	// ELBOW2
-  24,	// HEAD
-  16	// BODY
+  14,	// ELBOW2
+  16,	// HEAD
+  22	// BODY
 };
 
 Bones::Bones(const Position &centre, int color, int color2, const int &orient) :
@@ -46,8 +46,9 @@ void		Bones::print(Graphics &g)
 
   pos[BODY] = center + Position(_angle[BODY], _size[BODY]);
   pos[HEAD] = center - Position(_angle[HEAD] + _angle[BODY], _size[HEAD]);
-  g.circle(pos[HEAD], _size[HEAD], _color);
-  g.line(center, pos[BODY], _color);
+  for (int i = 0; i < 3; i++)
+    g.circle(pos[HEAD], _size[HEAD] - i, _color);
+  g.line(center, pos[BODY], _color, 6);
   for (int i = 0; i < 4; i++)
     {
       pos[i * 2 + 1] = ((i % 2) ? center : pos[BODY]) +
@@ -55,8 +56,8 @@ void		Bones::print(Graphics &g)
 	_angle[BODY], _size[i * 2 + 1]);
       pos[i * 2] = pos[i * 2 + 1] + Position(_angle[i * 2] +
 	  _angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
-       g.line(((i % 2) ? center : pos[BODY]), pos[i * 2 + 1], _color);
-       g.line(pos[i * 2 + 1], pos[i * 2], _color);
+       g.line(((i % 2) ? center : pos[BODY]), pos[i * 2 + 1], _color, 6);
+       g.line(pos[i * 2 + 1], pos[i * 2], _color, 6);
     }
 
 
@@ -80,14 +81,14 @@ void	Bones::up(Position const &, Position &, int)
 void	Bones::check()
 {
   for (int i = 0; i < Bones::COUNT; i++)
-  {
-      _angle[i] = angle[i];
-  }
+    _angle[i] = angle[i];
 
+  /*
   if (_angle[HEAD].deg() > 90 && _angle[HEAD].deg() < 180)
     _angle[HEAD] = Angle(90, 0);
   else if (_angle[HEAD].deg() < 270 && _angle[HEAD].deg() >= 180)
     _angle[HEAD] = Angle(-90, 0);
+    */
   if (_orient > 0)
     for (int i = 0; i < Bones::COUNT; i++)
       _angle[i] = _angle[i].mirrorX();

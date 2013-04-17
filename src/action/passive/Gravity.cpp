@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:07:50 2013 Brunier Jean
-// Last update Tue Apr 16 21:23:01 2013 Brunier Jean
+// Last update Wed Apr 17 19:36:03 2013 Brunier Jean
 //
 
 #include "Gravity.hh"
@@ -16,8 +16,8 @@ Gravity::Gravity(Player &player) : PassiveAction(player)
 
 bool		Gravity::request()
 {
-  if (_player.sy() < 5)
-    _player.sy(_player.sy() + 0.07);
+  if (_player.sy() < 10)
+    _player.sy(_player.sy() + 0.035); //2
   return (false);
 }
 

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:31:46 2013 Brunier Jean
-// Last update Wed Apr 17 02:13:57 2013 Brunier Jean
+// Last update Wed Apr 17 19:18:44 2013 Brunier Jean
 //
 
 #include "Inertie.hh"
@@ -37,7 +37,7 @@ void		Inertie::upBones()
 {
   Bones		&bones = _player.bones();
 
-  if (_player.sy() <= 0)
+  if (0 && _player.sy() <= 0)
     {
       bones.angle[Bones::FOOT1] = Angle(-125, 0);
       bones.angle[Bones::FOOT2] = Angle(-120, 0);
@@ -67,6 +67,7 @@ void		Inertie::upBones()
 
       bones.angle[Bones::HEAD] = Angle(-40, 0);
       bones.angle[Bones::BODY] = Angle(-80, 0);
-      bones.angle[Bones::BODY] = Angle(MGRAD_CAP(MTIME / 4, -60, 20), 0);
+      bones.angle[Bones::BODY] = Angle(60 - _player.sy().longVal() / 100 + MGRAD_CAP(MTIME / 4, -60, 20), 0);
+      //bones.angle[Bones::BODY] = Angle(MGRAD_CAP(MTIME / 4, -60, 20), 0);
     }
 }

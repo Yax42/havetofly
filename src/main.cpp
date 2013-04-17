@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Wed Apr 17 18:13:14 2013 Brunier Jean
+// Last update Wed Apr 17 20:50:07 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -24,23 +24,23 @@
 #include "Game.hh"
 #include "Mutex.hh"
 
+#define MAP_H	758
+#define MAP_W	512
+
 Mutex	mutex;
 
 void	run()
 {
   Input::create();
-  GameLoader	gl(768, 1024);
-  Display	dis(768, 1024);
+  GameLoader	gl(MAP_H, MAP_W);
+  Display	dis(MAP_H, MAP_W);
 
-  Input::get()->loop();
   dis.loop();
   gl.loop();
 
   dis.join();
   Game::get()->quit();
   gl.join();
-  Input::get()->quit();
-  Input::get()->join();
   Input::destroy();
 }
 

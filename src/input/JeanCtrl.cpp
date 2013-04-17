@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 01:11:28 2013 Brunier Jean
-// Last update Wed Apr 17 11:25:37 2013 Brunier Jean
+// Last update Wed Apr 17 20:37:08 2013 Brunier Jean
 //
 
 #include <unistd.h>
@@ -71,8 +71,8 @@ void	JeanCtrl::proc()
     {
       _fakeK[0] = (_buf[0] * 1000) / 128;
       _fakeK[1] = (_buf[1] * 1000) / 128;
-      setVal(Key::A, (_buf[4] & 16) != 0);
-      setVal(Key::B, (_buf[4] & 64) != 0);
+      setVal(Key::B, (_buf[4] & 16) != 0);
+      setVal(Key::A, (_buf[4] & 64) != 0);
       setVal(Key::X, (_buf[4] & 128) != 0);
       setVal(Key::Y, (_buf[4] & 32) != 0);
       setVal(Key::R, (_buf[5] & 8) != 0);

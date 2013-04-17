@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 14:43:48 2013 Brunier Jean
-// Last update Wed Apr 17 18:14:15 2013 Brunier Jean
+// Last update Wed Apr 17 19:59:45 2013 Brunier Jean
 //
 
 #include "Display.hh"
@@ -30,7 +30,7 @@ bool	Display::iterLoop()
 {
    if ((*Input::get())[SDLK_p] &&(*Input::get())(SDLK_LALT))
      _g.switchFS();
-  _g.resetScreen(0xaaff77);
+  _g.resetScreen(0xDDDDDD);
   if (Game::get() != NULL)
     for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     {

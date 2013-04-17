@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Tue Apr 16 21:43:20 2013 Brunier Jean
+// Last update Wed Apr 17 21:06:10 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -27,6 +27,7 @@ public:
       STICK_CEILING,
       STICK_WALL,
       WALL_JUMP,
+      DOWN_DASH,
       COUNT,
       STUN,
       DASH,
@@ -44,6 +45,7 @@ public:
   virtual void		hit(Player &ennemy) = 0;
   virtual void		check() = 0;
   virtual int		val() = 0;
+  virtual void		reset() = 0;
   virtual int		id() = 0;
   virtual const Hitbox	&getHB() const = 0;
   virtual void		upBones() = 0;

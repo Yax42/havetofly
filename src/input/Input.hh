@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:54 2013 Brunier Jean
-// Last update Wed Apr 17 18:05:56 2013 Brunier Jean
+// Last update Wed Apr 17 20:55:16 2013 Brunier Jean
 //
 
 #ifndef INPUT_HH_
@@ -16,7 +16,6 @@
 
 # include "Key.hh"
 # include "JeanCtrl.hh"
-# include "ALoop.hh"
 
 struct Controler
 {
@@ -26,7 +25,7 @@ struct Controler
   SDL_Joystick		*js;
 };
 
-class Input : public ALoop
+class Input
 {
 private:
   int				_kb[SDLK_LAST];
@@ -48,18 +47,17 @@ public:
   static void		create();
   static Input		*get();
   static void		destroy();
+/******/
 
 public:
   bool		operator[](int i);
   bool		operator()(int i);
   bool		isQuit();
   void		update();
-  void		proc();
   int		nbCtrl() const;
   Key		getKBKey();
   Key		getCtrlKey(unsigned long id);
-private:
-  virtual bool	iterLoop();
+  void		proc();
 };
 
 #endif /* !INPUT_HH_ */

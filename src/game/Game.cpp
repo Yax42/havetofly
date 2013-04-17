@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Wed Apr 17 18:15:11 2013 Brunier Jean
+// Last update Wed Apr 17 20:54:38 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -86,6 +86,7 @@ bool		Game::iterLoop()
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->process();
   MyTime::run();
+  Input::get()->proc();
   return (true);
 }
 

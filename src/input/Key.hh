@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:21:14 2013 Brunier Jean
-// Last update Sun Apr 14 18:40:47 2013 Brunier Jean
+// Last update Wed Apr 17 20:44:18 2013 Brunier Jean
 //
 
 #ifndef KEY_HH_
@@ -34,7 +34,8 @@ private:
 public:
   Key();
   ~Key(){}
-  int	*operator[](int i);
+  int	operator[](int i);
+  void	resetActKey();
   int	*&ptr(int i);
 };
 
