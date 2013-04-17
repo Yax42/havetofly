@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Mon Apr 15 01:27:16 2013 Brunier Jean
+// Last update Tue Apr 16 21:49:44 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -68,6 +68,7 @@ public:
   IAction		*operator[](int action);
   int			operator()(int event);
   int			*key(int k);
+  void			orient(int o);
 
   /* SPEED */
   const Distance	&sx() const;
@@ -86,6 +87,8 @@ public:
   void			kill();
   bool			alive() const;
   int			team() const;
+  int			orient() const;
+  int			currentAction() const;
   operator const Hitbox() const;
 };
 

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Mon Apr 15 02:03:31 2013 Brunier Jean
+// Last update Tue Apr 16 21:50:11 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -57,6 +57,11 @@ int		*Player::key(int k)
   return (_keys[k]);
 }
 
+void		Player::orient(int o)
+{
+  _orient = o;
+}
+
 /************/
 /*  PROCESS */
 /************/
@@ -88,9 +93,9 @@ void		Player::move()
       _pos.y(BODY_SIZE);
       _event[Event::CEILING] = true;
     }
-  else if (_pos.y() >= Game::h() - BODY_SIZE)
+  else if (_pos.y() >= Game::h())
     {
-      _pos.y(Game::h() - BODY_SIZE);
+      _pos.y(Game::h());
       _event[Event::FLOOR] = true;
     }
   /*
@@ -199,7 +204,17 @@ bool	Player::alive() const
   return (_alive);
 }
 
+int	Player::orient() const
+{
+  return (_orient);
+}
+
 int	Player::team() const
 {
   return (_team);
+}
+
+int	Player::currentAction() const
+{
+  return (_doing->id());
 }

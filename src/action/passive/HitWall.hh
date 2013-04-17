@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 01:08:00 2013 Brunier Jean
-// Last update Sun Apr 14 17:22:38 2013 Brunier Jean
+// Last update Tue Apr 16 19:49:00 2013 Brunier Jean
 //
 
 #ifndef HITWALL_HH_
@@ -17,13 +17,9 @@ class HitWall : public PassiveAction
 {
 public:
   HitWall(Player &player);
-  virtual ~Tech();
-  virtual int		init();
-  virtual bool		allow(int a);
-  virtual IAction	*step();
-  virtual bool		request();
+  virtual ~HitWall() {}
   virtual void		check();
-  virtual int		val();
+  virtual int		id();
 };
 
 #endif /* !HITWALL_HH_ */

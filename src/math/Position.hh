@@ -68,8 +68,8 @@ public:
   /* GETTERS */
   int			x() const;
   int			y() const;
-  void			x(Distance const &x);
-  void			y(Distance const &y);
+  Position		&x(Distance const &x);
+  Position		&y(Distance const &y);
   Distance		&xDist();
   Distance		&yDist();
   const Distance	&xDist() const;

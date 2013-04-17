@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Sun Apr 14 16:53:38 2013 Brunier Jean
+## Last update Wed Apr 17 15:16:21 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -18,28 +18,49 @@ DINC	= .			\
 	  math			\
 	  graphics		\
 	  human			\
+	  input			\
+	  util			\
+	  game			\
 	  action/passive	\
 	  action/active		\
 	  action
 
 
+
+	  ##math/Circle.cpp
+	  ##math/Line.cpp
 SRCS	= math/Angle.cpp		\
 	  math/Math.cpp			\
 	  math/Distance.cpp		\
-	  math/Line.cpp			\
 	  math/Position.cpp		\
-	  math/Circle.cpp		\
+	  math/Ratio.cpp		\
 	  graphics/Graphics.cpp		\
-	  Exception.cpp			\
-	  MyTime.cpp			\
-	  Hit.cpp			\
+	  graphics/Display.cpp		\
+	  util/Mutex.cpp		\
+	  util/Exception.cpp		\
+	  util/MyTime.cpp		\
+	  util/Wait.cpp			\
+	  util/ALoop.cpp		\
 	  Hitbox.cpp			\
+	  Hit.cpp			\
 	  human/Bones.cpp		\
-	  Game.cpp			\
+	  game/Game.cpp			\
+	  game/GameLoader.cpp		\
 	  human/Player.cpp		\
-	  Wait.cpp			\
-	  Key.cpp			\
-	  Input.cpp			\
+	  input/Key.cpp			\
+	  input/Input.cpp		\
+	  input/JeanCtrl.cpp		\
+	  action/ActionFactory.cpp	\
+	  action/AAction.cpp		\
+	  action/PassiveAction.cpp	\
+	  action/active/DoubleJump.cpp	\
+	  action/active/StickCeiling.cpp\
+	  action/active/StickWall.cpp	\
+	  action/active/WallJump.cpp	\
+	  action/passive/Move.cpp	\
+	  action/passive/Gravity.cpp	\
+	  action/passive/Inertie.cpp	\
+	  action/passive/HitWall.cpp	\
 	  main.cpp
 
 
@@ -47,7 +68,7 @@ INCLUDE = $(addprefix -I $(DSRC)/, $(DINC))
 
 OBJS	= $(addprefix $(DOBJ)/, $(SRCS:.cpp=.o))
 
-CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -O3 -pthread
+CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g
 
 LDXFLAGS= `sdl-config --cflags --libs` -lm -pthread
 

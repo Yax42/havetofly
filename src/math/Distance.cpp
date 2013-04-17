@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 11:27:34 2013 Brunier Jean
-// Last update Mon Apr 15 23:27:50 2013 Brunier Jean
+// Last update Tue Apr 16 20:49:18 2013 Brunier Jean
 //
 
 #include "Distance.hh"
@@ -18,7 +18,7 @@
 /****************/
 Distance::~Distance(){}
 
-Distance::Distance()
+Distance::Distance() : _val(0)
 {
 }
 
@@ -100,7 +100,7 @@ Distance		Distance::operator*(const Distance &other) const
 Ratio		Distance::operator/(const Distance &other) const
 {
   //return (Distance((_val << MBIT_OS) / (other._val ? other._val : 1), 0));
-  return ((_val << (MBIT_OS + MBIT_OS_RATIO)) / other._val);
+  return ((_val <<  MBIT_OS_RATIO) / other._val);
 }
 
 Distance		Distance::operator%(const Distance &other) const
@@ -182,7 +182,7 @@ long		Distance::longVal() const
 
 int		Distance::intVal() const
 {
-  return (MTO_INT(_val));
+  return (MTO_INT(_val + (MFLOAT_UNIT / 2)));
 }
 
 float		Distance::floatVal() const

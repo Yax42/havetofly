@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 15 14:02:52 2013 Brunier Jean
-// Last update Mon Apr 15 23:23:17 2013 Brunier Jean
+// Last update Tue Apr 16 01:03:36 2013 Brunier Jean
 //
 
 #include "Ratio.hh"

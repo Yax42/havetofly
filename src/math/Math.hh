@@ -5,21 +5,30 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 00:57:09 2013 Brunier Jean
-// Last update Mon Apr 15 14:45:30 2013 Brunier Jean
+// Last update Tue Apr 16 19:31:11 2013 Brunier Jean
 //
 
 #ifndef MATH_HH_
 # define MATH_HH_
 
 # define MBIT_OS			10
-# define MBIT_OS_RATIO			20
+# define MBIT_OS_RATIO			18
 # define MTO_RATIO(x)			((x) << MBIT_OS_RATIO)
 # define MTO_FLOAT(x)			((x) << MBIT_OS)
 # define MTO_INT(x)			((x) >> MBIT_OS)
 # define MFLOAT_UNIT			(MTO_FLOAT(1))
 # define MRATIO_UNIT			(MTO_RATIO(1))
 # define MUL_FLOAT(x, y)		((x * y) >> MBIT_OS)
-# define MPUT_IN(x, min, max)		((x <= min) ? min + 1 : ((x >= max) ? max - 1 : x))
+# define MCAP(x, min, max)		((x <= min) ? (min) + 1 : ((x >= max) ? max - 1 : x))
+
+
+# define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ?	\
+   					max - ((x) % (max) - 1 :	\
+					(x) % (max))
+
+# define MGRAD_CAP(x, min, scale)		(min + (((x) % ((scale) * 2) >= scale) ?	\
+      					(scale) - ((x) % (scale)) - 1 :		\
+				  	(x) % (scale)))
 # define MPOS(x)			(((x) < 0) ? -(x) : (x))
 
 # include <vector>

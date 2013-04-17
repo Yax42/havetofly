@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Sun Apr 14 19:08:56 2013 Brunier Jean
+// Last update Tue Apr 16 21:43:20 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -23,6 +23,10 @@ public:
       GRAVITY,
       MOVE,
       DOUBLE_JUMP,
+      HIT_WALL,
+      STICK_CEILING,
+      STICK_WALL,
+      WALL_JUMP,
       COUNT,
       STUN,
       DASH,

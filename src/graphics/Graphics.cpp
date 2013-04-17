@@ -14,7 +14,9 @@
 #include "Exception.hh"
 #include "Math.hh"
 
-# define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ? max - (x) % max - 1 : (x) % max)
+# define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ?	\
+   					max - ((x) % (max) - 1 :	\
+					(x) % (max))
 
 Graphics::Graphics(int h, int w)
 {

@@ -218,14 +218,16 @@ int			Position::y() const
   return (_y.intVal());
 }
 
-void			Position::x(Distance const &x)
+Position		&Position::x(Distance const &x)
 {
   _x = x;
+  return (*this);
 }
 
-void			Position::y(Distance const &y)
+Position		&Position::y(Distance const &y)
 {
   _y = y;
+  return (*this);
 }
 
 const Distance		&Position::xDist() const

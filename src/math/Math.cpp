@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 01:17:42 2013 Brunier Jean
-// Last update Mon Apr 15 23:47:18 2013 Brunier Jean
+// Last update Tue Apr 16 19:04:22 2013 Brunier Jean
 //
 
 #include <cmath>
@@ -78,19 +78,19 @@ Ratio	Math::tan(const Ratio &v)
 Ratio	Math::acos(const Ratio &v)
 {
   long		idx = v.longVal() + MRATIO_UNIT;
-  return (_acos[MPUT_IN(idx, 0, 2 * MRATIO_UNIT)]);
+  return (_acos[MCAP(idx, 0, 2 * MRATIO_UNIT)]);
 }
 
 Ratio	Math::asin(const Ratio &v)
 {
   long		idx = v.longVal() + MRATIO_UNIT;
-  return (_asin[MPUT_IN(idx, 0, 2 * MRATIO_UNIT)]);
+  return (_asin[MCAP(idx, 0, 2 * MRATIO_UNIT)]);
 }
 
 Ratio	Math::atan(const Ratio &v)
 {
   long		idx = v.longVal() + MRATIO_UNIT;
-  return (_atan[MPUT_IN(idx, 0, 2 * MRATIO_UNIT)]);
+  return (_atan[MCAP(idx, 0, 2 * MRATIO_UNIT)]);
 }
 
 Distance	Math::sqrt(const Distance &d)

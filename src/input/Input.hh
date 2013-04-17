@@ -1,11 +1,11 @@
 //
-// Input.hh for src in /home/brunie_j/local/my/havetofly/src
+// Input.hh for input in /home/brunie_j/local/my/havetofly/src/input
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:54 2013 Brunier Jean
-// Last update Sun Apr 14 10:01:25 2013 Brunier Jean
+// Last update Wed Apr 17 18:05:56 2013 Brunier Jean
 //
 
 #ifndef INPUT_HH_
@@ -15,7 +15,8 @@
 # include <vector>
 
 # include "Key.hh"
-# include "Wait.hh"
+# include "JeanCtrl.hh"
+# include "ALoop.hh"
 
 struct Controler
 {
@@ -25,28 +26,40 @@ struct Controler
   SDL_Joystick		*js;
 };
 
-class Input
+class Input : public ALoop
 {
 private:
-  bool				_quit;
-  Wait				_wait;
   int				_kb[SDLK_LAST];
   SDL_Event			_event;
   std::vector<Controler>	_ctrl;
   int				_axe[2];
-  static bool			_quitKey;
+  JeanCtrl			_jeanCtrl;
+  bool				_quitKey;
+
+/* SINGLETON */
+private:
+  static Input		*_inst;
+private:
+  virtual ~Input(){}
+  Input();
+  Input(const Input &other);
+  Input &operator=(const Input &other);
+public:
+  static void		create();
+  static Input		*get();
+  static void		destroy();
 
 public:
-  ~Input(){}
-  Input();
   bool		operator[](int i);
-  static bool	isQuit();
-  void		loop();
-  void		quit();
+  bool		operator()(int i);
+  bool		isQuit();
   void		update();
   void		proc();
+  int		nbCtrl() const;
   Key		getKBKey();
   Key		getCtrlKey(unsigned long id);
+private:
+  virtual bool	iterLoop();
 };
 
 #endif /* !INPUT_HH_ */

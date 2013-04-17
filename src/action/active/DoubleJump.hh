@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:03:08 2013 Brunier Jean
-// Last update Sun Apr 14 17:50:12 2013 Brunier Jean
+// Last update Tue Apr 16 21:58:29 2013 Brunier Jean
 //
 
 #ifndef DOUBLEJUMP_HH_
@@ -17,12 +17,11 @@ class DoubleJump : public AAction
 {
 public:
   DoubleJump(Player &player);
-  virtual ~DoubleJump();
+  virtual ~DoubleJump(){}
   virtual void		init(int v = 0);
   virtual bool		allow(int a);
   virtual IAction	*step();
   virtual bool		request();
-  virtual void		check();
   virtual int		id();
   virtual void		upBones();
 };

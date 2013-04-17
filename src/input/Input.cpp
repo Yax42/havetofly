@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Sun Apr 14 23:04:48 2013 Brunier Jean
+// Last update Wed Apr 17 18:06:06 2013 Brunier Jean
 //
 
 #include <iostream>
@@ -14,30 +14,54 @@
 #include "MyTime.hh"
 #include "Exception.hh"
 
-bool	Input::_quitKey = false;
+Input	*Input::_inst = NULL;
 
-Input::Input() : _quit(false), _wait(60)
+/*************/
+/* SINGLETON */
+/*************/
+void	Input::create()
+{
+  if (_inst == NULL)
+    _inst = new Input();
+}
+
+Input	*Input::get()
+{
+  return (_inst);
+}
+
+void	Input::destroy()
+{
+  if (_inst != NULL)
+    {
+      delete _inst;
+      _inst = NULL;
+    }
+}
+
+/***************/
+/* CONSTRUCTOR */
+/***************/
+Input::Input() : ALoop(60)
 {
   for (int i = 0; i < SDLK_LAST; i++)
     _kb[i] = 0;
 }
 
-void	Input::loop()
+/********/
+/* LOOP */
+/********/
+bool	Input::iterLoop()
 {
-  while (!_quit)
-    {
-      proc();
-      if ((*this)[SDLK_o] && _kb[SDLK_LALT])
-	update();
-      _wait.proc();
-    }
+  proc();
+  if ((*this)[SDLK_o] && _kb[SDLK_LALT])
+    update();
+  return (true);
 }
 
-void	Input::quit()
-{
-  _quit = true;
-}
-
+/***********/
+/* GETTERS */
+/***********/
 bool	Input::isQuit()
 {
   return (_quitKey);
@@ -53,6 +77,14 @@ bool		Input::operator[](int i)
   return (false);
 }
 
+bool		Input::operator()(int i)
+{
+  return (_kb[i]);
+}
+
+/***********/
+/* GET_KEY */
+/***********/
 Key	Input::getKBKey()
 {
   Key	k;
@@ -68,11 +100,18 @@ Key	Input::getKBKey()
   return (k);
 }
 
+int	Input::nbCtrl() const
+{
+  return (_ctrl.size() + _jeanCtrl.isOk());
+}
+
 Key	Input::getCtrlKey(unsigned long id)
 {
   Key	k;
 
-  if (_ctrl.size() >= id)
+  if (_ctrl.size() == id)
+    return (_jeanCtrl.getKey());
+  if (_ctrl.size() > id)
     throw(Exception("Controler missing."));
   k.ptr(Key::HOR) = &_ctrl[id].axe[0];
   k.ptr(Key::VERT) = &_ctrl[id].axe[1];
@@ -85,9 +124,13 @@ Key	Input::getCtrlKey(unsigned long id)
   return (k);
 }
 
+/*******/
+/* ACT */
+/*******/
 void		Input::update()
 {
   std::cout << SDL_NumJoysticks() << std::endl;
+  _jeanCtrl.update();
   for (int i = _ctrl.size(); i < SDL_NumJoysticks(); i++)
     {
       _ctrl.resize(i + 1);
@@ -100,6 +143,7 @@ void		Input::update()
 
 void	Input::proc()
 {
+  _jeanCtrl.proc();
   while(SDL_PollEvent(&_event))
     {
       switch(_event.type)
@@ -128,5 +172,5 @@ void	Input::proc()
       }
     }
   _axe[0] = (_kb[SDLK_d] ? 1000 : (_kb[SDLK_a] ? -1000 : 0));
-  _axe[1] = (_kb[SDLK_w] ? 1000 : (_kb[SDLK_s] ? -1000 : 0));
+  _axe[1] = (_kb[SDLK_w] ? -1000 : (_kb[SDLK_s] ? 1000 : 0));
 }

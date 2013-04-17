@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Sun Apr 14 22:44:26 2013 Brunier Jean
+// Last update Tue Apr 16 21:55:03 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -15,6 +15,9 @@
 # include "Player.hh"
 # include "Hitbox.hh"
 # include "MyTime.hh"
+# include "Math.hh"
+# include "Exception.hh"
+#include "Key.hh"
 
 class Hit;
 class Player;
@@ -37,7 +40,7 @@ public:
   virtual void		hit(Player &ennemy);
   virtual int		val();
   virtual bool		request() = 0;
-  virtual void		check() = 0;
+  virtual void		check();
   virtual const Hitbox	&getHB() const;
   virtual void		upBones() = 0;
   virtual int		id() = 0;

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
-// Last update Mon Apr 15 09:39:39 2013 Brunier Jean
+// Last update Wed Apr 17 18:39:24 2013 Brunier Jean
 //
 
 #include "Bones.hh"
@@ -16,23 +16,22 @@
 #include <iostream>
 
 const int	Bones::_size[Bones::COUNT] =
-  {
-    40,
-    40,
-    40,
-    40,
-    40,
-    40,
-    40,
-    40,
-    16,
-    64
-  };
+{
+  20,	// FOOT1
+  30,	// KNEE1
+  20,	// HAND1
+  30,	// ELBOW1
+  20,	// FOOT2
+  30,	// KNEE2
+  20,	// HAND2
+  30,	// ELBOW2
+  24,	// HEAD
+  16	// BODY
+};
 
 Bones::Bones(const Position &centre, int color, int color2, const int &orient) :
 	_center(centre), _orient(orient), _color(color), _color2(color2)
 {
-  _color = 0;
 }
 
 Bones::~Bones()
@@ -46,16 +45,16 @@ void		Bones::print(Graphics &g)
   Position	pos[Bones::COUNT];
 
   pos[BODY] = center + Position(_angle[BODY], _size[BODY]);
-  pos[HEAD] = center - Position(_angle[HEAD], _size[HEAD]);
+  pos[HEAD] = center - Position(_angle[HEAD] + _angle[BODY], _size[HEAD]);
   g.circle(pos[HEAD], _size[HEAD], _color);
   g.line(center, pos[BODY], _color);
   for (int i = 0; i < 4; i++)
     {
       pos[i * 2 + 1] = ((i % 2) ? center : pos[BODY]) +
 	Position(_angle[i * 2 + 1] +
-	_angle[BODY], _size[i + 1]);
+	_angle[BODY], _size[i * 2 + 1]);
       pos[i * 2] = pos[i * 2 + 1] + Position(_angle[i * 2] +
-	  _angle[BODY] + _angle[i * 2 + 1], _size[i]);
+	  _angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
        g.line(((i % 2) ? center : pos[BODY]), pos[i * 2 + 1], _color);
        g.line(pos[i * 2 + 1], pos[i * 2], _color);
     }
@@ -81,11 +80,17 @@ void	Bones::up(Position const &, Position &, int)
 void	Bones::check()
 {
   for (int i = 0; i < Bones::COUNT; i++)
-    _angle[i] = angle[i];
-  if (_angle[Bones::HEAD].deg() > 90)
-    _angle[Bones::HEAD] = Angle(90, 0);
-  else if (_angle[Bones::HEAD].deg() < -90)
-    _angle[Bones::HEAD] = Angle(-90, 0);
+  {
+      _angle[i] = angle[i];
+  }
+
+  if (_angle[HEAD].deg() > 90 && _angle[HEAD].deg() < 180)
+    _angle[HEAD] = Angle(90, 0);
+  else if (_angle[HEAD].deg() < 270 && _angle[HEAD].deg() >= 180)
+    _angle[HEAD] = Angle(-90, 0);
+  if (_orient > 0)
+    for (int i = 0; i < Bones::COUNT; i++)
+      _angle[i] = _angle[i].mirrorX();
   _angle[BODY] += Angle(90, 0);
+
 }
-  //void	circle(Position const &pos, const Distance &size, int color);
