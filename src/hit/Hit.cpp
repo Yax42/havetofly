@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Thu Apr 18 10:47:14 2013 Brunier Jean
+// Last update Thu Apr 18 11:42:11 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -53,5 +53,5 @@ void	Hit::reset()
 void	Hit::print(Graphics &g) const
 {
   for (std::list<Hitbox>::const_iterator i = _hb.begin(); i != _hb.end(); ++i)
-    i->print(g, 0);
+    i->print(g, 0xFF0000);
 }

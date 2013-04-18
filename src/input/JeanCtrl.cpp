@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 01:11:28 2013 Brunier Jean
-// Last update Wed Apr 17 20:37:08 2013 Brunier Jean
+// Last update Thu Apr 18 17:46:06 2013 Brunier Jean
 //
 
 #include <unistd.h>
@@ -22,10 +22,7 @@ JeanCtrl::JeanCtrl()
   _fd = -1;
   update();
   for (int i = 0; i < 0; i++)
-    {
-      _trueK[i] = 0;
-      _fakeK[i] = 0;
-    }
+    _keys[i] = 0;
 }
 
 JeanCtrl::~JeanCtrl()
@@ -50,16 +47,8 @@ Key	JeanCtrl::getKey()
   Key	k;
 
   for (int i = 0; i < Key::COUNT; i++)
-    k.ptr(i) = &_fakeK[i];
+    k.ptr(i) = &_keys[i];
   return (k);
-}
-
-void	JeanCtrl::setVal(int idx, bool val)
-{
-  if (_trueK[idx] == val)
-    return ;
-  _trueK[idx] = val;
-  _fakeK[idx] = val;
 }
 
 void	JeanCtrl::proc()
@@ -69,13 +58,13 @@ void	JeanCtrl::proc()
   int	nbChar;
   while ((nbChar = read(_fd, _buf, 30)) > 0)
     {
-      _fakeK[0] = (_buf[0] * 1000) / 128;
-      _fakeK[1] = (_buf[1] * 1000) / 128;
-      setVal(Key::B, (_buf[4] & 16) != 0);
-      setVal(Key::A, (_buf[4] & 64) != 0);
-      setVal(Key::X, (_buf[4] & 128) != 0);
-      setVal(Key::Y, (_buf[4] & 32) != 0);
-      setVal(Key::R, (_buf[5] & 8) != 0);
-      setVal(Key::L, (_buf[5] & 2) != 0);
+      _keys[Key::HOR] = (_buf[0] * 1000) / 128;
+      _keys[Key::VERT] = (_buf[1] * 1000) / 128;
+      _keys[Key::B] = (_buf[4] & 16) != 0;
+      _keys[Key::A] = (_buf[4] & 64) != 0;
+      _keys[Key::X] = (_buf[4] & 128) != 0;
+      _keys[Key::Y] = (_buf[4] & 32) != 0;
+      _keys[Key::R] = (_buf[5] & 8) != 0;
+      _keys[Key::L] =  (_buf[5] & 2) != 0;
     }
 }

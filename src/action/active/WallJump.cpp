@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:44:12 2013 Brunier Jean
-// Last update Thu Apr 18 09:59:59 2013 Brunier Jean
+// Last update Thu Apr 18 12:56:52 2013 Brunier Jean
 //
 
 #include "WallJump.hh"
@@ -16,6 +16,7 @@ WallJump::WallJump(Player &player) : AAction(player, NULL)
 
 void	WallJump::init(int)
 {
+  _player[IAction::DOUBLE_JUMP]->set();
   _count = 50;
   if (_player(Event::LEFT_WALL))
     _player = Position(-3.33, 2); //2/3
@@ -27,7 +28,7 @@ void	WallJump::init(int)
 
 bool	WallJump::allow(int a)
 {
-  return (a != IAction::MOVE && a != DOWN_DASH);
+  return (a < IAction::MOVE);
 }
 
 IAction		*WallJump::step()

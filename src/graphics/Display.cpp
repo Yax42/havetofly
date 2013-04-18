@@ -5,13 +5,14 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 14:43:48 2013 Brunier Jean
-// Last update Thu Apr 18 10:49:52 2013 Brunier Jean
+// Last update Thu Apr 18 17:54:10 2013 Brunier Jean
 //
 
 #include "Display.hh"
 #include "Input.hh"
 #include "Math.hh"
 #include "Game.hh"
+#include "const.hh"
 
 Display::Display(int h, int w) : ALoop(60), _g(h, w)
 {
@@ -40,7 +41,8 @@ bool	Display::iterLoop()
             (*i)->bones().print(_g);
 	    for (int j = 0; j < IAction::COUNT; j++)
 	      (**i)[j]->print(_g, (*i)->bones());
-	    (**i)[(*i)->currentAction()]->printHB(_g);
+	    if (DEBUG)
+	      (**i)[(*i)->currentAction()]->printHB(_g);
 	  }
       }
   _g.printScreen();

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Thu Apr 18 10:53:05 2013 Brunier Jean
+// Last update Thu Apr 18 21:01:56 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -39,7 +39,7 @@ void	Game::destroy()
 
 void	Game::initLoop()
 {
-  _nbPlayers = _players.size();
+  _alone = _players.size() == 1;
 }
 
 /***************/
@@ -94,7 +94,7 @@ bool		Game::iterLoop()
 
 bool	Game::ifLoop()
 {
-  return (_nbPlayers == 1 || manyTeams());
+  return ((_alone && (*_players.begin())->alive()) || manyTeams());
 }
 
 /*********/

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Wed Apr 17 20:53:34 2013 Brunier Jean
+// Last update Thu Apr 18 20:32:40 2013 Brunier Jean
 //
 
 #include <iostream>
@@ -13,6 +13,8 @@
 #include "Input.hh"
 #include "MyTime.hh"
 #include "Exception.hh"
+
+#define NB_CTRL		5
 
 Input	*Input::_inst = NULL;
 
@@ -42,8 +44,16 @@ void	Input::destroy()
 /***************/
 /* CONSTRUCTOR */
 /***************/
-Input::Input()
+Input::~Input()
 {
+  for (int i = 0; i < NB_CTRL; i++)
+    delete _ctrl[i];
+}
+
+Input::Input() : _quitKey(false)
+{
+  for (int i = 0; i < NB_CTRL; i++)
+    _ctrl.push_back(new Controler(i));
   for (int i = 0; i < SDLK_LAST; i++)
     _kb[i] = 0;
 }
@@ -91,26 +101,27 @@ Key	Input::getKBKey()
 
 int	Input::nbCtrl() const
 {
-  return (_ctrl.size() + _jeanCtrl.isOk());
+  int	nb = 0;
+  for (int i = 0; i < NB_CTRL; i++)
+    if (_ctrl[i]->isOk())
+      nb++;
+  return (nb);
 }
 
-Key	Input::getCtrlKey(unsigned long id)
+Key	Input::getCtrlKey(int id)
 {
-  Key	k;
+  int	nb = 0;
 
-  if (_ctrl.size() == id)
-    return (_jeanCtrl.getKey());
-  if (_ctrl.size() > id)
-    throw(Exception("Controler missing."));
-  k.ptr(Key::HOR) = &_ctrl[id].axe[0];
-  k.ptr(Key::VERT) = &_ctrl[id].axe[1];
-  k.ptr(Key::A) = &_ctrl[id].button[0];
-  k.ptr(Key::B) = &_ctrl[id].button[1];
-  k.ptr(Key::X) = &_ctrl[id].button[2];
-  k.ptr(Key::Y) = &_ctrl[id].button[3];
-  k.ptr(Key::R) = &_ctrl[id].button[2];
-  k.ptr(Key::L) = &_ctrl[id].button[3];
-  return (k);
+  for (int i = 0; i < NB_CTRL; i++)
+    if (_ctrl[i]->isOk())
+      {
+        if (nb == id)
+  	  break ;
+	else
+	  nb++;
+      }
+    nb++;
+  return (_ctrl[nb]->getKey());
 }
 
 /*******/
@@ -118,21 +129,14 @@ Key	Input::getCtrlKey(unsigned long id)
 /*******/
 void		Input::update()
 {
-  std::cout << SDL_NumJoysticks() << std::endl;
-  _jeanCtrl.update();
-  for (int i = _ctrl.size(); i < SDL_NumJoysticks(); i++)
-    {
-      _ctrl.resize(i + 1);
-      _ctrl[i].js = SDL_JoystickOpen(i);
-      _ctrl[i].button.resize(SDL_JoystickNumButtons(_ctrl[i].js));
-      _ctrl[i].axe.resize(SDL_JoystickNumAxes(_ctrl[i].js));
-      _ctrl[i].hat.resize(SDL_JoystickNumHats(_ctrl[i].js));
-    }
+  for (int i = 0; i < NB_CTRL; i++)
+    _ctrl[i]->update();
 }
 
 void	Input::proc()
 {
-  _jeanCtrl.proc();
+  for (int i = 0; i < NB_CTRL; i++)
+    _ctrl[i]->proc();
   while(SDL_PollEvent(&_event))
     {
       switch(_event.type)
@@ -142,18 +146,6 @@ void	Input::proc()
 	  break;
 	case SDL_KEYUP:
 	  _kb[_event.key.keysym.sym] = 0;
-	  break;
-	case SDL_JOYBUTTONDOWN:
-	  _ctrl[_event.jbutton.which].button[_event.jbutton.button] = 1;
-	  break;
-	case SDL_JOYBUTTONUP:
-	  _ctrl[_event.jbutton.which].button[_event.jbutton.button] = 0;
-	  break;
-	case SDL_JOYAXISMOTION:
-	  _ctrl[_event.jaxis.which].axe[_event.jaxis.axis] = _event.jaxis.value;
-	  break;
-	case SDL_JOYHATMOTION:
-	  _ctrl[_event.jball.which].hat[_event.jhat.hat] = _event.jhat.value;
 	  break;
 	case SDL_QUIT:
 	  _quitKey = true;

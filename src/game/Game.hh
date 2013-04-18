@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:34:23 2013 Brunier Jean
-// Last update Wed Apr 17 18:14:58 2013 Brunier Jean
+// Last update Thu Apr 18 20:59:39 2013 Brunier Jean
 //
 
 #ifndef GAME_HH_
@@ -25,7 +25,7 @@ private:
   Players	_players;
   int		_height;
   int		_width;
-  int		_nbPlayers;
+  int		_alone;
 
 /* SINGLETON */
 private:

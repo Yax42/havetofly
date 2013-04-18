@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Thu Apr 18 10:51:19 2013 Brunier Jean
+// Last update Thu Apr 18 18:15:20 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
@@ -18,6 +18,7 @@ DownDash::DownDash(Player &player) :
 
 void	DownDash::init(int)
 {
+  _player[IAction::DOUBLE_JUMP]->set();
   _hit->reset();
   _count = 40;
 }
@@ -31,7 +32,6 @@ IAction		*DownDash::step()
 {
   if (--_count == 0)
     {
-      _player[IAction::DOUBLE_JUMP]->set();
   //    _player = Position(0, _player.orient() * 0);
       return (_player[IAction::INERTIE]);
     }
@@ -50,7 +50,11 @@ IAction		*DownDash::step()
 
 bool		DownDash::request()
 {
-  return (_player.key(Key::VERT) > 0 && _player.key[Key::B] == 1);
+  if  (_player.key(Key::VERT) > 0 && _player.key[Key::B] == 1)
+    {
+      return (true);
+    }
+  return (false);
 }
 
 int		DownDash::id()

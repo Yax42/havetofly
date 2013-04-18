@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Thu Apr 18 10:49:26 2013 Brunier Jean
+// Last update Thu Apr 18 13:09:49 2013 Brunier Jean
 //
 
 # include "AAction.hh"
@@ -19,7 +19,7 @@ AAction::~AAction()
 }
 
 AAction::AAction(Player &player, Hit *hit) : _player(player), _hit(hit), _open(1), _count(0),
-  _hb(BODY_SIZE, Position(0, 0), player.pos(), player.orient())
+  _hb(32, Position(0, 0), player.pos(), player.orient())
 {
 }
 
@@ -68,7 +68,7 @@ void		AAction::set(int)
 
 void		AAction::printHB(Graphics &g) const
 {
-  _hb.print(g, 0xff0000);
+  _hb.print(g, 0x0000FF);
   if (_hit != NULL)
     _hit->print(g);
 }

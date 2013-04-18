@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:41:09 2013 Brunier Jean
-// Last update Thu Apr 18 10:52:43 2013 Brunier Jean
+// Last update Thu Apr 18 11:41:25 2013 Brunier Jean
 //
 
 #include "Hitbox.hh"
@@ -29,6 +29,6 @@ void	Hitbox::print(Graphics &g, int color) const
 {
   Position	pos = _center.switchX(_orient == -1) + _playerPos;
   g.circle(pos, _ray, color);
-  g.circle(pos, _ray - 1, 0xffffff - color);
+  g.circle(pos, _ray - 1, 0xffffff);
   g.circle(pos, _ray - 2, color);
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Thu Apr 18 10:41:14 2013 Brunier Jean
+// Last update Thu Apr 18 18:12:56 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -94,6 +94,8 @@ void		Player::move()
     {
       _pos.y(Game::h());
       _event[Event::FLOOR] = true;
+      if (!DEBUG)
+        _alive = false;
     }
   for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     _doing->hit(**i);
@@ -140,7 +142,6 @@ void		Player::hit(const Hit *hit)
 /**********/
 /* ACTION */
 /**********/
-
 void	Player::setAction(int id, int initVal)
 {
   _doing = _action[id];

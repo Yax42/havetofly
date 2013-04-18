@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 00:43:57 2013 Brunier Jean
-// Last update Wed Apr 17 01:39:34 2013 Brunier Jean
+// Last update Thu Apr 18 17:45:11 2013 Brunier Jean
 //
 
 #ifndef JEANCTRL_HH_
@@ -17,8 +17,7 @@ class JeanCtrl
 {
 private:
   int		_fd;
-  int		_trueK[Key::COUNT];
-  int		_fakeK[Key::COUNT];
+  int		_keys[Key::COUNT];
   char		_buf[30];
 public:
   JeanCtrl();
@@ -27,8 +26,6 @@ public:
   void		proc();
   bool		isOk() const;
   void		update();
-private:
-  void		setVal(int idx, bool);
 };
 
 #endif /* !JEANCTRL_HH_ */

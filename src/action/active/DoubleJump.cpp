@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:08:52 2013 Brunier Jean
-// Last update Thu Apr 18 10:22:17 2013 Brunier Jean
+// Last update Thu Apr 18 19:47:57 2013 Brunier Jean
 //
 
 #include "DoubleJump.hh"
@@ -17,7 +17,7 @@ DoubleJump::DoubleJump(Player &player) : AAction(player, NULL)
 void	DoubleJump::init(int)
 {
   _player.sy(-3.333);
-  _open = 0;
+  //_open = 0;
 }
 
 bool	DoubleJump::allow(int)

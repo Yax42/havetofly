@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Wed Apr 17 23:44:44 2013 Brunier Jean
+## Last update Thu Apr 18 19:20:14 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -51,6 +51,7 @@ SRCS	= math/Angle.cpp		\
 	  input/Key.cpp			\
 	  input/Input.cpp		\
 	  input/JeanCtrl.cpp		\
+	  input/Controler.cpp		\
 	  action/ActionFactory.cpp	\
 	  action/AAction.cpp		\
 	  action/PassiveAction.cpp	\

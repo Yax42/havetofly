@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:54 2013 Brunier Jean
-// Last update Wed Apr 17 20:55:16 2013 Brunier Jean
+// Last update Thu Apr 18 20:18:07 2013 Brunier Jean
 //
 
 #ifndef INPUT_HH_
@@ -16,7 +16,9 @@
 
 # include "Key.hh"
 # include "JeanCtrl.hh"
+# include "Controler.hh"
 
+/*
 struct Controler
 {
   std::vector<int>	hat;
@@ -24,22 +26,22 @@ struct Controler
   std::vector<int>	button;
   SDL_Joystick		*js;
 };
+*/
 
 class Input
 {
 private:
+  bool				_quitKey;
   int				_kb[SDLK_LAST];
   SDL_Event			_event;
-  std::vector<Controler>	_ctrl;
+  std::vector<Controler *>	_ctrl;
   int				_axe[2];
-  JeanCtrl			_jeanCtrl;
-  bool				_quitKey;
 
 /* SINGLETON */
 private:
   static Input		*_inst;
 private:
-  virtual ~Input(){}
+  virtual ~Input();
   Input();
   Input(const Input &other);
   Input &operator=(const Input &other);
@@ -56,7 +58,7 @@ public:
   void		update();
   int		nbCtrl() const;
   Key		getKBKey();
-  Key		getCtrlKey(unsigned long id);
+  Key		getCtrlKey(int id);
   void		proc();
 };
 
