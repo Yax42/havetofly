@@ -64,6 +64,7 @@ public:
   Position		operator*(const Angle& angle) const;
   Position		&operator*=(const Angle& angle);
   Position		&rotate(const Angle &angle, Position const &center);
+  Position		switchX(bool isOk) const;
 
   /* GETTERS */
   int			x() const;

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Wed Apr 17 21:24:04 2013 Brunier Jean
+// Last update Thu Apr 18 10:42:44 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -17,7 +17,9 @@
 # include "MyTime.hh"
 # include "Math.hh"
 # include "Exception.hh"
-#include "Key.hh"
+# include "Key.hh"
+# include "Graphics.hh"
+# include "Bones.hh"
 
 class Hit;
 class Player;
@@ -32,20 +34,21 @@ protected:
   Hitbox	_hb;
 
 public:
-  virtual ~AAction(){}
+  virtual ~AAction();
   AAction(Player &player, Hit *hit);
-  virtual void		init(int v = 0) = 0;
+  virtual void		init(int v = 0);
   virtual bool		allow(int a);
   virtual IAction	*step();
   virtual void		hit(Player &ennemy);
   virtual int		val();
-  virtual void		reset();
+  virtual void		set(int v = 0);
   virtual bool		request() = 0;
   virtual void		check();
   virtual const Hitbox	&getHB() const;
   virtual void		upBones() = 0;
   virtual int		id() = 0;
+  virtual void		print(Graphics &g, const Bones &b) const;
+  virtual void		printHB(Graphics &g) const;
 };
-
 
 #endif /* !AACTION_HH_ */

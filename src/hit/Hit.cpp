@@ -1,11 +1,11 @@
 //
-// Hit.cpp for src in /home/brunie_j/local/my/havetofly/src
+// Hit.cpp for hit in /home/brunie_j/local/my/havetofly/src/hit
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Sat Apr 13 21:13:53 2013 Brunier Jean
+// Last update Thu Apr 18 10:47:14 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -13,36 +13,45 @@
 #include "Hit.hh"
 #include "Player.hh"
 
-Hit::Hit(const Position &topL,
-         const Position &botR,
-         const Position &center,
-         int stun, Distance speed, const Player &player) :
-  _hb(topL, botR, center), _stun(stun), _speed(speed), _player(player)
+Hit::Hit(int stun, Position const &speed, const Player &player) :
+	_stun(stun), _speed(speed), _player(player)
 {
 }
 
-Hit::~Hit()
+void	Hit::add(const Distance &ray, const Position &center)
 {
+  _hb.push_back(Hitbox(ray, center, _player.pos(), _player.orient()));
 }
 
 int	Hit::go(Player &ennemy) const
 {
-  ennemy = _player.speed() * _speed;
+  ennemy.sy(_speed.yDist());
+  ennemy.sx(_speed.xDist() * Distance(ennemy.orient()));
   return (_stun);
 }
 
 void	Hit::focus(Player &ennemy)
 {
-  if (&ennemy != &_player &&
-      std::find(_players.begin(), _players.end(), &ennemy) == _players.end() &&
-      _hb.touch(ennemy))
+  for (std::list<Hitbox>::iterator i = _hb.begin(); i != _hb.end(); ++i)
     {
-      _players.push_back(&ennemy);
-      ennemy.hit(this);
+      if (&ennemy != &_player &&
+	  std::find(_players.begin(), _players.end(), &ennemy) == _players.end() &&
+	  i->touch(ennemy))
+        {
+  	  _players.push_back(&ennemy);
+	  ennemy.hit(this);
+	  break ;
+        }
     }
 }
 
 void	Hit::reset()
 {
   _players.clear();
+}
+
+void	Hit::print(Graphics &g) const
+{
+  for (std::list<Hitbox>::const_iterator i = _hb.begin(); i != _hb.end(); ++i)
+    i->print(g, 0);
 }

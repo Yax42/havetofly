@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 09:20:03 2013 Brunier Jean
-// Last update Mon Apr 15 22:56:49 2013 Brunier Jean
+// Last update Thu Apr 18 00:24:32 2013 Brunier Jean
 //
 
 #ifndef DISTANCE_HH_
@@ -44,6 +44,7 @@ public:
   Distance		operator*(const Distance &other) const;
   Ratio			operator/(const Distance &other) const;
   Distance		operator%(const Distance &other) const;
+  Distance		abs() const;
 
   bool			operator==(const Distance &other) const;
   bool			operator!=(const Distance &other) const;

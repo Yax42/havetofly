@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:44:12 2013 Brunier Jean
-// Last update Wed Apr 17 20:56:48 2013 Brunier Jean
+// Last update Thu Apr 18 09:59:59 2013 Brunier Jean
 //
 
 #include "WallJump.hh"
@@ -27,7 +27,7 @@ void	WallJump::init(int)
 
 bool	WallJump::allow(int a)
 {
-  return (a != IAction::MOVE);
+  return (a != IAction::MOVE && a != DOWN_DASH);
 }
 
 IAction		*WallJump::step()
@@ -39,7 +39,7 @@ IAction		*WallJump::step()
 
 bool		WallJump::request()
 {
-  return (_player.key(Key::A) && _player.currentAction() == IAction::STICK_WALL);
+  return (_player.key[Key::A] == 1 && _player.currentAction() == IAction::STICK_WALL);
 }
 
 int		WallJump::id()

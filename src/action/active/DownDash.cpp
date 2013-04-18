@@ -5,18 +5,21 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Wed Apr 17 22:13:47 2013 Brunier Jean
+// Last update Thu Apr 18 10:51:19 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
 
-DownDash::DownDash(Player &player) : AAction(player, NULL)
+DownDash::DownDash(Player &player) :
+	AAction(player, new Hit(50, Position(3, 3), player))
 {
+  _hit->add(20, Position(40, 30));
 }
 
 void	DownDash::init(int)
 {
-  _count = 50;
+  _hit->reset();
+  _count = 40;
 }
 
 bool	DownDash::allow(int)
@@ -28,19 +31,26 @@ IAction		*DownDash::step()
 {
   if (--_count == 0)
     {
-      _player[IAction::DOUBLE_JUMP]->reset();
-      _player = Position(3, _player.orient() * 4);
+      _player[IAction::DOUBLE_JUMP]->set();
+  //    _player = Position(0, _player.orient() * 0);
       return (_player[IAction::INERTIE]);
     }
   if (_player(Event::WALL))
+  {
+    _player[IAction::WALL_JUMP]->init();
+    return (_player[IAction::WALL_JUMP]);
+  }
+
+    /*
     _player.orient(-_player.orient());
-  _player = Position(4, _player.orient() * 4);
+  */
+  _player = Position(5, _player.orient() * 4);
   return (this);
 }
 
 bool		DownDash::request()
 {
-  return (_player.key(Key::VERT) > 0 && _player.key(Key::B));
+  return (_player.key(Key::VERT) > 0 && _player.key[Key::B] == 1);
 }
 
 int		DownDash::id()
@@ -63,5 +73,5 @@ void		DownDash::upBones()
   bones.angle[Bones::ELBOW2] = Angle(-100, 0);
 
   bones.angle[Bones::HEAD] = Angle(0, 0);
-  bones.angle[Bones::BODY] = Angle(45, 0);
+  bones.angle[Bones::BODY] = Angle(30, 0);
 }

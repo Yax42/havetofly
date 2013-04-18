@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Wed Apr 17 20:48:13 2013 Brunier Jean
+// Last update Thu Apr 18 10:41:27 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -42,6 +42,9 @@ private:
   bool				_alive;
   int				_team;
   Key				_keys;
+public:
+  const Key			&key;
+private:
   int				_orient;
   Bones				_bones;
   std::vector<bool>		_event;
@@ -62,12 +65,12 @@ public:
   void			move();
   void			process();
   void			hit(const Hit *hit);
+  void			upKeys();
 
   /* SETTERS */
   void			operator=(Position const &speed);
-  IAction		*operator[](int action);
   int			operator()(int event);
-  int			key(int k);
+  //int			key(int k);
   void			orient(int o);
 
   /* SPEED */
@@ -82,13 +85,17 @@ public:
   int			x() const;
   int			y() const;
 
+  /* ACTION */
+  int			currentAction() const;
+  IAction		*operator[](int action);
+  void			setAction(int id, int initVal = 0);
+
   /* GETTERS */
   Bones			&bones();
   void			kill();
   bool			alive() const;
   int			team() const;
-  int			orient() const;
-  int			currentAction() const;
+  const int		&orient() const;
   operator const Hitbox() const;
 };
 

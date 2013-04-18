@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 15 14:02:52 2013 Brunier Jean
-// Last update Tue Apr 16 01:03:36 2013 Brunier Jean
+// Last update Thu Apr 18 02:00:31 2013 Brunier Jean
 //
 
 #include "Ratio.hh"
@@ -123,7 +123,7 @@ Ratio	Ratio::operator*(int v) const
 
 Ratio	Ratio::operator/(int v) const
 {
-  return (_val * v);
+  return (_val / v);
 }
 
 

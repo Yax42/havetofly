@@ -1,11 +1,11 @@
 //
-// Hit.hh for src in /home/brunie_j/local/my/havetofly/src
+// Hit.hh for hit in /home/brunie_j/local/my/havetofly/src/hit
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 22:46:44 2013 Brunier Jean
-// Last update Sat Apr 13 21:13:47 2013 Brunier Jean
+// Last update Thu Apr 18 10:37:06 2013 Brunier Jean
 //
 
 #ifndef HIT_HH_
@@ -20,21 +20,20 @@ class Player;
 class Hit
 {
 private:
-  Hitbox			_hb;
   int				_stun;
-  Distance			_speed;
+  Position			_speed;
   const Player			&_player;
+  std::list<Hitbox>		_hb;
   std::list<Player const*>	_players;
 
 public:
-  Hit(const Position &topL,
-      const Position &botR,
-      const Position &center,
-      int stun, Distance speed, const Player &player);
-  ~Hit();
+  Hit(int stun, const Position &speed, const Player &player);
+  ~Hit() {}
   int	go(Player &ennemy) const;
   void	focus(Player &ennemy);
   void	reset();
+  void	add(const Distance &ray, const Position &center);
+  void	print(Graphics &g) const;
 };
 
 #endif /* !HIT_HH_ */

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 20:10:47 2013 Brunier Jean
-// Last update Wed Apr 17 20:57:05 2013 Brunier Jean
+// Last update Wed Apr 17 23:07:57 2013 Brunier Jean
 //
 
 #include "StickCeiling.hh"

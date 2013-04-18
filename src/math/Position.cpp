@@ -204,6 +204,13 @@ Position		&Position::rotate(const Angle &a, Position const &center)
   return (*this);
 }
 
+Position	Position::switchX(bool isOk) const
+{
+  if (!isOk)
+    return (*this);
+  return (Position(_y, _x * Distance(-1)));
+
+}
 /***********/
 /* GETTERS */
 /***********/

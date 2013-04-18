@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 11:27:34 2013 Brunier Jean
-// Last update Tue Apr 16 20:49:18 2013 Brunier Jean
+// Last update Thu Apr 18 10:14:46 2013 Brunier Jean
 //
 
 #include "Distance.hh"
@@ -112,10 +112,16 @@ Distance		Distance::operator%(const Distance &other) const
   return (Distance(val, 0));
 }
 
+Distance		Distance::abs() const
+{
+  if (_val < 0)
+    return (Distance(-_val, 0));
+  return (*this);
+}
+
 /***************/
 /* COMPARISONS */
 /***************/
-
 bool		Distance::operator==(const Distance &other) const
 {
   return (_val == other._val);
@@ -149,7 +155,6 @@ bool		Distance::operator>=(const Distance &other) const
 /*********/
 /* RATIO */
 /*********/
-
 Distance		&Distance::operator*=(const Ratio &other)
 {
   _val = (_val * other.longVal()) >> MBIT_OS_RATIO;

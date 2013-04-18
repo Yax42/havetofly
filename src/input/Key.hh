@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:21:14 2013 Brunier Jean
-// Last update Wed Apr 17 20:44:18 2013 Brunier Jean
+// Last update Thu Apr 18 09:52:26 2013 Brunier Jean
 //
 
 #ifndef KEY_HH_
@@ -29,13 +29,16 @@ public:
       COUNT
     };
 private:
+  int		_prevVal[Key::COUNT];
   int		*_val[Key::COUNT];
+  int		_delta[Key::COUNT];
 
 public:
   Key();
   ~Key(){}
-  int	operator[](int i);
-  void	resetActKey();
+  int	operator[](int i) const;
+  int	operator()(int i) const;
+  void	update();
   int	*&ptr(int i);
 };
 

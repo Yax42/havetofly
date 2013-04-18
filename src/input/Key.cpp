@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:26:10 2013 Brunier Jean
-// Last update Wed Apr 17 20:45:29 2013 Brunier Jean
+// Last update Thu Apr 18 09:57:56 2013 Brunier Jean
 //
 
 #include "Key.hh"
@@ -14,17 +14,24 @@ Key::Key()
 {
 }
 
-int	Key::operator[](int i)
+int	Key::operator[](int i) const
+{
+  return (_delta[i]);
+}
+
+int	Key::operator()(int i) const
 {
   return (*_val[i]);
 }
 
-void	Key::resetActKey()
+
+void	Key::update()
 {
-  *_val[A] = 0;
-  *_val[B] = 0;
-  *_val[X] = 0;
-  *_val[Y] = 0;
+  for (int i = A; i < COUNT; i++)
+    {
+      _delta[i] = *_val[i] - _prevVal[i];
+      _prevVal[i] = *_val[i];
+    }
 }
 
 int	*&Key::ptr(int i)

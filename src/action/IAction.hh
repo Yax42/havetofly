@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Wed Apr 17 21:06:10 2013 Brunier Jean
+// Last update Thu Apr 18 10:42:37 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -13,6 +13,8 @@
 
 class Hitbox;
 class Player;
+class Bones;
+class Graphics;
 
 class IAction
 {
@@ -21,15 +23,15 @@ public:
     {
       INERTIE,
       GRAVITY,
-      MOVE,
-      DOUBLE_JUMP,
       HIT_WALL,
+/* */ MOVE, /* ACTIVE STARTS HERE */
+      DOUBLE_JUMP,
       STICK_CEILING,
       STICK_WALL,
       WALL_JUMP,
       DOWN_DASH,
-      COUNT,
       STUN,
+/* */ COUNT, /* End of the list */
       DASH,
       MOON_DASH,
       BULL,
@@ -45,10 +47,12 @@ public:
   virtual void		hit(Player &ennemy) = 0;
   virtual void		check() = 0;
   virtual int		val() = 0;
-  virtual void		reset() = 0;
+  virtual void		set(int val = 0) = 0;
   virtual int		id() = 0;
   virtual const Hitbox	&getHB() const = 0;
   virtual void		upBones() = 0;
+  virtual void		print(Graphics &g, const Bones &b) const = 0;
+  virtual void		printHB(Graphics &g) const = 0;
 };
 
 #endif /* !IACTION_HH_ */

@@ -1,11 +1,11 @@
 //
-// Hitbox.hh for src in /home/brunie_j/local/my/havetofly/src
+// Hitbox.hh for hit in /home/brunie_j/local/my/havetofly/src/hit
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:39:05 2013 Brunier Jean
-// Last update Fri Apr 12 22:39:16 2013 Brunier Jean
+// Last update Thu Apr 18 10:34:55 2013 Brunier Jean
 //
 
 #ifndef HITBOX_HH_
@@ -13,16 +13,21 @@
 
 # include "Position.hh"
 
+class Graphics;
+
 class Hitbox
 {
 private:
-  Position		_topL;
-  Position		_botR;
-  const Position	&_center;
+  Distance		_ray;
+  Position		_center;
+  const Position	&_playerPos;
+  const	int		&_orient;
 
 public:
-  Hitbox(const Position &topL, const Position &botR, const Position &center);
-  ~Hitbox();
+  Hitbox(const Distance &ray, const Position &center,
+      const Position &playerPos, const int &orient);
+  void	print(Graphics &g, int color) const;
+  ~Hitbox() {}
   bool		touch(const Hitbox &other) const;
 };
 

@@ -4,7 +4,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 16:06:02 2013 Brunier Jean
-// Last update Sun Apr 14 21:59:29 2013 Brunier Jean
+// Last update Thu Apr 18 01:39:45 2013 Brunier Jean
 //
 
 #ifndef BONES_HH_
@@ -39,17 +39,17 @@ private:
   int			_color2;
 private:
   static const int	_size[Bones::COUNT];
-private:
+  Position		_pos[Bones::COUNT];
   Angle			_angle[Bones::COUNT];
 public:
   Angle			angle[Bones::COUNT];
 public:
   Bones(const Position &centre, int color, int color2, const int &orient);
   ~Bones();
-  void		print(Graphics &g);
+  void			print(Graphics &g);
+  const Position	&operator[](int id) const;
 private:
-  void		up(Position const &old, Position &next, int max);
-  void		check();
+  void			check();
 };
 
 #endif /* !BONES_HH_ */

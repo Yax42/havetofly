@@ -68,18 +68,19 @@ void		Graphics::square(Position const &pos1, Position const &pos3, int color)
   Graphics::line(pos1, pos4, color);
 }
 
-void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, Distance &size, const Angle &angle, int color)
+void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, const Distance &size, const Angle &angle, int color)
 {
-  Angle		angleOffset(Math::toRad(360) / nb);
+  Ratio		angleOffset = Math::maxRad / nb;
+  Ratio		goal = Math::maxRad + angle;
   Position	pos1;
   Position	pos2;
 
-  for (Angle i = angle; i.rad() < (Math::toRad(360) + angle); i += angleOffset)
+  for (Ratio i = angle; i < goal; i += angleOffset)
     {
-      pos1 = Position(i, ray - size) + pos;
-      pos2 = Position(i + angleOffset.rad() / 2, ray + size) + pos;
+      pos1 = Position(Angle(i), ray - size) + pos;
+      pos2 = Position(Angle(i + angleOffset / 2), ray + size) + pos;
       line(pos1, pos2, color);
-      pos1 = Position(i + angleOffset, ray - size) + pos;
+      pos1 = Position(Angle(i + angleOffset), ray - size) + pos;
       line(pos2, pos1, color);
     }
 }

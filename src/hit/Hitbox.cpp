@@ -1,33 +1,34 @@
 //
-// Hitbox.cpp for src in /home/brunie_j/local/my/havetofly/src
+// Hitbox.cpp for hit in /home/brunie_j/local/my/havetofly/src/hit
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:41:09 2013 Brunier Jean
-// Last update Sat Apr 13 19:54:42 2013 Brunier Jean
+// Last update Thu Apr 18 10:52:43 2013 Brunier Jean
 //
 
 #include "Hitbox.hh"
+#include "Graphics.hh"
 
-Hitbox::Hitbox(const Position &topL, const Position &botR, const Position &center) :
-	_topL(topL), _botR(botR), _center(center)
-{
-}
-
-Hitbox::~Hitbox()
+Hitbox::Hitbox(const Distance &ray, const Position &center,
+    const Position &playerPos, const int &orient) :
+	_ray(ray), _center(center), _playerPos(playerPos), _orient(orient)
 {
 }
 
 bool		Hitbox::touch(const Hitbox &other) const
 {
-  Position	topL1(_topL + _center);
-  Position	botR1(_botR + _center);
-  Position	topL2(other._topL + other._center);
-  Position	botR2(other._botR + other._center);
+  Position	pos1 = _center.switchX(_orient == -1) + _playerPos;
+  Position	pos2 = other._center.switchX(other._orient == -1) + other._playerPos;
+  //std::cout <<(pos1 - pos2).distance().abs() << " " << _ray + other._ray<< std::endl;
+  return ((pos1 - pos2).distance().abs() < _ray + other._ray);
+}
 
-  if (topL1.yDist() < botR2.yDist() || topL2.yDist() < botR1.yDist() ||
-      topL1.xDist() < botR2.xDist() || topL2.xDist() < botR1.xDist())
-    return (false);
-  return (true);
+void	Hitbox::print(Graphics &g, int color) const
+{
+  Position	pos = _center.switchX(_orient == -1) + _playerPos;
+  g.circle(pos, _ray, color);
+  g.circle(pos, _ray - 1, 0xffffff - color);
+  g.circle(pos, _ray - 2, color);
 }

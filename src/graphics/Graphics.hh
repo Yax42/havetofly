@@ -29,7 +29,7 @@ public:
   void	resetScreen(int color);
   void	square(Position const &pos1, Position const &pos3, int color);
   void	sponge(Position const &pos, Distance const &ray, int nb,
-      Distance &size, const Angle &angle, int color);
+      const Distance &size, const Angle &angle, int color);
   void	circle(Position const &pos, const Distance &size, int color);
   void	line(Position const &pos1, Position const &pos2, int color);
   void	line(Position const &pos1, Position const &pos2, int color, int thick);

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Wed Apr 17 22:19:52 2013 Brunier Jean
+// Last update Thu Apr 18 10:41:14 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -24,7 +24,7 @@
 Player::~Player(){}
 
 Player::Player(const Position &pos, int team, const Key &k) :
- 	 _pos(pos), _alive(true), _team(team), _keys(k),
+ 	 _pos(pos), _alive(true), _team(team), _keys(k), key(_keys),
 	_orient(1), _bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF, _orient)
 {
   _event.resize(Event::COUNT);
@@ -42,20 +42,17 @@ void	Player::operator=(Position const &speed)
   _speed = speed;
 }
 
-IAction		*Player::operator[](int a)
-{
-  return (_action[a]);
-}
-
 int		Player::operator()(int event)
 {
   return (_event[event]);
 }
 
+/*
 int		Player::key(int k)
 {
   return (_keys[k]);
 }
+*/
 
 void		Player::orient(int o)
 {
@@ -108,6 +105,7 @@ void		Player::process()
 
   if (_hit != NULL)
     {
+      _event[Event::HIT] = true;
       tmp = _hit->go(*this);
       if (tmp > 0)
         {
@@ -127,12 +125,36 @@ void		Player::process()
       }
   _doing = _doing->step();
   _doing->upBones();
-  _keys.resetActKey();
+}
+
+void		Player::upKeys()
+{
+  _keys.update();
 }
 
 void		Player::hit(const Hit *hit)
 {
   _hit = hit;
+}
+
+/**********/
+/* ACTION */
+/**********/
+
+void	Player::setAction(int id, int initVal)
+{
+  _doing = _action[id];
+  _doing->init(initVal);
+}
+
+int	Player::currentAction() const
+{
+  return (_doing->id());
+}
+
+IAction		*Player::operator[](int a)
+{
+  return (_action[a]);
 }
 
 /*********/
@@ -204,7 +226,7 @@ bool	Player::alive() const
   return (_alive);
 }
 
-int	Player::orient() const
+const int	&Player::orient() const
 {
   return (_orient);
 }
@@ -214,7 +236,3 @@ int	Player::team() const
   return (_team);
 }
 
-int	Player::currentAction() const
-{
-  return (_doing->id());
-}

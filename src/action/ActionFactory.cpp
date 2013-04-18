@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Wed Apr 17 21:07:41 2013 Brunier Jean
+// Last update Wed Apr 17 23:57:29 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -21,6 +21,7 @@
 #include "StickWall.hh"
 #include "WallJump.hh"
 #include "DownDash.hh"
+#include "Stun.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -42,5 +43,7 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new WallJump(p));
   if (action == IAction::DOWN_DASH)
     return (new DownDash(p));
+  if (action == IAction::STUN)
+    return (new Stun(p));
   throw(Exception("Action not exisiting."));
 }
