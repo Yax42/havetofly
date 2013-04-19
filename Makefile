@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Thu Apr 18 19:20:14 2013 Brunier Jean
+## Last update Fri Apr 19 10:07:13 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -50,12 +50,12 @@ SRCS	= math/Angle.cpp		\
 	  human/Player.cpp		\
 	  input/Key.cpp			\
 	  input/Input.cpp		\
-	  input/JeanCtrl.cpp		\
 	  input/Controler.cpp		\
 	  action/ActionFactory.cpp	\
 	  action/AAction.cpp		\
 	  action/PassiveAction.cpp	\
 	  action/active/DoubleJump.cpp	\
+	  action/active/HorDash.cpp	\
 	  action/active/StickCeiling.cpp\
 	  action/active/DownDash.cpp	\
 	  action/active/StickWall.cpp	\

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Thu Apr 18 10:42:44 2013 Brunier Jean
+// Last update Fri Apr 19 01:36:30 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -20,6 +20,7 @@
 # include "Key.hh"
 # include "Graphics.hh"
 # include "Bones.hh"
+# include "const.hh"
 
 class Hit;
 class Player;
@@ -27,11 +28,12 @@ class Player;
 class AAction : public IAction
 {
 protected:
-  Player	&_player;
-  Hit		*_hit;
-  int		_open;
-  int		_count;
-  Hitbox	_hb;
+  Player		&_player;
+  Hit			*_hit;
+  int			_open;
+  int			_count;
+  Bones			&_bones;
+  std::list<Hitbox>	_hb;
 
 public:
   virtual ~AAction();
@@ -44,10 +46,10 @@ public:
   virtual void		set(int v = 0);
   virtual bool		request() = 0;
   virtual void		check();
-  virtual const Hitbox	&getHB() const;
+  virtual const	std::list<Hitbox>	&getHB() const;
   virtual void		upBones() = 0;
   virtual int		id() = 0;
-  virtual void		print(Graphics &g, const Bones &b) const;
+  virtual void		print(Graphics &g) const;
   virtual void		printHB(Graphics &g) const;
 };
 

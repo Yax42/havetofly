@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 00:57:09 2013 Brunier Jean
-// Last update Tue Apr 16 19:31:11 2013 Brunier Jean
+// Last update Fri Apr 19 00:44:54 2013 Brunier Jean
 //
 
 #ifndef MATH_HH_
@@ -30,6 +30,7 @@
       					(scale) - ((x) % (scale)) - 1 :		\
 				  	(x) % (scale)))
 # define MPOS(x)			(((x) < 0) ? -(x) : (x))
+# define MSIGN(x)			(((x) > 0) ? 1 : (((x) < 0) ? -1 : 0))
 
 # include <vector>
 

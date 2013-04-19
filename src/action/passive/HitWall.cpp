@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 01:08:34 2013 Brunier Jean
-// Last update Wed Apr 17 23:54:55 2013 Brunier Jean
+// Last update Thu Apr 18 23:32:11 2013 Brunier Jean
 //
 
 #include "HitWall.hh"

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Thu Apr 18 11:42:11 2013 Brunier Jean
+// Last update Fri Apr 19 01:24:05 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -16,6 +16,11 @@
 Hit::Hit(int stun, Position const &speed, const Player &player) :
 	_stun(stun), _speed(speed), _player(player)
 {
+}
+
+void	Hit::add(const Distance &ray, const Position &center, const Position &playerPos)
+{
+  _hb.push_back(Hitbox(ray, center, playerPos, _player.orient()));
 }
 
 void	Hit::add(const Distance &ray, const Position &center)

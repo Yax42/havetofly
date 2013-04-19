@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:03:08 2013 Brunier Jean
-// Last update Thu Apr 18 01:46:27 2013 Brunier Jean
+// Last update Fri Apr 19 01:37:42 2013 Brunier Jean
 //
 
 #ifndef DOUBLEJUMP_HH_
@@ -25,7 +25,7 @@ public:
   virtual int		id();
   virtual void		upBones();
   virtual void		check();
-  virtual void		print(Graphics &g, const Bones &b) const;
+  virtual void		print(Graphics &g) const;
 };
 
 #endif /* !DOUBLEJUMP_HH_ */

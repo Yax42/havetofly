@@ -5,9 +5,10 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:26:10 2013 Brunier Jean
-// Last update Thu Apr 18 09:57:56 2013 Brunier Jean
+// Last update Fri Apr 19 00:52:57 2013 Brunier Jean
 //
 
+#include "Math.hh"
 #include "Key.hh"
 
 Key::Key()
@@ -16,14 +17,20 @@ Key::Key()
 
 int	Key::operator[](int i) const
 {
-  return (_delta[i]);
+  if (i > VERT)
+    return (_delta[i]);
+  if (MPOS(*_val[i]) < 250)
+    return (0);
+  if ((MPOS(*_val[VERT]) + 200 > MPOS(*_val[HOR])) ==
+      (i == VERT))
+    return (MSIGN(*_val[i]));
+  return (0);
 }
 
 int	Key::operator()(int i) const
 {
   return (*_val[i]);
 }
-
 
 void	Key::update()
 {

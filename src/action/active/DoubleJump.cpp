@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:08:52 2013 Brunier Jean
-// Last update Thu Apr 18 19:47:57 2013 Brunier Jean
+// Last update Fri Apr 19 01:52:55 2013 Brunier Jean
 //
 
 #include "DoubleJump.hh"
@@ -17,7 +17,8 @@ DoubleJump::DoubleJump(Player &player) : AAction(player, NULL)
 void	DoubleJump::init(int)
 {
   _player.sy(-3.333);
-  //_open = 0;
+  if ((DEBUG & 4) == 0)
+    _open = 0;
 }
 
 bool	DoubleJump::allow(int)
@@ -48,11 +49,11 @@ void		DoubleJump::check()
 {
 }
 
-void		DoubleJump::print(Graphics &g, const Bones &b) const
+void		DoubleJump::print(Graphics &g) const
 {
   if (_open)
     {
-      g.sponge(b[Bones::FOOT1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
-      g.sponge(b[Bones::FOOT2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
+      g.sponge(_bones[Bones::FOOT1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
+      g.sponge(_bones[Bones::FOOT2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
     }
 }

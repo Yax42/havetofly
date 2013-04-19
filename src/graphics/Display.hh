@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 14:43:41 2013 Brunier Jean
-// Last update Wed Apr 17 15:11:17 2013 Brunier Jean
+// Last update Thu Apr 18 22:50:21 2013 Brunier Jean
 //
 
 #ifndef DISPLAY_HH_
@@ -14,13 +14,16 @@
 # include "Graphics.hh"
 # include "ALoop.hh"
 
+class Mutex;
+
 class Display : public ALoop
 {
 private:
   Graphics	_g;
+  Mutex		&_mutex;
 public:
   virtual ~Display(){}
-  Display(int h, int w);
+  Display(int h, int w, Mutex &mutex);
 private:
   virtual void	initLoop();
   virtual void	endLoop();

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Wed Apr 17 20:50:07 2013 Brunier Jean
+// Last update Fri Apr 19 10:06:00 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -24,23 +24,35 @@
 #include "Game.hh"
 #include "Mutex.hh"
 
-#define MAP_H	758
+#define MAP_H	920
 #define MAP_W	512
 
-Mutex	mutex;
+/* FLAGS :
+ *	NORMAL_DEBUG	1
+ * 	SLOW_DOWN	2
+ * 	INFINIT_JUMP	4
+ * 	PRINT_HITBOX	8
+*/
+
+int		g_debug = 1;
+const int	&DEBUG = g_debug;
 
 void	run()
 {
-  Input::create();
-  GameLoader	gl(MAP_H, MAP_W);
-  Display	dis(MAP_H, MAP_W);
+  Mutex	mutex;
 
+  Input::create();
+  GameLoader	gl(MAP_H, MAP_W, mutex);
+  Display	dis(MAP_H, MAP_W, mutex);
+
+  mutex.lock();
   dis.loop();
   gl.loop();
 
-  dis.join();
-  Game::get()->quit();
   gl.join();
+  dis.quit();
+  mutex.unlock();
+  dis.join();
   Input::destroy();
 }
 

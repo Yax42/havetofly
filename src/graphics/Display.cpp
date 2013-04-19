@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 14:43:48 2013 Brunier Jean
-// Last update Thu Apr 18 17:54:10 2013 Brunier Jean
+// Last update Fri Apr 19 09:22:31 2013 Brunier Jean
 //
 
 #include "Display.hh"
@@ -13,14 +13,14 @@
 #include "Math.hh"
 #include "Game.hh"
 #include "const.hh"
+#include "Mutex.hh"
 
-Display::Display(int h, int w) : ALoop(60), _g(h, w)
+Display::Display(int h, int w, Mutex &mutex) : ALoop(60), _g(h, w), _mutex(mutex)
 {
 }
 
 void	Display::initLoop()
 {
-  Input::get()->update();
 }
 
 bool	Display::ifLoop()
@@ -30,21 +30,24 @@ bool	Display::ifLoop()
 
 bool	Display::iterLoop()
 {
+  _mutex.lock();
+  _g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
    if ((*Input::get())[SDLK_p] &&(*Input::get())(SDLK_LALT))
      _g.switchFS();
-  _g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
-  if (Game::get() != NULL)
-    for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
-      {
-        if ((*i)->alive())
-	  {
-            (*i)->bones().print(_g);
-	    for (int j = 0; j < IAction::COUNT; j++)
-	      (**i)[j]->print(_g, (*i)->bones());
-	    if (DEBUG)
-	      (**i)[(*i)->currentAction()]->printHB(_g);
-	  }
-      }
+  if (_quit)
+    return (true);
+  for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
+    {
+      if ((*i)->alive())
+        {
+	  (*i)->bones().print(_g);
+	  for (int j = 0; j < IAction::COUNT; j++)
+	    (**i)[j]->print(_g);
+	  if (DEBUG & 8)
+	    (**i)[(*i)->currentAction()]->printHB(_g);
+	}
+    }
+  _mutex.unlock();
   _g.printScreen();
   return (true);
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Wed Apr 17 23:57:29 2013 Brunier Jean
+// Last update Thu Apr 18 23:27:39 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -22,6 +22,7 @@
 #include "WallJump.hh"
 #include "DownDash.hh"
 #include "Stun.hh"
+#include "HorDash.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -45,5 +46,7 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new DownDash(p));
   if (action == IAction::STUN)
     return (new Stun(p));
+  if (action == IAction::HOR_DASH)
+    return (new HorDash(p));
   throw(Exception("Action not exisiting."));
 }

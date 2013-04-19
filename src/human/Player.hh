@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Thu Apr 18 10:41:27 2013 Brunier Jean
+// Last update Thu Apr 18 22:13:37 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -96,6 +96,7 @@ public:
   bool			alive() const;
   int			team() const;
   const int		&orient() const;
+  const std::list<Hitbox>	&getHB() const;
   operator const Hitbox() const;
 };
 

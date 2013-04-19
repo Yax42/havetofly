@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:39:05 2013 Brunier Jean
-// Last update Thu Apr 18 10:34:55 2013 Brunier Jean
+// Last update Thu Apr 18 22:18:16 2013 Brunier Jean
 //
 
 #ifndef HITBOX_HH_
@@ -14,6 +14,7 @@
 # include "Position.hh"
 
 class Graphics;
+class Player;
 
 class Hitbox
 {
@@ -28,6 +29,7 @@ public:
       const Position &playerPos, const int &orient);
   void	print(Graphics &g, int color) const;
   ~Hitbox() {}
+  bool		touch(const Player &player) const;
   bool		touch(const Hitbox &other) const;
 };
 

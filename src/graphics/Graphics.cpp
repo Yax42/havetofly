@@ -33,7 +33,7 @@ void	Graphics::switchFS()
   int	w = _screen->w;
   int	h = _screen->h;
 
-  SDL_Quit();
+  SDL_FreeSurface(_screen);
   _fs = !_fs;
   if (_fs)
     _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN | SDL_INIT_JOYSTICK);

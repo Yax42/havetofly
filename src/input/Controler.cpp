@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 17:34:29 2013 Brunier Jean
-// Last update Thu Apr 18 20:55:56 2013 Brunier Jean
+// Last update Fri Apr 19 10:03:37 2013 Brunier Jean
 //
 
 #include <unistd.h>
@@ -15,8 +15,11 @@
 #include <iostream>
 #include <sstream>
 
+#include "MyTime.hh"
 #include "Exception.hh"
 #include "Controler.hh"
+
+#define STICK_TO_SPEED(x)	(x >> 5)
 
 Controler::~Controler()
 {
@@ -38,22 +41,22 @@ bool	Controler::isOk() const
 void	Controler::update()
 {
   if (_fd != -1)
-  {
     close(_fd);
-    _axe.clear();
-    _but.clear();
-  }
   std::stringstream	stm;
-
   stm << "/dev/input/js" << _id;
     _fd = open(stm.str().c_str(), O_RDONLY | O_NONBLOCK);
   if (_fd == -1)
-    return ;
+    {
+      _axe.clear();
+      _but.clear();
+      return ;
+    }
+  //std::cout << MTIME << " " <<  _id << " " << stm.str() << " D";
   while (read(_fd, &_event, sizeof(_event)) > 0)
     {
-      if (_event.type == 129)
-	_but.push_back(0);
-      if (_event.type == 130)
+      if (_event.type == 129 && _but.size() <= _event.number)
+	  _but.push_back(0);
+      if (_event.type == 130 && _axe.size() <= _event.number)
 	_axe.push_back(0);
     }
 }
@@ -62,17 +65,16 @@ Key	Controler::getKey()
 {
   Key	k;
 
-  //std::cout << _id << std::endl;
   if (!isOk())
     return (k);
   k.ptr(Key::HOR) = &_axe[0];
   k.ptr(Key::VERT) = &_axe[1];
   k.ptr(Key::A) = &_but[0];
-  k.ptr(Key::B) = &_but[0];
-  k.ptr(Key::X) = &_but[1];
-  k.ptr(Key::Y) = &_but[2];
-  k.ptr(Key::R) = &_but[3];
-  k.ptr(Key::L) = &_but[4];
+  k.ptr(Key::B) = &_but[1];
+  k.ptr(Key::X) = &_but[2];
+  k.ptr(Key::Y) = &_but[3];
+  k.ptr(Key::R) = &_but[4];
+  k.ptr(Key::L) = &_but[5];
   return (k);
 }
 
@@ -83,8 +85,14 @@ void	Controler::proc()
   while (read(_fd, &_event, sizeof(_event)) > 0)
     {
       if (_event.type == 1)
+      {
+	//std::cout << (int)_event.number << std::endl;
 	_but[_event.number] = _event.value;
-      if (_event.type == 2)
-	_axe[_event.number] = _event.value;
+      }
+      else if (_event.type == 2)
+      {
+	_axe[_event.number] = STICK_TO_SPEED(_event.value);
+	//std::cout << (int)_event.number << " " << _axe[_event.number] << std::endl;
+      }
     }
 }

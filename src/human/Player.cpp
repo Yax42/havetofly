@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Thu Apr 18 18:12:56 2013 Brunier Jean
+// Last update Thu Apr 18 22:12:51 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -212,7 +212,7 @@ Bones		&Player::bones()
   return (_bones);
 }
 
-Player::operator const Hitbox() const
+const std::list<Hitbox>		&Player::getHB() const
 {
   return (_doing->getHB());
 }

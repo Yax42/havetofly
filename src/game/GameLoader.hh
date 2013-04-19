@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:22 2013 Brunier Jean
-// Last update Wed Apr 17 17:55:26 2013 Brunier Jean
+// Last update Thu Apr 18 22:52:52 2013 Brunier Jean
 //
 
 #ifndef GAMELOADER_HH_
@@ -13,16 +13,19 @@
 
 # include "ALoop.hh"
 
+class Mutex;
+
 class GameLoader : public ALoop
 {
 private:
   int		_h;
   int		_w;
   bool		_ret;
+  Mutex		&_mutex;
 
 public:
   virtual ~GameLoader() {}
-  GameLoader(int w, int h);
+  GameLoader(int w, int h, Mutex &mutex);
 private:
   virtual bool			iterLoop();
 };

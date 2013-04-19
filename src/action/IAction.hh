@@ -5,11 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Thu Apr 18 10:42:37 2013 Brunier Jean
+// Last update Fri Apr 19 01:40:00 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
 # define IACTION_HH_
+
+# include <list>
 
 class Hitbox;
 class Player;
@@ -26,6 +28,7 @@ public:
       HIT_WALL,
 /* */ MOVE, /* ACTIVE STARTS HERE */
       DOUBLE_JUMP,
+      HOR_DASH,
       STICK_CEILING,
       STICK_WALL,
       WALL_JUMP,
@@ -49,9 +52,9 @@ public:
   virtual int		val() = 0;
   virtual void		set(int val = 0) = 0;
   virtual int		id() = 0;
-  virtual const Hitbox	&getHB() const = 0;
+  virtual const	std::list<Hitbox>	&getHB() const = 0;
   virtual void		upBones() = 0;
-  virtual void		print(Graphics &g, const Bones &b) const = 0;
+  virtual void		print(Graphics &g) const = 0;
   virtual void		printHB(Graphics &g) const = 0;
 };
 

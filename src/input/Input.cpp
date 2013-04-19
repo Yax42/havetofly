@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Thu Apr 18 20:32:40 2013 Brunier Jean
+// Last update Thu Apr 18 21:07:08 2013 Brunier Jean
 //
 
 #include <iostream>
@@ -14,7 +14,7 @@
 #include "MyTime.hh"
 #include "Exception.hh"
 
-#define NB_CTRL		5
+#define NB_CTRL		20
 
 Input	*Input::_inst = NULL;
 
