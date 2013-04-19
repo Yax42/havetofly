@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:00:20 2013 Brunier Jean
-// Last update Thu Apr 18 09:57:42 2013 Brunier Jean
+// Last update Fri Apr 19 19:30:03 2013 Brunier Jean
 //
 
 #include "Move.hh"
 #include "Player.hh"
 
-Move::Move(Player &player) : PassiveAction(player)
+Move::Move(Player &player) : PassiveAction(player, MOVE)
 {
 }
 
@@ -36,9 +36,4 @@ bool		Move::request()
 	_player.sx(MIN);
     }
   return (false);
-}
-
-int		Move::id()
-{
-  return (IAction::MOVE);
 }

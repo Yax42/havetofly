@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:08:52 2013 Brunier Jean
-// Last update Fri Apr 19 01:52:55 2013 Brunier Jean
+// Last update Fri Apr 19 18:13:35 2013 Brunier Jean
 //
 
 #include "DoubleJump.hh"
 
-DoubleJump::DoubleJump(Player &player) : AAction(player, NULL)
+DoubleJump::DoubleJump(Player &player) : AAction(player, IAction::DOUBLE_JUMP, NULL)
 {
 }
 
@@ -34,11 +34,6 @@ IAction		*DoubleJump::step()
 bool		DoubleJump::request()
 {
   return (_open && _player.key[Key::A] == 1);
-}
-
-int		DoubleJump::id()
-{
-  return (IAction::DOUBLE_JUMP);
 }
 
 void		DoubleJump::upBones()

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:20:17 2013 Brunier Jean
-// Last update Sun Apr 14 22:45:08 2013 Brunier Jean
+// Last update Fri Apr 19 13:57:37 2013 Brunier Jean
 //
 
 #ifndef INERTIE_HH_
@@ -20,7 +20,6 @@ public:
   Inertie(Player &player);
   virtual void		upBones();
   virtual bool		request();
-  virtual int		id();
 };
 
 #endif /* !INERTIE_HH_ */

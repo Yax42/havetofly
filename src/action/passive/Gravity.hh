@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:07:11 2013 Brunier Jean
-// Last update Sun Apr 14 17:46:40 2013 Brunier Jean
+// Last update Fri Apr 19 18:15:27 2013 Brunier Jean
 //
 
 #ifndef GRAVITY_HH_
@@ -19,7 +19,6 @@ public:
   Gravity(Player &player);
   virtual ~Gravity(){}
   virtual bool		request();
-  virtual int		id();
 };
 
 #endif /* !GRAVITY_HH_ */

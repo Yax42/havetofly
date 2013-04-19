@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:54 2013 Brunier Jean
-// Last update Thu Apr 18 20:18:07 2013 Brunier Jean
+// Last update Fri Apr 19 10:41:12 2013 Brunier Jean
 //
 
 #ifndef INPUT_HH_
@@ -15,7 +15,6 @@
 # include <vector>
 
 # include "Key.hh"
-# include "JeanCtrl.hh"
 # include "Controler.hh"
 
 /*

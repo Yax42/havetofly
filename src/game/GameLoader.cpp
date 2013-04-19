@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Thu Apr 18 23:03:31 2013 Brunier Jean
+// Last update Fri Apr 19 12:10:30 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"

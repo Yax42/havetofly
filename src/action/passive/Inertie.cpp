@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:31:46 2013 Brunier Jean
-// Last update Wed Apr 17 19:18:44 2013 Brunier Jean
+// Last update Fri Apr 19 18:16:41 2013 Brunier Jean
 //
 
 #include "Inertie.hh"
 
-Inertie::Inertie(Player &player) : PassiveAction(player)
+Inertie::Inertie(Player &player) : PassiveAction(player, IAction::INERTIE)
 {
 }
 
@@ -26,11 +26,6 @@ bool				Inertie::request()
   else
     _player.sx(_player.sx() + MSLOW);
   return (false);
-}
-
-int		Inertie::id()
-{
-  return (IAction::INERTIE);
 }
 
 void		Inertie::upBones()

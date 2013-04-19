@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 14:43:48 2013 Brunier Jean
-// Last update Fri Apr 19 09:22:31 2013 Brunier Jean
+// Last update Fri Apr 19 12:08:48 2013 Brunier Jean
 //
 
 #include "Display.hh"
@@ -21,6 +21,7 @@ Display::Display(int h, int w, Mutex &mutex) : ALoop(60), _g(h, w), _mutex(mutex
 
 void	Display::initLoop()
 {
+  _mutex.lock();
 }
 
 bool	Display::ifLoop()

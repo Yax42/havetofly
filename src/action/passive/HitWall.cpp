@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 01:08:34 2013 Brunier Jean
-// Last update Thu Apr 18 23:32:11 2013 Brunier Jean
+// Last update Fri Apr 19 18:15:54 2013 Brunier Jean
 //
 
 #include "HitWall.hh"
 
-HitWall::HitWall(Player &player) : PassiveAction(player)
+HitWall::HitWall(Player &player) : PassiveAction(player, IAction::HIT_WALL)
 {
 }
 
@@ -32,9 +32,4 @@ void		HitWall::check()
       	       (_player(Event::RIGHT_WALL) && _player.sx() > 0))
 	_player.sx(0);
     }
-}
-
-int		HitWall::id()
-{
-  return (HIT_WALL);
 }

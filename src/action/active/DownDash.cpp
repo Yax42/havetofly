@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Fri Apr 19 01:36:52 2013 Brunier Jean
+// Last update Fri Apr 19 18:14:26 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
 
 DownDash::DownDash(Player &player) :
-	AAction(player, new Hit(50, Position(3, 3), player))
+	AAction(player, DOWN_DASH, new Hit(50, Position(3, 3), player))
 {
   _hit->add(20, Position(40, 30));
 }
@@ -51,11 +51,6 @@ IAction		*DownDash::step()
 bool		DownDash::request()
 {
   return  (_player.key[Key::B] == 1 && _player.key[Key::VERT] == 1);
-}
-
-int		DownDash::id()
-{
-  return (IAction::DOWN_DASH);
 }
 
 void		DownDash::upBones()

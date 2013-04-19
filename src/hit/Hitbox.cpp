@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:41:09 2013 Brunier Jean
-// Last update Thu Apr 18 22:20:26 2013 Brunier Jean
+// Last update Fri Apr 19 20:44:18 2013 Brunier Jean
 //
 
 #include "Hitbox.hh"

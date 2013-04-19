@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Fri Apr 19 01:40:50 2013 Brunier Jean
+// Last update Fri Apr 19 18:05:51 2013 Brunier Jean
 //
 
 # include "AAction.hh"
@@ -18,8 +18,8 @@ AAction::~AAction()
     delete (_hit);
 }
 
-AAction::AAction(Player &player, Hit *hit) :
-	_player(player), _hit(hit), _open(1), _count(0), _bones(player.bones())
+AAction::AAction(Player &player, int id, Hit *hit) :
+	_player(player), _hit(hit), _open(1), _count(0), _bones(player.bones()), _id(id)
 {
   _hb.push_back(Hitbox(5, Position(), _bones[Bones::FOOT1], _player.orient()));
   _hb.push_back(Hitbox(5, Position(), _bones[Bones::FOOT2], _player.orient()));
@@ -82,6 +82,17 @@ void		AAction::printHB(Graphics &g) const
     i->print(g, 0x0000FF);
   if (_hit != NULL)
     _hit->print(g);
+}
+
+bool		AAction::isActive() const
+{
+  return (_player.currentAction() == id());
+}
+
+
+int		AAction::id() const
+{
+  return (_id);
 }
 
 void		AAction::print(Graphics &) const

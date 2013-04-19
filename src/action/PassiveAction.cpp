@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:40:32 2013 Brunier Jean
-// Last update Wed Apr 17 23:21:59 2013 Brunier Jean
+// Last update Fri Apr 19 18:13:09 2013 Brunier Jean
 //
 
 #include "PassiveAction.hh"
 
-PassiveAction::PassiveAction(Player &player) : AAction(player, NULL)
+PassiveAction::PassiveAction(Player &player, int id) : AAction(player, id, NULL)
 {
 }
 

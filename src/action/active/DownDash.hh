@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:37:35 2013 Brunier Jean
-// Last update Wed Apr 17 21:56:40 2013 Brunier Jean
+// Last update Fri Apr 19 13:54:54 2013 Brunier Jean
 //
 
 #ifndef DOWNDASH_HH_
@@ -22,7 +22,6 @@ public:
   virtual bool		allow(int a);
   virtual IAction	*step();
   virtual bool		request();
-  virtual int		id();
   virtual void		upBones();
 };
 

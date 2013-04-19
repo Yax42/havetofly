@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:36 2013 Brunier Jean
-// Last update Thu Apr 18 01:14:05 2013 Brunier Jean
+// Last update Fri Apr 19 19:28:53 2013 Brunier Jean
 //
 
 #include "Stun.hh"
 
-Stun::Stun(Player &player) : AAction(player, NULL)
+Stun::Stun(Player &player) : AAction(player, STUN, NULL)
 {
 }
 
@@ -39,11 +39,6 @@ IAction		*Stun::step()
 bool		Stun::request()
 {
   return (false);
-}
-
-int		Stun::id()
-{
-  return (IAction::STUN);
 }
 
 void		Stun::upBones()

@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:44:12 2013 Brunier Jean
-// Last update Fri Apr 19 01:57:40 2013 Brunier Jean
+// Last update Fri Apr 19 19:29:15 2013 Brunier Jean
 //
 
 #include "WallJump.hh"
 
-WallJump::WallJump(Player &player) : AAction(player, NULL)
+WallJump::WallJump(Player &player) : AAction(player, WALL_JUMP, NULL)
 {
 }
 
@@ -41,11 +41,6 @@ IAction		*WallJump::step()
 bool		WallJump::request()
 {
   return (_player.key[Key::A] == 1 && _player.currentAction() == IAction::STICK_WALL);
-}
-
-int		WallJump::id()
-{
-  return (IAction::WALL_JUMP);
 }
 
 void		WallJump::upBones()

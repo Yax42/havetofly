@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 20:10:54 2013 Brunier Jean
-// Last update Tue Apr 16 20:35:50 2013 Brunier Jean
+// Last update Fri Apr 19 13:55:40 2013 Brunier Jean
 //
 
 #ifndef STICKCEILING_HH_
@@ -22,7 +22,6 @@ public:
   virtual IAction	*step();
   virtual bool		request();
   virtual void		upBones();
-  virtual int		id();
 };
 
 #endif /* !STICKCEILING_HH_ */

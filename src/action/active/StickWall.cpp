@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:05:53 2013 Brunier Jean
-// Last update Wed Apr 17 20:57:16 2013 Brunier Jean
+// Last update Fri Apr 19 19:28:38 2013 Brunier Jean
 //
 
 #include "StickWall.hh"
 
-StickWall::StickWall(Player &player) : AAction(player, NULL)
+StickWall::StickWall(Player &player) : AAction(player, STICK_WALL, NULL)
 {
 }
 
@@ -43,11 +43,6 @@ bool		StickWall::request()
   if (_player(Event::RIGHT_WALL) && _player.key(Key::HOR) > 0)
     return (true);
   return (false);
-}
-
-int		StickWall::id()
-{
-  return (IAction::STICK_WALL);
 }
 
 void		StickWall::upBones()

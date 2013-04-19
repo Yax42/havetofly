@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:35:39 2013 Brunier Jean
-// Last update Wed Apr 17 23:22:06 2013 Brunier Jean
+// Last update Fri Apr 19 18:05:20 2013 Brunier Jean
 //
 
 #ifndef PASSIVEACTION_HH_
@@ -16,7 +16,7 @@
 class PassiveAction : public AAction
 {
 public:
-  PassiveAction(Player &player);
+  PassiveAction(Player &player, int id);
   virtual ~PassiveAction(){}
   virtual bool		allow(int a);
   virtual IAction	*step();
@@ -24,7 +24,6 @@ public:
   virtual void		check();
   virtual int		val();
   virtual void		upBones();
-  virtual int		id() = 0;
 };
 
 #endif /* !PASSIVEACTION_HH_ */

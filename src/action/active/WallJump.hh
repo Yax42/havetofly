@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:44:15 2013 Brunier Jean
-// Last update Tue Apr 16 21:59:31 2013 Brunier Jean
+// Last update Fri Apr 19 13:56:47 2013 Brunier Jean
 //
 
 #ifndef WALLJUMP_HH_
@@ -22,7 +22,6 @@ public:
   virtual bool		allow(int a);
   virtual IAction	*step();
   virtual bool		request();
-  virtual int		id();
   virtual void		upBones();
 };
 

@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 20:10:47 2013 Brunier Jean
-// Last update Wed Apr 17 23:07:57 2013 Brunier Jean
+// Last update Fri Apr 19 19:26:36 2013 Brunier Jean
 //
 
 #include "StickCeiling.hh"
 
-StickCeiling::StickCeiling(Player &player) : AAction(player, NULL)
+StickCeiling::StickCeiling(Player &player) : AAction(player, STICK_CEILING, NULL)
 {
 }
 
@@ -33,11 +33,6 @@ IAction		*StickCeiling::step()
 bool		StickCeiling::request()
 {
   return (_player(Event::CEILING) && _player.key(Key::VERT) < 0);
-}
-
-int		StickCeiling::id()
-{
-  return (IAction::STICK_CEILING);
 }
 
 void		StickCeiling::upBones()

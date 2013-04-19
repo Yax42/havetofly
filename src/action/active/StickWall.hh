@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:05:48 2013 Brunier Jean
-// Last update Tue Apr 16 21:11:26 2013 Brunier Jean
+// Last update Fri Apr 19 13:55:55 2013 Brunier Jean
 //
 
 #ifndef STICKWALL_HH_
@@ -23,7 +23,6 @@ public:
   virtual IAction	*step();
   virtual bool		request();
   virtual void		upBones();
-  virtual int		id();
 };
 
 #endif /* !STICKWALL_HH_ */

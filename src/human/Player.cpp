@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Thu Apr 18 22:12:51 2013 Brunier Jean
+// Last update Fri Apr 19 20:45:24 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -90,7 +90,7 @@ void		Player::move()
       _pos.y(BODY_SIZE);
       _event[Event::CEILING] = true;
     }
-  else if (_pos.y() >= Game::h())
+  else if (_pos.y() >= Game::h() + 40)
     {
       _pos.y(Game::h());
       _event[Event::FLOOR] = true;

@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:55:33 2013 Brunier Jean
-// Last update Fri Apr 12 12:24:53 2013 Brunier Jean
+// Last update Fri Apr 19 18:16:30 2013 Brunier Jean
 //
 
 #include "Tech.hh"
 #include "Player.hh"
 
-Tech(const Player &player) : PassiveAction(player)
+Tech(const Player &player) : PassiveAction(player, IAction::TECH)
 {
 }
 

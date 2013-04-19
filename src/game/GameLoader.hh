@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:22 2013 Brunier Jean
-// Last update Thu Apr 18 22:52:52 2013 Brunier Jean
+// Last update Fri Apr 19 12:10:32 2013 Brunier Jean
 //
 
 #ifndef GAMELOADER_HH_

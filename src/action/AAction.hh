@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Fri Apr 19 01:36:30 2013 Brunier Jean
+// Last update Fri Apr 19 18:07:13 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -33,11 +33,12 @@ protected:
   int			_open;
   int			_count;
   Bones			&_bones;
+  int			_id;
   std::list<Hitbox>	_hb;
 
 public:
   virtual ~AAction();
-  AAction(Player &player, Hit *hit);
+  AAction(Player &player, int id, Hit *hit);
   virtual void		init(int v = 0);
   virtual bool		allow(int a);
   virtual IAction	*step();
@@ -48,9 +49,10 @@ public:
   virtual void		check();
   virtual const	std::list<Hitbox>	&getHB() const;
   virtual void		upBones() = 0;
-  virtual int		id() = 0;
+  virtual int		id() const;
   virtual void		print(Graphics &g) const;
   virtual void		printHB(Graphics &g) const;
+  virtual bool		isActive() const;
 };
 
 #endif /* !AACTION_HH_ */

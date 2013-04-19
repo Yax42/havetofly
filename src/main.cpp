@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Fri Apr 19 10:06:00 2013 Brunier Jean
+// Last update Fri Apr 19 12:11:09 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -34,7 +34,7 @@
  * 	PRINT_HITBOX	8
 */
 
-int		g_debug = 1;
+int		g_debug = 0;
 const int	&DEBUG = g_debug;
 
 void	run()
@@ -45,7 +45,6 @@ void	run()
   GameLoader	gl(MAP_H, MAP_W, mutex);
   Display	dis(MAP_H, MAP_W, mutex);
 
-  mutex.lock();
   dis.loop();
   gl.loop();
 
@@ -73,10 +72,12 @@ void	test()
   exit(0);
 }
 
-int	main()
+int	main(int ac, char **av)
 {
   srand(time(NULL));
   Math::init();
+  if (ac > 1)
+    g_debug = atoi(av[1]);
   //test();
 
   try

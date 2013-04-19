@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Fri Apr 19 01:48:55 2013 Brunier Jean
+// Last update Fri Apr 19 20:24:25 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
 
 HorDash::HorDash(Player &player) :
-	AAction(player, new Hit(0, Position(8, 0), player))
+	AAction(player, HOR_DASH, new Hit(2, Position(8, 0), player))
 {
   _hit->add(16, Position(), _player.bones()[Bones::HEAD]);
 }
@@ -23,9 +23,9 @@ void	HorDash::init(int)
   _open = 0;
 }
 
-bool	HorDash::allow(int)
+bool	HorDash::allow(int a)
 {
-  return (false);
+  return (a == IAction::DOWN_DASH);
 }
 
 IAction		*HorDash::step()
@@ -40,11 +40,6 @@ IAction		*HorDash::step()
 bool		HorDash::request()
 {
   return (_open && _player.key[Key::B] == 1 && _player.key[Key::HOR]);
-}
-
-int		HorDash::id()
-{
-  return (IAction::HOR_DASH);
 }
 
 void		HorDash::upBones()
@@ -78,9 +73,6 @@ void		HorDash::print(Graphics &g) const
     }
   if (_player.currentAction() == HOR_DASH)
     {
-      //int	rval = rand() % 10 + 5;
-      //g.sponge(_bones[Bones::FOOT1], rval, rval * 10, rval / 2, Angle(MTIME * 10, 0), 0xFF3000);
-      //g.sponge(_bones[Bones::FOOT2], rval, rval * 10, rval / 2, Angle(MTIME * 10, 0), 0xFF6000);
       for (int i = 0; i < 5; i++)
       {
 	g.circle(_bones[Bones::FOOT1] + Position (rand() % 30 - 15,

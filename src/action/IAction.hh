@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Fri Apr 19 01:40:00 2013 Brunier Jean
+// Last update Fri Apr 19 13:40:06 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -51,7 +51,8 @@ public:
   virtual void		check() = 0;
   virtual int		val() = 0;
   virtual void		set(int val = 0) = 0;
-  virtual int		id() = 0;
+  virtual int		id() const = 0;
+  virtual bool		isActive() const = 0;
   virtual const	std::list<Hitbox>	&getHB() const = 0;
   virtual void		upBones() = 0;
   virtual void		print(Graphics &g) const = 0;
