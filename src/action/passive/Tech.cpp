@@ -5,17 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:55:33 2013 Brunier Jean
-// Last update Fri Apr 19 18:16:30 2013 Brunier Jean
+// Last update Sat Apr 20 01:04:29 2013 Brunier Jean
 //
 
 #include "Tech.hh"
 #include "Player.hh"
 
-Tech(const Player &player) : PassiveAction(player, IAction::TECH)
-{
-}
-
-Tech::~Tech()
+Tech::Tech(Player &player) : PassiveAction(player, IAction::TECH)
 {
 }
 
@@ -23,14 +19,11 @@ void		Tech::check()
 {
   if (_count > 0)
     _count--;
-  else if (player[K_L])
-    _count = 40;
+  else if (_player.key[Key::L])
+    _count = 80;
 }
 
 int		Tech::val()
 {
-  int	tmp = _count;
-
-  _count = 0;
-  return (tmp >= 20);
+  return (_count >= 40);
 }

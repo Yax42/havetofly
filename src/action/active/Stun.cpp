@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:36 2013 Brunier Jean
-// Last update Fri Apr 19 19:28:53 2013 Brunier Jean
+// Last update Sat Apr 20 00:59:21 2013 Brunier Jean
 //
 
 #include "Stun.hh"
@@ -56,5 +56,5 @@ void		Stun::upBones()
   bones.angle[Bones::ELBOW2] = Angle(MGRAD_CAP(MTIME * 10 + 180, -120, 60), 0);
 
   bones.angle[Bones::HEAD] = Angle(0, 0);
-  bones.angle[Bones::BODY] = Angle(MTIME * 0 + 180, 0);
+  bones.angle[Bones::BODY] = Angle(MGRAD_CAP(MTIME * 5, -60, 120) + 180, 0);
 }

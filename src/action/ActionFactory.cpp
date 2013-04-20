@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Thu Apr 18 23:27:39 2013 Brunier Jean
+// Last update Sat Apr 20 01:21:40 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -23,6 +23,10 @@
 #include "DownDash.hh"
 #include "Stun.hh"
 #include "HorDash.hh"
+#include "Spin.hh"
+#include "Death.hh"
+#include "Tech.hh"
+#include "Shield.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -48,5 +52,13 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new Stun(p));
   if (action == IAction::HOR_DASH)
     return (new HorDash(p));
+  if (action == IAction::DEATH)
+    return (new Death(p));
+  if (action == IAction::SPIN)
+    return (new Spin(p));
+  if (action == IAction::TECH)
+    return (new Tech(p));
+  if (action == IAction::SHIELD)
+    return (new Shield(p));
   throw(Exception("Action not exisiting."));
 }

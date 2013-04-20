@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Fri Apr 19 10:07:13 2013 Brunier Jean
+## Last update Sat Apr 20 10:15:57 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -45,26 +45,31 @@ SRCS	= math/Angle.cpp		\
 	  hit/Hitbox.cpp		\
 	  hit/Hit.cpp			\
 	  human/Bones.cpp		\
+	  human/Player.cpp		\
+	  human/MovePlayer.cpp		\
 	  game/Game.cpp			\
 	  game/GameLoader.cpp		\
-	  human/Player.cpp		\
 	  input/Key.cpp			\
 	  input/Input.cpp		\
 	  input/Controler.cpp		\
 	  action/ActionFactory.cpp	\
 	  action/AAction.cpp		\
 	  action/PassiveAction.cpp	\
+	  action/passive/Gravity.cpp	\
+	  action/passive/Death.cpp	\
+	  action/passive/Inertie.cpp	\
+	  action/passive/Tech.cpp	\
+	  action/passive/HitWall.cpp	\
 	  action/active/DoubleJump.cpp	\
+	  action/active/Shield.cpp	\
 	  action/active/HorDash.cpp	\
 	  action/active/StickCeiling.cpp\
 	  action/active/DownDash.cpp	\
+	  action/active/Spin.cpp	\
 	  action/active/StickWall.cpp	\
 	  action/active/WallJump.cpp	\
 	  action/active/Move.cpp	\
 	  action/active/Stun.cpp	\
-	  action/passive/Gravity.cpp	\
-	  action/passive/Inertie.cpp	\
-	  action/passive/HitWall.cpp	\
 	  main.cpp
 
 

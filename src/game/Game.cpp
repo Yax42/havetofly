@@ -5,12 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Fri Apr 19 01:03:47 2013 Brunier Jean
+// Last update Fri Apr 19 23:40:30 2013 Brunier Jean
 //
 
 #include "Game.hh"
 #include "Input.hh"
 #include "const.hh"
+#include "MovePlayer.hh"
 
 Game	*Game::_inst = NULL;
 
@@ -54,7 +55,7 @@ Game::~Game()
   _players.clear();
 }
 
-Game::Game(int h, int w) : ALoop((DEBUG & 2 ) ? 30 : 120), _height(h), _width(w)
+Game::Game(int h, int w) : ALoop((DEBUG & 2 ) ? 15 : 120), _height(h), _width(w)
 {
   MyTime::reset();
   _height = h;
@@ -82,8 +83,9 @@ bool		Game::iterLoop()
 {
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->init();
-  for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
-    (*i)->move();
+  for (int j = 0; j < MovePlayer::nbIt; j++)
+    for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
+      (*i)->move();
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->process();
   MyTime::run();

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:54:09 2013 Brunier Jean
-// Last update Sun Apr 14 17:23:16 2013 Brunier Jean
+// Last update Sat Apr 20 01:02:29 2013 Brunier Jean
 //
 
 #ifndef TECH_HH_
@@ -17,7 +17,7 @@ class Tech : public PassiveAction
 {
 public:
   Tech(Player &player);
-  virtual ~Tech();
+  virtual ~Tech(){}
   virtual void		check();
   virtual int		val();
 };

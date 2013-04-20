@@ -1,24 +1,26 @@
 //
-// Wait.hh for src in /home/brunie_j/local/my/havetofly/src
+// Wait.hh for util in /home/brunie_j/local/my/havetofly/src/util
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:00:39 2013 Brunier Jean
-// Last update Sun Apr 14 01:10:14 2013 Brunier Jean
+// Last update Fri Apr 19 22:20:22 2013 Brunier Jean
 //
 
 #ifndef WAIT_HH_
 # define WAIT_HH_
 
-# include <sys/timeb.h>
+# include <sys/time.h>
 
 class Wait
 {
 private:
-  timeb			_t1;
-  timeb			_t2;
-  int			_mspi;
+  int			_fps;
+  int			_uspi;
+  int			_nbFrames;
+  timeval		_t1;
+  timeval		_t2;
 
 public:
   ~Wait(){}

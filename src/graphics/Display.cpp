@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 14:43:48 2013 Brunier Jean
-// Last update Fri Apr 19 12:08:48 2013 Brunier Jean
+// Last update Sat Apr 20 10:18:22 2013 Brunier Jean
 //
 
 #include "Display.hh"
@@ -15,7 +15,7 @@
 #include "const.hh"
 #include "Mutex.hh"
 
-Display::Display(int h, int w, Mutex &mutex) : ALoop(60), _g(h, w), _mutex(mutex)
+Display::Display(int h, int w, Mutex &mutex) : ALoop(120), _g(h, w), _mutex(mutex)
 {
 }
 

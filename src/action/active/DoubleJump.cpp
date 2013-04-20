@@ -5,20 +5,19 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:08:52 2013 Brunier Jean
-// Last update Fri Apr 19 18:13:35 2013 Brunier Jean
+// Last update Sat Apr 20 01:30:42 2013 Brunier Jean
 //
 
 #include "DoubleJump.hh"
 
-DoubleJump::DoubleJump(Player &player) : AAction(player, IAction::DOUBLE_JUMP, NULL)
+DoubleJump::DoubleJump(Player &player) : AAction(player, DOUBLE_JUMP, NULL)
 {
 }
 
 void	DoubleJump::init(int)
 {
   _player.sy(-3.333);
-  if ((DEBUG & 4) == 0)
-    _open = 0;
+  _open = 0;
 }
 
 bool	DoubleJump::allow(int)
@@ -28,7 +27,7 @@ bool	DoubleJump::allow(int)
 
 IAction		*DoubleJump::step()
 {
-  return (_player[IAction::INERTIE]);
+  return (_player[INERTIE]);
 }
 
 bool		DoubleJump::request()
@@ -42,6 +41,18 @@ void		DoubleJump::upBones()
 
 void		DoubleJump::check()
 {
+  if (DEBUG & 4)
+    _open = 1;
+}
+
+void		DoubleJump::set(int v)
+{
+  _open = !v;
+}
+
+int		DoubleJump::val()
+{
+  return (_open);
 }
 
 void		DoubleJump::print(Graphics &g) const

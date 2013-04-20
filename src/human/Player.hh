@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Thu Apr 18 22:13:37 2013 Brunier Jean
+// Last update Fri Apr 19 22:52:13 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -20,20 +20,9 @@
 # include "Key.hh"
 
 # include "Hit.hh"
+# include "Event.hh"
 
-namespace Event
-{
-  enum
-    {
-      FLOOR,
-      CEILING,
-      LEFT_WALL,
-      RIGHT_WALL,
-      WALL,
-      HIT,
-      COUNT
-    };
-}
+# include "MovePlayer.hh"
 
 class Player
 {
@@ -47,6 +36,7 @@ public:
 private:
   int				_orient;
   Bones				_bones;
+  MovePlayer			_mp;
   std::vector<bool>		_event;
   std::vector<IAction*>		_action;
   Position			_speed;

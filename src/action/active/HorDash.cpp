@@ -5,21 +5,21 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Fri Apr 19 20:24:25 2013 Brunier Jean
+// Last update Sat Apr 20 01:16:05 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
 
 HorDash::HorDash(Player &player) :
-	AAction(player, HOR_DASH, new Hit(2, Position(8, 0), player))
+	AAction(player, HOR_DASH, new Hit(1, Position(8, 0), player))
 {
-  _hit->add(16, Position(), _player.bones()[Bones::HEAD]);
+  _hit->add(20, Position(), _player.bones()[Bones::HEAD]);
 }
 
 void	HorDash::init(int)
 {
-  _count = 35;
-  _player = Position(0, 6 * _player.orient());
+  _count = 45;
+  _player = Position();
   _open = 0;
 }
 
@@ -33,7 +33,9 @@ IAction		*HorDash::step()
   if (_count-- == 0 ||
       (_player(Event::LEFT_WALL) && _player.orient() == -1) ||
       (_player(Event::RIGHT_WALL) && _player.orient() == 1))
-    return (_player[IAction::INERTIE]);
+    return (_player[INERTIE]);
+  else if (_count == 35)
+    _player = Position(0, 6 * _player.orient());
   return (this);
 }
 
@@ -71,7 +73,7 @@ void		HorDash::print(Graphics &g) const
       g.sponge(_bones[Bones::HAND1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
       g.sponge(_bones[Bones::HAND2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
     }
-  if (_player.currentAction() == HOR_DASH)
+  if (isActive() && _count <= 35)
     {
       for (int i = 0; i < 5; i++)
       {

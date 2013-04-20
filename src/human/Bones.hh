@@ -4,7 +4,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 16:06:02 2013 Brunier Jean
-// Last update Thu Apr 18 01:39:45 2013 Brunier Jean
+// Last update Fri Apr 19 23:54:03 2013 Brunier Jean
 //
 
 #ifndef BONES_HH_
@@ -43,6 +43,7 @@ private:
   Angle			_angle[Bones::COUNT];
 public:
   Angle			angle[Bones::COUNT];
+
 public:
   Bones(const Position &centre, int color, int color2, const int &orient);
   ~Bones();

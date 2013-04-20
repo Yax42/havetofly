@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:03:08 2013 Brunier Jean
-// Last update Fri Apr 19 18:12:48 2013 Brunier Jean
+// Last update Sat Apr 20 01:13:28 2013 Brunier Jean
 //
 
 #ifndef DOUBLEJUMP_HH_
@@ -21,6 +21,8 @@ public:
   virtual void		init(int v = 0);
   virtual bool		allow(int a);
   virtual IAction	*step();
+  virtual void		set(int v = 0);
+  virtual int		val();
   virtual bool		request();
   virtual void		upBones();
   virtual void		check();

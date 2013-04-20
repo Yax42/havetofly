@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:31:46 2013 Brunier Jean
-// Last update Fri Apr 19 18:16:41 2013 Brunier Jean
+// Last update Sat Apr 20 00:08:56 2013 Brunier Jean
 //
 
 #include "Inertie.hh"

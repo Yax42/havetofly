@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 17:34:29 2013 Brunier Jean
-// Last update Fri Apr 19 10:03:37 2013 Brunier Jean
+// Last update Sat Apr 20 10:43:37 2013 Brunier Jean
 //
 
 #include <unistd.h>
@@ -45,6 +45,7 @@ void	Controler::update()
   std::stringstream	stm;
   stm << "/dev/input/js" << _id;
     _fd = open(stm.str().c_str(), O_RDONLY | O_NONBLOCK);
+  //std::cout << MTIME << " " <<  _id << " " << stm.str() << std::endl;
   if (_fd == -1)
     {
       _axe.clear();

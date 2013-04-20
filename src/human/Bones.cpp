@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
-// Last update Thu Apr 18 01:40:04 2013 Brunier Jean
+// Last update Sat Apr 20 00:10:05 2013 Brunier Jean
 //
 
 #include "Bones.hh"
@@ -41,22 +41,34 @@ Bones::~Bones()
 void		Bones::print(Graphics &g)
 {
   Position	center = _center;
+  Position	avg;
   check();
 
-  _pos[BODY] = center + Position(_angle[BODY], _size[BODY]);
-  _pos[HEAD] = center - Position(_angle[HEAD] + _angle[BODY], _size[HEAD]);
+  _pos[BODY] =  Position(_angle[BODY], _size[BODY]);
+  _pos[HEAD] =  Position(_angle[HEAD] + _angle[BODY] + Angle(180, 0), _size[HEAD]);
+  for (int i = 0; i < 4; i++)
+    {
+      _pos[i * 2 + 1] = ((i % 2) ? Position() : _pos[BODY]) +
+	Position(_angle[i * 2 + 1] +
+	_angle[BODY], _size[i * 2 + 1]);
+      _pos[i * 2] = _pos[i * 2 + 1] + Position(_angle[i * 2] +
+	  _angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
+    }
+
+/*
+  for (int i = 0; i < Bones::HEAD; i++)
+    avg += _pos[i];
+  center += avg / 4;
+*/
+  for (int i = 0; i < Bones::COUNT; i++)
+    _pos[i] += center;
   for (int i = 0; i < 3; i++)
     g.circle(_pos[HEAD], _size[HEAD] - i, _color);
   g.line(center, _pos[BODY], _color, 6);
   for (int i = 0; i < 4; i++)
     {
-      _pos[i * 2 + 1] = ((i % 2) ? center : _pos[BODY]) +
-	Position(_angle[i * 2 + 1] +
-	_angle[BODY], _size[i * 2 + 1]);
-      _pos[i * 2] = _pos[i * 2 + 1] + Position(_angle[i * 2] +
-	  _angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
-       g.line(((i % 2) ? center : _pos[BODY]), _pos[i * 2 + 1], _color, 6);
-       g.line(_pos[i * 2 + 1], _pos[i * 2], _color, 6);
+      g.line(((i % 2) ? center : _pos[BODY]), _pos[i * 2 + 1], _color, 6);
+      g.line(_pos[i * 2 + 1], _pos[i * 2], _color, 6);
     }
 }
 

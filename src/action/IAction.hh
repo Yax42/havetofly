@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Fri Apr 19 13:40:06 2013 Brunier Jean
+// Last update Sat Apr 20 10:27:51 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -26,8 +26,12 @@ public:
       INERTIE,
       GRAVITY,
       HIT_WALL,
+      DEATH,
 /* */ MOVE, /* ACTIVE STARTS HERE */
       DOUBLE_JUMP,
+      TECH,
+      SHIELD,
+      SPIN,
       HOR_DASH,
       STICK_CEILING,
       STICK_WALL,
@@ -35,9 +39,7 @@ public:
       DOWN_DASH,
       STUN,
 /* */ COUNT, /* End of the list */
-      DASH,
       MOON_DASH,
-      BULL,
       RODEO,
       UP
     };

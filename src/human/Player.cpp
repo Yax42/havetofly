@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Fri Apr 19 20:45:24 2013 Brunier Jean
+// Last update Fri Apr 19 22:53:23 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -25,7 +25,8 @@ Player::~Player(){}
 
 Player::Player(const Position &pos, int team, const Key &k) :
  	 _pos(pos), _alive(true), _team(team), _keys(k), key(_keys),
-	_orient(1), _bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF, _orient)
+	_orient(1), _bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF, _orient),
+	_mp(_speed, _pos, _event, _doing)
 {
   _event.resize(Event::COUNT);
   _action.resize(IAction::COUNT);
@@ -65,40 +66,13 @@ void		Player::orient(int o)
 
 void		Player::init()
 {
-  for (int i = 0; i < Event::COUNT; i++)
-    _event[i] = false;
+  _mp.init();
   _hit = NULL;
 }
 
 void		Player::move()
 {
-  _pos += _speed;
-  if (_pos.x() <= BODY_SIZE)
-    {
-      _pos.x(BODY_SIZE);
-      _event[Event::LEFT_WALL] = true;
-      _event[Event::WALL] = true;
-    }
-  else if (_pos.x() >= Game::w() - BODY_SIZE)
-    {
-      _pos.x(Game::w() - BODY_SIZE);
-      _event[Event::RIGHT_WALL] = true;
-      _event[Event::WALL] = true;
-    }
-  if (_pos.y() <= BODY_SIZE)
-    {
-      _pos.y(BODY_SIZE);
-      _event[Event::CEILING] = true;
-    }
-  else if (_pos.y() >= Game::h() + 40)
-    {
-      _pos.y(Game::h());
-      _event[Event::FLOOR] = true;
-      if (!DEBUG)
-        _alive = false;
-    }
-  for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
-    _doing->hit(**i);
+  _mp.proc();
 }
 
 void		Player::process()

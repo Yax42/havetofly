@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Thu Apr 18 21:07:08 2013 Brunier Jean
+// Last update Sat Apr 20 10:43:16 2013 Brunier Jean
 //
 
 #include <iostream>
@@ -88,14 +88,15 @@ Key	Input::getKBKey()
 {
   Key	k;
 
+
   k.ptr(Key::HOR) = &_axe[0];
   k.ptr(Key::VERT) = &_axe[1];
   k.ptr(Key::A) = &_kb[SDLK_h];
   k.ptr(Key::B) = &_kb[SDLK_j];
   k.ptr(Key::X) = &_kb[SDLK_k];
   k.ptr(Key::Y) = &_kb[SDLK_l];
-  k.ptr(Key::R) = &_kb[SDLK_i];
-  k.ptr(Key::L) = &_kb[SDLK_o];
+  k.ptr(Key::R) = &_kb[SDLK_LSHIFT];
+  k.ptr(Key::L) = &_kb[SDLK_SPACE];
   return (k);
 }
 
@@ -111,8 +112,10 @@ int	Input::nbCtrl() const
 Key	Input::getCtrlKey(int id)
 {
   int	nb = 0;
+  int	i;
 
-  for (int i = 0; i < NB_CTRL; i++)
+  for (i = 0; i < NB_CTRL; i++)
+  {
     if (_ctrl[i]->isOk())
       {
         if (nb == id)
@@ -120,8 +123,8 @@ Key	Input::getCtrlKey(int id)
 	else
 	  nb++;
       }
-    nb++;
-  return (_ctrl[nb]->getKey());
+  }
+  return (_ctrl[i]->getKey());
 }
 
 /*******/

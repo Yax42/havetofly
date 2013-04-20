@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Fri Apr 19 01:24:05 2013 Brunier Jean
+// Last update Sat Apr 20 01:39:48 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -37,6 +37,8 @@ int	Hit::go(Player &ennemy) const
 
 void	Hit::focus(Player &ennemy)
 {
+  if (ennemy.currentAction() == IAction::SHIELD)
+    return ;
   for (std::list<Hitbox>::iterator i = _hb.begin(); i != _hb.end(); ++i)
     {
       if (&ennemy != &_player &&

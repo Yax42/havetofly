@@ -5,12 +5,12 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:07:50 2013 Brunier Jean
-// Last update Fri Apr 19 18:15:12 2013 Brunier Jean
+// Last update Fri Apr 19 23:19:44 2013 Brunier Jean
 //
 
 #include "Gravity.hh"
 
-Gravity::Gravity(Player &player) : PassiveAction(player, IAction::GRAVITY)
+Gravity::Gravity(Player &player) : PassiveAction(player, GRAVITY)
 {
 }
 

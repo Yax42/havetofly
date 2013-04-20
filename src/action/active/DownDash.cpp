@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Fri Apr 19 18:14:26 2013 Brunier Jean
+// Last update Sat Apr 20 00:13:29 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
@@ -13,7 +13,8 @@
 DownDash::DownDash(Player &player) :
 	AAction(player, DOWN_DASH, new Hit(50, Position(3, 3), player))
 {
-  _hit->add(20, Position(40, 30));
+  _hit->add(20, Position(), _player.bones()[Bones::FOOT1]);
+  _hit->add(20, Position(), _player.bones()[Bones::FOOT2]);
 }
 
 void	DownDash::init(int)
