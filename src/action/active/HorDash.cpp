@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Sat Apr 20 01:16:05 2013 Brunier Jean
+// Last update Sat Apr 20 22:36:15 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
@@ -18,7 +18,8 @@ HorDash::HorDash(Player &player) :
 
 void	HorDash::init(int)
 {
-  _count = 45;
+  _hit->reset();
+  _count = 50;
   _player = Position();
   _open = 0;
 }
@@ -62,7 +63,7 @@ void		HorDash::upBones()
 
 void		HorDash::check()
 {
-  if (_player(Event::WALL))
+  if (_player(Event::WALL) && !isActive())
     _open = 1;
 }
 

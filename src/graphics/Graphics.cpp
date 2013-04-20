@@ -100,6 +100,20 @@ void		Graphics::circle(Position const &pos, const Distance &size, int color)
       printPixel(pxPos, color);
     }
 }
+void		Graphics::circlePart(Position const &pos, const Distance &ray,
+      const Angle &from, const Angle &size, int color)
+{
+  Position	pxPos;
+  Distance	max = ray * size;
+
+  for (Distance i = 0; i < max; i += 1)
+    {
+      pxPos.x(ray * Math::cos((i / ray) + from));
+      pxPos.y(ray * Math::sin((i / ray) + from));
+      pxPos += pos;
+      printPixel(pxPos, color);
+    }
+}
 
 void		Graphics::line(Position const &pos1, Position const &pos2, int color)
 {

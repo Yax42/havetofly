@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 19 22:29:54 2013 Brunier Jean
-// Last update Sat Apr 20 10:29:19 2013 Brunier Jean
+// Last update Sat Apr 20 12:27:30 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -24,6 +24,7 @@ void	MovePlayer::init()
 {
   _initPos = _pos;
   _finalPos = _pos + _speed;
+  //std::cout << _finalPos << " " << _pos + ((_speed * nbIt) / nbIt) << std::endl;
   _count = 0;
   for (int i = 0; i < Event::COUNT; i++)
     _event[i] = false;

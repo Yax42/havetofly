@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Sat Apr 20 10:15:46 2013 Brunier Jean
+// Last update Sat Apr 20 22:28:49 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"
@@ -29,7 +29,7 @@ bool	GameLoader::iterLoop()
   _mutex.unlock();
   for (int i = 0; i < input->nbCtrl(); i++)
     game->add(Position(40 + i * 5, i % 2 * 400 + 50), (i % 2) * 2, input->getCtrlKey(i));
-  game->add(Position(300, 300), ((input->nbCtrl() % 2) * 2), input->getKBKey());
+  game->add(Position(300, 300), (3 ), input->getKBKey());
   game->loop();
   ret = game->join();
   _mutex.lock();

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Sat Apr 20 10:27:51 2013 Brunier Jean
+// Last update Sat Apr 20 19:55:29 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -35,6 +35,7 @@ public:
       HOR_DASH,
       STICK_CEILING,
       STICK_WALL,
+      UP_PUNCH,
       WALL_JUMP,
       DOWN_DASH,
       STUN,

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Sat Apr 20 01:21:40 2013 Brunier Jean
+// Last update Sat Apr 20 19:55:20 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -27,6 +27,7 @@
 #include "Death.hh"
 #include "Tech.hh"
 #include "Shield.hh"
+#include "UpPunch.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -60,5 +61,7 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new Tech(p));
   if (action == IAction::SHIELD)
     return (new Shield(p));
+  if (action == IAction::UP_PUNCH)
+    return (new UpPunch(p));
   throw(Exception("Action not exisiting."));
 }

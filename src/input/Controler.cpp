@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 17:34:29 2013 Brunier Jean
-// Last update Sat Apr 20 10:43:37 2013 Brunier Jean
+// Last update Sat Apr 20 21:30:36 2013 Brunier Jean
 //
 
 #include <unistd.h>
@@ -68,8 +68,16 @@ Key	Controler::getKey()
 
   if (!isOk())
     return (k);
+  if (_id == 0)
+  {
+  k.ptr(Key::HOR) = &_axe[3];
+  k.ptr(Key::VERT) = &_axe[2];
+  }
+  else
+  {
   k.ptr(Key::HOR) = &_axe[0];
   k.ptr(Key::VERT) = &_axe[1];
+  }
   k.ptr(Key::A) = &_but[0];
   k.ptr(Key::B) = &_but[1];
   k.ptr(Key::X) = &_but[2];

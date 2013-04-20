@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Sat Apr 20 00:13:29 2013 Brunier Jean
+// Last update Sat Apr 20 20:50:59 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
@@ -23,9 +23,9 @@ void	DownDash::init(int)
   _count = 40;
 }
 
-bool	DownDash::allow(int)
+bool	DownDash::allow(int a)
 {
-  return (false);
+  return (UP_PUNCH == a);
 }
 
 IAction		*DownDash::step()

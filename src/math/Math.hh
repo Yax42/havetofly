@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 00:57:09 2013 Brunier Jean
-// Last update Fri Apr 19 00:44:54 2013 Brunier Jean
+// Last update Sat Apr 20 20:21:48 2013 Brunier Jean
 //
 
 #ifndef MATH_HH_
@@ -21,14 +21,12 @@
 # define MUL_FLOAT(x, y)		((x * y) >> MBIT_OS)
 # define MCAP(x, min, max)		((x <= min) ? (min) + 1 : ((x >= max) ? max - 1 : x))
 
-
-# define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ?	\
-   					max - ((x) % (max) - 1 :	\
-					(x) % (max))
-
-# define MGRAD_CAP(x, min, scale)		(min + (((x) % ((scale) * 2) >= scale) ?	\
+# define MGRAD_CAP(x, min, scale)	(min + (((x) % ((scale) * 2) >= scale) ?	\
       					(scale) - ((x) % (scale)) - 1 :		\
 				  	(x) % (scale)))
+
+# define MPOS_MOD(x, y)			((x % y < 0) ? x % y + y : x % y)
+# define MRAND_POS(size)		(Position(rand() % size - size / 2, rand() % size - size / 2))
 # define MPOS(x)			(((x) < 0) ? -(x) : (x))
 # define MSIGN(x)			(((x) > 0) ? 1 : (((x) < 0) ? -1 : 0))
 

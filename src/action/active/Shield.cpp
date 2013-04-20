@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 01:05:50 2013 Brunier Jean
-// Last update Sat Apr 20 10:49:18 2013 Brunier Jean
+// Last update Sat Apr 20 22:23:40 2013 Brunier Jean
 //
 
 #include "Shield.hh"
@@ -18,9 +18,9 @@ Shield::Shield(Player &player) :
 
 void	Shield::init(int)
 {
-  _count = 110;
+  _open = 300;
+  _count = 70;
   _player = Position();
-  _player[DOUBLE_JUMP]->set(1);
 }
 
 bool	Shield::allow(int a)
@@ -30,6 +30,7 @@ bool	Shield::allow(int a)
 
 IAction		*Shield::step()
 {
+  _hit->reset();
   if (_count--)
     return (this);
   return (_player[INERTIE]);
@@ -37,7 +38,7 @@ IAction		*Shield::step()
 
 bool		Shield::request()
 {
-  return (_player[DOUBLE_JUMP]->val() &&
+  return (_open == 0 &&
       	  _player.key[Key::X] == 1 &&
 	  _player.key[Key::VERT] == 0);
 }
@@ -46,35 +47,57 @@ void		Shield::upBones()
 {
   _bones.angle[Bones::FOOT1] = Angle(0, 0);
   _bones.angle[Bones::FOOT2] = Angle(0, 0);
-  _bones.angle[Bones::KNEE1] = Angle(MGRAD_CAP(MTIME * 2, 0, 50), 0);
-  _bones.angle[Bones::KNEE2] = Angle(MGRAD_CAP(MTIME * 2 + 50, -50, 50), 0);
+  _bones.angle[Bones::KNEE1] = Angle(MGRAD_CAP(MTIME * 3, 0, 50), 0);
+  _bones.angle[Bones::KNEE2] = Angle(MGRAD_CAP(MTIME * 3 + 50, -50, 50), 0);
 
   _bones.angle[Bones::HAND1] = Angle(0, 0);
   _bones.angle[Bones::HAND2] = Angle(0, 0);
-  _bones.angle[Bones::ELBOW1] = Angle(MGRAD_CAP(MTIME * 2, 65, 50), 0);
-  _bones.angle[Bones::ELBOW2] = Angle(MGRAD_CAP(MTIME * 2 + 50, -115, 50), 0);
+  _bones.angle[Bones::ELBOW1] = Angle(MGRAD_CAP(MTIME * 3, 65, 50), 0);
+  _bones.angle[Bones::ELBOW2] = Angle(MGRAD_CAP(MTIME * 3 + 50, -115, 50), 0);
 
   _bones.angle[Bones::HEAD] = Angle(0, 0);
-  _bones.angle[Bones::BODY] = Angle(0, 0);
+  _bones.angle[Bones::BODY] = Angle(MTIME * 0, 0);
 }
 
 void		Shield::check()
 {
+  if (_open)
+    _open--;
 }
 
 void		Shield::print(Graphics &g) const
 {
-  static const int	color[] =
+  static const int	nbParts = 3;
+  static const int	color2[] =
     {
-      0x0055FF,
-      0xFFFFFF,
-      0x0055FF
+      0x0000FF,
+      0x00FFFF,
+      0x0044FF,
+      0x0099FF
     };
+  int			color = 0x0088FF;
   if (isActive())
     {
-      for (int i = 0; i < 3; i++)
+      for (int i = 0; i < 32; i++)
       {
-	g.circle(_bones[Bones::BODY] + Position(-5, 0), 60 + i, color[i]);
+	  color -= 0x000408;
+
+        for (int j = 0; j < nbParts; j++)
+	{
+  	  g.circlePart(_bones[Bones::BODY] + Position(-5, 0), 60 - i * 2,
+	      Angle(MTIME * 3 + i * 3 + j * 360 / nbParts, 0), Angle(30, 0), color);
+        }
+
+        for (int j = 0; j < nbParts; j++)
+	{
+  	  g.circlePart(_bones[Bones::BODY] + Position(-5, 0), 60 - i * 2,
+	      Angle(-MTIME * 3 - i * 3 - j * 360 / nbParts, 0), Angle(30, 0), color);
+        }
       }
+    }
+  else if (_open == 0)
+    {
+      for (int i = 0; i < 7; i++)
+	g.circle(_bones[Bones::HAND2], (MTIME / 5 + i) % 12 + 5, color2[(i) % 4]);
     }
 }

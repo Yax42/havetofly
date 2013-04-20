@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 01:08:34 2013 Brunier Jean
-// Last update Sat Apr 20 01:03:39 2013 Brunier Jean
+// Last update Sat Apr 20 18:13:52 2013 Brunier Jean
 //
 
 #include "HitWall.hh"
@@ -24,7 +24,7 @@ void		HitWall::check()
 	    _player.setAction(IAction::WALL_JUMP);
           else
 	    {
-	      _player[IAction::STUN]->set(50);
+	      _player[IAction::STUN]->set(65);
 	      _player.sx(_player(Event::LEFT_WALL) ? 2 : -2);
 	    }
 	}

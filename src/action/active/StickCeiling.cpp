@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 20:10:47 2013 Brunier Jean
-// Last update Fri Apr 19 19:26:36 2013 Brunier Jean
+// Last update Sat Apr 20 18:12:54 2013 Brunier Jean
 //
 
 #include "StickCeiling.hh"
@@ -21,9 +21,9 @@ void	StickCeiling::init(int)
 
 IAction		*StickCeiling::step()
 {
-  if (_player.key(Key::HOR) < 0)
+  if (_player.key[Key::HOR] < 0)
     _player.orient(-1);
-  else if (_player.key(Key::HOR) > 0)
+  else if (_player.key[Key::HOR] > 0)
     _player.orient(1);
   if (_player.key(Key::VERT) < 0)
     return (this);
@@ -32,7 +32,7 @@ IAction		*StickCeiling::step()
 
 bool		StickCeiling::request()
 {
-  return (_player(Event::CEILING) && _player.key(Key::VERT) < 0);
+  return (_player(Event::CEILING) && _player.key[Key::VERT] < 0);
 }
 
 void		StickCeiling::upBones()

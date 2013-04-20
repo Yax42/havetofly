@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Sat Apr 20 01:39:48 2013 Brunier Jean
+// Last update Sat Apr 20 16:15:22 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -31,7 +31,7 @@ void	Hit::add(const Distance &ray, const Position &center)
 int	Hit::go(Player &ennemy) const
 {
   ennemy.sy(_speed.yDist());
-  ennemy.sx(_speed.xDist() * Distance(ennemy.orient()));
+  ennemy.sx(_speed.xDist() * Distance(_player.orient()));
   return (_stun);
 }
 

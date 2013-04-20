@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
-// Last update Sat Apr 20 00:10:05 2013 Brunier Jean
+// Last update Sat Apr 20 19:33:07 2013 Brunier Jean
 //
 
 #include "Bones.hh"
@@ -55,11 +55,11 @@ void		Bones::print(Graphics &g)
 	  _angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
     }
 
-/*
+  /*
   for (int i = 0; i < Bones::HEAD; i++)
     avg += _pos[i];
   center += avg / 4;
-*/
+  */
   for (int i = 0; i < Bones::COUNT; i++)
     _pos[i] += center;
   for (int i = 0; i < 3; i++)

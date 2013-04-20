@@ -31,6 +31,8 @@ public:
   void	sponge(Position const &pos, Distance const &ray, int nb,
       const Distance &size, const Angle &angle, int color);
   void	circle(Position const &pos, const Distance &size, int color);
+  void	circlePart(Position const &pos, const Distance &ray,
+      const Angle &from, const Angle &size, int color);
   void	line(Position const &pos1, Position const &pos2, int color);
   void	line(Position const &pos1, Position const &pos2, int color, int thick);
   void	curveLine(Position const &pos1, Position const &pos2, Position const &pos3, int color);

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Fri Apr 19 12:11:09 2013 Brunier Jean
+// Last update Sat Apr 20 16:22:24 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -13,6 +13,7 @@
 #include <ctime>
 #include <iostream>
 #include <unistd.h>
+#include <string>
 
 #include "Math.hh"
 #include "Exception.hh"
@@ -27,12 +28,16 @@
 #define MAP_H	920
 #define MAP_W	512
 
-/* FLAGS :
- *	NORMAL_DEBUG	1
- * 	SLOW_DOWN	2
- * 	INFINIT_JUMP	4
- * 	PRINT_HITBOX	8
-*/
+void	print_help()
+{
+  std::cout << "Debug flags:" << std::endl;
+  std::cout << "      - No death\t1"<< std::endl;
+  std::cout << "      - Slow down\t2"<< std::endl;
+  std::cout << "      - Infinite jump\t4"<< std::endl;
+  std::cout << "      - Print hitboxes\t8"<< std::endl;
+  std::cout << "      - Print tech\t16"<< std::endl;
+  exit(0);
+}
 
 int		g_debug = 0;
 const int	&DEBUG = g_debug;
@@ -55,30 +60,14 @@ void	run()
   Input::destroy();
 }
 
-void	test()
-{
-  for (int i = -100; i < 100; i += 1)
-    {
-      Position	pos(Angle(i, 0), 100);
-
-      //std::cout << i << "\t"  << Angle(i, 0).deg() << std::endl;
-      //_toDeg[i] = double(i) * 180 / M_PI / MRATIO_UNIT;
-      //std::cout << i << "\t"  << pos.angle().deg() << "\t" <<pos.distance() << "\t" << pos << std::endl;
-      //std::cout << "[" << i << "\t"  << pos.angle().deg() << "\t" << pos << std::endl;
-      //std::cout << Math::acos(i / 100.0) << std::endl;
-      //std::cout << i << " " << Math::sqrt(i).intVal() << " " <<Math::sqrt(i).longVal() << std::endl;
-      //Math::sqrt(i);
-    }
-  exit(0);
-}
-
 int	main(int ac, char **av)
 {
   srand(time(NULL));
   Math::init();
+  if (ac > 1 && std::string(av[1]) == "-h")
+    print_help();
   if (ac > 1)
     g_debug = atoi(av[1]);
-  //test();
 
   try
     {

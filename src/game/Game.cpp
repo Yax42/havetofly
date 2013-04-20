@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Fri Apr 19 23:40:30 2013 Brunier Jean
+// Last update Sat Apr 20 20:00:16 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -55,7 +55,7 @@ Game::~Game()
   _players.clear();
 }
 
-Game::Game(int h, int w) : ALoop((DEBUG & 2 ) ? 15 : 120), _height(h), _width(w)
+Game::Game(int h, int w) : ALoop((DEBUG & 2 ) ? 30 : 120), _height(h), _width(w)
 {
   MyTime::reset();
   _height = h;

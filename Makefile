@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Sat Apr 20 10:15:57 2013 Brunier Jean
+## Last update Sat Apr 20 19:54:20 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -67,6 +67,7 @@ SRCS	= math/Angle.cpp		\
 	  action/active/DownDash.cpp	\
 	  action/active/Spin.cpp	\
 	  action/active/StickWall.cpp	\
+	  action/active/UpPunch.cpp	\
 	  action/active/WallJump.cpp	\
 	  action/active/Move.cpp	\
 	  action/active/Stun.cpp	\
