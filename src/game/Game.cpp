@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Sat Apr 20 20:00:16 2013 Brunier Jean
+// Last update Mon Apr 22 00:21:06 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -52,12 +52,10 @@ Game::~Game()
 {
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     free (*i);
-  _players.clear();
 }
 
-Game::Game(int h, int w) : ALoop((DEBUG & 2 ) ? 30 : 120), _height(h), _width(w)
+Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : 120), _height(h), _width(w)
 {
-  MyTime::reset();
   _height = h;
   _width = w;
 }
@@ -88,11 +86,15 @@ bool		Game::iterLoop()
       (*i)->move();
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->process();
-  MyTime::run();
-  Input::get()->proc();
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->upKeys();
-  return (!Input::get()->isQuit() && !(*Input::get())[SDLK_ESCAPE]);
+  if (_Input(SDLK_LALT) && _Input(SDLK_k))
+    {
+      switchPrint(_setKeys);
+      killAll();
+    }
+
+  return (true);
 }
 
 bool	Game::ifLoop()
@@ -107,6 +109,14 @@ bool	Game::ifLoop()
 void	Game::add(const Position &pos, int team, const Key &k)
 {
   _players.push_back(new Player(pos, team, k));
+}
+
+void	Game::killAll()
+{
+  if (players().size() == 0)
+    return ;
+  for(Players::iterator i = players().begin(); i != players().end(); ++i)
+   (*i)->kill();
 }
 
 /***********/
@@ -126,4 +136,25 @@ int	Game::w()
 int	Game::h()
 {
   return (_inst->_height);
+}
+
+/*************/
+/* PRINTABLE */
+/*************/
+void	Game::print(Graphics &g)
+{
+  if ((DEBUG & 128) == 0)
+    g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
+  for (Players::iterator i = _players.begin(); i != _players.end(); ++i)
+    {
+      if ((*i)->alive())
+        {
+	  (*i)->bones().print(g);
+	  for (int j = 0; j < IAction::COUNT; j++)
+	    (**i)[j]->print(g);
+	  if (DEBUG & 8)
+	    (**i)[(*i)->currentAction()]->printHB(g);
+	}
+    }
+
 }

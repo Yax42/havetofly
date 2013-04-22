@@ -14,8 +14,9 @@
 # define MTIME	(MyTime::get())
 class MyTime
 {
-  public:
+  private:
     static int	_time;
+  public:
     static void	run();
     static int	get();
     static void	reset();

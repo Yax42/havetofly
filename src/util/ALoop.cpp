@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 11:44:03 2013 Brunier Jean
-// Last update Wed Apr 17 17:50:37 2013 Brunier Jean
+// Last update Sun Apr 21 20:26:58 2013 Brunier Jean
 //
 
 #include "ALoop.hh"
@@ -30,9 +30,13 @@ bool		ALoop::actualLoop()
   while (ifLoop())
     {
       if (!iterLoop() || _quit)
-	return (false);
+        {
+	  return (false);
+  	  endLoop();
+	}
       _wait.proc();
     }
+  endLoop();
   return (true);
 }
 

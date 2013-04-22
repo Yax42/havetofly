@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 00:15:31 2013 Brunier Jean
-// Last update Sat Apr 20 19:38:42 2013 Brunier Jean
+// Last update Mon Apr 22 01:49:49 2013 Brunier Jean
 //
 
 #include "Spin.hh"
 
 Spin::Spin(Player &player) :
-	AAction(player, SPIN, new Hit(30, Position(0, 6), player))
+	AAction(player, SPIN, new Hit(30, Position(0, 6), player.orient(), Hit::WALL))
 {
   _hit->add(5, Position(), _player.bones()[Bones::FOOT1]);
   _hit->add(5, Position(), _player.bones()[Bones::FOOT2]);
@@ -35,6 +35,7 @@ IAction		*Spin::step()
 {
   if (_player.key[Key::VERT])
     _open = _player.key[Key::VERT];
+
   if (MPOS_MOD(_count, 50) == 0)
     _hit->reset();
   if (_count-- > 0 || _player.key(Key::X))
@@ -44,7 +45,10 @@ IAction		*Spin::step()
 
 bool		Spin::request()
 {
-  return (_player.key[Key::X] == 1 && _player.key[Key::VERT] > 0);
+
+  //if (_player.key[Key::X])
+    //std::cout <<  _player.key[Key::X]<< "a"<< std::endl;
+  return (_player.key(Key::X) == 1 && _player.key[Key::VERT] > 0);
 }
 
 void		Spin::upBones()

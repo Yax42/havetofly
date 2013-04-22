@@ -18,7 +18,7 @@
    					max - ((x) % (max) - 1 :	\
 					(x) % (max))
 
-Graphics::Graphics(int h, int w)
+Graphics::Graphics(int h, int w) : _h(h), _w(w)
 {
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     throw(Exception("Cannot init SDL"));
@@ -26,6 +26,16 @@ Graphics::Graphics(int h, int w)
     _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
   SDL_JoystickEventState(SDL_ENABLE);
   SDL_WM_SetCaption("You'd butter fly", NULL);
+}
+
+int	Graphics::h()
+{
+  return (_h);
+}
+
+int	Graphics::w()
+{
+  return (_w);
 }
 
 void	Graphics::switchFS()
@@ -56,6 +66,10 @@ void	Graphics::resetScreen(int color)
   SDL_FillRect(_screen, NULL, color);
 }
 
+
+/**********/
+/* SQUARE */
+/**********/
 void		Graphics::square(Position const &pos1, Position const &pos3, int color)
 {
   Position	tmp((pos3 - pos1) / 2);
@@ -68,6 +82,34 @@ void		Graphics::square(Position const &pos1, Position const &pos3, int color)
   Graphics::line(pos1, pos4, color);
 }
 
+void		Graphics::rectangle(Position const &pos1, Position const &pos3, int color)
+{
+  Position	pos2(pos1.yDist(), pos3.xDist());
+  Position	pos4(pos3.yDist(), pos1.xDist());
+
+  Graphics::line(pos1, pos2, color);
+  Graphics::line(pos3, pos2, color);
+  Graphics::line(pos3, pos4, color);
+  Graphics::line(pos1, pos4, color);
+}
+
+void		Graphics::rectangleLaid(Position const &pos1, Position const &pos3, int color)
+{
+  rectangle(pos1 - 1, pos3 - 1, color);
+  rectangle(pos1, pos3, 0xFFFFFF);
+  rectangle(pos1 + 1, pos3 + 1, color);
+}
+
+void		Graphics::rectangleFull(Position const &pos1, Position const &pos3, int color)
+{
+  for (int i = pos1.x(); i < pos3.x(); i++)
+    for (int j = pos1.y(); j < pos3.y(); j++)
+      printPixel(Position(j, i), color);
+}
+
+/**********/
+/* CIRCLE */
+/**********/
 void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, const Distance &size, const Angle &angle, int color)
 {
   Ratio		angleOffset = Math::maxRad / nb;
@@ -94,11 +136,30 @@ void		Graphics::circle(Position const &pos, const Distance &size, int color)
     {
       pxPos.x(size * Math::cos(i / size));
       pxPos.y(size * Math::sin(i / size));
-      //std::cout << (i / size).longVal() << " " << Math::sin(i / size).longVal() << std::endl;
-      //std::cout << pxPos.x() << " " << pxPos.y() << std::endl;
       pxPos += pos;
       printPixel(pxPos, color);
     }
+}
+
+void		Graphics::circleFull(Position const &pos, const Distance &size, int color)
+{
+  Position	pxPos;
+  Distance	max = size * Math::maxRad;
+
+  for (Distance i = 0; i < max; i += 1)
+    {
+      pxPos.x(size * Math::cos(i / size));
+      pxPos.y(size * Math::sin(i / size));
+      pxPos += pos;
+      line(pxPos, pos, color);
+    }
+}
+
+void		Graphics::circleLaid(Position const &pos, const Distance &size, int color)
+{
+  circle(pos, size - 1, color);
+  circle(pos, size, 0xFFFFFF);
+  circle(pos, size + 1, color);
 }
 void		Graphics::circlePart(Position const &pos, const Distance &ray,
       const Angle &from, const Angle &size, int color)
@@ -115,6 +176,9 @@ void		Graphics::circlePart(Position const &pos, const Distance &ray,
     }
 }
 
+/********/
+/* LINE */
+/********/
 void		Graphics::line(Position const &pos1, Position const &pos2, int color)
 {
   Position	vect = pos2 - pos1;

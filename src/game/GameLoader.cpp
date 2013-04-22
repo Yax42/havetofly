@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Sat Apr 20 22:28:49 2013 Brunier Jean
+// Last update Sun Apr 21 20:12:54 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"
@@ -15,24 +15,20 @@
 #include "Mutex.hh"
 
 
-GameLoader::GameLoader(int h, int w, Mutex &mutex) : ALoop(2), _h(h), _w(w), _ret(true), _mutex(mutex)
+GameLoader::GameLoader(int h, int w) : ALoop(2), _h(h), _w(w), _ret(true)
 {
 }
 
 bool	GameLoader::iterLoop()
 {
   bool		ret;
-  Input		*input = Input::get();
   Game		*game = Game::create(_h, _w);
 
-  input->update();
-  _mutex.unlock();
-  for (int i = 0; i < input->nbCtrl(); i++)
-    game->add(Position(40 + i * 5, i % 2 * 400 + 50), (i % 2) * 2, input->getCtrlKey(i));
-  game->add(Position(300, 300), (3 ), input->getKBKey());
-  game->loop();
-  ret = game->join();
-  _mutex.lock();
+  _Input.update();
+  for (int i = 0; i < _Input.nbCtrl(); i++)
+    game->add(Position(40 + i * 5, i % 2 * 400 + 50), (i % 2) * 2, _Input.getCtrlKey(i));
+  game->add(Position(300, 300), (3 ), _Input.getKBKey());
+  ret = game->loop();
   Game::destroy();
   return (ret);
 }

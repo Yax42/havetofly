@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Fri Apr 19 18:05:51 2013 Brunier Jean
+// Last update Sun Apr 21 00:26:45 2013 Brunier Jean
 //
 
 # include "AAction.hh"
@@ -96,5 +96,14 @@ int		AAction::id() const
 }
 
 void		AAction::print(Graphics &) const
+{
+}
+
+bool		AAction::request()
+{
+  return (false);
+}
+
+void		AAction::upBones()
 {
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 17:34:29 2013 Brunier Jean
-// Last update Sat Apr 20 21:30:36 2013 Brunier Jean
+// Last update Sun Apr 21 02:07:53 2013 Brunier Jean
 //
 
 #include <unistd.h>
@@ -29,6 +29,12 @@ Controler::~Controler()
 
 Controler::Controler(int id) : _id(id)
 {
+
+  _patern[0] = 0;
+  _patern[1] = 1;
+  for (int i = 2; i < 8; i++)
+    _patern[i] = i - 2;
+  _lastBut = -1;
   _fd = -1;
   update();
 }
@@ -68,22 +74,10 @@ Key	Controler::getKey()
 
   if (!isOk())
     return (k);
-  if (_id == 0)
-  {
-  k.ptr(Key::HOR) = &_axe[3];
-  k.ptr(Key::VERT) = &_axe[2];
-  }
-  else
-  {
-  k.ptr(Key::HOR) = &_axe[0];
-  k.ptr(Key::VERT) = &_axe[1];
-  }
-  k.ptr(Key::A) = &_but[0];
-  k.ptr(Key::B) = &_but[1];
-  k.ptr(Key::X) = &_but[2];
-  k.ptr(Key::Y) = &_but[3];
-  k.ptr(Key::R) = &_but[4];
-  k.ptr(Key::L) = &_but[5];
+  k.ptr(Key::HOR) = &_axe[_patern[0]];
+  k.ptr(Key::VERT) = &_axe[_patern[1]];
+  for (int i = 2; i < 8; i++)
+    k.ptr(i) = &_but[_patern[i]];
   return (k);
 }
 
@@ -94,14 +88,29 @@ void	Controler::proc()
   while (read(_fd, &_event, sizeof(_event)) > 0)
     {
       if (_event.type == 1)
-      {
-	//std::cout << (int)_event.number << std::endl;
-	_but[_event.number] = _event.value;
-      }
+        {
+	  if (_event.value == 1)
+	    _lastBut = _event.number;
+ 	  _but[_event.number] = _event.value;
+        }
       else if (_event.type == 2)
-      {
-	_axe[_event.number] = STICK_TO_SPEED(_event.value);
-	//std::cout << (int)_event.number << " " << _axe[_event.number] << std::endl;
-      }
+	  _axe[_event.number] = STICK_TO_SPEED(_event.value);
     }
+}
+
+/***************/
+/* LAST BUTTON */
+/***************/
+
+
+char		*Controler::getPatern()
+{
+  return (_patern);
+}
+
+int		Controler::getLastBut()
+{
+  int		tmp = _lastBut;
+  _lastBut = -1;
+  return (tmp);
 }

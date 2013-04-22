@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 17:34:25 2013 Brunier Jean
-// Last update Thu Apr 18 20:55:40 2013 Brunier Jean
+// Last update Sun Apr 21 02:08:06 2013 Brunier Jean
 //
 
 #ifndef CONTROLER_HH_
@@ -29,6 +29,8 @@ private:
   int			_fd;
   std::vector<int>	_axe;
   std::vector<int>	_but;
+  char			_patern[8];
+  int			_lastBut;
 
 public:
   ~Controler();
@@ -38,6 +40,8 @@ public:
   bool		isOk() const;
   void		update();
   bool		didAct();
+  int		getLastBut();
+  char		*getPatern();
 };
 
 

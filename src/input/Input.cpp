@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Sat Apr 20 10:43:16 2013 Brunier Jean
+// Last update Sun Apr 21 22:58:04 2013 Brunier Jean
 //
 
 #include <iostream>
@@ -13,8 +13,6 @@
 #include "Input.hh"
 #include "MyTime.hh"
 #include "Exception.hh"
-
-#define NB_CTRL		20
 
 Input	*Input::_inst = NULL;
 
@@ -88,7 +86,6 @@ Key	Input::getKBKey()
 {
   Key	k;
 
-
   k.ptr(Key::HOR) = &_axe[0];
   k.ptr(Key::VERT) = &_axe[1];
   k.ptr(Key::A) = &_kb[SDLK_h];
@@ -157,4 +154,13 @@ void	Input::proc()
     }
   _axe[0] = (_kb[SDLK_d] ? 1000 : (_kb[SDLK_a] ? -1000 : 0));
   _axe[1] = (_kb[SDLK_w] ? -1000 : (_kb[SDLK_s] ? 1000 : 0));
+}
+int		Input::getLastBut(int id)
+{
+  return _ctrl[id]->getLastBut();
+}
+
+char		*Input::getPatern(int id)
+{
+  return _ctrl[id]->getPatern();
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Sat Apr 20 16:15:22 2013 Brunier Jean
+// Last update Mon Apr 22 01:45:19 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -13,43 +13,41 @@
 #include "Hit.hh"
 #include "Player.hh"
 
-Hit::Hit(int stun, Position const &speed, const Player &player) :
-	_stun(stun), _speed(speed), _player(player)
+Hit::Hit(int stun, Position const &speed, const int &orient, int type) :
+	_stun(stun), _speed(speed), _orient(orient), _type(type)
 {
 }
 
 void	Hit::add(const Distance &ray, const Position &center, const Position &playerPos)
 {
-  _hb.push_back(Hitbox(ray, center, playerPos, _player.orient()));
-}
-
-void	Hit::add(const Distance &ray, const Position &center)
-{
-  _hb.push_back(Hitbox(ray, center, _player.pos(), _player.orient()));
+  _hb.push_back(Hitbox(ray, center, playerPos, _orient));
 }
 
 int	Hit::go(Player &ennemy) const
 {
-  ennemy.sy(_speed.yDist());
-  ennemy.sx(_speed.xDist() * Distance(_player.orient()));
+  if (_type != NONE)
+    {
+      ennemy.sy(_speed.yDist());
+      ennemy.sx(_speed.xDist() *
+	  (_type == ORIENT ? Distance(_orient) :
+	   Distance(ennemy.closeWall())));
+    }
   return (_stun);
 }
 
-void	Hit::focus(Player &ennemy)
+bool	Hit::focus(Player &ennemy)
 {
-  if (ennemy.currentAction() == IAction::SHIELD)
-    return ;
   for (std::list<Hitbox>::iterator i = _hb.begin(); i != _hb.end(); ++i)
     {
-      if (&ennemy != &_player &&
-	  std::find(_players.begin(), _players.end(), &ennemy) == _players.end() &&
+      if (std::find(_players.begin(), _players.end(), &ennemy) == _players.end() &&
 	  i->touch(ennemy))
         {
   	  _players.push_back(&ennemy);
 	  ennemy.hit(this);
-	  break ;
+	  return (true);
         }
     }
+  return (false);
 }
 
 void	Hit::reset()

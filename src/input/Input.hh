@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:54 2013 Brunier Jean
-// Last update Fri Apr 19 10:41:12 2013 Brunier Jean
+// Last update Sun Apr 21 19:26:23 2013 Brunier Jean
 //
 
 #ifndef INPUT_HH_
@@ -17,15 +17,9 @@
 # include "Key.hh"
 # include "Controler.hh"
 
-/*
-struct Controler
-{
-  std::vector<int>	hat;
-  std::vector<int>	axe;
-  std::vector<int>	button;
-  SDL_Joystick		*js;
-};
-*/
+# define _Input		(*Input::get())
+
+#define NB_CTRL		20
 
 class Input
 {
@@ -59,6 +53,8 @@ public:
   Key		getKBKey();
   Key		getCtrlKey(int id);
   void		proc();
+  int		getLastBut(int id);
+  char		*getPatern(int id);
 };
 
 #endif /* !INPUT_HH_ */

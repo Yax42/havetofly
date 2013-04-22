@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:05:53 2013 Brunier Jean
-// Last update Sat Apr 20 16:35:26 2013 Brunier Jean
+// Last update Mon Apr 22 01:55:11 2013 Brunier Jean
 //
 
 #include "StickWall.hh"
@@ -25,22 +25,27 @@ void	StickWall::init(int)
 
 IAction		*StickWall::step()
 {
+  /*
   if (_player.sy() < 3.3) // 2/3
     _player.sy(_player.sy() + 0.00666); //2/3
   if (_player.sy() < 0)
     _player.sy(_player.sy() + 0.066); //2/3
-  if (_player(Event::LEFT_WALL) && _player.key[Key::HOR] < 0)
+  if (_player(Event::RIGHT_WALL) && _player.key(Key::HOR) > 200)
+    return (true);
+   */
+
+  if (_player(Event::LEFT_WALL) && _player.key(Key::HOR) < -200)
     return (this);
-  if (_player(Event::RIGHT_WALL) && _player.key[Key::HOR] > 0)
+  if (_player(Event::RIGHT_WALL) && _player.key(Key::HOR) > 200)
     return (this);
   return (_player[IAction::INERTIE]);
 }
 
 bool		StickWall::request()
 {
-  if (_player(Event::LEFT_WALL) && _player.key[Key::HOR] < 0)
+  if (_player(Event::LEFT_WALL) && _player.key(Key::HOR) < -200)
     return (true);
-  if (_player(Event::RIGHT_WALL) && _player.key[Key::HOR] > 0)
+  if (_player(Event::RIGHT_WALL) && _player.key(Key::HOR) > 200)
     return (true);
   return (false);
 }

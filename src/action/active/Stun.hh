@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:45 2013 Brunier Jean
-// Last update Fri Apr 19 13:56:33 2013 Brunier Jean
+// Last update Mon Apr 22 10:52:13 2013 Brunier Jean
 //
 
 #ifndef STUN_HH_
@@ -24,6 +24,7 @@ public:
   virtual bool		request();
   virtual void		upBones();
   virtual void		set(int val = 0);
+  virtual void		print(Graphics &g) const;
 };
 
 

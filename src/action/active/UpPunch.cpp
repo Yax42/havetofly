@@ -5,28 +5,37 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 19:47:34 2013 Brunier Jean
-// Last update Sat Apr 20 22:20:17 2013 Brunier Jean
+// Last update Mon Apr 22 01:50:12 2013 Brunier Jean
 //
 
 #include "UpPunch.hh"
 
 UpPunch::UpPunch(Player &player) :
-	AAction(player, UP_PUNCH, new Hit(80, Position(-2, 3), player))
+	AAction(player, UP_PUNCH, new Hit(100, Position(-2, 3), player.orient()))
 {
   _hit->add(20, Position(), _bones[Bones::HAND1]);
 }
 
-void	UpPunch::init(int)
+void	UpPunch::init(int v)
 {
-  _hit->reset();
-  _count = 60;
-  _player = Position();
-  _open = 160;
+  if (v == 0 && !PLANE_DEBUG)
+    {
+      _player.setAction(TEMPO, id());
+      _player[TEMPO]->set(10);
+    }
+  else
+    {
+      _hit->reset();
+      _count = 50;
+      _player.sy(-3);
+      _player.sx(_player.orient());
+      _open = 160;
+    }
 }
 
 bool	UpPunch::allow(int)
 {
-  return (false);
+  return (PLANE_DEBUG);
 }
 
 IAction		*UpPunch::step()
@@ -39,14 +48,6 @@ IAction		*UpPunch::step()
     }
     */
 
-  if (_count == 50)
-    {
-      _player.sy(-3);
-      if (_player.orient() > 0)
-	_player.sx(1);
-      else
-	_player.sx(-1);
-    }
   if (_count-- == 0)
     {
       _player.sy(-1);
@@ -57,7 +58,9 @@ IAction		*UpPunch::step()
 
 bool		UpPunch::request()
 {
-  return ( _open == 0 && _player.key[Key::B] == 1 &&
+  if (PLANE_DEBUG)
+    return (_player.key[Key::VERT] == -1);
+  return (_open == 0 && _player.key[Key::B] == 1 &&
 	  _player.key[Key::VERT] == -1);
 }
 
@@ -93,7 +96,7 @@ void		UpPunch::print(Graphics &g) const
       0xFFFF00,
       0xFF9900
     };
-  if (isActive() && _count <= 50)
+  if (isActive())
     {
       for (int i = 0; i < 35; i++)
 	g.line(_bones[Bones::HAND1] + Position(-30, 0) + MRAND_POS(20),

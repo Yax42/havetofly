@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Sat Apr 20 16:22:24 2013 Brunier Jean
+// Last update Sun Apr 21 23:45:01 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -36,6 +36,9 @@ void	print_help()
   std::cout << "      - Infinite jump\t4"<< std::endl;
   std::cout << "      - Print hitboxes\t8"<< std::endl;
   std::cout << "      - Print tech\t16"<< std::endl;
+  std::cout << "      - Plane mode\t32"<< std::endl;
+  std::cout << "      - Auto stun\t64"<< std::endl;
+  std::cout << "      - Night mode\t128"<< std::endl;
   exit(0);
 }
 
@@ -44,20 +47,26 @@ const int	&DEBUG = g_debug;
 
 void	run()
 {
-  Mutex	mutex;
-
   Input::create();
-  GameLoader	gl(MAP_H, MAP_W, mutex);
-  Display	dis(MAP_H, MAP_W, mutex);
+  GameLoader	gl(MAP_H, MAP_W);
+  Display	dis(MAP_H, MAP_W);
 
   dis.loop();
   gl.loop();
 
   gl.join();
   dis.quit();
-  mutex.unlock();
   dis.join();
   Input::destroy();
+}
+
+void	test()
+{
+  Position	pos(100, 130);
+
+  std::cout << pos << " " << ((pos  * 2) / 2) << std::endl;
+  std::cout << pos << " " << ((pos  * 2)) << std::endl;
+  exit(0);
 }
 
 int	main(int ac, char **av)

@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Sat Apr 20 19:54:20 2013 Brunier Jean
+## Last update Mon Apr 22 00:30:35 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -20,6 +20,7 @@ DINC	= .			\
 	  human			\
 	  input			\
 	  util			\
+	  menu			\
 	  game			\
 	  action/passive	\
 	  action/active		\
@@ -36,6 +37,7 @@ SRCS	= math/Angle.cpp		\
 	  math/Position.cpp		\
 	  math/Ratio.cpp		\
 	  graphics/Graphics.cpp		\
+	  graphics/APrintable.cpp	\
 	  graphics/Display.cpp		\
 	  util/Mutex.cpp		\
 	  util/Exception.cpp		\
@@ -59,7 +61,9 @@ SRCS	= math/Angle.cpp		\
 	  action/passive/Death.cpp	\
 	  action/passive/Inertie.cpp	\
 	  action/passive/Tech.cpp	\
+	  action/passive/Tempo.cpp	\
 	  action/passive/HitWall.cpp	\
+	  action/passive/HitCeiling.cpp	\
 	  action/active/DoubleJump.cpp	\
 	  action/active/Shield.cpp	\
 	  action/active/HorDash.cpp	\
@@ -71,6 +75,7 @@ SRCS	= math/Angle.cpp		\
 	  action/active/WallJump.cpp	\
 	  action/active/Move.cpp	\
 	  action/active/Stun.cpp	\
+	  menu/SetKeys.cpp		\
 	  main.cpp
 
 
@@ -78,7 +83,7 @@ INCLUDE = $(addprefix -I $(DSRC)/, $(DINC))
 
 OBJS	= $(addprefix $(DOBJ)/, $(SRCS:.cpp=.o))
 
-CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g -O3
+CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g
 
 LDXFLAGS= `sdl-config --cflags --libs` -lm -pthread
 

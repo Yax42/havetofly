@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 20:56:35 2013 Brunier Jean
-// Last update Fri Apr 19 10:04:13 2013 Brunier Jean
+// Last update Sun Apr 21 00:52:05 2013 Brunier Jean
 //
 
 #ifndef CONST_HH_
@@ -13,5 +13,6 @@
 
 # define BODY_SIZE	24 // 2/3
 extern const int	&DEBUG;
+# define PLANE_DEBUG	((DEBUG & 32) != 0)
 
 #endif /* !CONST_HH_ */

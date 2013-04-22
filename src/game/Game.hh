@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:34:23 2013 Brunier Jean
-// Last update Thu Apr 18 23:07:41 2013 Brunier Jean
+// Last update Sun Apr 21 23:46:37 2013 Brunier Jean
 //
 
 #ifndef GAME_HH_
@@ -16,16 +16,19 @@
 # include "Player.hh"
 # include "Wait.hh"
 # include "ALoop.hh"
+# include "APrintable.hh"
+# include "SetKeys.hh"
 
 typedef std::list<Player *> Players;
 
-class Game : public ALoop
+class Game : public APrintable
 {
 private:
   int		_height;
   int		_width;
   Players	_players;
   int		_alone;
+  SetKeys	_setKeys;
 
 /* SINGLETON */
 private:
@@ -45,14 +48,21 @@ public:
   void			add(const Position &, int team, const Key &k);
   static int		h();
   static int		w();
+  /*
+  static Position	center() const;
+  */
   static Players	&players();
+  static void		killAll();
 
 /* LOOP */
 private:
-  bool				manyTeams() const;
-  virtual bool			ifLoop();
-  virtual bool			iterLoop();
-  virtual void			initLoop();
+  bool			manyTeams() const;
+  virtual bool		ifLoop();
+  virtual bool		iterLoop();
+  virtual void		initLoop();
+/* PRINTABLE */
+public:
+  virtual void		print(Graphics &g);
 };
 
 #endif /* !GAME_HH_ */

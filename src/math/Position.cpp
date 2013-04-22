@@ -157,7 +157,11 @@ Position	Position::operator*(const Distance &v) const
 
 Position	Position::operator/(const Distance &v) const
 {
-  return (Position(Distance(_y / v), _x / v));
+  Position	tmp(_y, _x);
+
+  tmp._y /= v;
+  tmp._x /= v;
+  return (tmp);
 }
 
 Position	&Position::operator*=(const Distance &v)

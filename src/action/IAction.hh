@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Sat Apr 20 19:55:29 2013 Brunier Jean
+// Last update Mon Apr 22 00:30:03 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -26,8 +26,10 @@ public:
       INERTIE,
       GRAVITY,
       HIT_WALL,
+      HIT_CEILING,
       DEATH,
 /* */ MOVE, /* ACTIVE STARTS HERE */
+      TEMPO,
       DOUBLE_JUMP,
       TECH,
       SHIELD,

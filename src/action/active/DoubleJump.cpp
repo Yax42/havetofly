@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:08:52 2013 Brunier Jean
-// Last update Sat Apr 20 14:59:22 2013 Brunier Jean
+// Last update Mon Apr 22 00:48:23 2013 Brunier Jean
 //
 
 #include "DoubleJump.hh"
@@ -41,6 +41,8 @@ void		DoubleJump::upBones()
 
 void		DoubleJump::check()
 {
+  if (_player(Event::HIT) || _player(Event::CEILING))
+    _open = 1;
   if (DEBUG & 4)
     _open = 1;
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:26:10 2013 Brunier Jean
-// Last update Sat Apr 20 10:08:34 2013 Brunier Jean
+// Last update Sun Apr 21 23:50:10 2013 Brunier Jean
 //
 
 #include "Math.hh"

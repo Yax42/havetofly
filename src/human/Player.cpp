@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Fri Apr 19 22:53:23 2013 Brunier Jean
+// Last update Mon Apr 22 01:51:05 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -26,7 +26,7 @@ Player::~Player(){}
 Player::Player(const Position &pos, int team, const Key &k) :
  	 _pos(pos), _alive(true), _team(team), _keys(k), key(_keys),
 	_orient(1), _bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF, _orient),
-	_mp(_speed, _pos, _event, _doing)
+	_mp(_speed, _pos, _event, _doing, this)
 {
   _event.resize(Event::COUNT);
   _action.resize(IAction::COUNT);
@@ -209,5 +209,9 @@ const int	&Player::orient() const
 int	Player::team() const
 {
   return (_team);
+}
+int		Player::closeWall() const
+{
+  return ((_pos.x() > Game::w() / 2) ? 1 : -1);
 }
 

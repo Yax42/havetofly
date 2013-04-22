@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 19 22:29:58 2013 Brunier Jean
-// Last update Fri Apr 19 23:23:53 2013 Brunier Jean
+// Last update Mon Apr 22 01:51:16 2013 Brunier Jean
 //
 
 #ifndef MOVEPLAYER_HH_
@@ -26,16 +26,17 @@ private:
   Position		&_speed;
   Position		&_pos;
   std::vector<bool>	&_event;
+  IAction		*&_doing;
+  const Player		*_player;
   Position		_finalPos;
   Position		_initPos;
   int			_count;
-  IAction		*&_doing;
 
 
 public:
   ~MovePlayer(){}
   MovePlayer(Position &speed, Position &pos,
-      std::vector<bool> &event, IAction *&doing);
+      std::vector<bool> &event, IAction *&doing, const Player *player);
   void	init();
   void	proc();
 };

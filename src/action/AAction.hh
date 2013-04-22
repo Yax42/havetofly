@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Fri Apr 19 18:07:13 2013 Brunier Jean
+// Last update Sun Apr 21 00:26:20 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -45,10 +45,10 @@ public:
   virtual void		hit(Player &ennemy);
   virtual int		val();
   virtual void		set(int v = 0);
-  virtual bool		request() = 0;
+  virtual bool		request();
   virtual void		check();
   virtual const	std::list<Hitbox>	&getHB() const;
-  virtual void		upBones() = 0;
+  virtual void		upBones();
   virtual int		id() const;
   virtual void		print(Graphics &g) const;
   virtual void		printHB(Graphics &g) const;

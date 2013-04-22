@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Sat Apr 20 19:55:20 2013 Brunier Jean
+// Last update Mon Apr 22 00:29:54 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -28,6 +28,8 @@
 #include "Tech.hh"
 #include "Shield.hh"
 #include "UpPunch.hh"
+#include "Tempo.hh"
+#include "HitCeiling.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -63,5 +65,9 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new Shield(p));
   if (action == IAction::UP_PUNCH)
     return (new UpPunch(p));
+  if (action == IAction::TEMPO)
+    return (new Tempo(p));
+  if (action == IAction::HIT_CEILING)
+    return (new HitCeiling(p));
   throw(Exception("Action not exisiting."));
 }

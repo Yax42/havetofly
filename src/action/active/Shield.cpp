@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 01:05:50 2013 Brunier Jean
-// Last update Sat Apr 20 22:23:40 2013 Brunier Jean
+// Last update Mon Apr 22 01:48:57 2013 Brunier Jean
 //
 
 #include "Shield.hh"
 
 Shield::Shield(Player &player) :
-	AAction(player, SHIELD, new Hit(1, Position(-3, 0), player))
+	AAction(player, SHIELD, new Hit(1, Position(-3, 0), player.orient()))
 {
   _hit->add(50, Position(-5, 0), _bones[Bones::BODY]);
 }
@@ -38,9 +38,8 @@ IAction		*Shield::step()
 
 bool		Shield::request()
 {
-  return (_open == 0 &&
-      	  _player.key[Key::X] == 1 &&
-	  _player.key[Key::VERT] == 0);
+  return (_open == 0 && _player.key[Key::X] == 1 &&
+      _player.key[Key::VERT] == 0);
 }
 
 void		Shield::upBones()

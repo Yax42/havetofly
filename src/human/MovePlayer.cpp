@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 19 22:29:54 2013 Brunier Jean
-// Last update Sat Apr 20 12:27:30 2013 Brunier Jean
+// Last update Mon Apr 22 01:51:37 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -15,8 +15,8 @@
 const int	MovePlayer::nbIt = 10;
 
 MovePlayer::MovePlayer(Position &speed, Position &pos,
-    std::vector<bool>  &event, IAction *&doing) :
-	_speed(speed), _pos(pos), _event(event), _doing(doing)
+    std::vector<bool>  &event, IAction *&doing, const Player *player) :
+	_speed(speed), _pos(pos), _event(event), _doing(doing), _player(player)
 {
 }
 
@@ -57,10 +57,7 @@ void	MovePlayer::init()
 void	MovePlayer::proc()
 {
   _count++;
-  if (nbIt == _count)
-    _pos = _finalPos;
-  else
-    _pos = _initPos + ((_speed * nbIt) / _count);
+  _pos = _initPos + ((_speed * nbIt) / _count);
 
   if (_pos.x() <= BODY_SIZE)
     _pos.x(BODY_SIZE);
@@ -69,8 +66,8 @@ void	MovePlayer::proc()
   if (_pos.y() <= BODY_SIZE)
     _pos.y(BODY_SIZE);
   else if (_pos.y() >= Game::h() + 40)
-    _finalPos.y(Game::h() + 40);
-
+    _pos.y(Game::h() + 40);
   for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
-    _doing->hit(**i);
+    if (*i != _player)
+      _doing->hit(**i);
 }

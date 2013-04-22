@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 14:43:48 2013 Brunier Jean
-// Last update Sat Apr 20 10:18:22 2013 Brunier Jean
+// Last update Sun Apr 21 20:32:03 2013 Brunier Jean
 //
 
 #include "Display.hh"
@@ -14,41 +14,50 @@
 #include "Game.hh"
 #include "const.hh"
 #include "Mutex.hh"
+#include "SetKeys.hh"
+#include "APrintable.hh"
 
-Display::Display(int h, int w, Mutex &mutex) : ALoop(120), _g(h, w), _mutex(mutex)
+APrintable	*Display::_target = NULL;
+Mutex		Display::mutex;
+
+void	Display::setTarget(APrintable *target)
 {
+  mutex.lock();
+  _target = target;
+  mutex.unlock();
+}
+
+Display::Display(int h, int w) : ALoop(120), _g(h, w)
+{
+}
+
+void	Display::print()
+{
+  mutex.lock();
+  if (_target != NULL)
+    _target->print(_g);
+  mutex.unlock();
 }
 
 void	Display::initLoop()
 {
-  _mutex.lock();
 }
 
 bool	Display::ifLoop()
 {
-  return (!Input::get()->isQuit() && !(*Input::get())[SDLK_ESCAPE]);
+  return (true);
+}
+
+void	Display::printBG()
+{
+  _g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
 }
 
 bool	Display::iterLoop()
 {
-  _mutex.lock();
-  _g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
-   if ((*Input::get())[SDLK_p] &&(*Input::get())(SDLK_LALT))
-     _g.switchFS();
-  if (_quit)
-    return (true);
-  for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
-    {
-      if ((*i)->alive())
-        {
-	  (*i)->bones().print(_g);
-	  for (int j = 0; j < IAction::COUNT; j++)
-	    (**i)[j]->print(_g);
-	  if (DEBUG & 8)
-	    (**i)[(*i)->currentAction()]->printHB(_g);
-	}
-    }
-  _mutex.unlock();
+  if ((*Input::get())[SDLK_p] &&(*Input::get())(SDLK_LALT))
+    _g.switchFS();
+  print();
   _g.printScreen();
   return (true);
 }

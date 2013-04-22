@@ -5,28 +5,36 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Sat Apr 20 22:36:15 2013 Brunier Jean
+// Last update Mon Apr 22 01:49:16 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
 
 HorDash::HorDash(Player &player) :
-	AAction(player, HOR_DASH, new Hit(1, Position(8, 0), player))
+	AAction(player, HOR_DASH, new Hit(10, Position(8, 1), player.orient(), Hit::WALL))
 {
   _hit->add(20, Position(), _player.bones()[Bones::HEAD]);
 }
 
-void	HorDash::init(int)
+void	HorDash::init(int v)
 {
-  _hit->reset();
-  _count = 50;
-  _player = Position();
-  _open = 0;
+  if (v == 0 && !PLANE_DEBUG)
+    {
+      _player.setAction(TEMPO, id());
+      _player[TEMPO]->set(15);
+    }
+  else
+    {
+      _hit->reset();
+      _count = 35;
+      _player = Position(0, 6 * _player.orient());
+      _open = 0;
+    }
 }
 
 bool	HorDash::allow(int a)
 {
-  return (a == IAction::DOWN_DASH);
+  return (a == DOWN_DASH || PLANE_DEBUG);
 }
 
 IAction		*HorDash::step()
@@ -34,14 +42,17 @@ IAction		*HorDash::step()
   if (_count-- == 0 ||
       (_player(Event::LEFT_WALL) && _player.orient() == -1) ||
       (_player(Event::RIGHT_WALL) && _player.orient() == 1))
-    return (_player[INERTIE]);
-  else if (_count == 35)
-    _player = Position(0, 6 * _player.orient());
+    {
+      _player.sx(_player.orient());
+      return (_player[INERTIE]);
+    }
   return (this);
 }
 
 bool		HorDash::request()
 {
+  if (PLANE_DEBUG)
+    return (_player.key[Key::HOR]);
   return (_open && _player.key[Key::B] == 1 && _player.key[Key::HOR]);
 }
 
@@ -74,7 +85,7 @@ void		HorDash::print(Graphics &g) const
       g.sponge(_bones[Bones::HAND1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
       g.sponge(_bones[Bones::HAND2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
     }
-  if (isActive() && _count <= 35)
+  if (isActive())
     {
       for (int i = 0; i < 5; i++)
       {

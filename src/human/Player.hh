@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Fri Apr 19 22:52:13 2013 Brunier Jean
+// Last update Mon Apr 22 01:06:51 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -81,6 +81,7 @@ public:
   void			setAction(int id, int initVal = 0);
 
   /* GETTERS */
+  int			closeWall() const;
   Bones			&bones();
   void			kill();
   bool			alive() const;

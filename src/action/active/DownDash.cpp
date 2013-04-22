@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Sat Apr 20 20:50:59 2013 Brunier Jean
+// Last update Mon Apr 22 01:49:29 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
 
 DownDash::DownDash(Player &player) :
-	AAction(player, DOWN_DASH, new Hit(50, Position(3, 3), player))
+	AAction(player, DOWN_DASH, new Hit(60, Position(3, 3), player.orient()))
 {
   _hit->add(20, Position(), _player.bones()[Bones::FOOT1]);
   _hit->add(20, Position(), _player.bones()[Bones::FOOT2]);
@@ -25,7 +25,7 @@ void	DownDash::init(int)
 
 bool	DownDash::allow(int a)
 {
-  return (UP_PUNCH == a);
+  return (PLANE_DEBUG || UP_PUNCH == a);
 }
 
 IAction		*DownDash::step()
@@ -33,7 +33,7 @@ IAction		*DownDash::step()
   if (--_count == 0)
     {
   //    _player = Position(0, _player.orient() * 0);
-      _player[IAction::DOUBLE_JUMP]->set();
+      //_player[IAction::DOUBLE_JUMP]->set();
       return (_player[IAction::INERTIE]);
     }
   if (_player(Event::WALL))
@@ -51,7 +51,9 @@ IAction		*DownDash::step()
 
 bool		DownDash::request()
 {
-  return  (_player.key[Key::B] == 1 && _player.key[Key::VERT] == 1);
+  if (PLANE_DEBUG)
+    return (_player.key[Key::VERT] == 1);
+  return (_player.key[Key::B] == 1 && _player.key[Key::VERT] == 1);
 }
 
 void		DownDash::upBones()
