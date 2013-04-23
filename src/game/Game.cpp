@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Mon Apr 22 00:21:06 2013 Brunier Jean
+// Last update Tue Apr 23 17:43:42 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -13,7 +13,8 @@
 #include "const.hh"
 #include "MovePlayer.hh"
 
-Game	*Game::_inst = NULL;
+Game		*Game::_inst = NULL;
+const int	Game::deep = 120;
 
 /*************/
 /* SINGLETON */
@@ -79,13 +80,26 @@ bool		Game::manyTeams() const
 /********/
 bool		Game::iterLoop()
 {
+  int		cpt;
+
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->init();
+
   for (int j = 0; j < MovePlayer::nbIt; j++)
+  {
+    cpt = 0;
     for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
-      (*i)->move();
+      if ((DEBUG & 256) == 0 || cpt++ != 0)
+	(*i)->move();
+  }
+
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
-    (*i)->process();
+    (*i)->procHit();
+
+  for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
+    if ((**i)[IAction::HIT_LAGG]->val() == 0)
+      (*i)->process();
+
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->upKeys();
   if (_Input(SDLK_LALT) && _Input(SDLK_k))
@@ -106,9 +120,9 @@ bool	Game::ifLoop()
 /* OTHER */
 /*********/
 
-void	Game::add(const Position &pos, int team, const Key &k)
+void	Game::add(const Position &pos, int team, const Key &k, int color)
 {
-  _players.push_back(new Player(pos, team, k));
+  _players.push_back(new Player(pos, team, k, color));
 }
 
 void	Game::killAll()
@@ -148,13 +162,7 @@ void	Game::print(Graphics &g)
   for (Players::iterator i = _players.begin(); i != _players.end(); ++i)
     {
       if ((*i)->alive())
-        {
-	  (*i)->bones().print(g);
-	  for (int j = 0; j < IAction::COUNT; j++)
-	    (**i)[j]->print(g);
-	  if (DEBUG & 8)
-	    (**i)[(*i)->currentAction()]->printHB(g);
-	}
+	(*i)->print(g);
     }
 
 }

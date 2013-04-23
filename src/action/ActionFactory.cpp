@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Mon Apr 22 00:29:54 2013 Brunier Jean
+// Last update Tue Apr 23 12:03:18 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -30,6 +30,9 @@
 #include "UpPunch.hh"
 #include "Tempo.hh"
 #include "HitCeiling.hh"
+#include "HitLagg.hh"
+#include "ThrowBall.hh"
+#include "ThrowShuriken.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -69,5 +72,11 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new Tempo(p));
   if (action == IAction::HIT_CEILING)
     return (new HitCeiling(p));
+  if (action == IAction::HIT_LAGG)
+    return (new HitLagg(p));
+  if (action == IAction::THROW_BALL)
+    return (new ThrowBall(p));
+  if (action == IAction::THROW_SHURIKEN)
+    return (new ThrowShuriken(p));
   throw(Exception("Action not exisiting."));
 }

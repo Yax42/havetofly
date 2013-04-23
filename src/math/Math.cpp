@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 01:17:42 2013 Brunier Jean
-// Last update Tue Apr 16 19:04:22 2013 Brunier Jean
+// Last update Tue Apr 23 00:34:08 2013 Brunier Jean
 //
 
 #include <cmath>
@@ -103,7 +103,6 @@ Distance	Math::sqrt(const Distance &d)
       count++;
       v >>= 2;
     }
-  //std::cout << v << " " << _sqrt[v] << std::endl;
   return (Distance(_sqrt[v] << count));
 }
 

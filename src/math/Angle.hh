@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 09 17:07:10 2013 Brunier Jean
-// Last update Tue Apr 16 18:04:33 2013 Brunier Jean
+// Last update Tue Apr 23 14:31:11 2013 Brunier Jean
 //
 
 #ifndef ANGLE_HH_
@@ -30,6 +30,7 @@ public:
   Angle		operator+(const Angle &other) const;
   Angle		operator-(const Angle &other) const;
   		operator Ratio() const;
+  Angle		betweenX(Angle const &a, int sign) const;
   Angle		mirrorX() const;
   Angle		mirrorY() const;
 

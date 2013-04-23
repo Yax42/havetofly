@@ -155,10 +155,10 @@ void		Graphics::circleFull(Position const &pos, const Distance &size, int color)
     }
 }
 
-void		Graphics::circleLaid(Position const &pos, const Distance &size, int color)
+void		Graphics::circleLaid(Position const &pos, const Distance &size, int color, int color2)
 {
   circle(pos, size - 1, color);
-  circle(pos, size, 0xFFFFFF);
+  circle(pos, size, color2);
   circle(pos, size + 1, color);
 }
 void		Graphics::circlePart(Position const &pos, const Distance &ray,
@@ -191,6 +191,11 @@ void		Graphics::line(Position const &pos1, Position const &pos2, int color)
 
 void		Graphics::line(Position const &pos1, Position const &pos2, int color, int thick)
 {
+  /*
+  if (pos1.x() == pos2.x() && pos1.y() == pos2.y())
+    return ;
+  */
+  //std::cout << pos1 << pos2 << std::endl;
   Position	vect = pos2 - pos1;
   Angle		angle = vect.angle();
   Angle		angleOut[] =

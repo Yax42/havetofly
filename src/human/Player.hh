@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Mon Apr 22 01:06:51 2013 Brunier Jean
+// Last update Tue Apr 23 17:42:55 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -17,12 +17,16 @@
 # include "IAction.hh"
 # include "Bones.hh"
 # include "Position.hh"
+# include "RatioPosition.hh"
 # include "Key.hh"
+# include "IThrowable.hh"
 
 # include "Hit.hh"
 # include "Event.hh"
 
 # include "MovePlayer.hh"
+
+typedef std::list<IThrowable *>::iterator Throws;
 
 class Player
 {
@@ -31,6 +35,7 @@ private:
   bool				_alive;
   int				_team;
   Key				_keys;
+  int				_color;
 public:
   const Key			&key;
 private:
@@ -39,7 +44,8 @@ private:
   MovePlayer			_mp;
   std::vector<bool>		_event;
   std::vector<IAction*>		_action;
-  Position			_speed;
+  std::list<IThrowable *>	_throwables;
+  RatioPosition			_speed;
   IAction			*_doing;
   Hit const			*_hit;
 
@@ -47,15 +53,16 @@ private:
   Player	&operator=(const Player &other);
   Player(const Player &other);
 public:
-  Player(const Position &pos, int team, const Key &k);
+  Player(const Position &pos, int team, const Key &k, int color);
   ~Player();
 
   /* PROCESS */
   void			init();
   void			move();
+  void			procHit();
   void			process();
-  void			hit(const Hit *hit);
   void			upKeys();
+  void			hit(const Hit *hit);
 
   /* SETTERS */
   void			operator=(Position const &speed);
@@ -64,11 +71,11 @@ public:
   void			orient(int o);
 
   /* SPEED */
-  const Distance	&sx() const;
-  const Distance	&sy() const;
-  void			sx(const Distance &s);
-  void			sy(const Distance &s);
-  Position const	&speed() const;
+  const Ratio		&sx() const;
+  const Ratio		&sy() const;
+  void			sx(const Ratio &s);
+  void			sy(const Ratio &s);
+  RatioPosition const	&speed() const;
 
   /* POSITION */
   Position const	&pos() const;
@@ -76,19 +83,23 @@ public:
   int			y() const;
 
   /* ACTION */
+  void			doThrow(IThrowable *item);
   int			currentAction() const;
   IAction		*operator[](int action);
   void			setAction(int id, int initVal = 0);
 
   /* GETTERS */
   int			closeWall() const;
+  Position 		closePos() const;
   Bones			&bones();
   void			kill();
   bool			alive() const;
   int			team() const;
+  int			color() const;
   const int		&orient() const;
   const std::list<Hitbox>	&getHB() const;
   operator const Hitbox() const;
+  void			print(Graphics &g);
 };
 
 #endif /* !PLAYER_HH_ */

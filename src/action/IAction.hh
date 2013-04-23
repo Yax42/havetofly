@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Mon Apr 22 00:30:03 2013 Brunier Jean
+// Last update Tue Apr 23 12:03:48 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -27,10 +27,13 @@ public:
       GRAVITY,
       HIT_WALL,
       HIT_CEILING,
+      HIT_LAGG,
       DEATH,
 /* */ MOVE, /* ACTIVE STARTS HERE */
       TEMPO,
       DOUBLE_JUMP,
+      THROW_BALL,
+      THROW_SHURIKEN,
       TECH,
       SHIELD,
       SPIN,
@@ -52,7 +55,7 @@ public:
   //virtual void		focus(Player &player) = 0;
   virtual bool		request() = 0;
   virtual void		init(int v = 0) = 0;
-  virtual void		hit(Player &ennemy) = 0;
+  virtual bool		hit(Player &ennemy) = 0;
   virtual void		check() = 0;
   virtual int		val() = 0;
   virtual void		set(int val = 0) = 0;
@@ -62,6 +65,7 @@ public:
   virtual void		upBones() = 0;
   virtual void		print(Graphics &g) const = 0;
   virtual void		printHB(Graphics &g) const = 0;
+  virtual int		hitLagg() const = 0;
 };
 
 #endif /* !IACTION_HH_ */

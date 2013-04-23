@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 00:15:31 2013 Brunier Jean
-// Last update Mon Apr 22 01:49:49 2013 Brunier Jean
+// Last update Tue Apr 23 18:40:09 2013 Brunier Jean
 //
 
 #include "Spin.hh"
 
 Spin::Spin(Player &player) :
-	AAction(player, SPIN, new Hit(30, Position(0, 6), player.orient(), Hit::WALL))
+	AAction(player, SPIN, new Hit(30, Position(0, 6), player.orient(), 10, false, Hit::WALL))
 {
   _hit->add(5, Position(), _player.bones()[Bones::FOOT1]);
   _hit->add(5, Position(), _player.bones()[Bones::FOOT2]);
@@ -72,15 +72,19 @@ void		Spin::print(Graphics &g) const
   if (!isActive())
     return ;
   static const int	size = 30;
-  static const int	color[] =
+  int	color[] =
     {
+      (_player.color()),
+      0,
+      (_player.color()),
+      0xFFFFFF,
       0x0000FF,
       0x00FFFF,
       0x0044FF,
       0x0099FF
     };
   int		goal =_player.orient() == -_open ? _bones[Bones::FOOT2].x() : _bones[Bones::FOOT1].x();
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < 1; i++)
     for (Position i = (_player.orient() == _open ? _bones[Bones::FOOT2] : _bones[Bones::FOOT1]);
         i.x() < goal; i.x(i.x() + 1))
       g.line(i, i + Position((_open * 15) + rand() % size - size / 2, rand() % size - size / 2), color[rand() % 4]);

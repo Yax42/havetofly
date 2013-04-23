@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 19 22:31:48 2013 Brunier Jean
-// Last update Fri Apr 19 22:32:05 2013 Brunier Jean
+// Last update Tue Apr 23 18:46:45 2013 Brunier Jean
 //
 
 #ifndef EVENT_HH_
@@ -21,6 +21,7 @@ namespace Event
       RIGHT_WALL,
       WALL,
       HIT,
+      HIT_THROW,
       COUNT
     };
 }

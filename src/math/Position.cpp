@@ -8,6 +8,7 @@
 ** Last update Sun Mar 17 12:18:44 2013 Brunier Jean
 */
 
+#include "RatioPosition.hh"
 #include "Position.hh"
 #include "Math.hh"
 
@@ -44,6 +45,11 @@ Position::Position(Angle const &angle, const Distance &distance)
 Position::Position(Position const &other) : _y(other._y), _x(other._x)
 {
 }
+
+Position::Position(RatioPosition const &other) : _y(other.yDist()), _x(other.xDist())
+{
+}
+
 
 Position	&Position::operator=(Position const &other)
 {
@@ -266,9 +272,14 @@ Distance	Position::distance() const
   return (Math::sqrt(_x * _x + _y * _y));
 }
 
+Distance	Position::distance(const Position &other) const
+{
+  return ((*this - other).distance());
+}
+
 Angle		Position::angle() const
 {
-  if (_x.longVal() == 0 && _y.longVal() == 0)
+  if (distance() == 0)
     return (Angle());
   return (Angle(Math::acos(_x / distance()) * (_y.longVal() < 0 ? -1 : 1)));
 }

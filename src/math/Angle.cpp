@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 09 17:16:14 2013 Brunier Jean
-// Last update Tue Apr 16 18:48:44 2013 Brunier Jean
+// Last update Tue Apr 23 17:22:16 2013 Brunier Jean
 //
 
 #include "Angle.hh"
@@ -84,11 +84,30 @@ Angle		Angle::mirrorX() const
   return (Math::acos(Math::cos(_rad)) *
       (Math::sin(_rad).longVal() < 0 ? 1 : -1));
 }
+
 Angle		Angle::mirrorY() const
 {
   return (Math::acos(Math::cos(_rad) * (-1)) *
       (Math::sin(_rad).longVal() < 0 ? -1 : 1));
 }
+
+Angle		Angle::betweenX(Angle const &a, int sign) const
+{
+  //std::cout << *this << std::endl;
+  Ratio		cur = MPOS_MOD(_rad + Angle(90, 0), Math::maxRad);
+  Ratio		minR = Angle(90, 0) - a + (sign == 1 ? Angle() : Angle(180, 0));
+  Ratio		maxR = Angle(90, 0) + a + (sign == 1 ? Angle() : Angle(180, 0));
+
+  if (cur > maxR || cur < minR)
+    {
+      if (sign > 0)
+	cur = ((cur > Angle(90, 0) && cur < Angle(270, 0)) ? maxR : minR);
+      else
+	cur = ((cur > Angle(90, 0) && cur < Angle(270, 0)) ? minR : maxR);
+    }
+  return (cur - Angle(90, 0));
+}
+
 
 std::ostream	&operator<<(std::ostream &s, Angle const &a)
 {

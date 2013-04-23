@@ -5,27 +5,35 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Mon Apr 22 01:49:29 2013 Brunier Jean
+// Last update Tue Apr 23 18:37:52 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
 
 DownDash::DownDash(Player &player) :
-	AAction(player, DOWN_DASH, new Hit(60, Position(3, 3), player.orient()))
+	AAction(player, DOWN_DASH, new Hit(60, Position(3, 3), player.orient(), 15, false, Hit::ORIENT))
 {
   _hit->add(20, Position(), _player.bones()[Bones::FOOT1]);
   _hit->add(20, Position(), _player.bones()[Bones::FOOT2]);
 }
 
-void	DownDash::init(int)
+void	DownDash::init(int v)
 {
-  _hit->reset();
-  _count = 40;
+  if (v == 0 && !PLANE_DEBUG)
+    {
+      _player.setAction(TEMPO, id());
+      _player[TEMPO]->set(10);
+    }
+  else
+    {
+      _hit->reset();
+      _count = 40;
+    }
 }
 
-bool	DownDash::allow(int a)
+bool	DownDash::allow(int)
 {
-  return (PLANE_DEBUG || UP_PUNCH == a);
+  return (PLANE_DEBUG);
 }
 
 IAction		*DownDash::step()
@@ -36,7 +44,8 @@ IAction		*DownDash::step()
       //_player[IAction::DOUBLE_JUMP]->set();
       return (_player[IAction::INERTIE]);
     }
-  if (_player(Event::WALL))
+  if ((_player(Event::LEFT_WALL) && _player.orient() < 0) ||
+      (_player(Event::RIGHT_WALL) && _player.orient() > 0))
   {
     _player[IAction::WALL_JUMP]->init();
     return (_player[IAction::WALL_JUMP]);

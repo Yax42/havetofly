@@ -2,10 +2,11 @@
 // Player.cpp for human in /home/brunie_j/local/my/havetofly/src/human
 //
 // Made by Brunier Jean
+// THROW_BALL,
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Mon Apr 22 01:51:05 2013 Brunier Jean
+// Last update Tue Apr 23 18:52:47 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -21,13 +22,19 @@
 /****************/
 /* CONSTRUCTORS */
 /****************/
-Player::~Player(){}
+Player::~Player()
+{
+  for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
+    delete (*i);
+}
 
-Player::Player(const Position &pos, int team, const Key &k) :
- 	 _pos(pos), _alive(true), _team(team), _keys(k), key(_keys),
-	_orient(1), _bones(_pos, 0xFF << (team * 8), rand() % 0xFFFFFF, _orient),
+Player::Player(const Position &pos, int team, const Key &k, int color) :
+ 	 _pos(pos), _alive(true), _team(team), _keys(k),
+  	_color(color), key(_keys), _orient(1),
+	_bones(_pos, _color, rand() % 0xFFFFFF, _orient),
 	_mp(_speed, _pos, _event, _doing, this)
 {
+      _hit = NULL;
   _event.resize(Event::COUNT);
   _action.resize(IAction::COUNT);
   for (int i = 0; i < IAction::COUNT; i++)
@@ -66,22 +73,41 @@ void		Player::orient(int o)
 
 void		Player::init()
 {
+  for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
+    {
+      if (!(*i)->isAlive())
+        {
+	  delete (*i);
+	  i = _throwables.erase(i);
+	}
+      else
+        {
+	  (*i)->init();
+	}
+    }
   _mp.init();
-  _hit = NULL;
+  _action[IAction::HIT_LAGG]->check();
 }
 
 void		Player::move()
 {
-  _mp.proc();
+  if (_action[IAction::HIT_LAGG]->val() == 0)
+    _mp.proc();
+  for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
+    if ((*i)->isAlive())
+        (*i)->proc();
 }
 
-void		Player::process()
+void		Player::procHit()
 {
   int		tmp;
 
   if (_hit != NULL)
     {
-      _event[Event::HIT] = true;
+      if (_hit->isThrowable())
+	_event[Event::HIT_THROW] = true;
+      else
+	_event[Event::HIT] = true;
       tmp = _hit->go(*this);
       if (tmp > 0)
         {
@@ -90,7 +116,15 @@ void		Player::process()
 	}
       else
         _doing = _action[IAction::INERTIE];
+      _hit = NULL;
     }
+}
+
+void		Player::process()
+{
+  for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
+    if ((*i)->isAlive())
+      (*i)->move();
   for (int i = 0; i < IAction::COUNT; i++)
     _action[i]->check();
   for (int i = 0; i < IAction::COUNT; i++)
@@ -116,6 +150,12 @@ void		Player::hit(const Hit *hit)
 /**********/
 /* ACTION */
 /**********/
+
+void	Player::doThrow(IThrowable *throwable)
+{
+  _throwables.push_back(throwable);
+}
+
 void	Player::setAction(int id, int initVal)
 {
   _doing = _action[id];
@@ -135,27 +175,27 @@ IAction		*Player::operator[](int a)
 /*********/
 /* SPEED */
 /*********/
-void		Player::sx(const Distance &s)
+void		Player::sx(const Ratio &s)
 {
-  _speed.xDist() = s;
+  _speed.x(s);
 }
 
-void		Player::sy(const Distance &s)
+void		Player::sy(const Ratio &s)
 {
-  _speed.yDist() = s;
+  _speed.y(s);
 }
 
-const Distance	&Player::sx() const
+const Ratio	&Player::sx() const
 {
-  return (_speed.xDist());
+  return (_speed.xRatio());
 }
 
-const Distance	&Player::sy() const
+const Ratio	&Player::sy() const
 {
-  return (_speed.yDist());
+  return (_speed.yRatio());
 }
 
-Position const	&Player::speed() const
+RatioPosition const	&Player::speed() const
 {
   return (_speed);
 }
@@ -215,3 +255,42 @@ int		Player::closeWall() const
   return ((_pos.x() > Game::w() / 2) ? 1 : -1);
 }
 
+Position	Player::closePos() const
+{
+  Player	*target = NULL;
+  Distance	max(10000);
+
+  for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
+    if (*i != this)
+      if (_pos.distance((*i)->pos()) < max)
+        {
+	  max = _pos.distance((*i)->pos());
+	  target = *i;
+	}
+  //std::cout << target->pos() << std::endl;
+  if (target)
+    return (target->pos() - _pos);
+  else
+    return (Position());
+}
+
+int		Player::color() const
+{
+  return (_color);
+}
+
+void		Player::print(Graphics &g)
+{
+  _bones.print(g);
+  for (int j = 0; j < IAction::COUNT; j++)
+    _action[j]->print(g);
+  if (DEBUG & 8)
+      _doing->printHB(g);
+  for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
+    if ((*i)->isAlive())
+      {
+	if (DEBUG & 8)
+          (*i)->printHB(g);
+        (*i)->print(g);
+      }
+}

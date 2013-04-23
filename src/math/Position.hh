@@ -17,6 +17,8 @@
 # include "Distance.hh"
 # include "Angle.hh"
 
+class RatioPosition;
+
 class Position
 {
   Distance	_y;
@@ -30,6 +32,7 @@ public:
   Position(const Angle &angle, const Distance &distance);
   Position(const Distance &y, const Distance &x, int);
   Position(Position const &other);
+  Position(RatioPosition const &other);
   Position		&operator=(Position const &other);
 
   /* COMPARISONS */
@@ -78,6 +81,7 @@ public:
 
   Angle			angle() const;
   Distance		distance() const;
+  Distance		distance(const Position &other) const;
 };
 
 std::ostream	&operator<<(std::ostream &s, Position const &pos);

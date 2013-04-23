@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 00:24:36 2013 Brunier Jean
-// Last update Mon Apr 22 00:54:31 2013 Brunier Jean
+// Last update Mon Apr 22 17:42:56 2013 Brunier Jean
 //
 
 #include "HitCeiling.hh"
@@ -25,7 +25,7 @@ void		HitCeiling::check()
 	}
       else
         {
-	  _player.setAction(IAction::STUN, 70);
+	  _player.setAction(IAction::STUN, 80);
 	  _player.sy(3);
 	  _player.sx(0);
 	}

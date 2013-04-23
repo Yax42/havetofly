@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:36 2013 Brunier Jean
-// Last update Mon Apr 22 10:58:31 2013 Brunier Jean
+// Last update Tue Apr 23 16:00:02 2013 Brunier Jean
 //
 
 #include "Stun.hh"
@@ -17,6 +17,11 @@ Stun::Stun(Player &player) : AAction(player, STUN, NULL)
 void	Stun::set(int val)
 {
   _count = val;
+}
+
+int	Stun::val()
+{
+  return (_count);
 }
 
 void	Stun::init(int v)
@@ -63,8 +68,4 @@ void		Stun::upBones()
 
 void		Stun::print(Graphics &) const
 {
-  /* COOL SUN AUTOUR DE LA TETE A UTILISER POUR UN TRUC
-  for (int i = 0; i < 3; i++)
-    g.sponge(_bones[Bones::HEAD], 20 + i * 4, 13, 5, Angle(MTIME * 2, 0), 0xFF0000);
-  */
 }

@@ -38,7 +38,7 @@ public:
   void	sponge(Position const &pos, Distance const &ray, int nb,
       const Distance &size, const Angle &angle, int color);
   void	circle(Position const &pos, const Distance &size, int color);
-  void	circleLaid(Position const &pos, const Distance &size, int color);
+  void	circleLaid(Position const &pos, const Distance &size, int color, int color2 = 0xFFFFFF);
   void	circleFull(Position const &pos, const Distance &size, int color);
   void	circlePart(Position const &pos, const Distance &ray,
       const Angle &from, const Angle &size, int color);

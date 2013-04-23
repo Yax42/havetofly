@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 19 23:17:20 2013 Brunier Jean
-// Last update Fri Apr 19 23:19:26 2013 Brunier Jean
+// Last update Mon Apr 22 14:42:33 2013 Brunier Jean
 //
 
 #ifndef DEATH_HH_
@@ -20,6 +20,5 @@ public:
   virtual ~Death(){}
   virtual void		check();
 };
-
 
 #endif /* !DEATH_HH_ */

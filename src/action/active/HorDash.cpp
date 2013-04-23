@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Mon Apr 22 01:49:16 2013 Brunier Jean
+// Last update Tue Apr 23 18:37:07 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
 
 HorDash::HorDash(Player &player) :
-	AAction(player, HOR_DASH, new Hit(10, Position(8, 1), player.orient(), Hit::WALL))
+	AAction(player, HOR_DASH, new Hit(10, Position(8, 1), player.orient(), 10, false, Hit::WALL))
 {
   _hit->add(20, Position(), _player.bones()[Bones::HEAD]);
 }
@@ -82,8 +82,8 @@ void		HorDash::print(Graphics &g) const
 {
   if (_open)
     {
-      g.sponge(_bones[Bones::HAND1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
-      g.sponge(_bones[Bones::HAND2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
+      for (int i = 0; i < 3; i++)
+	g.sponge(_bones[Bones::HEAD], 13 + i * 2, 8, 5, Angle(MTIME * 5, 0), _player.color());
     }
   if (isActive())
     {

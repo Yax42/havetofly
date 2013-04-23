@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:31:46 2013 Brunier Jean
-// Last update Sat Apr 20 00:08:56 2013 Brunier Jean
+// Last update Tue Apr 23 01:57:26 2013 Brunier Jean
 //
 
 #include "Inertie.hh"
@@ -16,8 +16,8 @@ Inertie::Inertie(Player &player) : PassiveAction(player, IAction::INERTIE)
 
 bool				Inertie::request()
 {
-  static const Distance 	PSLOW = 0.01;
-  static const Distance 	MSLOW = -0.01;
+  static const Ratio 	PSLOW = 0.01;
+  static const Ratio 	MSLOW = -0.01;
 
   if (_player.sx() <= PSLOW && _player.sx() >= MSLOW)
     _player.sx(0);
@@ -62,7 +62,7 @@ void		Inertie::upBones()
 
       bones.angle[Bones::HEAD] = Angle(-40, 0);
       bones.angle[Bones::BODY] = Angle(-80, 0);
-      bones.angle[Bones::BODY] = Angle(60 - _player.sy().longVal() / 100 + MGRAD_CAP(MTIME / 4, -60, 20), 0);
+      bones.angle[Bones::BODY] = Angle(60 - MRATIO_TO_FLOAT(_player.sy().longVal()) / 100 + MGRAD_CAP(MTIME / 4, -60, 20), 0);
       //bones.angle[Bones::BODY] = Angle(MGRAD_CAP(MTIME / 4, -60, 20), 0);
     }
 }

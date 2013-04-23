@@ -5,13 +5,15 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 15 13:58:15 2013 Brunier Jean
-// Last update Mon Apr 15 23:02:32 2013 Brunier Jean
+// Last update Mon Apr 22 23:44:49 2013 Brunier Jean
 //
 
 #ifndef RATIO_HH_
 # define RATIO_HH_
 
 # include <iostream>
+
+class Distance;
 
 class Ratio
 {
@@ -21,7 +23,9 @@ private:
 public:
   ~Ratio(){}
   Ratio();
+  Ratio(int);
   Ratio(long);
+  Ratio(long, int);
   Ratio(float);
   Ratio(double);
   Ratio(const Ratio &other);
@@ -35,8 +39,10 @@ public:
   Ratio		&operator%=(const Ratio &other);
   Ratio		operator%(const Ratio &other) const;
 
-  Ratio		operator/(int v) const;
-  Ratio		operator*(int v) const;
+  Ratio		operator/(const Distance &v) const;
+  Ratio		operator*(const Distance &v) const;
+  Ratio		&operator/=(const Distance &v);
+  Ratio		&operator*=(const Distance &v);
 
   bool			operator==(const Ratio &other) const;
   bool			operator!=(const Ratio &other) const;

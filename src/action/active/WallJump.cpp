@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:44:12 2013 Brunier Jean
-// Last update Sun Apr 21 22:48:41 2013 Brunier Jean
+// Last update Mon Apr 22 14:18:09 2013 Brunier Jean
 //
 
 #include "WallJump.hh"
@@ -58,5 +58,5 @@ void		WallJump::upBones()
   bones.angle[Bones::ELBOW2] = Angle(25, 0);
 
   bones.angle[Bones::HEAD] = Angle(-90, 0);
-  bones.angle[Bones::BODY] = Angle(MTIME * 16, 0);
+  bones.angle[Bones::BODY] = Angle(-MTIME * 16, 0);
 }

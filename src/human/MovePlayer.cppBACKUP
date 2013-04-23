@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 19 22:29:54 2013 Brunier Jean
-// Last update Tue Apr 23 02:39:41 2013 Brunier Jean
+// Last update Mon Apr 22 22:45:21 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -14,7 +14,7 @@
 
 const int	MovePlayer::nbIt = 10;
 
-MovePlayer::MovePlayer(RatioPosition &speed, Position &pos,
+MovePlayer::MovePlayer(Position &speed, Position &pos,
     std::vector<bool>  &event, IAction *&doing, Player *player) :
 	_speed(speed), _pos(pos), _event(event), _doing(doing), _player(player)
 {
@@ -31,12 +31,13 @@ void	MovePlayer::init()
 void	MovePlayer::proc()
 {
   _count++;
-  _pos = _initPos + ((_speed * _count) / nbIt);
+  _pos = _initPos + ((_speed * nbIt) / _count);
+
   if (_pos.x() <= BODY_SIZE)
     {
+      _pos.x(BODY_SIZE);
       _event[Event::LEFT_WALL] = true;
       _event[Event::WALL] = true;
-      _pos.x(BODY_SIZE);
     }
   else if (_pos.x() >= Game::w() - BODY_SIZE)
     {
@@ -46,14 +47,15 @@ void	MovePlayer::proc()
     }
   if (_pos.y() <= BODY_SIZE)
     {
-      _event[Event::CEILING] = true;
       _pos.y(BODY_SIZE);
+      _event[Event::CEILING] = true;
     }
   else if (_pos.y() >= Game::h() + Game::deep)
     {
       _pos.y(Game::h() + Game::deep);
       _event[Event::FLOOR] = true;
     }
+
   for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     if (*i != _player)
       if (_doing->hit(**i))

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 22:46:44 2013 Brunier Jean
-// Last update Mon Apr 22 01:45:02 2013 Brunier Jean
+// Last update Tue Apr 23 18:35:52 2013 Brunier Jean
 //
 
 #ifndef HIT_HH_
@@ -13,6 +13,7 @@
 
 # include <list>
 # include "Hitbox.hh"
+# include "RatioPosition.hh"
 
 class Player;
 
@@ -27,20 +28,25 @@ public:
     };
 private:
   int				_stun;
-  Position			_speed;
+  RatioPosition			_speed;
   const int			&_orient;
+  int				_hitLagg;
+  bool				_isThrowable;
   int				_type;
   std::list<Hitbox>		_hb;
   std::list<Player const*>	_players;
 
 public:
-  Hit(int stun, const Position &speed, const int &orient, int type = ORIENT);
+  Hit(int stun, const RatioPosition &speed, const int &orient,
+      int hitLagg, bool isThrowable, int type);
   ~Hit() {}
+  bool	isThrowable() const;
   int	go(Player &ennemy) const;
   bool	focus(Player &ennemy);
   void	reset();
   void	add(const Distance &ray, const Position &center, const Position &playerPos);
   void	print(Graphics &g) const;
+  int	hitLagg() const;
 };
 
 #endif /* !HIT_HH_ */

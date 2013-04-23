@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 11:27:34 2013 Brunier Jean
-// Last update Thu Apr 18 10:14:46 2013 Brunier Jean
+// Last update Tue Apr 23 01:33:06 2013 Brunier Jean
 //
 
 #include "Distance.hh"
@@ -42,9 +42,10 @@ Distance::Distance(long v, int) : _val(v)
 {
 }
 
-Distance::Distance(Ratio const &rat) : _val(rat.longVal() >> MBIT_OS)
+Distance::Distance(Ratio const &rat) : _val(MRATIO_TO_FLOAT(rat.longVal()))
 {
 }
+
 /****************/
 /* AFFECTATIONS */
 /****************/
@@ -100,7 +101,7 @@ Distance		Distance::operator*(const Distance &other) const
 Ratio		Distance::operator/(const Distance &other) const
 {
   //return (Distance((_val << MBIT_OS) / (other._val ? other._val : 1), 0));
-  return ((_val <<  MBIT_OS_RATIO) / other._val);
+  return (Ratio((_val <<  MBIT_OS_RATIO) / other._val, 0));
 }
 
 Distance		Distance::operator%(const Distance &other) const

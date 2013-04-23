@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Mon Apr 22 00:30:35 2013 Brunier Jean
+## Last update Tue Apr 23 12:04:44 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -24,6 +24,8 @@ DINC	= .			\
 	  game			\
 	  action/passive	\
 	  action/active		\
+	  action/throw		\
+	  throw			\
 	  hit			\
 	  action
 
@@ -36,6 +38,7 @@ SRCS	= math/Angle.cpp		\
 	  math/Distance.cpp		\
 	  math/Position.cpp		\
 	  math/Ratio.cpp		\
+	  math/RatioPosition.cpp	\
 	  graphics/Graphics.cpp		\
 	  graphics/APrintable.cpp	\
 	  graphics/Display.cpp		\
@@ -44,6 +47,7 @@ SRCS	= math/Angle.cpp		\
 	  util/MyTime.cpp		\
 	  util/Wait.cpp			\
 	  util/ALoop.cpp		\
+	  util/Color.cpp		\
 	  hit/Hitbox.cpp		\
 	  hit/Hit.cpp			\
 	  human/Bones.cpp		\
@@ -64,6 +68,7 @@ SRCS	= math/Angle.cpp		\
 	  action/passive/Tempo.cpp	\
 	  action/passive/HitWall.cpp	\
 	  action/passive/HitCeiling.cpp	\
+	  action/active/HitLagg.cpp	\
 	  action/active/DoubleJump.cpp	\
 	  action/active/Shield.cpp	\
 	  action/active/HorDash.cpp	\
@@ -71,10 +76,15 @@ SRCS	= math/Angle.cpp		\
 	  action/active/DownDash.cpp	\
 	  action/active/Spin.cpp	\
 	  action/active/StickWall.cpp	\
+	  action/throw/ThrowBall.cpp	\
+	  action/throw/ThrowShuriken.cpp\
 	  action/active/UpPunch.cpp	\
 	  action/active/WallJump.cpp	\
-	  action/active/Move.cpp	\
+	  action/passive/Move.cpp	\
 	  action/active/Stun.cpp	\
+	  throw/AThrowable.cpp		\
+	  throw/Ball.cpp		\
+	  throw/Shuriken.cpp		\
 	  menu/SetKeys.cpp		\
 	  main.cpp
 
@@ -88,6 +98,8 @@ CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g
 LDXFLAGS= `sdl-config --cflags --libs` -lm -pthread
 
 all: $(NAME)
+
+
 
 $(NAME):  $(OBJS)
 	$(CXX) $(LDXFLAGS) $^ -o $@

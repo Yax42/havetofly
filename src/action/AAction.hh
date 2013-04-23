@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Sun Apr 21 00:26:20 2013 Brunier Jean
+// Last update Mon Apr 22 15:14:32 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -42,7 +42,7 @@ public:
   virtual void		init(int v = 0);
   virtual bool		allow(int a);
   virtual IAction	*step();
-  virtual void		hit(Player &ennemy);
+  virtual bool		hit(Player &ennemy);
   virtual int		val();
   virtual void		set(int v = 0);
   virtual bool		request();
@@ -53,6 +53,7 @@ public:
   virtual void		print(Graphics &g) const;
   virtual void		printHB(Graphics &g) const;
   virtual bool		isActive() const;
+  virtual int		hitLagg() const;
 };
 
 #endif /* !AACTION_HH_ */

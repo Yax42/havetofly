@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Mon Apr 22 01:45:19 2013 Brunier Jean
+// Last update Tue Apr 23 18:25:50 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -13,8 +13,10 @@
 #include "Hit.hh"
 #include "Player.hh"
 
-Hit::Hit(int stun, Position const &speed, const int &orient, int type) :
-	_stun(stun), _speed(speed), _orient(orient), _type(type)
+Hit::Hit(int stun, RatioPosition const &speed, const int &orient,
+    int hitLagg, bool isThrowable, int type) :
+	_stun(stun), _speed(speed), _orient(orient), _hitLagg(hitLagg),
+	_isThrowable(isThrowable), _type(type)
 {
 }
 
@@ -23,15 +25,22 @@ void	Hit::add(const Distance &ray, const Position &center, const Position &playe
   _hb.push_back(Hitbox(ray, center, playerPos, _orient));
 }
 
+
+bool	Hit::isThrowable() const
+{
+  return (_isThrowable);
+}
+
 int	Hit::go(Player &ennemy) const
 {
   if (_type != NONE)
     {
-      ennemy.sy(_speed.yDist());
-      ennemy.sx(_speed.xDist() *
+      ennemy.sy(_speed.yRatio());
+      ennemy.sx(_speed.xRatio() *
 	  (_type == ORIENT ? Distance(_orient) :
 	   Distance(ennemy.closeWall())));
     }
+  ennemy[IAction::HIT_LAGG]->init(_hitLagg);
   return (_stun);
 }
 
@@ -43,7 +52,8 @@ bool	Hit::focus(Player &ennemy)
 	  i->touch(ennemy))
         {
   	  _players.push_back(&ennemy);
-	  ennemy.hit(this);
+ 	  if (ennemy.currentAction() != IAction::SHIELD || _isThrowable)
+	    ennemy.hit(this);
 	  return (true);
         }
     }
@@ -59,4 +69,9 @@ void	Hit::print(Graphics &g) const
 {
   for (std::list<Hitbox>::const_iterator i = _hb.begin(); i != _hb.end(); ++i)
     i->print(g, 0xFF0000);
+}
+
+int	Hit::hitLagg() const
+{
+  return (_hitLagg);
 }

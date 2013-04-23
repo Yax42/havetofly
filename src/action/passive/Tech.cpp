@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:55:33 2013 Brunier Jean
-// Last update Mon Apr 22 00:52:20 2013 Brunier Jean
+// Last update Tue Apr 23 15:41:42 2013 Brunier Jean
 //
 
 #include "Tech.hh"
@@ -38,7 +38,7 @@ void		Tech::print(Graphics &g) const
     {
       for (int i = 0; i < 6; i++)
       {
-        g.sponge(_bones[Bones::FOOT1], 20 + i * 4 - _open * 2, 20, 20, Angle(MTIME * 2, 0), 0xFFFFFF);
+        g.sponge(_bones[Bones::FOOT1], 10 + i * 4 - _open * 2, 10, 10, Angle(MTIME * 2, 0), 0xFFFFFF);
       }
     }
   if (_count == 0 || (DEBUG & 16) == 0)

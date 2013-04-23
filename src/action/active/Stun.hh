@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:45 2013 Brunier Jean
-// Last update Mon Apr 22 10:52:13 2013 Brunier Jean
+// Last update Tue Apr 23 15:58:34 2013 Brunier Jean
 //
 
 #ifndef STUN_HH_
@@ -21,6 +21,7 @@ public:
   virtual void		init(int v = 0);
   virtual bool		allow(int a);
   virtual IAction	*step();
+  virtual int		val();
   virtual bool		request();
   virtual void		upBones();
   virtual void		set(int val = 0);

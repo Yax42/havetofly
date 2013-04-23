@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:34:23 2013 Brunier Jean
-// Last update Sun Apr 21 23:46:37 2013 Brunier Jean
+// Last update Mon Apr 22 22:05:24 2013 Brunier Jean
 //
 
 #ifndef GAME_HH_
@@ -23,6 +23,8 @@ typedef std::list<Player *> Players;
 
 class Game : public APrintable
 {
+public:
+  static const int	deep;
 private:
   int		_height;
   int		_width;
@@ -45,7 +47,7 @@ public:
 
 /* GETTERS */
 public:
-  void			add(const Position &, int team, const Key &k);
+  void			add(const Position &, int team, const Key &k, int color);
   static int		h();
   static int		w();
   /*

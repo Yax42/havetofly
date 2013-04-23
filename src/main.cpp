@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Sun Apr 21 23:45:01 2013 Brunier Jean
+// Last update Tue Apr 23 16:38:31 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -23,6 +23,7 @@
 #include "MyTime.hh"
 #include "GameLoader.hh"
 #include "Game.hh"
+#include "RatioPosition.hh"
 #include "Mutex.hh"
 
 #define MAP_H	920
@@ -39,6 +40,7 @@ void	print_help()
   std::cout << "      - Plane mode\t32"<< std::endl;
   std::cout << "      - Auto stun\t64"<< std::endl;
   std::cout << "      - Night mode\t128"<< std::endl;
+  std::cout << "      - Player2 no move\t256"<< std::endl;
   exit(0);
 }
 
@@ -62,10 +64,12 @@ void	run()
 
 void	test()
 {
-  Position	pos(100, 130);
+  RatioPosition		pos = Position(100, 100);
 
-  std::cout << pos << " " << ((pos  * 2) / 2) << std::endl;
-  std::cout << pos << " " << ((pos  * 2)) << std::endl;
+  for (int i = 0; i < 100; i++)
+  pos.y(pos.y() + 0.5);
+  std::cout << pos << std::endl;
+
   exit(0);
 }
 

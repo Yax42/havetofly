@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Sun Apr 21 00:26:45 2013 Brunier Jean
+// Last update Tue Apr 23 17:13:29 2013 Brunier Jean
 //
 
 # include "AAction.hh"
@@ -54,11 +54,11 @@ IAction		*AAction::step()
   return (_player[IAction::INERTIE]);
 }
 
-void	AAction::hit(Player &ennemy)
+bool	AAction::hit(Player &ennemy)
 {
   if (_hit == NULL)
-    return ;
-  _hit->focus(ennemy);
+    return (false);
+  return (_hit->focus(ennemy));
 }
 
 int	AAction::val()
@@ -97,6 +97,11 @@ int		AAction::id() const
 
 void		AAction::print(Graphics &) const
 {
+  /*
+  Angle		a = _player.closePos().angle();
+ std::cout << (a.rad() % Math::maxRad) << " " << a.rad() << std::endl;
+  g.circlePart(_bones[Bones::BODY], 60, a - (Angle(15, 0)), Angle(30, 0), 0xffffff);
+  */
 }
 
 bool		AAction::request()
@@ -106,4 +111,11 @@ bool		AAction::request()
 
 void		AAction::upBones()
 {
+}
+
+int		AAction::hitLagg() const
+{
+  if (_hit == NULL)
+    return (0);
+  return _hit->hitLagg();
 }

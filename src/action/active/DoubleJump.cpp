@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 21:08:52 2013 Brunier Jean
-// Last update Mon Apr 22 00:48:23 2013 Brunier Jean
+// Last update Tue Apr 23 17:57:55 2013 Brunier Jean
 //
 
 #include "DoubleJump.hh"
@@ -61,7 +61,12 @@ void		DoubleJump::print(Graphics &g) const
 {
   if (_open)
     {
-      g.sponge(_bones[Bones::FOOT1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
-      g.sponge(_bones[Bones::FOOT2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
+      for (int i = 0; i < 4; i++)
+        {
+	  g.circle(_bones[Bones::FOOT1], 2 + i, (i % 2) * _player.color());
+	  g.circle(_bones[Bones::FOOT2], 2 + i, (i % 2) * _player.color());
+	}
+      //g.sponge(_bones[Bones::FOOT1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
+      //g.sponge(_bones[Bones::FOOT2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
     }
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 00:57:09 2013 Brunier Jean
-// Last update Sat Apr 20 20:21:48 2013 Brunier Jean
+// Last update Tue Apr 23 15:10:14 2013 Brunier Jean
 //
 
 #ifndef MATH_HH_
@@ -15,6 +15,8 @@
 # define MBIT_OS_RATIO			18
 # define MTO_RATIO(x)			((x) << MBIT_OS_RATIO)
 # define MTO_FLOAT(x)			((x) << MBIT_OS)
+# define MFLOAT_TO_RATIO(x)		((x) << (MBIT_OS_RATIO - MBIT_OS))
+# define MRATIO_TO_FLOAT(x)		((x) >> (MBIT_OS_RATIO - MBIT_OS))
 # define MTO_INT(x)			((x) >> MBIT_OS)
 # define MFLOAT_UNIT			(MTO_FLOAT(1))
 # define MRATIO_UNIT			(MTO_RATIO(1))
@@ -25,8 +27,11 @@
       					(scale) - ((x) % (scale)) - 1 :		\
 				  	(x) % (scale)))
 
-# define MPOS_MOD(x, y)			((x % y < 0) ? x % y + y : x % y)
-# define MRAND_POS(size)		(Position(rand() % size - size / 2, rand() % size - size / 2))
+# define MPOS_MOD(x, y)			(((x) % (y) < 0) ? (x) % (y) + (y) : (x) % (y))
+# define MRAND_POS_SQ(size)		(Position(rand() % (size * 2) - size, rand() % (size * 2) - size))
+
+# define MRAND_POS_CI(size)		(Position(Angle(rand(), 0), size))
+
 # define MPOS(x)			(((x) < 0) ? -(x) : (x))
 # define MSIGN(x)			(((x) > 0) ? 1 : (((x) < 0) ? -1 : 0))
 
