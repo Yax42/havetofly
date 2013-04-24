@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Tue Apr 23 12:04:44 2013 Brunier Jean
+## Last update Wed Apr 24 17:58:22 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -102,7 +102,7 @@ all: $(NAME)
 
 
 $(NAME):  $(OBJS)
-	$(CXX) $(LDXFLAGS) $^ -o $@
+	$(CXX) $^ -o $@ $(LDXFLAGS)
 
 $(DOBJ)/%.o: $(DSRC)/%.cpp
 	@mkdir -p $(@D)
