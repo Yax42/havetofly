@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 23 11:58:18 2013 Brunier Jean
-// Last update Tue Apr 23 23:43:01 2013 Brunier Jean
+// Last update Wed Apr 24 13:40:33 2013 Brunier Jean
 //
 
 #include "ThrowShuriken.hh"
@@ -39,7 +39,7 @@ IAction		*ThrowShuriken::step()
 
 bool		ThrowShuriken::request()
 {
-  return ((!_open || !_count) && _player.key[Key::X] == 1 && !_player.key(Key::R));
+  return ((!_open || !_count) && _player.key[Key::X] == 1);
 }
 
 void		ThrowShuriken::upBones()
