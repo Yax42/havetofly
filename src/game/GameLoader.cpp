@@ -1,11 +1,11 @@
 //
-// GameLoader.cpp for game in /home/brunie_j/local/my/havetofly/src/game
+// GameLoader.cpp for game in /home/diallo_e/tmp/havetofly/src/game
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Tue Apr 23 23:04:53 2013 Brunier Jean
+// Last update Wed Apr 24 17:03:09 2013 aliou diallo
 //
 
 #include "GameLoader.hh"
@@ -17,6 +17,7 @@
 
 GameLoader::GameLoader(int h, int w) : ALoop(2), _h(h), _w(w), _ret(true)
 {
+  (void) _ret;
 }
 
 bool	GameLoader::iterLoop()
