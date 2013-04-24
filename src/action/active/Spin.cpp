@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 00:15:31 2013 Brunier Jean
-// Last update Tue Apr 23 18:40:09 2013 Brunier Jean
+// Last update Tue Apr 23 23:59:15 2013 Brunier Jean
 //
 
 #include "Spin.hh"
@@ -13,34 +13,42 @@
 Spin::Spin(Player &player) :
 	AAction(player, SPIN, new Hit(30, Position(0, 6), player.orient(), 10, false, Hit::WALL))
 {
-  _hit->add(5, Position(), _player.bones()[Bones::FOOT1]);
-  _hit->add(5, Position(), _player.bones()[Bones::FOOT2]);
-  _hit->add(5, Position(), _player.bones()[Bones::HAND1]);
-  _hit->add(5, Position(), _player.bones()[Bones::HAND2]);
+  _hit->add(15, Position(), _player.bones()[Bones::FOOT1]);
+  _hit->add(15, Position(), _player.bones()[Bones::FOOT2]);
+  _hit->add(15, Position(), _player.bones()[Bones::KNEE1]);
+  _hit->add(15, Position(), _player.bones()[Bones::KNEE2]);
 }
 
-void	Spin::init(int)
+void	Spin::init(int v)
 {
-  _hit->reset();
-  _count = 50;
-  _player = Position(0.7, 0);
+  if (v == 0)
+    {
+      _player.setAction(TEMPO, id());
+      _player[TEMPO]->set(10);
+    }
+  else
+    {
+      _hit->reset();
+      _count = 30;
+      _player = Position(6, 0);
+    }
 }
 
-bool	Spin::allow(int a)
+bool	Spin::allow(int)
 {
-  return (a == MOVE);
+  return (false);
 }
 
 IAction		*Spin::step()
 {
-  if (_player.key[Key::VERT])
-    _open = _player.key[Key::VERT];
-
   if (MPOS_MOD(_count, 50) == 0)
     _hit->reset();
   if (_count-- > 0 || _player.key(Key::X))
     return (this);
-  return (_player[IAction::INERTIE]);
+  _player = Position();
+  _player[TEMPO]->set(10);
+  _player[TEMPO]->init(INERTIE);
+  return (_player[TEMPO]);
 }
 
 bool		Spin::request()

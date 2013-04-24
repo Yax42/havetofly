@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Tue Apr 23 17:13:29 2013 Brunier Jean
+// Last update Tue Apr 23 23:04:02 2013 Brunier Jean
 //
 
 # include "AAction.hh"
@@ -58,7 +58,13 @@ bool	AAction::hit(Player &ennemy)
 {
   if (_hit == NULL)
     return (false);
-  return (_hit->focus(ennemy));
+  if (_hit->focus(ennemy))
+    {
+      if (ennemy.currentAction() != IAction::SHIELD)
+        ennemy.hit(_hit);
+      return (true);
+    }
+  return (false);
 }
 
 int	AAction::val()

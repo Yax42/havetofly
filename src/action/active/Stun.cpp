@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:36 2013 Brunier Jean
-// Last update Tue Apr 23 16:00:02 2013 Brunier Jean
+// Last update Tue Apr 23 20:41:36 2013 Brunier Jean
 //
 
 #include "Stun.hh"
@@ -16,7 +16,8 @@ Stun::Stun(Player &player) : AAction(player, STUN, NULL)
 
 void	Stun::set(int val)
 {
-  _count = val;
+  if (_count < val)
+    _count = val;
 }
 
 int	Stun::val()

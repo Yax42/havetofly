@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 21 01:00:26 2013 Brunier Jean
-// Last update Mon Apr 22 00:18:23 2013 Brunier Jean
+// Last update Tue Apr 23 23:21:25 2013 Brunier Jean
 //
 
 #include "SetKeys.hh"
@@ -80,23 +80,30 @@ void	SetKeys::print(Graphics &g)
   static Position center(g.h() / 2, g.w() / 2 + 80);
   static const int colors[] =
     {
-      0x0000FF,
-      0xCC0000
+      0xFFFFAA,
+      0xCC0000,
+      0x0000FF
     };
   g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
-  g.rectangleFull(center + Position(-55, -260), center + Position(60, 60), 0xFFFFEE);
+  g.rectangleFull(center + Position(-55, -260), center + Position(60, 60), colors[0]);
   for (int i = 0; i < 4; i++)
-    g.circleLaid(Position((i == 0 ? 30 : (i == 2 ? -30 : 0)),
+    {
+      g.circleFull(Position((i == 0 ? 30 : (i == 2 ? -30 : 0)),
 	 	      (i == 1 ? -30 : (i == 3 ? 30 : 0))) + center, 15,
 	     colors[_current == i + 2]);
-  g.rectangleLaid(center + Position(-55, -260), center + Position(60, 60), colors[0]);
+      g.circleLaid(Position((i == 0 ? 30 : (i == 2 ? -30 : 0)),
+	 	      (i == 1 ? -30 : (i == 3 ? 30 : 0))) + center, 15,
+	     colors[2]);
+    }
+  g.rectangleLaid(center + Position(-55, -260), center + Position(60, 60), colors[2]);
 
-  g.rectangleFull(center + Position(-90, -40), center + Position(-60, 40), 0xFFFFEE);
-  g.rectangleFull(center + Position(-90, -200), center + Position(-60, -120), 0xFFFFEE);
+  g.rectangleFull(center + Position(-90, -40), center + Position(-60, 40), colors[_current == 6]);
+  g.rectangleFull(center + Position(-90, -200), center + Position(-60, -120), colors[_current == 7]);
+
   g.rectangleLaid(center + Position(-90, -40), center + Position(-60, 40),
-     colors[_current == 6]);
+     colors[2]);
   g.rectangleLaid(center + Position(-90, -200), center + Position(-60, -120),
-     colors[_current == 7]);
+     colors[2]);
 
   for (unsigned long j = 0; j < _paterns.size(); j++)
     g.circleFull(Position(300, 100 +int(20 + j * 30)), 25, colors[_paterns[j][_current] != -1]);

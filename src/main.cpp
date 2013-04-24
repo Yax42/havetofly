@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Tue Apr 23 16:38:31 2013 Brunier Jean
+// Last update Wed Apr 24 09:48:24 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -26,7 +26,7 @@
 #include "RatioPosition.hh"
 #include "Mutex.hh"
 
-#define MAP_H	920
+#define MAP_H	768
 #define MAP_W	512
 
 void	print_help()

@@ -1,11 +1,11 @@
 //
-// Shield.hh for action in /home/brunie_j/local/my/havetofly/src/action
+// Shield.hh for active in /home/brunie_j/local/my/havetofly/src/action/active
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 01:06:06 2013 Brunier Jean
-// Last update Sat Apr 20 01:08:00 2013 Brunier Jean
+// Last update Tue Apr 23 20:04:54 2013 Brunier Jean
 //
 
 #ifndef SHIELD_HH_
@@ -22,6 +22,7 @@ public:
   virtual bool		allow(int a);
   virtual IAction	*step();
   virtual bool		request();
+  virtual void		set(int);
   virtual void		upBones();
   virtual void		check();
   virtual void		print(Graphics &g) const;

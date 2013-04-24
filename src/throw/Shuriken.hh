@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 23 11:09:09 2013 Brunier Jean
-// Last update Tue Apr 23 12:01:13 2013 Brunier Jean
+// Last update Tue Apr 23 20:11:50 2013 Brunier Jean
 //
 
 #ifndef SHURIKEN_HH_
@@ -20,6 +20,7 @@ public:
   Shuriken(const Player &player);
   virtual void		move();
   virtual void		print(Graphics &g) const;
+  virtual void		effect(Player &p);
 };
 
 #endif /* !SHURIKEN_HH_ */

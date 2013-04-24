@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 01:23:19 2013 Brunier Jean
-// Last update Tue Apr 23 16:12:33 2013 Brunier Jean
+// Last update Tue Apr 23 20:12:26 2013 Brunier Jean
 //
 
 #ifndef ATHROWABLE_HH_
@@ -44,7 +44,7 @@ public:
   void			init();
   void			proc();
   virtual void		move();
-  virtual void		effect(const Player &p);
+  virtual void		effect(Player &p);
   virtual void		print(Graphics &g) const = 0;
   virtual void		printHB(Graphics &g) const;
 };

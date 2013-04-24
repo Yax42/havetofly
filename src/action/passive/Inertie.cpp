@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 11:31:46 2013 Brunier Jean
-// Last update Tue Apr 23 01:57:26 2013 Brunier Jean
+// Last update Tue Apr 23 23:30:35 2013 Brunier Jean
 //
 
 #include "Inertie.hh"
@@ -30,39 +30,22 @@ bool				Inertie::request()
 
 void		Inertie::upBones()
 {
-  Bones		&bones = _player.bones();
+  _bones.angle[Bones::FOOT1] = Angle(MGRAD_CAP(MTIME * 3, -80, 50), 0);
+  _bones.angle[Bones::FOOT2] = Angle(MGRAD_CAP(MTIME * 4, -80, 50), 0);
+  _bones.angle[Bones::KNEE1] = Angle(MGRAD_CAP(MTIME, -35, 30), 0);
+  _bones.angle[Bones::KNEE2] = Angle(MGRAD_CAP(MTIME, -65, 30), 0);
 
-  if (0 && _player.sy() <= 0)
+  _bones.angle[Bones::HAND1] = Angle(MGRAD_CAP(MTIME * 3, 10, 50), 0);
+  _bones.angle[Bones::ELBOW1] = Angle(MGRAD_CAP(MTIME, 195, 30), 0);
+
+  if (_player[THROW_SHURIKEN]->val())
     {
-      bones.angle[Bones::FOOT1] = Angle(-125, 0);
-      bones.angle[Bones::FOOT2] = Angle(-120, 0);
-      bones.angle[Bones::KNEE1] = Angle(120, 0);
-      bones.angle[Bones::KNEE2] = Angle(130, 0);
-
-      bones.angle[Bones::HAND1] = Angle(130, 0);
-      bones.angle[Bones::HAND2] = Angle(120, 0);
-      bones.angle[Bones::ELBOW1] = Angle(20, 0);
-      bones.angle[Bones::ELBOW2] = Angle(25, 0);
-
-      bones.angle[Bones::HEAD] = Angle(-90, 0);
-      bones.angle[Bones::BODY] = Angle(22, 0);
+      _bones.angle[Bones::HAND2] = Angle(MGRAD_CAP(MTIME * 4, 10, 50), 0);
+      _bones.angle[Bones::ELBOW2] = Angle(MGRAD_CAP(MTIME, 225, 30), 0);
     }
-  else
-    {
 
-      bones.angle[Bones::FOOT1] = Angle(MGRAD_CAP(MTIME * 3, -80, 50), 0);
-      bones.angle[Bones::FOOT2] = Angle(MGRAD_CAP(MTIME * 4, -80, 50), 0);
-      bones.angle[Bones::KNEE1] = Angle(MGRAD_CAP(MTIME, -35, 30), 0);
-      bones.angle[Bones::KNEE2] = Angle(MGRAD_CAP(MTIME, -65, 30), 0);
-
-      bones.angle[Bones::HAND1] = Angle(MGRAD_CAP(MTIME * 3, 10, 50), 0);
-      bones.angle[Bones::HAND2] = Angle(MGRAD_CAP(MTIME * 4, 10, 50), 0);
-      bones.angle[Bones::ELBOW1] = Angle(MGRAD_CAP(MTIME, 195, 30), 0);
-      bones.angle[Bones::ELBOW2] = Angle(MGRAD_CAP(MTIME, 225, 30), 0);
-
-      bones.angle[Bones::HEAD] = Angle(-40, 0);
-      bones.angle[Bones::BODY] = Angle(-80, 0);
-      bones.angle[Bones::BODY] = Angle(60 - MRATIO_TO_FLOAT(_player.sy().longVal()) / 100 + MGRAD_CAP(MTIME / 4, -60, 20), 0);
-      //bones.angle[Bones::BODY] = Angle(MGRAD_CAP(MTIME / 4, -60, 20), 0);
-    }
+  _bones.angle[Bones::HEAD] = Angle(-40, 0);
+  _bones.angle[Bones::BODY] = Angle(-80, 0);
+  _bones.angle[Bones::BODY] = Angle(60 - MRATIO_TO_FLOAT(_player.sy().longVal()) / 100 +
+      MGRAD_CAP(MTIME / 4, -60, 20), 0);
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 01:23:23 2013 Brunier Jean
-// Last update Tue Apr 23 18:36:41 2013 Brunier Jean
+// Last update Tue Apr 23 23:09:34 2013 Brunier Jean
 //
 
 #include "Math.hh"
@@ -49,8 +49,10 @@ void	AThrowable::proc()
     if (*i != &_player)
       if (_hit.focus(**i))
         {
-	  _alive = false;
+	  if (!(**i)[IAction::TECH]->val())
+            (*i)->hit(&_hit);
 	  effect(**i);
+	  _alive = false;
 	}
 }
 
@@ -58,7 +60,7 @@ void		AThrowable::move()
 {
 }
 
-void		AThrowable::effect(const Player &)
+void		AThrowable::effect(Player &)
 {
 }
 

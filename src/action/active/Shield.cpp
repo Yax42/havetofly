@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 01:05:50 2013 Brunier Jean
-// Last update Tue Apr 23 18:36:29 2013 Brunier Jean
+// Last update Tue Apr 23 20:03:17 2013 Brunier Jean
 //
 
 #include "Shield.hh"
@@ -29,6 +29,12 @@ void	Shield::init(int)
 bool	Shield::allow(int a)
 {
   return (a > MOVE);
+}
+
+
+void	Shield::set(int)
+{
+  _open = 300;
 }
 
 IAction		*Shield::step()

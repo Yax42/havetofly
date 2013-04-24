@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 23 11:58:23 2013 Brunier Jean
-// Last update Tue Apr 23 11:58:52 2013 Brunier Jean
+// Last update Tue Apr 23 23:38:31 2013 Brunier Jean
 //
 
 #ifndef THROWSHURIKEN_HH_
@@ -15,6 +15,9 @@
 
 class ThrowShuriken : public AAction
 {
+private:
+  const static int	_time;
+  const static int	_timeMax;
 public:
   ThrowShuriken(Player &player);
   virtual ~ThrowShuriken(){}

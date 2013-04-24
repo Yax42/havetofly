@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:51 2013 Brunier Jean
-// Last update Fri Apr 19 13:55:10 2013 Brunier Jean
+// Last update Tue Apr 23 20:04:58 2013 Brunier Jean
 //
 
 #ifndef HORDASH_HH_
@@ -21,6 +21,7 @@ public:
   virtual void		init(int v = 0);
   virtual bool		allow(int a);
   virtual IAction	*step();
+  virtual void		set(int);
   virtual bool		request();
   virtual void		upBones();
   virtual void		check();

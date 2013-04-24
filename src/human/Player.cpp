@@ -6,7 +6,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Tue Apr 23 18:52:47 2013 Brunier Jean
+// Last update Tue Apr 23 20:40:28 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -81,9 +81,7 @@ void		Player::init()
 	  i = _throwables.erase(i);
 	}
       else
-        {
 	  (*i)->init();
-	}
     }
   _mp.init();
   _action[IAction::HIT_LAGG]->check();
@@ -114,7 +112,7 @@ void		Player::procHit()
 	  _doing = _action[IAction::STUN];
 	  _doing->init(tmp);
 	}
-      else
+      else if (!_hit->isThrowable())
         _doing = _action[IAction::INERTIE];
       _hit = NULL;
     }

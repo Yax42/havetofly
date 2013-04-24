@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Tue Apr 23 18:37:07 2013 Brunier Jean
+// Last update Tue Apr 23 20:02:40 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
@@ -30,6 +30,11 @@ void	HorDash::init(int v)
       _player = Position(0, 6 * _player.orient());
       _open = 0;
     }
+}
+
+void	HorDash::set(int)
+{
+  _open = 0;
 }
 
 bool	HorDash::allow(int a)

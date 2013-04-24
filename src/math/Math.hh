@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 00:57:09 2013 Brunier Jean
-// Last update Tue Apr 23 15:10:14 2013 Brunier Jean
+// Last update Tue Apr 23 23:28:16 2013 Brunier Jean
 //
 
 #ifndef MATH_HH_
@@ -34,6 +34,7 @@
 
 # define MPOS(x)			(((x) < 0) ? -(x) : (x))
 # define MSIGN(x)			(((x) > 0) ? 1 : (((x) < 0) ? -1 : 0))
+# define MMAX(x, y)			(((x) > (y)) ? x : y)
 
 # include <vector>
 

@@ -5,11 +5,14 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 23 11:58:18 2013 Brunier Jean
-// Last update Tue Apr 23 17:24:07 2013 Brunier Jean
+// Last update Tue Apr 23 23:43:01 2013 Brunier Jean
 //
 
 #include "ThrowShuriken.hh"
 #include "Shuriken.hh"
+
+const int	ThrowShuriken::_time = 780;
+const int	ThrowShuriken::_timeMax = 800;
 
 ThrowShuriken::ThrowShuriken(Player &player) : AAction(player, THROW_SHURIKEN, NULL)
 {
@@ -18,10 +21,9 @@ ThrowShuriken::ThrowShuriken(Player &player) : AAction(player, THROW_SHURIKEN, N
 void	ThrowShuriken::init(int)
 {
   if (_open == 0)
-    _open = 450;
+    _open = _timeMax;
   else
-    _count = 450;
-  _player.doThrow(new Shuriken(_player));
+    _count = _timeMax;
   _player.sy(MCAP(_player.sy(), -5, 0));
 }
 
@@ -46,6 +48,10 @@ void		ThrowShuriken::upBones()
 
 void		ThrowShuriken::check()
 {
+  if (_count == _timeMax - 10)
+    _player.doThrow(new Shuriken(_player));
+  if (_open == _timeMax - 10)
+    _player.doThrow(new Shuriken(_player));
   if (_count)
     _count--;
   if (_open)
@@ -58,7 +64,7 @@ void		ThrowShuriken::set(int)
 
 int		ThrowShuriken::val()
 {
-  return (_open);
+  return (_open <= _time && _count <= _time);
 }
 
 void		ThrowShuriken::print(Graphics &g) const
@@ -72,5 +78,12 @@ void		ThrowShuriken::print(Graphics &g) const
     {
       for (int i = 0; i < 4; i++)
 	g.circle(_bones[Bones::HAND2], (MTIME / 5 + i) % 5 + 1, 0);
+    }
+  if (_open > _time || _count > _time)
+    {
+      int	val = MMAX(_open, _count) - _time;
+
+      _bones.angle[Bones::HAND2] = Angle(0, 0);
+      _bones.angle[Bones::ELBOW2] = Angle(val * (-10) + 150, 0);
     }
 }

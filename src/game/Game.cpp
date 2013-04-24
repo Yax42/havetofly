@@ -5,13 +5,14 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Tue Apr 23 17:43:42 2013 Brunier Jean
+// Last update Tue Apr 23 19:56:24 2013 Brunier Jean
 //
 
 #include "Game.hh"
 #include "Input.hh"
 #include "const.hh"
 #include "MovePlayer.hh"
+#include "Event.hh"
 
 Game		*Game::_inst = NULL;
 const int	Game::deep = 120;
@@ -130,7 +131,7 @@ void	Game::killAll()
   if (players().size() == 0)
     return ;
   for(Players::iterator i = players().begin(); i != players().end(); ++i)
-   (*i)->kill();
+    (*i)->kill();
 }
 
 /***********/

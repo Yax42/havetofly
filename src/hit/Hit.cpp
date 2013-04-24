@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Tue Apr 23 18:25:50 2013 Brunier Jean
+// Last update Tue Apr 23 23:02:02 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -52,8 +52,6 @@ bool	Hit::focus(Player &ennemy)
 	  i->touch(ennemy))
         {
   	  _players.push_back(&ennemy);
- 	  if (ennemy.currentAction() != IAction::SHIELD || _isThrowable)
-	    ennemy.hit(this);
 	  return (true);
         }
     }
