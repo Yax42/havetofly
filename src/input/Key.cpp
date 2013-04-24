@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:26:10 2013 Brunier Jean
-// Last update Sun Apr 21 23:50:10 2013 Brunier Jean
+// Last update Wed Apr 24 18:41:13 2013 Brunier Jean
 //
 
 #include "Math.hh"
@@ -19,7 +19,7 @@ int	Key::operator[](int i) const
 {
   if (i > VERT)
     return (_delta[i]);
-  if (MPOS(*_val[i]) < 250)
+  if (MPOS(*_val[i]) < 500)
     return (0);
   if ((MPOS(*_val[VERT]) + 200 > MPOS(*_val[HOR])) ==
       (i == VERT))
@@ -29,6 +29,8 @@ int	Key::operator[](int i) const
 
 int	Key::operator()(int i) const
 {
+  if (i <= VERT && *_val[i] > -500 && *_val[i] < 500)
+    return (0);
   return (*_val[i]);
 }
 

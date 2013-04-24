@@ -5,13 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 19:47:34 2013 Brunier Jean
-// Last update Tue Apr 23 21:29:43 2013 Brunier Jean
+// Last update Wed Apr 24 18:40:41 2013 Brunier Jean
 //
 
 #include "UpPunch.hh"
 
 UpPunch::UpPunch(Player &player) :
-	AAction(player, UP_PUNCH, new Hit(130, Position(-3, 2), player.orient(), 30, false, Hit::ORIENT))
+	AAction(player, UP_PUNCH, new Hit(130, Position(-2.5, 2), player.orient(), 30, false, Hit::ORIENT))
 {
   _hit->add(20, Position(), _bones[Bones::HAND1]);
 }

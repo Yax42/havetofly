@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 00:15:31 2013 Brunier Jean
-// Last update Tue Apr 23 23:59:15 2013 Brunier Jean
+// Last update Wed Apr 24 18:40:25 2013 Brunier Jean
 //
 
 #include "Spin.hh"
@@ -29,7 +29,7 @@ void	Spin::init(int v)
   else
     {
       _hit->reset();
-      _count = 30;
+      _count = 20;
       _player = Position(6, 0);
     }
 }
