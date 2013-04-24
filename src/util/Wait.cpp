@@ -1,11 +1,11 @@
 //
-// Wait.cpp for util in /home/brunie_j/local/my/havetofly/src/util
+// Wait.cpp for util in /home/diallo_e/tmp/havetofly/src/util
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:03:17 2013 Brunier Jean
-// Last update Fri Apr 19 22:27:55 2013 Brunier Jean
+// Last update Wed Apr 24 16:50:58 2013 aliou diallo
 //
 
 #include <unistd.h>
@@ -15,6 +15,8 @@
 
 Wait::Wait(int fps) : _fps(fps), _uspi(1000000 / fps), _nbFrames(0)
 {
+  (void) _fps;
+  (void) _nbFrames;
   gettimeofday(&_t1, NULL);
 }
 

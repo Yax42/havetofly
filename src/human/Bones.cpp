@@ -1,11 +1,11 @@
 //
-// Bones.cpp for human in /home/brunie_j/local/my/havetofly/src/human
+// Bones.cpp for human in /home/diallo_e/tmp/havetofly/src/human
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 17:23:55 2013 Brunier Jean
-// Last update Sat Apr 20 19:33:07 2013 Brunier Jean
+// Last update Wed Apr 24 17:01:26 2013 aliou diallo
 //
 
 #include "Bones.hh"
@@ -32,6 +32,7 @@ const int	Bones::_size[Bones::COUNT] =
 Bones::Bones(const Position &centre, int color, int color2, const int &orient) :
 	_center(centre), _orient(orient), _color(color), _color2(color2)
 {
+  (void) _color2;
 }
 
 Bones::~Bones()
