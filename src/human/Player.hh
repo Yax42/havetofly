@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Tue Apr 23 17:42:55 2013 Brunier Jean
+// Last update Sun Apr 28 15:27:57 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -92,6 +92,7 @@ public:
   int			closeWall() const;
   Position 		closePos() const;
   Bones			&bones();
+  const Bones		&bones() const;
   void			kill();
   bool			alive() const;
   int			team() const;

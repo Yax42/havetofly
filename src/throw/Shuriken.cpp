@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 23 11:09:14 2013 Brunier Jean
-// Last update Wed Apr 24 09:52:06 2013 Brunier Jean
+// Last update Sat Apr 27 23:26:17 2013 Brunier Jean
 //
 
 #include "Shuriken.hh"
@@ -29,10 +29,9 @@ void		Shuriken::print(Graphics &g) const
   g.sponge(_pos, 5, 6, 3, Angle(MTIME * 8, 0), 0);
 }
 
-void		Shuriken::effect(Player &)
+void		Shuriken::effect(Player &p)
 {
-  //p[IAction::DOUBLE_JUMP]->set(1);
-  //p[IAction::UP_PUNCH]->set();
-  //p[IAction::SHIELD]->set();
-  //p[IAction::HOR_DASH]->set();
+  if (!p[IAction::TECH]->val())
+    p.hit(&_hit);
+  _alive = false;
 }

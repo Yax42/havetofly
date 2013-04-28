@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Tue Apr 23 20:02:40 2013 Brunier Jean
+// Last update Sun Apr 28 16:02:36 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
@@ -39,7 +39,7 @@ void	HorDash::set(int)
 
 bool	HorDash::allow(int a)
 {
-  return (a == DOWN_DASH || PLANE_DEBUG);
+  return (a == DOWN_DASH || PLANE_DEBUG || a == CURVE);
 }
 
 IAction		*HorDash::step()
@@ -58,15 +58,15 @@ bool		HorDash::request()
 {
   if (PLANE_DEBUG)
     return (_player.key[Key::HOR]);
-  return (_open && _player.key[Key::B] == 1 && _player.key[Key::HOR]);
+  return (_open && !_player.key(Key::R) && _player.key[Key::B] == 1 && _player.key[Key::HOR]);
 }
 
 void		HorDash::upBones()
 {
-  _bones.angle[Bones::FOOT1] = Angle(10, 0);
-  _bones.angle[Bones::FOOT2] = Angle(-5, 0);
-  _bones.angle[Bones::KNEE1] = Angle(10, 0);
-  _bones.angle[Bones::KNEE2] = Angle(5, 0);
+  _bones.angle[Bones::FOOT1] = Angle(0, 0);
+  _bones.angle[Bones::FOOT2] = Angle(0, 0);
+  _bones.angle[Bones::KNEE1] = Angle(0, 0);
+  _bones.angle[Bones::KNEE2] = Angle(0, 0);
 
   _bones.angle[Bones::HAND1] = Angle(70, 0);
   _bones.angle[Bones::HAND2] = Angle(-60, 0);
@@ -92,16 +92,10 @@ void		HorDash::print(Graphics &g) const
     }
   if (isActive())
     {
-      for (int i = 0; i < 5; i++)
+      for (int i = 0; i < 80; i++)
       {
-	g.circle(_bones[Bones::FOOT1] + Position (rand() % 30 - 15,
-	      rand() % 30 - 15), rand() % 10 + 5,  0xFF0000);
-	g.circle(_bones[Bones::FOOT1] + Position (rand() % 30 - 15,
-	      rand() % 30 - 15), rand() % 10 + 5,  0xFFFF00);
-	g.circle(_bones[Bones::FOOT2] + Position (rand() % 30 - 15,
-	      rand() % 30 - 15), rand() % 10 + 5,  0xFF4400);
-	g.circle(_bones[Bones::FOOT1] + Position (rand() % 30 - 15,
-	      rand() % 30 - 15), rand() % 10 + 5,  0xFF9900);
+	g.line(_bones[Bones::BODY], _bones[Bones::FOOT1] + MRAND_POS_CI(30),  Color::fire[rand() % 4]);
+	g.circle(_bones[Bones::FOOT1] + MRAND_POS_CI(30), rand() % 15 + 3,  Color::fire[rand() % 4]);
       }
     }
 }

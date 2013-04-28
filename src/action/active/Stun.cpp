@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:36 2013 Brunier Jean
-// Last update Tue Apr 23 20:41:36 2013 Brunier Jean
+// Last update Sat Apr 27 10:04:06 2013 Brunier Jean
 //
 
 #include "Stun.hh"
@@ -27,7 +27,8 @@ int	Stun::val()
 
 void	Stun::init(int v)
 {
-  _count = v + (DEBUG & 64 ? 200 : 0);
+  if (_count < v)
+    _count = v;
 }
 
 bool	Stun::allow(int a)

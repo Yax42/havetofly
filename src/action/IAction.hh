@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Tue Apr 23 12:03:48 2013 Brunier Jean
+// Last update Sun Apr 28 18:55:32 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -30,6 +30,8 @@ public:
       HIT_LAGG,
       DEATH,
 /* */ MOVE, /* ACTIVE STARTS HERE */
+      AUTO_GUN,
+      GUN_JUMP,
       TEMPO,
       DOUBLE_JUMP,
       THROW_BALL,
@@ -44,10 +46,9 @@ public:
       WALL_JUMP,
       DOWN_DASH,
       STUN,
+      CURVE,
 /* */ COUNT, /* End of the list */
       MOON_DASH,
-      RODEO,
-      UP
     };
   virtual ~IAction(){}
   virtual bool		allow(int a) = 0;

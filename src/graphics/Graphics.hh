@@ -14,6 +14,7 @@
 # include <SDL/SDL.h>
 # include "Position.hh"
 # include "Angle.hh"
+# include "Color.hh"
 
 class Graphics
 {
@@ -28,28 +29,28 @@ public:
   ~Graphics();
   void	switchFS();
   void	printScreen();
-  void	resetScreen(int color);
+  void	resetScreen(const Color &color);
 /* SQUARE */
-  void	square(Position const &pos1, Position const &pos3, int color);
-  void	rectangle(Position const &pos1, Position const &pos3, int color);
-  void	rectangleFull(Position const &pos1, Position const &pos3, int color);
-  void	rectangleLaid(Position const &pos1, Position const &pos3, int color);
+  void	square(Position const &pos1, Position const &pos3, const Color &color);
+  void	rectangle(Position const &pos1, Position const &pos3, const Color &color);
+  void	rectangleFull(Position const &pos1, Position const &pos3, const Color &color);
+  void	rectangleLaid(Position const &pos1, Position const &pos3, const Color &color);
 /* CIRCLE */
   void	sponge(Position const &pos, Distance const &ray, int nb,
-      const Distance &size, const Angle &angle, int color);
-  void	circle(Position const &pos, const Distance &size, int color);
-  void	circleLaid(Position const &pos, const Distance &size, int color, int color2 = 0xFFFFFF);
-  void	circleFull(Position const &pos, const Distance &size, int color);
+      const Distance &size, const Angle &angle, const Color &color);
+  void	circle(Position const &pos, const Distance &size, const Color &color);
+  void	circleLaid(Position const &pos, const Distance &size, const Color &color, const Color &color2 = 0xFFFFFF);
+  void	circleFull(Position const &pos, const Distance &size, const Color &color);
   void	circlePart(Position const &pos, const Distance &ray,
-      const Angle &from, const Angle &size, int color);
+      const Angle &from, const Angle &size, const Color &color);
 
 /* LINE */
-  void	line(Position const &pos1, Position const &pos2, int color);
-  void	line(Position const &pos1, Position const &pos2, int color, int thick);
-  void	curveLine(Position const &pos1, Position const &pos2, Position const &pos3, int color);
-  void	printPixel(Position const &pos, int color);
+  void	line(Position const &pos1, Position const &pos2, const Color &color);
+  void	line(Position const &pos1, Position const &pos2, const Color &color, int thick);
+  void	curveLine(Position const &pos1, Position const &pos2, Position const &pos3, const Color &color);
+  void	printPixel(Position const &pos, const Color &color);
   void	bend(Position const &pos1, const Distance &ray1,
-	Position const &pos2, const Distance &ray2, int color);
+	Position const &pos2, const Distance &ray2, const Color &color);
   int	h();
   int	w();
 };

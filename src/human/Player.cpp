@@ -6,7 +6,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Tue Apr 23 20:40:28 2013 Brunier Jean
+// Last update Sun Apr 28 15:28:13 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -224,6 +224,11 @@ Bones		&Player::bones()
   return (_bones);
 }
 
+const Bones	&Player::bones() const
+{
+  return (_bones);
+}
+
 const std::list<Hitbox>		&Player::getHB() const
 {
   return (_doing->getHB());
@@ -259,7 +264,7 @@ Position	Player::closePos() const
   Distance	max(10000);
 
   for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
-    if (*i != this)
+    if (*i != this && (*i)->alive())
       if (_pos.distance((*i)->pos()) < max)
         {
 	  max = _pos.distance((*i)->pos());
@@ -279,11 +284,6 @@ int		Player::color() const
 
 void		Player::print(Graphics &g)
 {
-  _bones.print(g);
-  for (int j = 0; j < IAction::COUNT; j++)
-    _action[j]->print(g);
-  if (DEBUG & 8)
-      _doing->printHB(g);
   for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
     if ((*i)->isAlive())
       {
@@ -291,4 +291,9 @@ void		Player::print(Graphics &g)
           (*i)->printHB(g);
         (*i)->print(g);
       }
+  _bones.print(g);
+  for (int j = 0; j < IAction::COUNT; j++)
+    _action[j]->print(g);
+  if (DEBUG & 8)
+      _doing->printHB(g);
 }

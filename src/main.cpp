@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Wed Apr 24 10:24:21 2013 Brunier Jean
+// Last update Sat Apr 27 10:10:06 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -41,6 +41,7 @@ void	print_help()
   std::cout << "      - Auto stun\t64"<< std::endl;
   std::cout << "      - Night mode\t128"<< std::endl;
   std::cout << "      - Player2 no move\t256"<< std::endl;
+  std::cout << "      - Very very slow\t512"<< std::endl;
   exit(0);
 }
 

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 19 22:29:54 2013 Brunier Jean
-// Last update Tue Apr 23 02:39:41 2013 Brunier Jean
+// Last update Thu Apr 25 23:28:50 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -57,5 +57,8 @@ void	MovePlayer::proc()
   for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     if (*i != _player)
       if (_doing->hit(**i))
-  	(*_player)[IAction::HIT_LAGG]->init(_doing->hitLagg());
+        {
+	  _event[Event::DID_HIT] = true;
+  	  (*_player)[IAction::HIT_LAGG]->init(_doing->hitLagg());
+	}
 }

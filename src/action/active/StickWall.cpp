@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:05:53 2013 Brunier Jean
-// Last update Mon Apr 22 11:48:51 2013 Brunier Jean
+// Last update Sat Apr 27 23:27:19 2013 Brunier Jean
 //
 
 #include "StickWall.hh"
@@ -16,7 +16,7 @@ StickWall::StickWall(Player &player) : AAction(player, STICK_WALL, NULL)
 
 bool	StickWall::allow(int a)
 {
-  return (a == IAction::WALL_JUMP);
+  return (a == WALL_JUMP || a == AUTO_GUN);
 }
 
 void	StickWall::init(int)
@@ -51,18 +51,16 @@ bool		StickWall::request()
 
 void		StickWall::upBones()
 {
-  Bones		&bones = _player.bones();
+  _bones.angle[Bones::FOOT1] = Angle(-90, 0);
+  _bones.angle[Bones::FOOT2] = Angle(-90, 0);
+  _bones.angle[Bones::KNEE1] = Angle(80, 0);
+  _bones.angle[Bones::KNEE2] = Angle(90, 0);
 
-  bones.angle[Bones::FOOT1] = Angle(-90, 0);
-  bones.angle[Bones::FOOT2] = Angle(-90, 0);
-  bones.angle[Bones::KNEE1] = Angle(80, 0);
-  bones.angle[Bones::KNEE2] = Angle(90, 0);
+  _bones.angle[Bones::HAND1] = Angle(70, 0);
+  _bones.angle[Bones::HAND2] = Angle(60, 0);
+  _bones.angle[Bones::ELBOW1] = Angle(80, 0);
+  _bones.angle[Bones::ELBOW2] = Angle(100, 0);
 
-  bones.angle[Bones::HAND1] = Angle(70, 0);
-  bones.angle[Bones::HAND2] = Angle(60, 0);
-  bones.angle[Bones::ELBOW1] = Angle(80, 0);
-  bones.angle[Bones::ELBOW2] = Angle(100, 0);
-
-  bones.angle[Bones::HEAD] = Angle(0, 0);
-  bones.angle[Bones::BODY] = Angle(0, 0);
+  _bones.angle[Bones::HEAD] = Angle(0, 0);
+  _bones.angle[Bones::BODY] = Angle(0, 0);
 }

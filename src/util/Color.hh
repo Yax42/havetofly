@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 18:01:22 2013 Brunier Jean
-// Last update Mon Apr 22 18:23:18 2013 Brunier Jean
+// Last update Sun Apr 28 00:32:10 2013 Brunier Jean
 //
 
 #ifndef COLOR_HH_
@@ -13,6 +13,8 @@
 
 class Color
 {
+public:
+  static const Color	fire[4];
 public:
   int	r;
   int	g;
@@ -24,8 +26,11 @@ public:
   ~Color(){}
   Color		&operator-=(Color const &col);
   Color		&operator+=(Color const &col);
-  Color		operator/(int v) const;
+  Color		operator+(Color const &col) const;
+  Color		operator-(Color const &col) const;
+  Color		operator-(int col) const;
   Color		operator*(int v) const;
+  Color		operator/(int v) const;
   int		getInt() const;
 };
 

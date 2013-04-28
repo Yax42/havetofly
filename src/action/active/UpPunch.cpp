@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 19:47:34 2013 Brunier Jean
-// Last update Wed Apr 24 18:40:41 2013 Brunier Jean
+// Last update Sun Apr 28 16:03:34 2013 Brunier Jean
 //
 
 #include "UpPunch.hh"
@@ -13,7 +13,20 @@
 UpPunch::UpPunch(Player &player) :
 	AAction(player, UP_PUNCH, new Hit(130, Position(-2.5, 2), player.orient(), 30, false, Hit::ORIENT))
 {
-  _hit->add(20, Position(), _bones[Bones::HAND1]);
+  _hit->add(25, Position(-10, 0), _bones[Bones::HAND1]);
+}
+
+void		UpPunch::loadBones()
+{
+  std::cout << "A" << std::endl;
+  _hb.push_back(Hitbox(5, Position(), _bones[Bones::FOOT1], _player.orient()));
+  _hb.push_back(Hitbox(5, Position(), _bones[Bones::FOOT2], _player.orient()));
+  _hb.push_back(Hitbox(5, Position(), _bones[Bones::HAND2], _player.orient()));
+  _hb.push_back(Hitbox(5, Position(), _bones[Bones::ELBOW2], _player.orient()));
+  _hb.push_back(Hitbox(5, Position(), _bones[Bones::KNEE1], _player.orient()));
+  _hb.push_back(Hitbox(5, Position(), _bones[Bones::KNEE2], _player.orient()));
+  _hb.push_back(Hitbox(16, Position(), _bones[Bones::HEAD], _player.orient()));
+  _hb.push_back(Hitbox(5, Position(), _bones[Bones::BODY], _player.orient()));
 }
 
 void	UpPunch::init(int v)
@@ -38,6 +51,11 @@ void	UpPunch::set(int)
   _open = 160;
 }
 
+int	UpPunch::val()
+{
+  return (_open == 0);
+}
+
 bool	UpPunch::allow(int)
 {
   return (PLANE_DEBUG);
@@ -52,7 +70,6 @@ IAction		*UpPunch::step()
       _count = 0;
     }
     */
-
   if (_count-- == 0)
     {
       _player.sy(-1);
@@ -66,7 +83,7 @@ bool		UpPunch::request()
   if (PLANE_DEBUG)
     return (_player.key[Key::VERT] == -1);
   return (_open == 0 && _player.key[Key::B] == 1 &&
-	  _player.key[Key::VERT] == -1);
+	  _player.key(Key::R) == 0 && _player.key[Key::VERT] == -1);
 }
 
 void		UpPunch::upBones()
@@ -94,13 +111,6 @@ void		UpPunch::check()
 void		UpPunch::print(Graphics &g) const
 {
   static const int	size = 25;
-  static const int	color[] =
-    {
-      0xFF0000,
-      0xFF4400,
-      0xFFFF00,
-      0xFF9900
-    };
   if (isActive())
     {
       //g.line(Position(Distance(313539, 0), Distance(308258, 0)), Position(Distance(326746, 0), Distance(292605, 0)), 0);
@@ -111,7 +121,7 @@ void		UpPunch::print(Graphics &g) const
       for (int i = 0; i < 70; i++)
 	g.line(_bones[Bones::HAND1] + Position(-30, 0) + MRAND_POS_CI(10),
 	    _bones[Bones::HAND1] + Position (20, 0) +
-	    MRAND_POS_CI(size), color[rand() % 4]);
+	    MRAND_POS_CI(size), Color::fire[rand() % 4]);
     }
   else if (_open == 0)
     {
@@ -129,6 +139,6 @@ void		UpPunch::print(Graphics &g) const
       /*
       */
       for (int i = 0; i < 7; i++)
-	g.circle(_bones[Bones::HAND1], (MTIME / 5 + i) % 12 + 1, color[(i) % 4]);
+	g.circle(_bones[Bones::HAND1], (MTIME / 5 + i) % 12 + 1, Color::fire[(i) % 4]);
     }
 }

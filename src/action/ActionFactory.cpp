@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Tue Apr 23 12:03:18 2013 Brunier Jean
+// Last update Sun Apr 28 18:57:01 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -33,6 +33,9 @@
 #include "HitLagg.hh"
 #include "ThrowBall.hh"
 #include "ThrowShuriken.hh"
+#include "Curve.hh"
+#include "AutoGun.hh"
+#include "GunJump.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -78,5 +81,11 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new ThrowBall(p));
   if (action == IAction::THROW_SHURIKEN)
     return (new ThrowShuriken(p));
+  if (action == IAction::CURVE)
+    return (new Curve(p));
+  if (action == IAction::AUTO_GUN)
+    return (new AutoGun(p));
+  if (action == IAction::GUN_JUMP)
+    return (new GunJump(p));
   throw(Exception("Action not exisiting."));
 }

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Tue Apr 23 19:56:24 2013 Brunier Jean
+// Last update Sat Apr 27 10:10:36 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -56,7 +56,7 @@ Game::~Game()
     free (*i);
 }
 
-Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : 120), _height(h), _width(w)
+Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : (DEBUG & 512) ? 10 : 120), _height(h), _width(w)
 {
   _height = h;
   _width = w;

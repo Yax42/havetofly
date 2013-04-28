@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:27:41 2013 Brunier Jean
-// Last update Mon Apr 22 15:14:32 2013 Brunier Jean
+// Last update Sun Apr 28 00:01:30 2013 Brunier Jean
 //
 
 #ifndef AACTION_HH_
@@ -18,6 +18,7 @@
 # include "Math.hh"
 # include "Exception.hh"
 # include "Key.hh"
+# include "Color.hh"
 # include "Graphics.hh"
 # include "Bones.hh"
 # include "const.hh"
@@ -54,6 +55,8 @@ public:
   virtual void		printHB(Graphics &g) const;
   virtual bool		isActive() const;
   virtual int		hitLagg() const;
+  virtual void		loadBones();
+
 };
 
 #endif /* !AACTION_HH_ */

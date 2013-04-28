@@ -5,10 +5,18 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 18:01:03 2013 Brunier Jean
-// Last update Mon Apr 22 18:25:02 2013 Brunier Jean
+// Last update Sun Apr 28 00:34:52 2013 Brunier Jean
 //
 
 #include "Color.hh"
+
+const Color	Color::fire[4] =
+    {
+      0xFF0000,
+      0xFF4400,
+      0xFFFF00,
+      0xFF9900
+    };
 
 Color::Color(int col) : r((col >> 16) & 0xFF), g((col >> 8) & 0xFF), b(col & 0xFF)
 {
@@ -44,6 +52,54 @@ Color		&Color::operator+=(Color const &col)
   if (b > 0xFF)
     b = 0xFF;
   return (*this);
+}
+
+Color		Color::operator-(Color const &col) const
+{
+  Color		ret(*this);
+
+  ret.r -= col.r;
+  if (ret.r < 0)
+    ret.r = 0;
+  ret.g -= col.g;
+  if (ret.g < 0)
+    ret.g = 0;
+  ret.b -= col.b;
+  if (ret.b < 0)
+    ret.b = 0;
+  return (ret);
+}
+
+Color		Color::operator-(int col) const
+{
+  Color		ret(*this);
+
+  ret.r -= col;
+  if (ret.r < 0)
+    ret.r = 0;
+  ret.g -= col;
+  if (ret.g < 0)
+    ret.g = 0;
+  ret.b -= col;
+  if (ret.b < 0)
+    ret.b = 0;
+  return (ret);
+}
+
+Color		Color::operator+(Color const &col) const
+{
+  Color		ret(*this);
+
+  ret.r += col.r;
+  if (ret.r > 0xFF)
+    ret.r = 0xFF;
+  ret.g += col.g;
+  if (ret.g > 0xFF)
+    ret.g = 0xFF;
+  ret.b += col.b;
+  if (ret.b > 0xFF)
+    ret.b = 0xFF;
+  return (ret);
 }
 
 Color		Color::operator/(int v) const

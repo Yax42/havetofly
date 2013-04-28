@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 23:15:12 2013 Brunier Jean
-// Last update Tue Apr 23 23:04:02 2013 Brunier Jean
+// Last update Sun Apr 28 16:00:33 2013 Brunier Jean
 //
 
 # include "AAction.hh"
@@ -20,6 +20,11 @@ AAction::~AAction()
 
 AAction::AAction(Player &player, int id, Hit *hit) :
 	_player(player), _hit(hit), _open(1), _count(0), _bones(player.bones()), _id(id)
+{
+  loadBones();
+}
+
+void		AAction::loadBones()
 {
   _hb.push_back(Hitbox(5, Position(), _bones[Bones::FOOT1], _player.orient()));
   _hb.push_back(Hitbox(5, Position(), _bones[Bones::FOOT2], _player.orient()));

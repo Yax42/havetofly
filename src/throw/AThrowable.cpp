@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 01:23:23 2013 Brunier Jean
-// Last update Tue Apr 23 23:09:34 2013 Brunier Jean
+// Last update Sat Apr 27 23:24:21 2013 Brunier Jean
 //
 
 #include "Math.hh"
@@ -15,6 +15,7 @@
 #include "const.hh"
 
 const int	AThrowable::SIZE = 64;
+
 AThrowable::AThrowable(const Position &pos, const RatioPosition &speed,
   int stun, const Position &hitSpeed, const Player &player, int type) :
 	_pos(pos), _speed(speed), _alive(true), _orient(MSIGN(speed.x())),
@@ -48,20 +49,17 @@ void	AThrowable::proc()
   for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     if (*i != &_player)
       if (_hit.focus(**i))
-        {
-	  if (!(**i)[IAction::TECH]->val())
-            (*i)->hit(&_hit);
-	  effect(**i);
-	  _alive = false;
-	}
+	effect(**i);
 }
 
 void		AThrowable::move()
 {
 }
 
-void		AThrowable::effect(Player &)
+void		AThrowable::effect(Player &p)
 {
+  p.hit(&_hit);
+  _alive = false;
 }
 
 void		AThrowable::printHB(Graphics &g) const

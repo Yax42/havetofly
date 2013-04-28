@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Tue Apr 23 18:37:52 2013 Brunier Jean
+// Last update Sun Apr 28 19:49:57 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
@@ -13,8 +13,8 @@
 DownDash::DownDash(Player &player) :
 	AAction(player, DOWN_DASH, new Hit(60, Position(3, 3), player.orient(), 15, false, Hit::ORIENT))
 {
-  _hit->add(20, Position(), _player.bones()[Bones::FOOT1]);
-  _hit->add(20, Position(), _player.bones()[Bones::FOOT2]);
+  _hit->add(15, Position(), _bones[Bones::FOOT1]);
+  _hit->add(15, Position(), _bones[Bones::FOOT2]);
 }
 
 void	DownDash::init(int v)
@@ -26,6 +26,8 @@ void	DownDash::init(int v)
     }
   else
     {
+      _player[AUTO_GUN]->set(4);
+      _player = Position(5, _player.orient() * 4);
       _hit->reset();
       _count = 40;
     }
@@ -54,6 +56,8 @@ IAction		*DownDash::step()
     /*
     _player.orient(-_player.orient());
   */
+  if (_player(Event::DID_HIT) && _count > 10)
+    _count = 10;
   _player = Position(5, _player.orient() * 4);
   return (this);
 }
@@ -62,7 +66,7 @@ bool		DownDash::request()
 {
   if (PLANE_DEBUG)
     return (_player.key[Key::VERT] == 1);
-  return (_player.key[Key::B] == 1 && _player.key[Key::VERT] == 1);
+  return (_player.key[Key::B] == 1 && !_player.key(Key::R) && _player.key[Key::VERT] == 1);
 }
 
 void		DownDash::upBones()

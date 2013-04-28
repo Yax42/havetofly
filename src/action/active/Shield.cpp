@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 01:05:50 2013 Brunier Jean
-// Last update Tue Apr 23 20:03:17 2013 Brunier Jean
+// Last update Sun Apr 28 17:56:11 2013 Brunier Jean
 //
 
 #include "Shield.hh"
@@ -51,6 +51,7 @@ IAction		*Shield::step()
 bool		Shield::request()
 {
   return (_open == 0 && _player.key[Key::B] == 1 &&
+      _player.key(Key::R) == 0 &&
       _player.key[Key::VERT] == 0 &&
       _player.key[Key::HOR] == 0);
 }
@@ -85,14 +86,12 @@ void		Shield::print(Graphics &g) const
       Color(_player.color()),
       0,
       Color(_player.color()),
-      0xFFFFFF,
-      0x0000FF,
-      0x00FFFF,
-      0x0044FF,
-      0x0099FF
+      0xFFFFFF
     };
-  Color			color = _player.color();//0x0088FF;
-  Color			dif = _player.color();
+
+  Color		color = _player.color();//0x0088FF;
+  Color		dif = _player.color();
+
   if (isActive())
     {
       for (int i = 0; i < 32; i++)
@@ -102,13 +101,13 @@ void		Shield::print(Graphics &g) const
         for (int j = 0; j < nbParts; j++)
 	{
   	  g.circlePart(_bones[Bones::BODY] + Position(-5, 0), 60 - i * 2,
-	      Angle(MTIME * 3 + i * 3 + j * 360 / nbParts, 0), Angle(30, 0), color.getInt());
+	      Angle(MTIME * 3 + i * 3 + j * 360 / nbParts, 0), Angle(30, 0), color);
         }
 
         for (int j = 0; j < nbParts; j++)
 	{
   	  g.circlePart(_bones[Bones::BODY] + Position(-5, 0), 60 - i * 2,
-	      Angle(-MTIME * 3 - i * 3 - j * 360 / nbParts, 0), Angle(30, 0), color.getInt());
+	      Angle(-MTIME * 3 - i * 3 - j * 360 / nbParts, 0), Angle(30, 0), color);
         }
       }
     }

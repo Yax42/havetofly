@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 00:57:09 2013 Brunier Jean
-// Last update Tue Apr 23 23:28:16 2013 Brunier Jean
+// Last update Sun Apr 28 00:05:54 2013 Brunier Jean
 //
 
 #ifndef MATH_HH_
@@ -30,7 +30,7 @@
 # define MPOS_MOD(x, y)			(((x) % (y) < 0) ? (x) % (y) + (y) : (x) % (y))
 # define MRAND_POS_SQ(size)		(Position(rand() % (size * 2) - size, rand() % (size * 2) - size))
 
-# define MRAND_POS_CI(size)		(Position(Angle(rand(), 0), size))
+# define MRAND_POS_CI(size)		(Position(Angle(rand(), 0), rand() % size))
 
 # define MPOS(x)			(((x) < 0) ? -(x) : (x))
 # define MSIGN(x)			(((x) > 0) ? 1 : (((x) < 0) ? -1 : 0))
