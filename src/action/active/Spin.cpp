@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 00:15:31 2013 Brunier Jean
-// Last update Wed Apr 24 18:40:25 2013 Brunier Jean
+// Last update Mon Apr 29 14:48:08 2013 Brunier Jean
 //
 
 #include "Spin.hh"
@@ -19,36 +19,22 @@ Spin::Spin(Player &player) :
   _hit->add(15, Position(), _player.bones()[Bones::KNEE2]);
 }
 
-void	Spin::init(int v)
+void	Spin::init(int)
 {
-  if (v == 0)
-    {
-      _player.setAction(TEMPO, id());
-      _player[TEMPO]->set(10);
-    }
-  else
-    {
-      _hit->reset();
-      _count = 20;
-      _player = Position(6, 0);
-    }
+  _hit->reset();
+  _player = Position(7, 0);
 }
 
-bool	Spin::allow(int)
+bool	Spin::allow(int a)
 {
-  return (false);
+  return (a > MOVE);
 }
 
 IAction		*Spin::step()
 {
-  if (MPOS_MOD(_count, 50) == 0)
-    _hit->reset();
-  if (_count-- > 0 || _player.key(Key::X))
-    return (this);
-  _player = Position();
-  _player[TEMPO]->set(10);
-  _player[TEMPO]->init(INERTIE);
-  return (_player[TEMPO]);
+  if (_player.key[Key::HOR])
+    _player.orient(_player.key[Key::HOR]);
+  return (this);
 }
 
 bool		Spin::request()
@@ -56,15 +42,16 @@ bool		Spin::request()
 
   //if (_player.key[Key::X])
     //std::cout <<  _player.key[Key::X]<< "a"<< std::endl;
-  return (_player.key(Key::X) == 1 && _player.key[Key::VERT] > 0);
+  return (_player.key[Key::B] == 1 &&
+	  _player.key(Key::R) && _player.key[Key::VERT] == 1);
 }
 
 void		Spin::upBones()
 {
-  _bones.angle[Bones::FOOT1] = Angle(10, 0);
-  _bones.angle[Bones::FOOT2] = Angle(-5, 0);
-  _bones.angle[Bones::KNEE1] = Angle(90, 0);
-  _bones.angle[Bones::KNEE2] = Angle(-90, 0);
+  _bones.angle[Bones::FOOT1] = Angle(-90, 0);
+  _bones.angle[Bones::FOOT2] = Angle(90, 0);
+  _bones.angle[Bones::KNEE1] = Angle(130, 0);
+  _bones.angle[Bones::KNEE2] = Angle(-130, 0);
 
   _bones.angle[Bones::HAND1] = Angle(70, 0);
   _bones.angle[Bones::HAND2] = Angle(-60, 0);
@@ -77,7 +64,7 @@ void		Spin::upBones()
 
 void		Spin::print(Graphics &g) const
 {
-  if (!isActive())
+  if (!isActive() || true)
     return ;
   static const int	size = 30;
   int	color[] =

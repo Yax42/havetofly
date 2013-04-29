@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Wed Apr 24 17:58:22 2013 Brunier Jean
+## Last update Sun Apr 28 18:56:43 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -33,59 +33,63 @@ DINC	= .			\
 
 	  ##math/Circle.cpp
 	  ##math/Line.cpp
-SRCS	= math/Angle.cpp		\
-	  math/Math.cpp			\
-	  math/Distance.cpp		\
-	  math/Position.cpp		\
-	  math/Ratio.cpp		\
-	  math/RatioPosition.cpp	\
-	  graphics/Graphics.cpp		\
-	  graphics/APrintable.cpp	\
-	  graphics/Display.cpp		\
-	  util/Mutex.cpp		\
-	  util/Exception.cpp		\
-	  util/MyTime.cpp		\
-	  util/Wait.cpp			\
-	  util/ALoop.cpp		\
-	  util/Color.cpp		\
-	  hit/Hitbox.cpp		\
-	  hit/Hit.cpp			\
-	  human/Bones.cpp		\
-	  human/Player.cpp		\
-	  human/MovePlayer.cpp		\
-	  game/Game.cpp			\
-	  game/GameLoader.cpp		\
-	  input/Key.cpp			\
-	  input/Input.cpp		\
-	  input/Controler.cpp		\
-	  action/ActionFactory.cpp	\
-	  action/AAction.cpp		\
-	  action/PassiveAction.cpp	\
-	  action/passive/Gravity.cpp	\
-	  action/passive/Death.cpp	\
-	  action/passive/Inertie.cpp	\
-	  action/passive/Tech.cpp	\
-	  action/passive/Tempo.cpp	\
-	  action/passive/HitWall.cpp	\
-	  action/passive/HitCeiling.cpp	\
-	  action/active/HitLagg.cpp	\
-	  action/active/DoubleJump.cpp	\
-	  action/active/Shield.cpp	\
-	  action/active/HorDash.cpp	\
-	  action/active/StickCeiling.cpp\
-	  action/active/DownDash.cpp	\
-	  action/active/Spin.cpp	\
-	  action/active/StickWall.cpp	\
-	  action/throw/ThrowBall.cpp	\
-	  action/throw/ThrowShuriken.cpp\
-	  action/active/UpPunch.cpp	\
-	  action/active/WallJump.cpp	\
-	  action/passive/Move.cpp	\
-	  action/active/Stun.cpp	\
-	  throw/AThrowable.cpp		\
-	  throw/Ball.cpp		\
-	  throw/Shuriken.cpp		\
-	  menu/SetKeys.cpp		\
+SRCS	= math/Angle.cpp			\
+	  math/Math.cpp				\
+	  math/Distance.cpp			\
+	  math/Position.cpp			\
+	  math/Ratio.cpp			\
+	  math/RatioPosition.cpp		\
+	  graphics/Graphics.cpp			\
+	  graphics/APrintable.cpp		\
+	  graphics/Display.cpp			\
+	  util/Mutex.cpp			\
+	  util/Exception.cpp			\
+	  util/MyTime.cpp			\
+	  util/Wait.cpp				\
+	  util/ALoop.cpp			\
+	  util/Color.cpp			\
+	  hit/Hitbox.cpp			\
+	  hit/Hit.cpp				\
+	  human/Bones.cpp			\
+	  human/Player.cpp			\
+	  human/MovePlayer.cpp			\
+	  game/Game.cpp				\
+	  game/GameLoader.cpp			\
+	  input/Key.cpp				\
+	  input/Input.cpp			\
+	  input/Controler.cpp			\
+	  action/ActionFactory.cpp		\
+	  action/AAction.cpp			\
+	  action/PassiveAction.cpp		\
+	  action/passive/Gravity.cpp		\
+	  action/passive/Death.cpp		\
+	  action/passive/Inertie.cpp		\
+	  action/passive/Tech.cpp		\
+	  action/passive/Tempo.cpp		\
+	  action/passive/HitWall.cpp		\
+	  action/passive/HitCeiling.cpp		\
+	  action/active/HitLagg.cpp		\
+	  action/active/DoubleJump.cpp		\
+	  action/active/Shield.cpp		\
+	  action/active/HorDash.cpp		\
+	  action/active/StickCeiling.cpp	\
+	  action/active/DownDash.cpp		\
+	  action/active/Spin.cpp		\
+	  action/active/Curve.cpp		\
+	  action/active/StickWall.cpp		\
+	  action/throw/ThrowBall.cpp		\
+	  action/throw/ThrowShuriken.cpp	\
+	  action/throw/AutoGun.cpp		\
+	  action/throw/GunJump.cpp		\
+	  action/active/UpPunch.cpp		\
+	  action/active/WallJump.cpp		\
+	  action/passive/Move.cpp		\
+	  action/active/Stun.cpp		\
+	  throw/AThrowable.cpp			\
+	  throw/Ball.cpp			\
+	  throw/Blast.cpp			\
+	  throw/Shuriken.cpp			\
+	  menu/SetKeys.cpp			\
 	  main.cpp
 
 

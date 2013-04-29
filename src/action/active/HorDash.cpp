@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Sun Apr 28 16:02:36 2013 Brunier Jean
+// Last update Mon Apr 29 10:05:21 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
@@ -21,7 +21,7 @@ void	HorDash::init(int v)
   if (v == 0 && !PLANE_DEBUG)
     {
       _player.setAction(TEMPO, id());
-      _player[TEMPO]->set(15);
+      _player[TEMPO]->set(10);
     }
   else
     {
