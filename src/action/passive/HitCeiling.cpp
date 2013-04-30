@@ -5,19 +5,23 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 00:24:36 2013 Brunier Jean
-// Last update Mon Apr 22 17:42:56 2013 Brunier Jean
+// Last update Mon Apr 29 23:48:54 2013 Brunier Jean
 //
 
 #include "HitCeiling.hh"
 
 HitCeiling::HitCeiling(Player &player) : PassiveAction(player, IAction::HIT_CEILING)
 {
+  _count = 0;
 }
 
 void		HitCeiling::check()
 {
-  if (_player(Event::CEILING) && _player.currentAction() != STICK_CEILING)
+  if (_count)
+    _count--;
+  else if (_player(Event::CEILING) && _player.currentAction() != STICK_CEILING)
     {
+      _count = 5;
       if (_player[TECH]->val())
         {
 	  _player.sy(1);
@@ -25,7 +29,7 @@ void		HitCeiling::check()
 	}
       else
         {
-	  _player.setAction(IAction::STUN, 80);
+	  _player.setAction(IAction::STUN, 50);
 	  _player.sy(3);
 	  _player.sx(0);
 	}

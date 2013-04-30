@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:36 2013 Brunier Jean
-// Last update Mon Apr 29 14:42:00 2013 Brunier Jean
+// Last update Mon Apr 29 23:41:23 2013 Brunier Jean
 //
 
 #include "Stun.hh"
@@ -16,8 +16,7 @@ Stun::Stun(Player &player) : AAction(player, STUN, NULL)
 
 void	Stun::set(int val)
 {
-  if (_count < val)
-    _count = val;
+  _count += val;
 }
 
 int	Stun::val()
@@ -67,6 +66,8 @@ void		Stun::upBones()
   bones.angle[Bones::BODY] = Angle(MGRAD_CAP(MTIME * 5, -60, 120) + 180, 0);
 }
 
-void		Stun::print(Graphics &) const
+void		Stun::print(Graphics &g) const
 {
+  if (isActive())
+    g.circleLaid(_player.pos(), _count / 4, 0, 0);
 }

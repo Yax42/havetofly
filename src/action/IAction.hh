@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Sun Apr 28 18:55:32 2013 Brunier Jean
+// Last update Mon Apr 29 23:09:42 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -32,6 +32,7 @@ public:
 /* */ MOVE, /* ACTIVE STARTS HERE */
       AUTO_GUN,
       GUN_JUMP,
+      STUN,
       TEMPO,
       DOUBLE_JUMP,
       THROW_BALL,
@@ -45,7 +46,6 @@ public:
       UP_PUNCH,
       WALL_JUMP,
       DOWN_DASH,
-      STUN,
       CURVE,
 /* */ COUNT, /* End of the list */
       MOON_DASH,

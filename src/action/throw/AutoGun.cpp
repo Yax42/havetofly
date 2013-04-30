@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 27 22:41:50 2013 Brunier Jean
-// Last update Sun Apr 28 19:58:18 2013 Brunier Jean
+// Last update Mon Apr 29 23:44:54 2013 Brunier Jean
 //
 
 #include "AutoGun.hh"
@@ -107,11 +107,11 @@ void		AutoGun::print(Graphics &g) const
 	}
     }
   if (_open > 3)
-    g.line(_bones[Bones::FOOT2], _bones[Bones::KNEE2], 0xFFffFF, 3);
+    g.line(_bones[Bones::FOOT2], _bones[Bones::KNEE2], 0xFFffFF, 4);
   if (_open > 7)
-    g.line(_bones[Bones::KNEE2], _bones[Bones::BODY], 0xFFffFF, 3);
+    g.line(_bones[Bones::KNEE2], _bones[Bones::BODY], 0xFFffFF, 4);
   if (_open > 11)
-    g.line(_bones[Bones::KNEE1], _bones[Bones::BODY], 0xFFffFF, 3);
+    g.line(_bones[Bones::KNEE1], _bones[Bones::BODY], 0xFFffFF, 4);
   if (_open > 15)
-    g.line(_bones[Bones::FOOT1], _bones[Bones::KNEE1], 0xFFffFF, 3);
+    g.line(_bones[Bones::FOOT1], _bones[Bones::KNEE1], 0xFFffFF, 4);
 }

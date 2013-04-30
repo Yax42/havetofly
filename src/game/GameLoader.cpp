@@ -1,17 +1,18 @@
 //
-// GameLoader.cpp for game in /home/diallo_e/tmp/havetofly/src/game
+// GameLoader.cpp for game in /home/brunie_j/local/my/havetofly/src/game
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Wed Apr 24 17:03:09 2013 aliou diallo
+// Last update Mon Apr 29 23:22:11 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"
 #include "Input.hh"
 #include "Game.hh"
 #include "Input.hh"
+#include "const.hh"
 #include "Mutex.hh"
 
 
@@ -35,6 +36,8 @@ bool	GameLoader::iterLoop()
   Game		*game = Game::create(_h, _w);
 
   _Input.update();
+  if (DEBUG & 256)
+    game->add(Position(400, 256), 100, _Input.getKBKey(),  color[5]);
   for (int i = 1; i <= _Input.nbCtrl(); i++)
     game->add(Position(400, 50 + i * 200), i, _Input.getCtrlKey(i - 1),  color[i]);
   game->add(Position(400, 50), 0, _Input.getKBKey(), color[0]);
