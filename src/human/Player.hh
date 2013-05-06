@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:28:59 2013 Brunier Jean
-// Last update Sun Apr 28 15:27:57 2013 Brunier Jean
+// Last update Sun May 05 18:42:09 2013 Brunier Jean
 //
 
 #ifndef PLAYER_HH_
@@ -69,6 +69,7 @@ public:
   int			operator()(int event);
   //int			key(int k);
   void			orient(int o);
+  void			tp(const Position &dir);
 
   /* SPEED */
   const Ratio		&sx() const;

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 00:24:36 2013 Brunier Jean
-// Last update Mon Apr 29 23:48:54 2013 Brunier Jean
+// Last update Sun May 05 19:09:53 2013 Brunier Jean
 //
 
 #include "HitCeiling.hh"
@@ -21,7 +21,7 @@ void		HitCeiling::check()
     _count--;
   else if (_player(Event::CEILING) && _player.currentAction() != STICK_CEILING)
     {
-      _count = 5;
+      _count = 3;
       if (_player[TECH]->val())
         {
 	  _player.sy(1);

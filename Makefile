@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Sun Apr 28 18:56:43 2013 Brunier Jean
+## Last update Sun May 05 21:50:00 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -24,7 +24,10 @@ DINC	= .			\
 	  game			\
 	  action/passive	\
 	  action/active		\
-	  action/throw		\
+	  action/active/a	\
+	  action/active/b	\
+	  action/active/x	\
+	  action/active/y	\
 	  throw			\
 	  hit			\
 	  action
@@ -61,6 +64,7 @@ SRCS	= math/Angle.cpp			\
 	  action/ActionFactory.cpp		\
 	  action/AAction.cpp			\
 	  action/PassiveAction.cpp		\
+						\
 	  action/passive/Gravity.cpp		\
 	  action/passive/Death.cpp		\
 	  action/passive/Inertie.cpp		\
@@ -68,23 +72,32 @@ SRCS	= math/Angle.cpp			\
 	  action/passive/Tempo.cpp		\
 	  action/passive/HitWall.cpp		\
 	  action/passive/HitCeiling.cpp		\
-	  action/active/HitLagg.cpp		\
-	  action/active/DoubleJump.cpp		\
-	  action/active/Shield.cpp		\
-	  action/active/HorDash.cpp		\
-	  action/active/StickCeiling.cpp	\
-	  action/active/DownDash.cpp		\
-	  action/active/Spin.cpp		\
-	  action/active/Curve.cpp		\
-	  action/active/StickWall.cpp		\
-	  action/throw/ThrowBall.cpp		\
-	  action/throw/ThrowShuriken.cpp	\
-	  action/throw/AutoGun.cpp		\
-	  action/throw/GunJump.cpp		\
-	  action/active/UpPunch.cpp		\
-	  action/active/WallJump.cpp		\
 	  action/passive/Move.cpp		\
+						\
 	  action/active/Stun.cpp		\
+	  action/active/HitLagg.cpp		\
+	  action/active/StickCeiling.cpp	\
+	  action/active/StickWall.cpp		\
+						\
+	  action/active/a/WallJump.cpp		\
+	  action/active/a/DoubleJump.cpp	\
+						\
+	  action/active/b/Shield.cpp		\
+	  action/active/b/HorDash.cpp		\
+	  action/active/b/HorTP.cpp		\
+	  action/active/b/DownDash.cpp		\
+	  action/active/b/Spin.cpp		\
+	  action/active/b/Curve.cpp		\
+	  action/active/b/UpPunch.cpp		\
+						\
+	  action/active/y/ThrowBall.cpp		\
+	  action/active/y/AutoGun.cpp		\
+	  action/active/y/GunJump.cpp		\
+						\
+	  action/active/x/ThrowShuriken.cpp	\
+	  action/active/x/Television.cpp	\
+	  action/active/x/EffectiveTV.cpp	\
+						\
 	  throw/AThrowable.cpp			\
 	  throw/Ball.cpp			\
 	  throw/Blast.cpp			\

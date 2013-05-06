@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 23 11:09:14 2013 Brunier Jean
-// Last update Sat Apr 27 23:26:17 2013 Brunier Jean
+// Last update Mon May 06 17:47:50 2013 Brunier Jean
 //
 
 #include "Shuriken.hh"
@@ -13,7 +13,7 @@
 Shuriken::Shuriken(const Player &player) :
 	AThrowable(player.pos(),
 	player.closePos(),
-	  60, Position(1, 1), player, Hit::NONE)
+	  40, Position(1, 1), player, Hit::NONE, true)
 {
   _speed = RatioPosition(_speed.angle().betweenX(Angle(35, 0), _player.orient()), 7);
   _hit.add(12, Position(), _pos);

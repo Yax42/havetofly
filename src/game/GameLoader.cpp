@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Mon Apr 29 23:22:11 2013 Brunier Jean
+// Last update Mon May 06 17:34:03 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"
@@ -18,7 +18,10 @@
 
 GameLoader::GameLoader(int h, int w) : ALoop(2), _h(h), _w(w), _ret(true)
 {
+  for (int i = 0; i < 100; i++)
+    _score[i] = 0;
   (void) _ret;
+  _max = 0;
 }
 
 bool	GameLoader::iterLoop()
@@ -43,14 +46,17 @@ bool	GameLoader::iterLoop()
   game->add(Position(400, 50), 0, _Input.getKBKey(), color[0]);
   ret = game->loop();
   int cpt = 0;
+  //std::cout << "\r";
   for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
   {
     cpt++;
     if ((*i)->alive())
       {
-	std::cout << cpt << std::endl;
+	_score[cpt]++;
       }
+    std::cout << _score[cpt] << " ";
   }
+  std::cout << std::endl;
   Game::destroy();
   return (ret);
 }

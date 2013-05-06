@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 10:37:50 2013 Brunier Jean
-// Last update Sun Apr 28 18:57:01 2013 Brunier Jean
+// Last update Sun May 05 21:49:09 2013 Brunier Jean
 //
 
 #include "ActionFactory.hh"
@@ -36,6 +36,9 @@
 #include "Curve.hh"
 #include "AutoGun.hh"
 #include "GunJump.hh"
+#include "HorTP.hh"
+#include "Television.hh"
+#include "EffectiveTV.hh"
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
@@ -87,5 +90,11 @@ IAction		*ActionFactory::get(int action, Player &p)
     return (new AutoGun(p));
   if (action == IAction::GUN_JUMP)
     return (new GunJump(p));
+  if (action == IAction::HOR_TP)
+    return (new HorTP(p));
+  if (action == IAction::EFFECTIVE_TV)
+    return (new EffectiveTV(p));
+  if (action == IAction::TELEVISION)
+    return (new Television(p));
   throw(Exception("Action not exisiting."));
 }

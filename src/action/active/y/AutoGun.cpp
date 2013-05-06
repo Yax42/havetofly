@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 27 22:41:50 2013 Brunier Jean
-// Last update Mon Apr 29 23:44:54 2013 Brunier Jean
+// Last update Sun May 05 13:52:53 2013 Brunier Jean
 //
 
 #include "AutoGun.hh"
@@ -58,6 +58,23 @@ bool		AutoGun::request()
 
 void		AutoGun::upBones()
 {
+  /*
+  _bones.angle[Bones::FOOT1] = Angle(90, 0);
+  _bones.angle[Bones::KNEE1] = Angle(0, 0);
+  _bones.angle[Bones::HAND1] = Angle(-90, 0);
+  _bones.angle[Bones::ELBOW1] = Angle(180, 0);
+
+  _bones.angle[Bones::FOOT2] = ((_player.orient() == 1) ?
+      _angle.mirrorX() - Angle(90, 0) :
+      _angle + Angle(90, 0));
+
+  _bones.angle[Bones::KNEE2] = Angle(180, 0);
+  _bones.angle[Bones::HAND2] = Angle(90, 0);
+  _bones.angle[Bones::ELBOW2] = Angle(0, 0);
+
+  _bones.angle[Bones::HEAD] = Angle(-90, 0);
+  _bones.angle[Bones::BODY] = Angle(0, 0);
+      */
   _bones.angle[Bones::FOOT1] = Angle(-70, 0);
   _bones.angle[Bones::FOOT2] = Angle(0, 0);
   _bones.angle[Bones::KNEE1] = Angle(70, 0);

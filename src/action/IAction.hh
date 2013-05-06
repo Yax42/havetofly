@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 20:19:08 2013 Brunier Jean
-// Last update Mon Apr 29 23:09:42 2013 Brunier Jean
+// Last update Sun May 05 21:48:38 2013 Brunier Jean
 //
 
 #ifndef IACTION_HH_
@@ -38,8 +38,11 @@ public:
       THROW_BALL,
       THROW_SHURIKEN,
       TECH,
+      EFFECTIVE_TV,
+      TELEVISION,
       SHIELD,
       SPIN,
+      HOR_TP,
       HOR_DASH,
       STICK_CEILING,
       STICK_WALL,
@@ -48,7 +51,6 @@ public:
       DOWN_DASH,
       CURVE,
 /* */ COUNT, /* End of the list */
-      MOON_DASH,
     };
   virtual ~IAction(){}
   virtual bool		allow(int a) = 0;

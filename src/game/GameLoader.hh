@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:22 2013 Brunier Jean
-// Last update Sun Apr 21 20:10:37 2013 Brunier Jean
+// Last update Mon May 06 17:25:20 2013 Brunier Jean
 //
 
 #ifndef GAMELOADER_HH_
@@ -21,6 +21,8 @@ private:
   int		_h;
   int		_w;
   bool		_ret;
+  int		_score[100];
+  int		_max;
 
 public:
   virtual ~GameLoader() {}

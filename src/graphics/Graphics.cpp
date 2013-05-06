@@ -93,11 +93,11 @@ void		Graphics::rectangle(Position const &pos1, Position const &pos3, const Colo
   Graphics::line(pos1, pos4, color);
 }
 
-void		Graphics::rectangleLaid(Position const &pos1, Position const &pos3, const Color &color)
+void		Graphics::rectangleLaid(Position const &pos1, Position const &pos3, const Color &color1, const Color &color2)
 {
-  rectangle(pos1 - 1, pos3 - 1, color);
-  rectangle(pos1, pos3, 0xFFFFFF);
-  rectangle(pos1 + 1, pos3 + 1, color);
+  rectangle(pos1 - 1, pos3 - 1, color1);
+  rectangle(pos1, pos3, color2);
+  rectangle(pos1 + 1, pos3 + 1, color1);
 }
 
 void		Graphics::rectangleFull(Position const &pos1, Position const &pos3, const Color &color)

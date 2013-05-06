@@ -6,7 +6,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Fri Apr 12 22:50:06 2013 Brunier Jean
-// Last update Mon Apr 29 22:58:16 2013 Brunier Jean
+// Last update Mon May 06 17:36:44 2013 Brunier Jean
 //
 
 #include <cstdlib>
@@ -67,6 +67,19 @@ void		Player::orient(int o)
   _orient = o;
 }
 
+void		Player::tp(const Position &dir)
+{
+  _pos += dir;
+  if (_pos.x() <= BODY_SIZE)
+      _pos.x(BODY_SIZE);
+  else if (_pos.x() >= Game::w() - BODY_SIZE)
+      _pos.x(Game::w() - BODY_SIZE);
+  if (_pos.y() <= BODY_SIZE)
+      _pos.y(BODY_SIZE);
+  else if (_pos.y() >= Game::h() + Game::deep)
+      _pos.y(Game::h() + Game::deep);
+}
+
 /************/
 /*  PROCESS */
 /************/
@@ -107,10 +120,11 @@ void		Player::procHit()
       else
 	_event[Event::HIT] = true;
       tmp = _hit->go(*this);
-      if (tmp > 0)
+      if (tmp != 0)
         {
 	  _doing = _action[IAction::STUN];
-	  _doing->init(tmp);
+	  if (tmp != -1)
+	    _doing->init(tmp);
 	}
       else if (!_hit->isThrowable())
         _doing = _action[IAction::INERTIE];
@@ -148,7 +162,6 @@ void		Player::hit(const Hit *hit)
 /**********/
 /* ACTION */
 /**********/
-
 void	Player::doThrow(IThrowable *throwable)
 {
   _throwables.push_back(throwable);

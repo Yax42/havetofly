@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:00:20 2013 Brunier Jean
-// Last update Fri Apr 19 19:30:03 2013 Brunier Jean
+// Last update Sun May 05 19:51:19 2013 Brunier Jean
 //
 
 #include "Move.hh"
@@ -28,8 +28,6 @@ bool		Move::request()
 	_player.orient(-1);
       else if (_player.key(Key::HOR) > 0)
 	_player.orient(1);
-
-
       if (_player.sx() > MAX)
 	_player.sx(MAX);
       if (_player.sx() < MIN)

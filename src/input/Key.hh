@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:21:14 2013 Brunier Jean
-// Last update Sun Apr 21 02:55:14 2013 Brunier Jean
+// Last update Sun May 05 20:37:54 2013 Brunier Jean
 //
 
 #ifndef KEY_HH_
@@ -39,6 +39,7 @@ public:
   int	operator[](int i) const;
   int	operator()(int i) const;
   void	update();
+  int	cur() const;
   int	*&ptr(int i);
 };
 

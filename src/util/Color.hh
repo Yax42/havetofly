@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 18:01:22 2013 Brunier Jean
-// Last update Sun Apr 28 00:32:10 2013 Brunier Jean
+// Last update Sun May 05 22:32:49 2013 Brunier Jean
 //
 
 #ifndef COLOR_HH_
@@ -13,6 +13,13 @@
 
 class Color
 {
+public:
+  static const Color	RED;
+  static const Color	YELLOW;
+  static const Color	GREEN;
+  static const Color	BLUE;
+  static const Color	WHITE;
+  static const Color	BLACK;
 public:
   static const Color	fire[4];
 public:

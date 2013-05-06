@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 01:23:23 2013 Brunier Jean
-// Last update Sat Apr 27 23:24:21 2013 Brunier Jean
+// Last update Sun May 05 21:57:58 2013 Brunier Jean
 //
 
 #include "Math.hh"
@@ -17,9 +17,9 @@
 const int	AThrowable::SIZE = 64;
 
 AThrowable::AThrowable(const Position &pos, const RatioPosition &speed,
-  int stun, const Position &hitSpeed, const Player &player, int type) :
+  int stun, const Position &hitSpeed, const Player &player, int type, bool addStun) :
 	_pos(pos), _speed(speed), _alive(true), _orient(MSIGN(speed.x())),
-  _hit(stun, hitSpeed, _orient, 10, true, type), _player(player)
+  _hit(stun, hitSpeed, _orient, 10, true, type, addStun), _player(player)
 {
 
 }

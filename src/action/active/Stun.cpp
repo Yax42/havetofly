@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 23:22:36 2013 Brunier Jean
-// Last update Mon Apr 29 23:41:23 2013 Brunier Jean
+// Last update Mon May 06 00:06:20 2013 Brunier Jean
 //
 
 #include "Stun.hh"
@@ -16,7 +16,10 @@ Stun::Stun(Player &player) : AAction(player, STUN, NULL)
 
 void	Stun::set(int val)
 {
-  _count += val;
+  if (val == -1)
+    _count = 0;
+  else
+    _count += val;
 }
 
 int	Stun::val()
@@ -26,7 +29,8 @@ int	Stun::val()
 
 void	Stun::init(int v)
 {
-  _count += v;
+  if (v != 0)
+    _count = v;
 }
 
 bool	Stun::allow(int a)
@@ -43,8 +47,11 @@ IAction		*Stun::step()
 
 bool		Stun::request()
 {
-  if (DEBUG & 64)
-    return (_player.key[Key::R] == 1);
+  if (DEBUG & 64 && _player.key[Key::R] == 1)
+  {
+    init(100);
+    return (true);
+  }
   return (false);
 }
 
@@ -68,6 +75,6 @@ void		Stun::upBones()
 
 void		Stun::print(Graphics &g) const
 {
-  if (isActive())
+  if (_count)
     g.circleLaid(_player.pos(), _count / 4, 0, 0);
 }

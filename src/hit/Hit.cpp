@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 11 00:22:03 2013 Brunier Jean
-// Last update Tue Apr 23 23:02:02 2013 Brunier Jean
+// Last update Mon May 06 17:35:59 2013 Brunier Jean
 //
 
 #include <algorithm>
@@ -14,9 +14,9 @@
 #include "Player.hh"
 
 Hit::Hit(int stun, RatioPosition const &speed, const int &orient,
-    int hitLagg, bool isThrowable, int type) :
+    int hitLagg, bool isThrowable, int type, bool addStun) :
 	_stun(stun), _speed(speed), _orient(orient), _hitLagg(hitLagg),
-	_isThrowable(isThrowable), _type(type)
+	_isThrowable(isThrowable), _type(type), _addStun(addStun)
 {
 }
 
@@ -41,6 +41,11 @@ int	Hit::go(Player &ennemy) const
 	   Distance(ennemy.closeWall())));
     }
   ennemy[IAction::HIT_LAGG]->init(_hitLagg);
+  if (_addStun)
+    {
+      ennemy[IAction::STUN]->set(_stun);
+      return (-1);
+    }
   return (_stun);
 }
 

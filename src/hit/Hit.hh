@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 22:46:44 2013 Brunier Jean
-// Last update Tue Apr 23 18:35:52 2013 Brunier Jean
+// Last update Sun May 05 21:56:03 2013 Brunier Jean
 //
 
 #ifndef HIT_HH_
@@ -24,7 +24,7 @@ public:
     {
       ORIENT,
       NONE,
-      WALL
+      WALL,
     };
 private:
   int				_stun;
@@ -33,12 +33,13 @@ private:
   int				_hitLagg;
   bool				_isThrowable;
   int				_type;
+  bool				_addStun;
   std::list<Hitbox>		_hb;
   std::list<Player const*>	_players;
 
 public:
   Hit(int stun, const RatioPosition &speed, const int &orient,
-      int hitLagg, bool isThrowable, int type);
+      int hitLagg, bool isThrowable, int type, bool addStun = false);
   ~Hit() {}
   bool	isThrowable() const;
   int	go(Player &ennemy) const;

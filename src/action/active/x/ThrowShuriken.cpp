@@ -1,11 +1,11 @@
 //
-// ThrowShuriken.cpp for throw in /home/brunie_j/local/my/havetofly/src/action/throw
+// ThrowShuriken.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 23 11:58:18 2013 Brunier Jean
-// Last update Wed Apr 24 13:40:33 2013 Brunier Jean
+// Last update Sun May 05 22:09:24 2013 Brunier Jean
 //
 
 #include "ThrowShuriken.hh"
@@ -39,11 +39,7 @@ IAction		*ThrowShuriken::step()
 
 bool		ThrowShuriken::request()
 {
-  return ((!_open || !_count) && _player.key[Key::X] == 1);
-}
-
-void		ThrowShuriken::upBones()
-{
+  return ((!_open || !_count) && _player.key[Key::X] == 1 && !_player.key[Key::HOR] && !_player.key[Key::VERT]);
 }
 
 void		ThrowShuriken::check()
@@ -65,6 +61,13 @@ void		ThrowShuriken::set(int)
 int		ThrowShuriken::val()
 {
   return (_open <= _time && _count <= _time);
+}
+
+/************/
+/* GRAPHICS */
+/************/
+void		ThrowShuriken::upBones()
+{
 }
 
 void		ThrowShuriken::print(Graphics &g) const

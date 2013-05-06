@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 01:23:19 2013 Brunier Jean
-// Last update Tue Apr 23 20:12:26 2013 Brunier Jean
+// Last update Sun May 05 21:57:31 2013 Brunier Jean
 //
 
 #ifndef ATHROWABLE_HH_
@@ -23,7 +23,7 @@
 class AThrowable : public IThrowable
 {
 public:
-static const int	SIZE;
+  static const int	SIZE;
 protected:
   Position		_pos;
   RatioPosition		_speed;
@@ -39,7 +39,8 @@ private:
 public:
   virtual ~AThrowable(){}
   AThrowable(const Position &pos, const RatioPosition &speed,
-      int stun, const Position &hitSpeed, const Player &player, int type = Hit::ORIENT);
+      int stun, const Position &hitSpeed, const Player &player,
+      int type = Hit::ORIENT, bool addStun = false);
   bool			isAlive() const;
   void			init();
   void			proc();

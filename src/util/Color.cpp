@@ -5,10 +5,17 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Mon Apr 22 18:01:03 2013 Brunier Jean
-// Last update Sun Apr 28 00:34:52 2013 Brunier Jean
+// Last update Sun May 05 22:30:16 2013 Brunier Jean
 //
 
 #include "Color.hh"
+
+const Color	Color::RED = Color(255, 0, 0);
+const Color	Color::YELLOW = Color(255, 255, 0);
+const Color	Color::GREEN = Color(0, 255, 0);
+const Color	Color::BLUE = Color(0, 0, 255);
+const Color	Color::WHITE = Color(255, 255, 255);
+const Color	Color::BLACK = Color(0, 0, 0);
 
 const Color	Color::fire[4] =
     {
@@ -22,7 +29,7 @@ Color::Color(int col) : r((col >> 16) & 0xFF), g((col >> 8) & 0xFF), b(col & 0xF
 {
 }
 
-Color::Color(int red, int blue, int green) : r(red), g(green), b(blue)
+Color::Color(int red, int green, int blue) : r(red), g(green), b(blue)
 {
 }
 

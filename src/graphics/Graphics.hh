@@ -34,7 +34,7 @@ public:
   void	square(Position const &pos1, Position const &pos3, const Color &color);
   void	rectangle(Position const &pos1, Position const &pos3, const Color &color);
   void	rectangleFull(Position const &pos1, Position const &pos3, const Color &color);
-  void	rectangleLaid(Position const &pos1, Position const &pos3, const Color &color);
+  void	rectangleLaid(Position const &pos1, Position const &pos3, const Color &color, const Color &color2 = 0xFFFFFF);
 /* CIRCLE */
   void	sponge(Position const &pos, Distance const &ray, int nb,
       const Distance &size, const Angle &angle, const Color &color);

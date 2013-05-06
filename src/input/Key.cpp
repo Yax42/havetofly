@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:26:10 2013 Brunier Jean
-// Last update Wed Apr 24 18:41:13 2013 Brunier Jean
+// Last update Sun May 05 21:59:15 2013 Brunier Jean
 //
 
 #include "Math.hh"
@@ -43,6 +43,18 @@ void	Key::update()
     }
 }
 
+int	Key::cur() const
+{
+  if (_delta[A] == 1)
+    return (A);
+  if (_delta[B] == 1)
+    return (B);
+  if (_delta[X] == 1)
+    return (X);
+  if (_delta[Y] == 1)
+    return (Y);
+  return (0);
+}
 int	*&Key::ptr(int i)
 {
   return (_val[i]);

@@ -1,0 +1,114 @@
+//
+// Television.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
+//
+// Made by Brunier Jean
+// Login   <brunie_j@epitech.net>
+//
+// Started on  Sun May 05 19:28:37 2013 Brunier Jean
+// Last update Sun May 05 20:21:01 2013 Brunier Jean
+//
+
+#include "Television.hh"
+
+Television::Television(Player &player) : AAction(player, TELEVISION,
+    new Hit(0, Position(), player.orient(), 0, false, Hit::ORIENT))
+{
+}
+
+void	Television::init(int)
+{
+  _cpt = 0;
+  _hit = false;
+  _count = 90;
+  _patern[0] = -1;
+  if (_player.key(Key::HOR) < 0)
+    _player.orient(-1);
+  else if (_player.key(Key::HOR) > 0)
+    _player.orient(1);
+  _player = Position();
+}
+
+bool	Television::allow(int)
+{
+  return (false);
+}
+
+IAction		*Television::step()
+{
+  return (_player[EFFECTIVE_TV]);
+}
+
+bool		Television::request()
+{
+  return (_player.key[Key::X] == 1 && _player.key[Key::HOR]);
+}
+
+bool	Television::hit(Player &ennemy)
+{
+  if (_hit == NULL)
+    return (false);
+  if (_hit->focus(ennemy))
+    {
+      if (ennemy.currentAction() != IAction::SHIELD)
+        ennemy.hit(_hit);
+      return (true);
+    }
+  return (false);
+}
+
+void		Television::check()
+{
+}
+
+void		Television::set(int)
+{
+}
+
+int		Television::val()
+{
+  return (_count);
+}
+
+/************/
+/* GRAPHICS */
+/************/
+void		Television::upBones()
+{
+  _bones.angle[Bones::FOOT1] = Angle(0, 0);
+  _bones.angle[Bones::FOOT2] = Angle(0, 0);
+  _bones.angle[Bones::KNEE1] = Angle(90, 0);
+  _bones.angle[Bones::KNEE2] = Angle(80, 0);
+
+  _bones.angle[Bones::HAND1] = Angle(0, 0);
+  _bones.angle[Bones::HAND2] = Angle(0, 0);
+  _bones.angle[Bones::ELBOW1] = Angle(90, 0);
+  _bones.angle[Bones::ELBOW2] = Angle(80, 0);
+
+  _bones.angle[Bones::HEAD] = Angle(0, 0);
+  _bones.angle[Bones::BODY] = Angle(0, 0);
+}
+
+void		Television::print(Graphics &g) const
+{
+  if (isActive())
+    {
+      Position		pos1 = player.pos() + Position(-30, (_player.orient() == -1 ? -130 : 30));
+      Position		pos2 = pos1 + Position(100, 100);
+
+      g.rectangle(pos1, pos2, 0x0000FF);
+      g.rectangle(pos1 - Position(2, 2), pos2 + Position(2, 2), 0x0000FF);
+      for (int i = 0; i < 10; i++)
+	line(Position(_count + rand() % 10, rand() % 100),
+	     Position(_count + rand() % 10, rand() % 100),
+	     0x0000FF);
+      if (_patern.size() != 0)
+        {
+	  if (_patern.front() == Key::A)
+  	    g.circleLaid(pos1 + Position(70, 50), 20, Color::RED, Color::RED);
+	  else if (_patern.front() == Key::A)
+	  else if (_patern.front() == Key::A)
+	  else if (_patern.front() == Key::A)
+	  if (_patern.front() == Key::A)
+	}
+    }
+}
