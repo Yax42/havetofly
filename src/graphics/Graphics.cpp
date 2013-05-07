@@ -14,11 +14,22 @@
 #include "Exception.hh"
 #include "Math.hh"
 
-# define	GRADUAL_CAP(x, max)	(((x) % (max * 2) >= max) ?	\
+#define	GRADUAL_CAP(x, max)		(((x) % (max * 2) >= max) ?	\
    					max - ((x) % (max) - 1 :	\
 					(x) % (max))
 
-Graphics::Graphics(int h, int w) : _h(h), _w(w)
+#define printPixelUnsafe(y, x, color)					\
+  {									\
+    *(static_cast<int *> (_screen->pixels) + y *			\
+      _screen->pitch / 4 + x) = color;					\
+  }
+
+Graphics::~Graphics()
+{
+  SDL_Quit();
+}
+
+Graphics::Graphics(int h, int w) : _h(h), _w(w), _minX(0), _maxX(w)
 {
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     throw(Exception("Cannot init SDL"));
@@ -51,11 +62,6 @@ void	Graphics::switchFS()
     _screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
 }
 
-Graphics::~Graphics()
-{
-  SDL_Quit();
-}
-
 void	Graphics::printScreen()
 {
   SDL_Flip(_screen);
@@ -66,6 +72,22 @@ void	Graphics::resetScreen(const Color &color)
   SDL_FillRect(_screen, NULL, color.getInt());
 }
 
+void	Graphics::resetLocal(const Color &color)
+{
+  for (int j = 0; j < _screen->h; j++)
+    for (int i = _minX; i < _maxX; i++)
+      printPixelUnsafe(j, i, color.getInt());
+
+}
+
+void	Graphics::setCap(int min, int max)
+{
+  _minX = min;
+  if (max == 0)
+    _maxX = _screen->w;
+  else
+    _maxX = max;
+}
 
 /**********/
 /* SQUARE */
@@ -223,11 +245,22 @@ void		Graphics::bend(Position const &pos1, const Distance &ray1,
   curveLine(pos1, Circle(pos1, ray1) == Circle(pos2, ray2), pos2, color);
 }*/
 
+/*********/
+/* PIXEL */
+/*********/
 void	Graphics::printPixel(Position const &pos, const Color &color)
 {
-  if (pos.x() >= 0 && pos.x() <_screen->w && pos.y() >= 0 && pos.y() <_screen->h)
+  if (pos.x() >= 0 && pos.x() + _minX < _maxX && pos.y() >= 0 && pos.y() < _screen->h)
   {
-    *(static_cast<int *> (_screen->pixels) + pos.y() * _screen->pitch / 4 + pos.x()) = color.getInt();
+    *(static_cast<int *> (_screen->pixels) + pos.y() *
+	_screen->pitch / 4 + pos.x() + _minX) = color.getInt();
   }
-//  std::cout << pos.x() << " " << pos.y() << std::endl;
 }
+
+/*
+void	Graphics::printPixelUnsafe(Position const &pos, const Color &color)
+{
+  *(static_cast<int *> (_screen->pixels) + pos.y() *
+    _screen->pitch / 4 + pos.x()) = color.getInt();
+}
+*/

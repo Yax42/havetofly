@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Sat Apr 27 10:10:36 2013 Brunier Jean
+// Last update Tue May 07 00:32:53 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -103,7 +103,7 @@ bool		Game::iterLoop()
 
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
     (*i)->upKeys();
-  if (_Input(SDLK_LALT) && _Input(SDLK_k))
+  if (Input_(SDLK_LALT) && Input_(SDLK_k))
     {
       switchPrint(_setKeys);
       killAll();
@@ -158,12 +158,14 @@ int	Game::h()
 /*************/
 void	Game::print(Graphics &g)
 {
+  g.resetScreen(0);
+  g.setCap(256, 512 + 256);
   if ((DEBUG & 128) == 0)
-    g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
+    g.resetLocal(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
   for (Players::iterator i = _players.begin(); i != _players.end(); ++i)
     {
       if ((*i)->alive())
 	(*i)->print(g);
     }
-
+  g.setCap();
 }

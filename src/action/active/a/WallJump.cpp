@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Tue Apr 16 21:44:12 2013 Brunier Jean
-// Last update Sun May 05 19:50:06 2013 Brunier Jean
+// Last update Tue May 07 00:56:37 2013 Brunier Jean
 //
 
 #include "WallJump.hh"
@@ -19,9 +19,9 @@ void	WallJump::init(int)
 //  _player[IAction::DOUBLE_JUMP]->set();
   _count = 50;
   if (_player(Event::LEFT_WALL))
-    _player = Position(-3, 2); //2/3
+    _player = Position(-2.5, 2); //2/3
   else if (_player(Event::RIGHT_WALL))
-    _player = Position(-3, -2); //2/3
+    _player = Position(-2.5, -2); //2/3
   else
     throw(Exception("Wall jump without sticking the wall."));
 }

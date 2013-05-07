@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Mon May 06 17:34:03 2013 Brunier Jean
+// Last update Tue May 07 00:19:06 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"
@@ -14,7 +14,6 @@
 #include "Input.hh"
 #include "const.hh"
 #include "Mutex.hh"
-
 
 GameLoader::GameLoader(int h, int w) : ALoop(2), _h(h), _w(w), _ret(true)
 {
@@ -38,13 +37,15 @@ bool	GameLoader::iterLoop()
   bool		ret;
   Game		*game = Game::create(_h, _w);
 
-  _Input.update();
+  Input_.update();
   if (DEBUG & 256)
-    game->add(Position(400, 256), 100, _Input.getKBKey(),  color[5]);
-  for (int i = 1; i <= _Input.nbCtrl(); i++)
-    game->add(Position(400, 50 + i * 200), i, _Input.getCtrlKey(i - 1),  color[i]);
-  game->add(Position(400, 50), 0, _Input.getKBKey(), color[0]);
+    game->add(Position(400, 256), 100, Input_.getKBKey(),  color[5]);
+  for (int i = 1; i <= Input_.nbCtrl(); i++)
+    game->add(Position(400, 50 + i * 200), i, Input_.getCtrlKey(i - 1),  color[i]);
+  if (DEBUG || Input_.nbCtrl() == 0)
+    game->add(Position(400, 50), 0, Input_.getKBKey(), color[0]);
   ret = game->loop();
+
   int cpt = 0;
   //std::cout << "\r";
   for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)

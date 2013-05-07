@@ -1,11 +1,11 @@
 //
-// Television.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
+// Television.cpp for b in /home/brunie_j/local/my/havetofly/src/action/active/b
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun May 05 19:28:37 2013 Brunier Jean
-// Last update Mon May 06 17:20:15 2013 Brunier Jean
+// Last update Tue May 07 00:43:03 2013 Brunier Jean
 //
 
 #include "Television.hh"
@@ -21,6 +21,7 @@ Television::Television(Player &player) : AAction(player, TELEVISION,
 
 void	Television::init(int)
 {
+  _player[SHIELD]->set();
   _hit->reset();
   _patern.clear();
   _didHit = false;
@@ -39,13 +40,13 @@ bool	Television::allow(int)
 
 IAction		*Television::step()
 {
-  if (_count != 90 && _count > 6 && _player.key.cur() &&
+  if (_count != 90 && _count > 15 && _player.key.cur() &&
       (_patern.size() == 0 ||
        _player.key.cur() != _patern.back()))
     _patern.push_back(_player.key.cur());
   if (_count--)
     return (this);
-  if (_didHit || true)
+  if (_didHit)
     {
       reinterpret_cast<EffectiveTV *>
 	(_player[EFFECTIVE_TV])->setPatern(_patern);
@@ -57,7 +58,9 @@ IAction		*Television::step()
 
 bool		Television::request()
 {
-  return (_player.key[Key::X] == 1 && _player.key[Key::HOR]);
+  return (_player.key[Key::B] == 1 &&
+      _player.key[Key::HOR] &&
+      _player[SHIELD]->val());
 }
 
 bool	Television::hit(Player &ennemy)

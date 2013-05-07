@@ -1,11 +1,11 @@
 //
-// Spin.cpp for active in /home/brunie_j/local/my/havetofly/src/action/active
+// Spin.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 00:15:31 2013 Brunier Jean
-// Last update Mon Apr 29 14:48:08 2013 Brunier Jean
+// Last update Mon May 06 22:33:55 2013 Brunier Jean
 //
 
 #include "Spin.hh"
@@ -42,7 +42,7 @@ bool		Spin::request()
 
   //if (_player.key[Key::X])
     //std::cout <<  _player.key[Key::X]<< "a"<< std::endl;
-  return (_player.key[Key::B] == 1 &&
+  return (_player.key[Key::X] == 1 &&
 	  _player.key(Key::R) && _player.key[Key::VERT] == 1);
 }
 

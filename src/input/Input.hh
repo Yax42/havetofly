@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:54 2013 Brunier Jean
-// Last update Sun Apr 21 19:26:23 2013 Brunier Jean
+// Last update Mon May 06 23:34:55 2013 Brunier Jean
 //
 
 #ifndef INPUT_HH_
@@ -17,7 +17,7 @@
 # include "Key.hh"
 # include "Controler.hh"
 
-# define _Input		(*Input::get())
+# define Input_		(*Input::get())
 
 #define NB_CTRL		20
 
@@ -55,6 +55,7 @@ public:
   void		proc();
   int		getLastBut(int id);
   char		*getPatern(int id);
+  void		saveKey(int id) const;
 };
 
 #endif /* !INPUT_HH_ */

@@ -21,15 +21,21 @@ class Graphics
 private:
   int		_h;
   int		_w;
+  int		_minX;
+  int		_maxX;
   SDL_Surface	*_screen;
   bool		_fs;
 
 public:
-  Graphics(int h, int w);
   ~Graphics();
+  Graphics(int h, int w);
+  int	h();
+  int	w();
   void	switchFS();
   void	printScreen();
   void	resetScreen(const Color &color);
+  void	resetLocal(const Color &color);
+  void	setCap(int min = 0, int max = 0);
 /* SQUARE */
   void	square(Position const &pos1, Position const &pos3, const Color &color);
   void	rectangle(Position const &pos1, Position const &pos3, const Color &color);
@@ -48,11 +54,11 @@ public:
   void	line(Position const &pos1, Position const &pos2, const Color &color);
   void	line(Position const &pos1, Position const &pos2, const Color &color, int thick);
   void	curveLine(Position const &pos1, Position const &pos2, Position const &pos3, const Color &color);
-  void	printPixel(Position const &pos, const Color &color);
   void	bend(Position const &pos1, const Distance &ray1,
 	Position const &pos2, const Distance &ray2, const Color &color);
-  int	h();
-  int	w();
+
+/* PIXEL */
+  void	printPixel(Position const &pos, const Color &color);
 };
 
 #endif /* GRAPHICS_HH_ */

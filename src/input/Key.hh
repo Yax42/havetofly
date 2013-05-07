@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 01:21:14 2013 Brunier Jean
-// Last update Sun May 05 20:37:54 2013 Brunier Jean
+// Last update Mon May 06 22:20:11 2013 Brunier Jean
 //
 
 #ifndef KEY_HH_
@@ -21,9 +21,9 @@ public:
       HOR,
       VERT,
       A,
-      B,
-      Y,
       X,
+      Y,
+      B,
       R,
       L,
       COUNT

@@ -1,11 +1,11 @@
 //
-// Shield.cpp for active in /home/brunie_j/local/my/havetofly/src/action/active
+// Shield.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 01:05:50 2013 Brunier Jean
-// Last update Sun Apr 28 17:56:11 2013 Brunier Jean
+// Last update Tue May 07 00:42:06 2013 Brunier Jean
 //
 
 #include "Shield.hh"
@@ -50,10 +50,15 @@ IAction		*Shield::step()
 
 bool		Shield::request()
 {
-  return (_open == 0 && _player.key[Key::B] == 1 &&
+  return (_open == 0 && _player.key[Key::X] == 1 &&
       _player.key(Key::R) == 0 &&
       _player.key[Key::VERT] == 0 &&
       _player.key[Key::HOR] == 0);
+}
+
+int		Shield::val()
+{
+  return (_open == 0);
 }
 
 void		Shield::upBones()

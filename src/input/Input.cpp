@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 22:34:51 2013 Brunier Jean
-// Last update Sun Apr 21 22:58:04 2013 Brunier Jean
+// Last update Mon May 06 23:36:27 2013 Brunier Jean
 //
 
 #include <iostream>
@@ -89,8 +89,8 @@ Key	Input::getKBKey()
   k.ptr(Key::HOR) = &_axe[0];
   k.ptr(Key::VERT) = &_axe[1];
   k.ptr(Key::A) = &_kb[SDLK_h];
-  k.ptr(Key::B) = &_kb[SDLK_j];
-  k.ptr(Key::X) = &_kb[SDLK_k];
+  k.ptr(Key::X) = &_kb[SDLK_j];
+  k.ptr(Key::B) = &_kb[SDLK_k];
   k.ptr(Key::Y) = &_kb[SDLK_l];
   k.ptr(Key::R) = &_kb[SDLK_LSHIFT];
   k.ptr(Key::L) = &_kb[SDLK_SPACE];
@@ -122,6 +122,11 @@ Key	Input::getCtrlKey(int id)
       }
   }
   return (_ctrl[i]->getKey());
+}
+
+void	Input::saveKey(int id) const
+{
+  _ctrl[id]->saveKey();
 }
 
 /*******/
@@ -157,10 +162,10 @@ void	Input::proc()
 }
 int		Input::getLastBut(int id)
 {
-  return _ctrl[id]->getLastBut();
+  return (_ctrl[id]->getLastBut());
 }
 
 char		*Input::getPatern(int id)
 {
-  return _ctrl[id]->getPatern();
+  return (_ctrl[id]->getPatern());
 }

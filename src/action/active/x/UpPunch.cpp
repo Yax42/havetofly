@@ -1,11 +1,11 @@
 //
-// UpPunch.cpp for b in /home/brunie_j/local/my/havetofly/src/action/active/b
+// UpPunch.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 20 19:47:34 2013 Brunier Jean
-// Last update Sun May 05 19:33:30 2013 Brunier Jean
+// Last update Mon May 06 22:34:03 2013 Brunier Jean
 //
 
 #include "UpPunch.hh"
@@ -82,7 +82,7 @@ bool		UpPunch::request()
 {
   if (PLANE_DEBUG)
     return (_player.key[Key::VERT] == -1);
-  return (_open == 0 && _player.key[Key::B] == 1 &&
+  return (_open == 0 && _player.key[Key::X] == 1 &&
 	  _player.key(Key::R) == 0 && _player.key[Key::VERT] == -1);
 }
 

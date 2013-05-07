@@ -1,11 +1,11 @@
 //
-// DownDash.cpp for active in /home/brunie_j/local/my/havetofly/src/action/active
+// DownDash.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 20:38:01 2013 Brunier Jean
-// Last update Mon Apr 29 10:05:38 2013 Brunier Jean
+// Last update Mon May 06 22:33:21 2013 Brunier Jean
 //
 
 #include "DownDash.hh"
@@ -66,7 +66,7 @@ bool		DownDash::request()
 {
   if (PLANE_DEBUG)
     return (_player.key[Key::VERT] == 1);
-  return (_player.key[Key::B] == 1 && !_player.key(Key::R) && _player.key[Key::VERT] == 1);
+  return (_player.key[Key::X] == 1 && !_player.key(Key::R) && _player.key[Key::VERT] == 1);
 }
 
 void		DownDash::upBones()

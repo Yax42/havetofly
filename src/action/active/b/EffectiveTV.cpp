@@ -1,11 +1,11 @@
 //
-// EffectiveTV.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
+// EffectiveTV.cpp for b in /home/brunie_j/local/my/havetofly/src/action/active/b
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun May 05 20:57:29 2013 Brunier Jean
-// Last update Mon May 06 17:47:27 2013 Brunier Jean
+// Last update Tue May 07 00:46:49 2013 Brunier Jean
 //
 
 #include "EffectiveTV.hh"
@@ -22,6 +22,7 @@ void	EffectiveTV::init(int v)
   _open = v + 1;
   _count = 90;
   _ok = true;
+  _speed = _player.speed();
   _player = Position();
 }
 
@@ -55,6 +56,7 @@ IAction		*EffectiveTV::step()
   if (_count)
     return (this);
   _player[STUN]->set(100);
+  _player = _speed;
   return (_player[STUN]);
 }
 

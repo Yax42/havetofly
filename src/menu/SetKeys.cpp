@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 21 01:00:26 2013 Brunier Jean
-// Last update Tue Apr 23 23:21:25 2013 Brunier Jean
+// Last update Mon May 06 23:40:48 2013 Brunier Jean
 //
 
 #include "SetKeys.hh"
@@ -35,8 +35,8 @@ void	SetKeys::initLoop()
 {
   _current = 0;
   for (int i = 0; i < NB_CTRL; i++)
-    _Input.getLastBut(i);
-  _Input.update();
+    Input_.getLastBut(i);
+  Input_.update();
 }
 
 bool	SetKeys::ifLoop()
@@ -49,12 +49,12 @@ bool	SetKeys::iterLoop()
   if (_current == 0)
     {
       for (int i = 0; i < NB_CTRL; i++)
-	if (_Input.getLastBut(i) != -1 && !isIn(_ids, i))
+	if (Input_.getLastBut(i) != -1 && !isIn(_ids, i))
 	  {
 	    _ids.push_back(i);
-	    _paterns.push_back(_Input.getPatern(i));
+	    _paterns.push_back(Input_.getPatern(i));
 	  }
-       if (_Input[SDLK_RETURN])
+       if (Input_[SDLK_RETURN])
 	 _current = 1;
     }
   if (_current == 1)
@@ -68,13 +68,19 @@ bool	SetKeys::iterLoop()
     {
       for (unsigned long j = 0; j < _paterns.size(); j++)
 	if (_paterns[j][_current] == -1)
-	  _paterns[j][_current] = _Input.getLastBut(_ids[j]);
+	  _paterns[j][_current] = Input_.getLastBut(_ids[j]);
       if (allGood())
 	_current++;
     }
+  if (_current == 8)
+    for (unsigned long j = 0; j < _paterns.size(); j++)
+      Input_.saveKey(_ids[j]);
   return (true);
 }
 
+/*********/
+/* PRINT */
+/*********/
 void	SetKeys::print(Graphics &g)
 {
   static Position center(g.h() / 2, g.w() / 2 + 80);

@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 14 09:30:33 2013 Brunier Jean
-// Last update Sat Apr 27 10:10:06 2013 Brunier Jean
+// Last update Tue May 07 00:33:38 2013 Brunier Jean
 //
 
 #include <pthread.h>
@@ -52,7 +52,7 @@ void	run()
 {
   Input::create();
   GameLoader	gl(MAP_H, MAP_W);
-  Display	dis(MAP_H, MAP_W);
+  Display	dis(MAP_H, 1024);
 
   dis.loop();
   gl.loop();

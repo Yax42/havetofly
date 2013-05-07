@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun Apr 21 17:00:45 2013 Brunier Jean
-// Last update Sun Apr 21 23:48:36 2013 Brunier Jean
+// Last update Mon May 06 23:10:17 2013 Brunier Jean
 //
 
 #include "MyTime.hh"
@@ -35,9 +35,9 @@ bool	APrintable::loop()
   Display::setTarget(this);
   while (ifLoop())
     {
-      if (_Input[SDLK_ESCAPE])
+      if (Input_[SDLK_ESCAPE])
 	return (cleanLoop(true));
-      if (_Input.isQuit() ||  !iterLoop() || _quit)
+      if (Input_.isQuit() ||  !iterLoop() || _quit)
 	return (cleanLoop(false));
       Input::get()->proc();
       _wait.proc();

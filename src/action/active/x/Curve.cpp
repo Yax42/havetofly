@@ -1,11 +1,11 @@
 //
-// Curve.cpp for active in /home/brunie_j/local/my/havetofly/src/action/active
+// Curve.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 25 23:49:10 2013 Brunier Jean
-// Last update Sun Apr 28 18:16:06 2013 Brunier Jean
+// Last update Mon May 06 22:33:01 2013 Brunier Jean
 //
 
 #include "Curve.hh"
@@ -49,7 +49,7 @@ IAction		*Curve::step()
 
 bool		Curve::request()
 {
-  return (_player[UP_PUNCH]->val() && _player.key[Key::B] == 1 &&
+  return (_player[UP_PUNCH]->val() && _player.key[Key::X] == 1 &&
 	  _player.key(Key::R) && _player.key[Key::VERT] == -1);
 }
 

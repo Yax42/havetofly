@@ -1,11 +1,11 @@
 //
-// HorDash.cpp for active in /home/brunie_j/local/my/havetofly/src/action/active
+// HorDash.cpp for x in /home/brunie_j/local/my/havetofly/src/action/active/x
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Thu Apr 18 23:26:54 2013 Brunier Jean
-// Last update Sun May 05 18:50:25 2013 Brunier Jean
+// Last update Mon May 06 22:33:30 2013 Brunier Jean
 //
 
 #include "HorDash.hh"
@@ -58,7 +58,7 @@ bool		HorDash::request()
 {
   if (PLANE_DEBUG)
     return (_player.key[Key::HOR]);
-  return (_open && !_player.key(Key::R) && _player.key[Key::B] == 1 && _player.key[Key::HOR]);
+  return (_open && !_player.key(Key::R) && _player.key[Key::X] == 1 && _player.key[Key::HOR]);
 }
 
 void		HorDash::check()

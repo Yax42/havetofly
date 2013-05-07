@@ -1,11 +1,11 @@
 //
-// EffectiveTV.hh for x in /home/brunie_j/local/my/havetofly/src/action/active/x
+// EffectiveTV.hh for b in /home/brunie_j/local/my/havetofly/src/action/active/b
 //
 // Made by Brunier Jean
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun May 05 20:57:39 2013 Brunier Jean
-// Last update Mon May 06 17:09:47 2013 Brunier Jean
+// Last update Tue May 07 00:47:33 2013 Brunier Jean
 //
 
 #ifndef EFFECTIVETV_HH_
@@ -17,9 +17,11 @@
 class EffectiveTV : public AAction
 {
 private:
+  Position		_speed;
   const std::list<char>	*_paternPtr;
   std::list<char>	_patern;
   bool			_ok;
+
 public:
   EffectiveTV(Player &player);
   virtual ~EffectiveTV(){}

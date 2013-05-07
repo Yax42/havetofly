@@ -5,7 +5,7 @@
 ## Login   <brunie_j@epitech.net>
 ##
 ## Started on  Wed Feb 13 15:57:38 2013 Brunier Jean
-## Last update Sun May 05 21:50:00 2013 Brunier Jean
+## Last update Tue May 07 00:37:52 2013 Brunier Jean
 ##
 
 CXX	= clang++
@@ -82,21 +82,21 @@ SRCS	= math/Angle.cpp			\
 	  action/active/a/WallJump.cpp		\
 	  action/active/a/DoubleJump.cpp	\
 						\
-	  action/active/b/Shield.cpp		\
-	  action/active/b/HorDash.cpp		\
-	  action/active/b/HorTP.cpp		\
-	  action/active/b/DownDash.cpp		\
-	  action/active/b/Spin.cpp		\
-	  action/active/b/Curve.cpp		\
-	  action/active/b/UpPunch.cpp		\
+	  action/active/x/Shield.cpp		\
+	  action/active/x/HorDash.cpp		\
+	  action/active/x/HorTP.cpp		\
+	  action/active/x/DownDash.cpp		\
+	  action/active/x/Spin.cpp		\
+	  action/active/x/Curve.cpp		\
+	  action/active/x/UpPunch.cpp		\
 						\
 	  action/active/y/ThrowBall.cpp		\
 	  action/active/y/AutoGun.cpp		\
 	  action/active/y/GunJump.cpp		\
 						\
-	  action/active/x/ThrowShuriken.cpp	\
-	  action/active/x/Television.cpp	\
-	  action/active/x/EffectiveTV.cpp	\
+	  action/active/b/ThrowShuriken.cpp	\
+	  action/active/b/Television.cpp	\
+	  action/active/b/EffectiveTV.cpp	\
 						\
 	  throw/AThrowable.cpp			\
 	  throw/Ball.cpp			\
@@ -110,7 +110,7 @@ INCLUDE = $(addprefix -I $(DSRC)/, $(DINC))
 
 OBJS	= $(addprefix $(DOBJ)/, $(SRCS:.cpp=.o))
 
-CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g
+CXXFLAGS= $(INCLUDE) -Wall -Wextra -Werror -pthread -g -O3
 
 LDXFLAGS= `sdl-config --cflags --libs` -lm -pthread
 
