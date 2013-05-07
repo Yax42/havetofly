@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun May 05 19:28:37 2013 Brunier Jean
-// Last update Tue May 07 00:43:03 2013 Brunier Jean
+// Last update Tue May 07 11:08:31 2013 Brunier Jean
 //
 
 #include "Television.hh"
@@ -129,7 +129,7 @@ void		Television::print(Graphics &g) const
   	    g.circleLaid(pos1 + Position(size / 2 + 20, size / 2), 10, col1, col1);
   	    g.circleFull(pos1 + Position(size / 2 + 20, size / 2), 7, Color::GREEN);
 	  }
-	  else if (_patern.back() == Key::B)
+	  else if (_patern.back() == Key::X)
 	  {
   	    g.circleLaid(pos1 + Position(size / 2, size / 2 - 20), 10, col1, col1);
   	    g.circleFull(pos1 + Position(size / 2, size / 2 - 20), 7, Color::BLUE);
@@ -139,7 +139,7 @@ void		Television::print(Graphics &g) const
   	    g.circleLaid(pos1 + Position(size / 2 - 20, size / 2), 10, col1, col1);
   	    g.circleFull(pos1 + Position(size / 2 - 20, size / 2), 7, Color::YELLOW);
 	  }
-	  else if (_patern.back() == Key::X)
+	  else if (_patern.back() == Key::B)
 	  {
   	    g.circleLaid(pos1 + Position(size / 2, size / 2 + 20), 10, col1, col1);
   	    g.circleFull(pos1 + Position(size / 2, size / 2 + 20), 7, Color::RED);

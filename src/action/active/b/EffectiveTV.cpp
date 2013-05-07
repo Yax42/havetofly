@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun May 05 20:57:29 2013 Brunier Jean
-// Last update Tue May 07 00:46:49 2013 Brunier Jean
+// Last update Tue May 07 11:09:04 2013 Brunier Jean
 //
 
 #include "EffectiveTV.hh"
@@ -96,7 +96,7 @@ void		EffectiveTV::upBones()
 
 void		EffectiveTV::print(Graphics &g) const
 {
-  if (isActive())
+  if (isActive() && !_open)
     {
       /*
       Position		pos1 =

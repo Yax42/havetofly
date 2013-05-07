@@ -67,9 +67,17 @@ void	Graphics::printScreen()
   SDL_Flip(_screen);
 }
 
-void	Graphics::resetScreen(const Color &color)
+void		Graphics::resetScreen(const Color &color)
 {
-  SDL_FillRect(_screen, NULL, color.getInt());
+  SDL_Rect	rect;
+
+  rect.h = _h;
+  rect.w = _maxX - _minX;
+  rect.x = _minX;
+  rect.y = 0;
+
+  //SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color);
+  SDL_FillRect(_screen, &rect, color.getInt());
 }
 
 void	Graphics::resetLocal(const Color &color)
