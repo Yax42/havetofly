@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:22 2013 Brunier Jean
-// Last update Mon May 06 17:25:20 2013 Brunier Jean
+// Last update Tue May 07 21:50:09 2013 Brunier Jean
 //
 
 #ifndef GAMELOADER_HH_
@@ -17,16 +17,18 @@ class Mutex;
 
 class GameLoader : public ALoop
 {
+public:
+  static int	getScore(int id);
 private:
   int		_h;
   int		_w;
   bool		_ret;
-  int		_score[100];
-  int		_max;
+  static int	_score[20];
 
 public:
   virtual ~GameLoader() {}
   GameLoader(int w, int h);
+  void				scoring();
 private:
   virtual bool			iterLoop();
 };

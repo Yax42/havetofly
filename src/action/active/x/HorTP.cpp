@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sun May 05 18:44:24 2013 Brunier Jean
-// Last update Tue May 07 00:56:05 2013 Brunier Jean
+// Last update Tue May 07 16:10:04 2013 Brunier Jean
 //
 
 #include "HorTP.hh"
@@ -36,13 +36,13 @@ bool	HorTP::allow(int)
 
 IAction		*HorTP::step()
 {
-  if (_open)
+/*  if (_open)
     {
       _open--;
       return (this);
     }
   if (_player(Event::WALL))
-    _player.tp(Position(50, 0));
+    _player.tp(Position(50, 0));*/
   return (_player[INERTIE]);
 }
 

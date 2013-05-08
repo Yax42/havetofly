@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Tue May 07 00:19:06 2013 Brunier Jean
+// Last update Tue May 07 23:37:19 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"
@@ -15,12 +15,13 @@
 #include "const.hh"
 #include "Mutex.hh"
 
+int	GameLoader::_score[20];
+
 GameLoader::GameLoader(int h, int w) : ALoop(2), _h(h), _w(w), _ret(true)
 {
-  for (int i = 0; i < 100; i++)
+  for (int i = 0; i < 20; i++)
     _score[i] = 0;
   (void) _ret;
-  _max = 0;
 }
 
 bool	GameLoader::iterLoop()
@@ -45,19 +46,29 @@ bool	GameLoader::iterLoop()
   if (DEBUG || Input_.nbCtrl() == 0)
     game->add(Position(400, 50), 0, Input_.getKBKey(), color[0]);
   ret = game->loop();
-
-  int cpt = 0;
-  //std::cout << "\r";
-  for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
-  {
-    cpt++;
-    if ((*i)->alive())
-      {
-	_score[cpt]++;
-      }
-    std::cout << _score[cpt] << " ";
-  }
-  std::cout << std::endl;
+  scoring();
   Game::destroy();
   return (ret);
+}
+
+void	GameLoader::scoring()
+{
+  int	winTeam = -1;
+  for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
+  {
+    if ((*i)->alive())
+      {
+	if (winTeam == -1)
+	  winTeam = (*i)->team();
+	else if (winTeam != (*i)->team())
+	  return ;
+      }
+  }
+  if (winTeam != -1)
+    _score[winTeam]++;
+}
+
+int	GameLoader::getScore(int id)
+{
+  return (_score[id]);
 }

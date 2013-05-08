@@ -5,10 +5,11 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Tue May 07 11:20:20 2013 Brunier Jean
+// Last update Tue May 07 23:40:34 2013 Brunier Jean
 //
 
 #include "Game.hh"
+#include "GameLoader.hh"
 #include "Input.hh"
 #include "const.hh"
 #include "MovePlayer.hh"
@@ -49,7 +50,6 @@ void	Game::initLoop()
 /***************/
 /* CONSTRUCTOR */
 /***************/
-
 Game::~Game()
 {
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
@@ -120,7 +120,6 @@ bool	Game::ifLoop()
 /*********/
 /* OTHER */
 /*********/
-
 void	Game::add(const Position &pos, int team, const Key &k, int color)
 {
   _players.push_back(new Player(pos, team, k, color));
@@ -137,7 +136,6 @@ void	Game::killAll()
 /***********/
 /* GETTERS */
 /***********/
-
 Players		&Game::players()
 {
   return (_inst->_players);
@@ -156,9 +154,36 @@ int	Game::h()
 /*************/
 /* PRINTABLE */
 /*************/
+#define scorePos(y, x)		(Position(y * 52 + 40, x * 40 + 140))
+
 void	Game::print(Graphics &g)
 {
+  int	cpt;
+  g.setCap(0,256);
   g.resetScreen(0);
+  for (int i = 0; i < (int) _players.size(); i++)
+    {
+      cpt = 0;
+      for (Players::iterator j = _players.begin(); j != _players.end(); ++j)
+        {
+	  if ((*j)->team() != i)
+	    continue ;
+	  g.rectangle(Position(i * 52 + 30, cpt * 30 + 10),
+			Position(i * 52 + 50, cpt * 30 + 30),
+			(*j)->color());
+	  if (cpt++ == 0)
+	    g.line (Position(i * 52 + 65, 0), Position(i * 52 + 60, 256), Color::WHITE);
+	}
+      for (int j = 0; j < GameLoader::getScore(i) % 4; j++)
+        g.circle(scorePos(i, j), 5, Color::RED);
+      for (int j = 0; j < (GameLoader::getScore(i) / 4) % 4; j++)
+        g.circle(scorePos(i, j), 9, Color::BLUE);
+      for (int j = 0; j < (GameLoader::getScore(i) / 16) % 4; j++)
+        g.circle(scorePos(i, j), 13, Color::YELLOW);
+      for (int j = 0; j < (GameLoader::getScore(i) / 64); j++)
+        g.circle(scorePos(i, j), 19, Color::GREEN);
+    }
+
   g.setCap(256, 512 + 256);
   if ((DEBUG & 128) == 0)
     g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
@@ -167,5 +192,7 @@ void	Game::print(Graphics &g)
       if ((*i)->alive())
 	(*i)->print(g);
     }
+  g.setCap(512 + 256, g.w());
+  g.resetScreen(0);
   g.setCap();
 }
