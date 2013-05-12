@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:34:23 2013 Brunier Jean
-// Last update Mon Apr 22 22:05:24 2013 Brunier Jean
+// Last update Sun May 12 15:34:16 2013 Brunier Jean
 //
 
 #ifndef GAME_HH_
@@ -31,6 +31,7 @@ private:
   Players	_players;
   int		_alone;
   SetKeys	_setKeys;
+  int		_time;
 
 /* SINGLETON */
 private:
@@ -50,6 +51,7 @@ public:
   void			add(const Position &, int team, const Key &k, int color);
   static int		h();
   static int		w();
+  static int		time();
   /*
   static Position	center() const;
   */

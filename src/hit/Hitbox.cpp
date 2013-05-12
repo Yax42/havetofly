@@ -5,12 +5,13 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 10 15:41:09 2013 Brunier Jean
-// Last update Sun May 05 23:31:45 2013 Brunier Jean
+// Last update Sun May 12 15:37:03 2013 Brunier Jean
 //
 
 #include "Hitbox.hh"
 #include "Graphics.hh"
 #include "Player.hh"
+#include "Game.hh"
 
 Hitbox::Hitbox(const Distance &ray, const Position &center,
     const Position &playerPos, const int &orient) :
@@ -37,6 +38,8 @@ void	Hitbox::print(Graphics &g, int color) const
 
 bool		Hitbox::touch(const Player &player) const
 {
+  if (Game::time() < 300)
+    return (false);
   const std::list<Hitbox>	&hb = player.getHB();
 
   for (std::list<Hitbox>::const_iterator i = hb.begin(); i != hb.end(); ++i)

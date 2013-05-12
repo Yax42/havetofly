@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Sat Apr 13 15:47:33 2013 Brunier Jean
-// Last update Tue May 07 23:40:34 2013 Brunier Jean
+// Last update Sun May 12 15:35:58 2013 Brunier Jean
 //
 
 #include "Game.hh"
@@ -45,6 +45,7 @@ void	Game::destroy()
 void	Game::initLoop()
 {
   _alone = _players.size() == 1;
+  _time = 0;
 }
 
 /***************/
@@ -53,7 +54,7 @@ void	Game::initLoop()
 Game::~Game()
 {
   for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
-    free (*i);
+    delete (*i);
 }
 
 Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : (DEBUG & 512) ? 10 : 120), _height(h), _width(w)
@@ -108,7 +109,7 @@ bool		Game::iterLoop()
       switchPrint(_setKeys);
       killAll();
     }
-
+  _time++;
   return (true);
 }
 
@@ -149,6 +150,11 @@ int	Game::w()
 int	Game::h()
 {
   return (_inst->_height);
+}
+
+int	Game::time()
+{
+  return (_inst->_time);
 }
 
 /*************/

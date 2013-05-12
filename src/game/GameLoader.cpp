@@ -5,7 +5,7 @@
 // Login   <brunie_j@epitech.net>
 //
 // Started on  Wed Apr 17 12:14:35 2013 Brunier Jean
-// Last update Tue May 07 23:37:19 2013 Brunier Jean
+// Last update Sun May 12 15:38:20 2013 Brunier Jean
 //
 
 #include "GameLoader.hh"
@@ -37,14 +37,15 @@ bool	GameLoader::iterLoop()
     };
   bool		ret;
   Game		*game = Game::create(_h, _w);
+  int		i;
 
   Input_.update();
   if (DEBUG & 256)
     game->add(Position(400, 256), 100, Input_.getKBKey(),  color[5]);
-  for (int i = 1; i <= Input_.nbCtrl(); i++)
-    game->add(Position(400, 50 + i * 200), i, Input_.getCtrlKey(i - 1),  color[i]);
+  for (i = 0; i < Input_.nbCtrl(); i++)
+    game->add(Position(400, 236 + i * 10), i, Input_.getCtrlKey(i),  color[i]);
   if (DEBUG || Input_.nbCtrl() == 0)
-    game->add(Position(400, 50), 0, Input_.getKBKey(), color[0]);
+    game->add(Position(400, 236 + i * 10), i, Input_.getKBKey(), color[i]);
   ret = game->loop();
   scoring();
   Game::destroy();
