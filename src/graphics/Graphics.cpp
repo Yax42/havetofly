@@ -114,8 +114,8 @@ void		Graphics::square(Position const &pos1, Position const &pos3, const Color &
 
 void		Graphics::rectangle(Position const &pos1, Position const &pos3, const Color &color)
 {
-  Position	pos2(pos1.yDist(), pos3.xDist());
-  Position	pos4(pos3.yDist(), pos1.xDist());
+  Position	pos2(pos1.y, pos3.x);
+  Position	pos4(pos3.y, pos1.x);
 
   Graphics::line(pos1, pos2, color);
   Graphics::line(pos3, pos2, color);
@@ -132,22 +132,22 @@ void		Graphics::rectangleLaid(Position const &pos1, Position const &pos3, const 
 
 void		Graphics::rectangleFull(Position const &pos1, Position const &pos3, const Color &color)
 {
-  for (int i = pos1.x(); i < pos3.x(); i++)
-    for (int j = pos1.y(); j < pos3.y(); j++)
+  for (int i = pos1.x; i < pos3.x; i++)
+    for (int j = pos1.y; j < pos3.y; j++)
       printPixel(Position(j, i), color);
 }
 
 /**********/
 /* CIRCLE */
 /**********/
-void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, const Distance &size, const Angle &angle, const Color &color)
+void		Graphics::sponge(Position const &pos, float ray, int nb, float size, const Angle &angle, const Color &color)
 {
-  Ratio		angleOffset = Math::maxRad / nb;
-  Ratio		goal = Math::maxRad + angle;
+  float		angleOffset = Math::maxRad / nb;
+  float		goal = Math::maxRad + angle.rad();
   Position	pos1;
   Position	pos2;
 
-  for (Ratio i = angle; i < goal; i += angleOffset)
+  for (float i = angle.rad(); i < goal; i += angleOffset)
     {
       pos1 = Position(Angle(i), ray - size) + pos;
       pos2 = Position(Angle(i + angleOffset / 2), ray + size) + pos;
@@ -157,50 +157,54 @@ void		Graphics::sponge(Position const &pos, Distance const &ray, int nb, const D
     }
 }
 
-void		Graphics::circle(Position const &pos, const Distance &size, const Color &color)
+void		Graphics::circle(Position const &pos, float size, const Color &color)
 {
   Position	pxPos;
-  Distance	max = size * Math::maxRad;
+  int		max = size * Math::maxRad;
+  float		invSize = 1 / size;
 
-  for (Distance i = 0; i < max; i += 1)
+  for (int i = 0; i < max; i++)
     {
-      pxPos.x(size * Math::cos(i / size));
-      pxPos.y(size * Math::sin(i / size));
+      pxPos.x = size * Math::cos(i * invSize);
+      pxPos.y = size * Math::sin(i * invSize);
       pxPos += pos;
       printPixel(pxPos, color);
     }
 }
 
-void		Graphics::circleFull(Position const &pos, const Distance &size, const Color &color)
+void		Graphics::circleFull(Position const &pos, float size, const Color &color)
 {
   Position	pxPos;
-  Distance	max = size * Math::maxRad;
+  float		max = size * Math::maxRad;
+  float		invSize = 1 / size;
 
-  for (Distance i = 0; i < max; i += 1)
+  for (int i = 0; i < max; i++)
     {
-      pxPos.x(size * Math::cos(i / size));
-      pxPos.y(size * Math::sin(i / size));
+      pxPos.x = size * Math::cos(i * invSize);
+      pxPos.y = size * Math::sin(i * invSize);
       pxPos += pos;
       line(pxPos, pos, color);
     }
 }
 
-void		Graphics::circleLaid(Position const &pos, const Distance &size, const Color &color, const Color &color2)
+void		Graphics::circleLaid(Position const &pos, float size, const Color &color, const Color &color2)
 {
   circle(pos, size - 1, color);
   circle(pos, size, color2);
   circle(pos, size + 1, color);
 }
-void		Graphics::circlePart(Position const &pos, const Distance &ray,
+
+void		Graphics::circlePart(Position const &pos, float ray,
       const Angle &from, const Angle &size, const Color &color)
 {
   Position	pxPos;
-  Distance	max = ray * size;
+  int		max = ray * size.rad();
+  float		invRay = 1 / ray;
 
-  for (Distance i = 0; i < max; i += 1)
+  for (int i = 0; i < max; i ++)
     {
-      pxPos.x(ray * Math::cos((i / ray) + from));
-      pxPos.y(ray * Math::sin((i / ray) + from));
+      pxPos.x = ray * Math::cos((i * invRay) + from.rad());
+      pxPos.y = ray * Math::sin((i * invRay) + from.rad());
       pxPos += pos;
       printPixel(pxPos, color);
     }
@@ -213,7 +217,7 @@ void		Graphics::line(Position const &pos1, Position const &pos2, const Color &co
 {
   Position	vect = pos2 - pos1;
   Angle		angle = vect.angle();
-  int		range = vect.distance().intVal();
+  int		range = vect.distance();
 
   for (int i = 0; i <= range; i++)
     printPixel(pos1 + Position(angle, i), color);
@@ -225,18 +229,22 @@ void		Graphics::line(Position const &pos1, Position const &pos2, const Color &co
   if (pos1.x() == pos2.x() && pos1.y() == pos2.y())
     return ;
   */
-  //std::cout << pos1 << pos2 << std::endl;
+  //std::cout << pos1 << pos2 << " " << thick << std::endl;
+
   Position	vect = pos2 - pos1;
   Angle		angle = vect.angle();
-  Angle		angleOut[] =
-    {
-      vect.angle() + Angle(0, 0),
-      vect.angle() + Angle(0, 0)
-    };
+  //Angle		angleOut[] = { vect.angle() + Angle(0, 0), vect.angle() + Angle(0, 0) };
 
   for (int j = 0; j < thick; j++)
+  {
+    float	val = j / 3.0;
+    line(pos1 + Position(0, val) * angle + Position(val, 0) * angle,
+         pos2 + Position(0, val) * (angle + Angle(180, 0)) + (Position(val, 0) * angle), color);
+  }
+    /*
     line(pos1 + Position(0, j) * angle + (Position(j / 2, 0) * angleOut[j % 2]),
          pos2 + Position(0, j) * (angle + Angle(180, 0)) + (Position(j / 2, 0) * angleOut[j % 2]), color);
+	 */
 }
 
 void		Graphics::curveLine(Position const &pos1, Position const &pos2,
@@ -247,8 +255,8 @@ void		Graphics::curveLine(Position const &pos1, Position const &pos2,
 }
 
 /*
-void		Graphics::bend(Position const &pos1, const Distance &ray1,
-	Position const &pos2, const Distance &ray2, const Color &color)
+void		Graphics::bend(Position const &pos1, float ray1,
+	Position const &pos2, float ray2, const Color &color)
 {
   curveLine(pos1, Circle(pos1, ray1) == Circle(pos2, ray2), pos2, color);
 }*/
@@ -258,10 +266,11 @@ void		Graphics::bend(Position const &pos1, const Distance &ray1,
 /*********/
 void	Graphics::printPixel(Position const &pos, const Color &color)
 {
-  if (pos.x() >= 0 && pos.x() + _minX < _maxX && pos.y() >= 0 && pos.y() < _screen->h)
+  if (pos.x >= 0 && pos.x + _minX < _maxX && pos.y >= 0 && pos.y < _screen->h)
   {
-    *(static_cast<int *> (_screen->pixels) + pos.y() *
-	_screen->pitch / 4 + pos.x() + _minX) = color.getInt();
+    int	offset = static_cast<int> (pos.y) * _screen->pitch / 4 +
+      static_cast<int> (pos.x) + _minX;
+    *(static_cast<int *> (_screen->pixels) + offset) = color.getInt();
   }
 }
 

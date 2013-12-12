@@ -17,13 +17,13 @@ Move::Move(Player &player) : PassiveAction(player, MOVE)
 
 bool		Move::request()
 {
-  static const Ratio 	MAX = 2; //2/3
-  static const Ratio 	MIN = -2; //2/3
-  static const Ratio	SPEED = 0.0333; //2/3
+  static const float 	MAX = 2;
+  static const float 	MIN = -2;
+  static const float	SPEED = 0.00007; //2/3
 
   if (_player.key(Key::HOR))
     {
-      _player.sx(_player.sx() + Ratio(MFLOAT_TO_RATIO(_player.key(Key::HOR)), 0) * SPEED);
+      _player.sx(_player.sx() + _player.key(Key::HOR) * SPEED);
       if (_player.key(Key::HOR) < 0)
 	_player.orient(-1);
       else if (_player.key(Key::HOR) > 0)

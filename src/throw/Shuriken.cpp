@@ -15,7 +15,7 @@ Shuriken::Shuriken(const Player &player) :
 	player.closePos(),
 	  40, Position(1, 1), player, Hit::NONE, true)
 {
-  _speed = RatioPosition(_speed.angle().betweenX(Angle(35, 0), _player.orient()), 7);
+  _speed = Position(_speed.angle().betweenX(Angle(35, 0), _player.orient()), 7);
   _hit.add(12, Position(), _pos);
 }
 

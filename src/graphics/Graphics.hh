@@ -42,20 +42,20 @@ public:
   void	rectangleFull(Position const &pos1, Position const &pos3, const Color &color);
   void	rectangleLaid(Position const &pos1, Position const &pos3, const Color &color, const Color &color2 = 0xFFFFFF);
 /* CIRCLE */
-  void	sponge(Position const &pos, Distance const &ray, int nb,
-      const Distance &size, const Angle &angle, const Color &color);
-  void	circle(Position const &pos, const Distance &size, const Color &color);
-  void	circleLaid(Position const &pos, const Distance &size, const Color &color, const Color &color2 = 0xFFFFFF);
-  void	circleFull(Position const &pos, const Distance &size, const Color &color);
-  void	circlePart(Position const &pos, const Distance &ray,
+  void	sponge(Position const &pos, float ray, int nb,
+      float size, const Angle &angle, const Color &color);
+  void	circle(Position const &pos, float size, const Color &color);
+  void	circleLaid(Position const &pos, float size, const Color &color, const Color &color2 = 0xFFFFFF);
+  void	circleFull(Position const &pos, float size, const Color &color);
+  void	circlePart(Position const &pos, float ray,
       const Angle &from, const Angle &size, const Color &color);
 
 /* LINE */
   void	line(Position const &pos1, Position const &pos2, const Color &color);
   void	line(Position const &pos1, Position const &pos2, const Color &color, int thick);
   void	curveLine(Position const &pos1, Position const &pos2, Position const &pos3, const Color &color);
-  void	bend(Position const &pos1, const Distance &ray1,
-	Position const &pos2, const Distance &ray2, const Color &color);
+  void	bend(Position const &pos1, float ray1,
+	Position const &pos2, float ray2, const Color &color);
 
 /* PIXEL */
   void	printPixel(Position const &pos, const Color &color);

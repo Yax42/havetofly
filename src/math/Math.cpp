@@ -8,111 +8,109 @@
 // Last update Tue Apr 23 00:34:08 2013 Brunier Jean
 //
 
+// http://www.cplusplus.com/reference/cmath/
+
+#include <iostream>
 #include <cmath>
 
 #include "Math.hh"
-#include <iostream>
+#include "Angle.hh"
 
-#define MAX_SQRT	1000000
+const float		Math::maxRad = M_PI * 2;
+const float		Math::Pi = M_PI;
+const float		Math::PiTwo = M_PI * 2;
+const float		Math::PiHalf = M_PI / 2;
 
-std::vector<Ratio>	Math::_cos;
-std::vector<Ratio>	Math::_sin;
-std::vector<Ratio>	Math::_tan;
-std::vector<Ratio>	Math::_acos;
-std::vector<Ratio>	Math::_asin;
-std::vector<Ratio>	Math::_atan;
-std::vector<long> 	Math::_sqrt;
-std::vector<Ratio>	Math::_toRad;
-std::vector<long>	Math::_toDeg;
-const Ratio		Math::maxRad = M_PI * 2;
 
-void		Math::init()
+float	Math::sqrt(float v)
 {
-  _cos.resize(maxRad.longVal());
-  _sin.resize(maxRad.longVal());
-  _tan.resize(maxRad.longVal());
-  _toDeg.resize(maxRad.longVal());
-  for (long i = 0; i < maxRad.longVal(); i++)
-    {
-      _cos[i] = ::cos(double(i) / MRATIO_UNIT);
-      _sin[i] = ::sin(double(i) / MRATIO_UNIT);
-      _tan[i] = ::tan(double(i) / MRATIO_UNIT);
-      _toDeg[i] = double(i) * 180 / M_PI / MRATIO_UNIT;
-    }
-  _acos.resize(MRATIO_UNIT * 2);
-  _asin.resize(MRATIO_UNIT * 2);
-  _atan.resize(MRATIO_UNIT * 2);
-  for (long i = 0; i < MRATIO_UNIT * 2; i++)
-    {
-      _acos[i] = ::acos(double(i - MRATIO_UNIT) / MRATIO_UNIT);
-      //std::cout << i << " " << _cos[(int)(i * M_PI * MFLOAT_UNIT / 180) ] << " " <<  _cos[(int)(i * M_PI * MFLOAT_UNIT / 180) ].doubleVal() * 1000 << std::endl;
-      _asin[i] = ::asin(double(i - MRATIO_UNIT) / MRATIO_UNIT);
-      _atan[i] = ::atan(double(i - MRATIO_UNIT) / MRATIO_UNIT);
-    }
-  _sqrt.resize(MAX_SQRT);
-  for (int i = 0; i < MAX_SQRT; i++)
-    _sqrt[i] =::sqrt(i);
-    //_sqrt[i] =::sqrt(double(i) / MFLOAT_UNIT);
-  _toRad.resize(360);
-  for (int i = 0; i < 360; i++)
-    {
-      _toRad[i] = double(i) * M_PI / 180;
-    }
+  return (::sqrt(v));
 }
 
-Ratio	Math::cos(const Ratio &v)
+float		Math::toRad(float deg)
 {
-  return (_cos[(v % maxRad).longVal()]);
+
+  return (deg * M_PI / 180);
 }
 
-Ratio	Math::sin(const Ratio &v)
+float		Math::toDeg(float rad)
 {
-  return (_sin[(v % maxRad).longVal()]);
+  return (rad * 180 / M_PI);
 }
 
-Ratio	Math::tan(const Ratio &v)
+int		Math::abs(int v)
 {
-  return (_tan[(v % maxRad).longVal()]);
+  return (::fabs(v));
 }
 
-Ratio	Math::acos(const Ratio &v)
+float		Math::abs(float v)
 {
-  long		idx = v.longVal() + MRATIO_UNIT;
-  return (_acos[MCAP(idx, 0, 2 * MRATIO_UNIT)]);
+  return (::fabs(v));
 }
 
-Ratio	Math::asin(const Ratio &v)
+/*******/
+/*TRIGO*/
+/*******/
+
+float	Math::cos(const Angle &v)
 {
-  long		idx = v.longVal() + MRATIO_UNIT;
-  return (_asin[MCAP(idx, 0, 2 * MRATIO_UNIT)]);
+  return (::cos(v.rad()));
 }
 
-Ratio	Math::atan(const Ratio &v)
+float	Math::sin(const Angle &v)
 {
-  long		idx = v.longVal() + MRATIO_UNIT;
-  return (_atan[MCAP(idx, 0, 2 * MRATIO_UNIT)]);
+  return (::sin(v.rad()));
 }
 
-Distance	Math::sqrt(const Distance &d)
+float	Math::tan(const Angle &v)
 {
-  int		v = d.intVal();
-  int		count = 0;
-
-  while (v >= MAX_SQRT)
-    {
-      count++;
-      v >>= 2;
-    }
-  return (Distance(_sqrt[v] << count));
+  return (::tan(v.rad()));
 }
 
-Ratio		Math::toRad(int deg)
+float	Math::acos(const Angle &v)
 {
-  deg %= 360;
-  return (_toRad[(deg < 0) ? deg + 360 : deg]);
+  return (::acos(v.rad()));
 }
 
-int		Math::toDeg(Ratio const &rad)
+float	Math::asin(const Angle &v)
 {
-  return (_toDeg[(rad % maxRad).longVal()]);
+  return (::asin(v.rad()));
 }
+
+float	Math::atan(const Angle &v)
+{
+  return (::atan(v.rad()));
+}
+
+//----------------------------------------------
+
+float	Math::cos(float v)
+{
+  return (::cos(v));
+}
+
+float	Math::sin(float v)
+{
+  return (::sin(v));
+}
+
+float	Math::tan(float v)
+{
+  return (::tan(v));
+}
+
+float	Math::acos(float v)
+{
+  return (::acos(v));
+}
+
+float	Math::asin(float v)
+{
+  return (::asin(v));
+}
+
+float	Math::atan(float v)
+{
+  return (::atan(v));
+}
+

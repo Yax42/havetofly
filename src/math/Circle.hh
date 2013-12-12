@@ -17,11 +17,11 @@ class Circle
 {
 private:
   Position	_center;
-  Distance	_ray;
+  float		_ray;
 
 public:
   ~Circle(){}
-  Circle(const Position &center, const Distance &ray);
+  Circle(const Position &center, float ray);
   Position	operator==(const Circle &other) const;
 };
 

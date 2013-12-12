@@ -16,8 +16,8 @@ Inertie::Inertie(Player &player) : PassiveAction(player, IAction::INERTIE)
 
 bool				Inertie::request()
 {
-  static const Ratio 	PSLOW = 0.01;
-  static const Ratio 	MSLOW = -0.01;
+  static const float 	PSLOW = 0.01;
+  static const float 	MSLOW = -0.01;
 
   if (_player.sx() <= PSLOW && _player.sx() >= MSLOW)
     _player.sx(0);
@@ -46,6 +46,7 @@ void		Inertie::upBones()
 
   _bones.angle[Bones::HEAD] = Angle(-40, 0);
   _bones.angle[Bones::BODY] = Angle(-80, 0);
-  _bones.angle[Bones::BODY] = Angle(60 - MRATIO_TO_FLOAT(_player.sy().longVal()) / 100 +
+  _bones.angle[Bones::BODY] = Angle(60 - _player.sy() * 20 +
       MGRAD_CAP(MTIME / 4, -60, 20), 0);
+  //std::cout << MGRAD_CAP(MTIME / 4, -60, 20) << std::endl;
 }

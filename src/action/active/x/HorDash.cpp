@@ -96,7 +96,7 @@ void		HorDash::print(Graphics &g) const
   if (_open)
     {
       for (int i = 0; i < 3; i++)
-	g.sponge(_bones[Bones::HEAD], 13 + i * 2, 8, 5, Angle(MTIME * 5, 0), _player.color());
+	g.sponge(_bones[Bones::HEAD], 13 + i * 2, 8, 5, Angle(MTIME * 2, 0), _player.color());
     }
   if (isActive())
     {

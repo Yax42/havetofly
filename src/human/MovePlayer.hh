@@ -14,7 +14,6 @@
 # include <vector>
 
 # include "Position.hh"
-# include "RatioPosition.hh"
 # include "Event.hh"
 # include "IAction.hh"
 
@@ -24,7 +23,7 @@ public:
   static const int	nbIt;
 
 private:
-  RatioPosition		&_speed;
+  Position		&_speed;
   Position		&_pos;
   std::vector<bool>	&_event;
   IAction		*&_doing;
@@ -35,7 +34,7 @@ private:
 
 public:
   ~MovePlayer(){}
-  MovePlayer(RatioPosition &speed, Position &pos,
+  MovePlayer(Position &speed, Position &pos,
       std::vector<bool> &event, IAction *&doing, Player *player);
   void	init();
   void	proc();

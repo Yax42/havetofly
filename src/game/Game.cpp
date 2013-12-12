@@ -57,7 +57,7 @@ Game::~Game()
     delete (*i);
 }
 
-Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : (DEBUG & 512) ? 10 : 120), _height(h), _width(w)
+Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : (DEBUG & 512) ? 1 : 120), _height(h), _width(w)
 {
   _height = h;
   _width = w;

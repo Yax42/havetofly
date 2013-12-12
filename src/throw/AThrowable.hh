@@ -13,7 +13,6 @@
 
 # include "Position.hh"
 # include "Graphics.hh"
-# include "RatioPosition.hh"
 # include "Hit.hh"
 # include "Player.hh"
 # include "Math.hh"
@@ -26,7 +25,7 @@ public:
   static const int	SIZE;
 protected:
   Position		_pos;
-  RatioPosition		_speed;
+  Position		_speed;
   bool			_alive;
   int			_orient;
   Hit			_hit;
@@ -38,7 +37,7 @@ private:
 
 public:
   virtual ~AThrowable(){}
-  AThrowable(const Position &pos, const RatioPosition &speed,
+  AThrowable(const Position &pos, const Position &speed,
       int stun, const Position &hitSpeed, const Player &player,
       int type = Hit::ORIENT, bool addStun = false);
   bool			isAlive() const;

@@ -17,7 +17,6 @@
 # include "IAction.hh"
 # include "Bones.hh"
 # include "Position.hh"
-# include "RatioPosition.hh"
 # include "Key.hh"
 # include "IThrowable.hh"
 
@@ -45,7 +44,7 @@ private:
   std::vector<bool>		_event;
   std::vector<IAction*>		_action;
   std::list<IThrowable *>	_throwables;
-  RatioPosition			_speed;
+  Position			_speed;
   IAction			*_doing;
   Hit const			*_hit;
 
@@ -72,11 +71,11 @@ public:
   void			tp(const Position &dir);
 
   /* SPEED */
-  const Ratio		&sx() const;
-  const Ratio		&sy() const;
-  void			sx(const Ratio &s);
-  void			sy(const Ratio &s);
-  RatioPosition const	&speed() const;
+  float			sx() const;
+  float			sy() const;
+  void			sx(float);
+  void			sy(float);
+  Position const	&speed() const;
 
   /* POSITION */
   Position const	&pos() const;

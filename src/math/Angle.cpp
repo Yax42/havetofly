@@ -18,99 +18,106 @@ Angle::Angle()
 {
 }
 
-Angle::Angle(Ratio const &d) : _rad(d)
+Angle::Angle(float d) : _rad(d)
 {
 }
 
-Angle::Angle(int deg, int) : _rad(Math::toRad(deg))
+Angle::Angle(float deg, int) : _rad(Math::toRad(deg))
 {
 }
+
+
+//Angle::operator float() const { return (_rad); }
+
+
+
 /*************/
 /* OPERATORS */
 /*************/
-void	Angle::deg(int v)
-{
-  _rad = Math::toRad(v);
-}
-
-Angle		&Angle::operator+=(const Angle &other)
-{
-  _rad += other._rad;
-  return (*this);
-}
-
-Angle		&Angle::operator-=(const Angle &other)
-{
-  _rad -= other._rad;
-  return (*this);
-}
-
-Angle		Angle::operator+(const Angle &other) const
-{
-  return (Angle(_rad + other._rad));
-}
-
-Angle		Angle::operator-(const Angle &other) const
-{
-  return (Angle(_rad - other._rad));
-}
-
-
-/***********/
-/* GETTERS */
-/***********/
-Angle::operator Ratio() const
-{
-  return (_rad);
-}
-
-int		Angle::deg() const
-{
-  return (Math::toDeg(_rad.longVal()));
-}
-
-Ratio	Angle::rad()
-{
-  return (_rad);
-}
-
-Ratio const	&Angle::rad() const
-{
-  return (_rad);
-}
-
 Angle		Angle::mirrorX() const
 {
   return (Math::acos(Math::cos(_rad)) *
-      (Math::sin(_rad).longVal() < 0 ? 1 : -1));
+      (Math::sin(_rad) < 0 ? 1 : -1));
 }
 
 Angle		Angle::mirrorY() const
 {
   return (Math::acos(Math::cos(_rad) * (-1)) *
-      (Math::sin(_rad).longVal() < 0 ? -1 : 1));
+      (Math::sin(_rad) < 0 ? -1 : 1));
 }
 
 Angle		Angle::betweenX(Angle const &a, int sign) const
 {
   //std::cout << *this << std::endl;
-  Ratio		cur = MPOS_MOD(_rad + Angle(90, 0), Math::maxRad);
-  Ratio		minR = Angle(90, 0) - a + (sign == 1 ? Angle() : Angle(180, 0));
-  Ratio		maxR = Angle(90, 0) + a + (sign == 1 ? Angle() : Angle(180, 0));
+
+  //# define MPOS_MOD(x, y)			(((x) % (y) < 0) ? (x) % (y) + (y) : (x) % (y))
+  //float		cur = MPOS_MOD(_rad + Math::PiHalf, Math::maxRad);
+  float		cur = _rad;
+
+  float		tmpVal = Math::PiHalf + (sign != 1) * Math::Pi;
+  float		minR = tmpVal - a._rad;
+  float		maxR = tmpVal + a._rad;
 
   if (cur > maxR || cur < minR)
     {
       if (sign > 0)
-	cur = ((cur > Angle(90, 0) && cur < Angle(270, 0)) ? maxR : minR);
+	cur = ((cur > Math::PiHalf && cur < -Math::PiHalf) ? maxR : minR);
       else
-	cur = ((cur > Angle(90, 0) && cur < Angle(270, 0)) ? minR : maxR);
+	cur = ((cur > Math::PiHalf && cur < -Math::PiHalf) ? minR : maxR);
     }
-  return (cur - Angle(90, 0));
+  return (cur - Math::PiHalf);
 }
 
+Angle		Angle::operator+(Angle const &a) const
+{
+  return (a._rad + _rad);
+}
+
+ Angle		&Angle::operator+=(Angle const &a)
+{
+  _rad += a._rad;
+  return (*this);
+}
+
+Angle		Angle::operator-(Angle const &a) const
+{
+  return (a._rad - _rad);
+}
+
+ Angle		&Angle::operator-=(Angle const &a)
+{
+  _rad -= a._rad;
+  return (*this);
+}
+
+/**********/
+/* ACCESS */
+/**********/
+void	Angle::deg(float v)
+{
+  _rad = Math::toRad(v);
+}
+
+void	Angle::rad(float v)
+{
+  _rad = v;
+}
+
+float		Angle::deg() const
+{
+  return (Math::toDeg(_rad));
+}
+
+float	Angle::rad() const
+{
+  return (_rad);
+}
+
+/* STREAM */
 
 std::ostream	&operator<<(std::ostream &s, Angle const &a)
 {
   s << a.deg();
   return (s);
 }
+

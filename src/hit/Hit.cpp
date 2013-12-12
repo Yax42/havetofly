@@ -13,14 +13,14 @@
 #include "Hit.hh"
 #include "Player.hh"
 
-Hit::Hit(int stun, RatioPosition const &speed, const int &orient,
+Hit::Hit(int stun, Position const &speed, const int &orient,
     int hitLagg, bool isThrowable, int type, bool addStun) :
 	_stun(stun), _speed(speed), _orient(orient), _hitLagg(hitLagg),
 	_isThrowable(isThrowable), _type(type), _addStun(addStun)
 {
 }
 
-void	Hit::add(const Distance &ray, const Position &center, const Position &playerPos)
+void	Hit::add(float ray, const Position &center, const Position &playerPos)
 {
   _hb.push_back(Hitbox(ray, center, playerPos, _orient));
 }
@@ -35,10 +35,8 @@ int	Hit::go(Player &ennemy) const
 {
   if (_type != NONE)
     {
-      ennemy.sy(_speed.yRatio());
-      ennemy.sx(_speed.xRatio() *
-	  (_type == ORIENT ? Distance(_orient) :
-	   Distance(ennemy.closeWall())));
+      ennemy.sy(_speed.y);
+      ennemy.sx(_speed.x * ((_type == ORIENT) ? _orient : ennemy.closeWall()));
     }
   ennemy[IAction::HIT_LAGG]->init(_hitLagg);
   if (_addStun)

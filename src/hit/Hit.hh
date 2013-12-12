@@ -13,7 +13,6 @@
 
 # include <list>
 # include "Hitbox.hh"
-# include "RatioPosition.hh"
 
 class Player;
 
@@ -28,7 +27,7 @@ public:
     };
 private:
   int				_stun;
-  RatioPosition			_speed;
+  Position			_speed;
   const int			&_orient;
   int				_hitLagg;
   bool				_isThrowable;
@@ -38,14 +37,14 @@ private:
   std::list<Player const*>	_players;
 
 public:
-  Hit(int stun, const RatioPosition &speed, const int &orient,
+  Hit(int stun, const Position &speed, const int &orient,
       int hitLagg, bool isThrowable, int type, bool addStun = false);
   ~Hit() {}
   bool	isThrowable() const;
   int	go(Player &ennemy) const;
   bool	focus(Player &ennemy);
   void	reset();
-  void	add(const Distance &ray, const Position &center, const Position &playerPos);
+  void	add(float ray, const Position &center, const Position &playerPos);
   void	print(Graphics &g) const;
   int	hitLagg() const;
 };

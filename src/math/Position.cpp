@@ -8,7 +8,6 @@
 ** Last update Sun Mar 17 12:18:44 2013 Brunier Jean
 */
 
-#include "RatioPosition.hh"
 #include "Position.hh"
 #include "Math.hh"
 
@@ -22,39 +21,24 @@ Position::Position()
 {
 }
 
-Position::Position(const Distance &y, const Distance &x) : _y(y), _x(x)
+Position::Position(float Y, float X) : y(Y), x(X)
 {
 }
 
-Position::Position(const Distance &y, const Distance &x, int) : _y(y.longVal(), 0), _x(x.longVal(), 0)
+Position::Position(Angle const &angle, float d)
 {
+  y = d * Math::sin(angle);
+  x = d * Math::cos(angle);
 }
 
-Position::Position(Angle const &angle, const Distance &distance)
-{
-  //std::cout << distance << " " << angle << std::endl;
-  _y = distance * Math::sin(angle);
-  //std::cout << _y << " " << Math::sin(angle) << std::endl;
-  _x = distance * Math::cos(angle);
-  //std::cout << _x << " " << Math::cos(angle) << std::endl;
-  //std::cout << std::endl;
-//  std::cout << _x << "\t" << distance << "\t" << Math::cos(angle) << "\t" << angle << std::endl;
-//  std::cout << _y << "\t" << distance << "\t" << Math::sin(angle) << "\t" << angle << std::endl;
-}
-
-Position::Position(Position const &other) : _y(other._y), _x(other._x)
+Position::Position(Position const &other) : y(other.y), x(other.x)
 {
 }
-
-Position::Position(RatioPosition const &other) : _y(other.yDist()), _x(other.xDist())
-{
-}
-
 
 Position	&Position::operator=(Position const &other)
 {
-  _y = other._y;
-  _x = other._x;
+  y = other.y;
+  x = other.x;
   return (*this);
 }
 
@@ -64,7 +48,7 @@ Position	&Position::operator=(Position const &other)
 
 bool		Position::operator==(Position const &other) const
 {
-  return (_x.intVal() == other._x.intVal() && _y.intVal() == other._y.intVal());
+  return (x == other.x && y == other.y);
 }
 
 bool		Position::operator!=(Position const &other) const
@@ -78,110 +62,110 @@ bool		Position::operator!=(Position const &other) const
 
 Position	&Position::operator+=(Position const &other)
 {
-  _y += other._y;
-  _x += other._x;
+  y += other.y;
+  x += other.x;
   return (*this);
 }
 
 Position	&Position::operator-=(Position const &other)
 {
-  _y -= other._y;
-  _x -= other._x;
+  y -= other.y;
+  x -= other.x;
   return (*this);
 }
 
 Position	Position::operator+(Position const &other) const
 {
-  return (Position(_y + other._y, _x + other._x, 0));
+  return (Position(y + other.y, x + other.x));
 }
 
 Position	Position::operator-(Position const &other) const
 {
-  return (Position(_y - other._y, _x - other._x, 0));
+  return (Position(y - other.y, x - other.x));
 }
 
 /*
 Position	&Position::operator*=(Position const &other)
 {
-  _y *= other._y;
-  _x *= other._x;
+  y *= other.y;
+  x *= other.x;
   return (*this);
 }
 
 Position	&Position::operator/=(Position const &other)
 {
-  _y /= other._y;
-  _x /= other._x;
+  y /= other.y;
+  x /= other.x;
   return (*this);
 }
 
 Position	Position::operator*(Position const &other) const
 {
-  return (Position(_y * other._y, _x * other._x, 0));
+  return (Position(y * other.y, x * other.x, 0));
 }
 
 Position	Position::operator/(Position const &other) const
 {
-  return (Position(_y / other._y, _x / other._x, 0));
+  return (Position(y / other.y, x / other.x, 0));
 }
 */
 
 /***********************/
 /* DISTANCE OPERATIONS */
 /***********************/
-Position	Position::operator+(const Distance &v) const
+Position	Position::operator+(float v) const
 {
-  return (Position(_y + v, _x + v));
+  return (Position(y + v, x + v));
 }
 
-Position	Position::operator-(const Distance &v) const
+Position	Position::operator-(float v) const
 {
-  return (Position(_y - v, _x - v));
+  return (Position(y - v, x - v));
 }
 
 
-Position	&Position::operator+=(const Distance &v)
+Position	&Position::operator+=(float v)
 {
-  _x += v;
-  _y += v;
+  x += v;
+  y += v;
   return (*this);
 }
 
-Position	&Position::operator-=(const Distance &v)
+Position	&Position::operator-=(float v)
 {
 
-  _x -= v;
-  _y -= v;
+  x -= v;
+  y -= v;
   return (*this);
 }
 
 /////
-Position	Position::operator*(const Distance &v) const
+Position	Position::operator*(float v) const
 {
-  return (Position(_y * v, _x * v));
+  return (Position(y * v, x * v));
 }
 
-Position	Position::operator/(const Distance &v) const
+Position	Position::operator/(float v) const
 {
-  Position	tmp(_y, _x);
+  Position	tmp(y, x);
 
-  tmp._y /= v;
-  tmp._x /= v;
+  tmp.y /= v;
+  tmp.x /= v;
   return (tmp);
 }
 
-Position	&Position::operator*=(const Distance &v)
+Position	&Position::operator*=(float v)
 {
-  _x *= v;
-  _y *= v;
+  x *= v;
+  y *= v;
   return (*this);
 }
 
-Position	&Position::operator/=(const Distance &v)
+Position	&Position::operator/=(float v)
 {
 
-  _x /= v;
-  _y /= v;
+  x /= v;
+  y /= v;
   return (*this);
 }
 
@@ -196,11 +180,11 @@ Position		Position::operator*(const Angle& a) const
 
 Position		&Position::operator*=(const Angle& angle)
 {
-  Distance		d = distance();
-  Angle			a(angle + this->angle());
+  float		d = distance();
+  Angle		a(angle + this->angle());
 
-  _x = (d * Math::cos(a.rad()));
-  _y = (d * Math::sin(a.rad()));
+  x = (d * Math::cos(a));
+  y = (d * Math::sin(a));
   return (*this);
 }
 
@@ -209,8 +193,8 @@ Position		&Position::rotate(const Angle &a, Position const &center)
   Position	origin(*this - center);
   Position	next(Position(origin.angle() + a, origin.distance()) + center);
 
-  _x = next._x;
-  _y = next._y;
+  x = next.x;
+  y = next.y;
   return (*this);
 }
 
@@ -218,61 +202,29 @@ Position	Position::switchX(bool isOk) const
 {
   if (!isOk)
     return (*this);
-  return (Position(_y, _x * Distance(-1)));
+  return (Position(y, -x));
 
 }
 /***********/
 /* GETTERS */
 /***********/
 
-int			Position::x() const
+float	Position::squaredDistance() const
 {
-  return (_x.intVal());
+  return (x * x + y * y);
 }
 
-int			Position::y() const
+float	Position::squaredDistance(const Position &other) const
 {
-  return (_y.intVal());
+  return ((*this - other).squaredDistance());
 }
 
-Position		&Position::x(Distance const &x)
+float	Position::distance() const
 {
-  _x = x;
-  return (*this);
+  return (Math::sqrt(x * x + y * y));
 }
 
-Position		&Position::y(Distance const &y)
-{
-  _y = y;
-  return (*this);
-}
-
-const Distance		&Position::xDist() const
-{
-  return (_x);
-}
-
-const Distance		&Position::yDist() const
-{
-  return (_y);
-}
-
-Distance		&Position::xDist()
-{
-  return (_x);
-}
-
-Distance		&Position::yDist()
-{
-  return (_y);
-}
-
-Distance	Position::distance() const
-{
-  return (Math::sqrt(_x * _x + _y * _y));
-}
-
-Distance	Position::distance(const Position &other) const
+float	Position::distance(const Position &other) const
 {
   return ((*this - other).distance());
 }
@@ -280,12 +232,14 @@ Distance	Position::distance(const Position &other) const
 Angle		Position::angle() const
 {
   if (distance() == 0)
-    return (Angle());
-  return (Angle(Math::acos(_x / distance()) * (_y.longVal() < 0 ? -1 : 1)));
+    return (0);
+  return (Angle(Math::acos(x / distance()) * ((y >= 0) - (y < 0))));
 }
 
 std::ostream	&operator<<(std::ostream &s, Position const &pos)
 {
-  s << "[" << pos.y() << ", " << pos.x() << "]";
+  std::cout.setf( std::ios::fixed, std::ios::floatfield ); 
+  std::cout.precision(1);
+  s << "[" << pos.y << ", " << pos.x << "]";
   return (s);
 }

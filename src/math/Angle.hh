@@ -11,34 +11,34 @@
 #ifndef ANGLE_HH_
 # define ANGLE_HH_
 
-# include "Ratio.hh"
+#include <iostream>
 
 class	Angle
 {
 private:
-  Ratio		_rad;
+  float		_rad;
 
 public:
   ~Angle(){}
   Angle();
-  Angle(Ratio const & d);
-  Angle(int deg, int);
+  Angle(float d);
+  Angle(float deg, int);
 
   /* OPERATORS */
-  Angle		&operator+=(const Angle &other);
-  Angle		&operator-=(const Angle &other);
-  Angle		operator+(const Angle &other) const;
-  Angle		operator-(const Angle &other) const;
-  		operator Ratio() const;
   Angle		betweenX(Angle const &a, int sign) const;
   Angle		mirrorX() const;
   Angle		mirrorY() const;
+  Angle		operator+(Angle const &a) const;
+  Angle		&operator+=(Angle const &a);
+  Angle		operator-(Angle const &a) const;
+  Angle		&operator-=(Angle const &a);
+  		//operator float() const;
 
-
-  void			deg(int v);
-  int			deg() const;
-  Ratio			rad();
-  Ratio const		&rad() const;
+  /* ACCESS */
+  void			deg(float v);
+  float			deg() const;
+  void			rad(float v);
+  float			rad() const;
 };
 
 std::ostream	&operator<<(std::ostream &s, Angle const &a);

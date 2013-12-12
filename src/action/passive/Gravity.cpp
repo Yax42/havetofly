@@ -16,7 +16,7 @@ Gravity::Gravity(Player &player) : PassiveAction(player, GRAVITY)
 
 bool		Gravity::request()
 {
-  static const Ratio	MIN_SPEED(10);
+  static const float	MIN_SPEED(5);
 
   if (_player.sy() < MIN_SPEED)
     _player.sy(_player.sy() + 0.035); //2

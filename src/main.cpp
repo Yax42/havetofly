@@ -23,7 +23,6 @@
 #include "MyTime.hh"
 #include "GameLoader.hh"
 #include "Game.hh"
-#include "RatioPosition.hh"
 #include "Mutex.hh"
 
 #define MAP_H	768
@@ -65,10 +64,10 @@ void	run()
 
 void	test()
 {
-  RatioPosition		pos = Position(100, 100);
+  Position		pos = Position(100, 100);
 
   for (int i = 0; i < 100; i++)
-  pos.y(pos.y() + 0.5);
+  pos.y = pos.y + 0.5;
   std::cout << pos << std::endl;
 
   exit(0);
@@ -77,7 +76,6 @@ void	test()
 int	main(int ac, char **av)
 {
   srand(time(NULL));
-  Math::init();
   if (ac > 1 && std::string(av[1]) == "-h")
     print_help();
   if (ac > 1)

@@ -78,9 +78,9 @@ void		Spin::print(Graphics &g) const
       0x0044FF,
       0x0099FF
     };
-  int		goal =_player.orient() == -_open ? _bones[Bones::FOOT2].x() : _bones[Bones::FOOT1].x();
+  int		goal =_player.orient() == -_open ? _bones[Bones::FOOT2].x : _bones[Bones::FOOT1].x;
   for (int i = 0; i < 1; i++)
     for (Position i = (_player.orient() == _open ? _bones[Bones::FOOT2] : _bones[Bones::FOOT1]);
-        i.x() < goal; i.x(i.x() + 1))
+        i.x < goal; i.x++)
       g.line(i, i + Position((_open * 15) + rand() % size - size / 2, rand() % size - size / 2), color[rand() % 4]);
 }

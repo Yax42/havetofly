@@ -19,13 +19,13 @@ class Player;
 class Hitbox
 {
 private:
-  Distance		_ray;
+  float			_ray;
   Position		_center;
   const Position	&_playerPos;
   const	int		&_orient;
 
 public:
-  Hitbox(const Distance &ray, const Position &center,
+  Hitbox(float ray, const Position &center,
       const Position &playerPos, const int &orient);
   void	print(Graphics &g, int color) const;
   ~Hitbox() {}

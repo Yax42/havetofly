@@ -70,14 +70,14 @@ void		Player::orient(int o)
 void		Player::tp(const Position &dir)
 {
   _pos += dir;
-  if (_pos.x() <= BODY_SIZE)
-      _pos.x(BODY_SIZE);
-  else if (_pos.x() >= Game::w() - BODY_SIZE)
-      _pos.x(Game::w() - BODY_SIZE);
-  if (_pos.y() <= BODY_SIZE)
-      _pos.y(BODY_SIZE);
-  else if (_pos.y() >= Game::h() + Game::deep)
-      _pos.y(Game::h() + Game::deep);
+  if (_pos.x <= BODY_SIZE)
+      _pos.x = BODY_SIZE;
+  else if (_pos.x >= Game::w() - BODY_SIZE)
+      _pos.x = Game::w() - BODY_SIZE;
+  if (_pos.y <= BODY_SIZE)
+      _pos.y = BODY_SIZE;
+  else if (_pos.y >= Game::h() + Game::deep)
+      _pos.y = Game::h() + Game::deep;
 }
 
 /************/
@@ -186,27 +186,27 @@ IAction		*Player::operator[](int a)
 /*********/
 /* SPEED */
 /*********/
-void		Player::sx(const Ratio &s)
+void		Player::sx(float s)
 {
-  _speed.x(s);
+  _speed.x = s;
 }
 
-void		Player::sy(const Ratio &s)
+void		Player::sy(float s)
 {
-  _speed.y(s);
+  _speed.y = s;
 }
 
-const Ratio	&Player::sx() const
+float		Player::sx() const
 {
-  return (_speed.xRatio());
+  return (_speed.x);
 }
 
-const Ratio	&Player::sy() const
+float		Player::sy() const
 {
-  return (_speed.yRatio());
+  return (_speed.y);
 }
 
-RatioPosition const	&Player::speed() const
+Position const	&Player::speed() const
 {
   return (_speed);
 }
@@ -216,12 +216,12 @@ RatioPosition const	&Player::speed() const
 /************/
 int		Player::x() const
 {
-  return (_pos.x());
+  return (_pos.x);
 }
 
 int		Player::y() const
 {
-  return (_pos.y());
+  return (_pos.y);
 }
 
 Position const	&Player::pos() const
@@ -268,13 +268,13 @@ int	Player::team() const
 }
 int		Player::closeWall() const
 {
-  return ((_pos.x() > Game::w() / 2) ? 1 : -1);
+  return ((_pos.x > Game::w() / 2) ? 1 : -1);
 }
 
 Position	Player::closePos() const
 {
   Player	*target = NULL;
-  Distance	max(10000);
+  float		max(10000);
 
   for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     if (*i != this && (*i)->alive())

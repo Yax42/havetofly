@@ -14,25 +14,21 @@
 # include <cstdlib>
 # include <iostream>
 
-# include "Distance.hh"
 # include "Angle.hh"
-
-class RatioPosition;
 
 class Position
 {
-  Distance	_y;
-  Distance	_x;
+public:
+  float	y;
+  float	x;
 
 public:
   /* CONSTRUCTORS */
   ~Position();
   Position();
-  Position(const Distance &y, const Distance &x);
-  Position(const Angle &angle, const Distance &distance);
-  Position(const Distance &y, const Distance &x, int);
+  Position(float y, float x);
+  Position(const Angle &angle, float d);
   Position(Position const &other);
-  Position(RatioPosition const &other);
   Position		&operator=(Position const &other);
 
   /* COMPARISONS */
@@ -54,14 +50,14 @@ public:
   //Position		&operator/=(Position const &other);
   //Position		operator/(Position const &other) const;
 
-  Position		operator+(const Distance &v) const;
-  Position		operator-(const Distance &v) const;
-  Position		operator*(const Distance &v) const;
-  Position		operator/(const Distance &v) const;
-  Position		&operator+=(const Distance &v);
-  Position		&operator-=(const Distance &v);
-  Position		&operator*=(const Distance &v);
-  Position		&operator/=(const Distance &v);
+  Position		operator+(float v) const;
+  Position		operator-(float v) const;
+  Position		operator*(float v) const;
+  Position		operator/(float v) const;
+  Position		&operator+=(float v);
+  Position		&operator-=(float v);
+  Position		&operator*=(float v);
+  Position		&operator/=(float v);
 
   /* ROTATION */
   Position		operator*(const Angle& angle) const;
@@ -70,18 +66,12 @@ public:
   Position		switchX(bool isOk) const;
 
   /* GETTERS */
-  int			x() const;
-  int			y() const;
-  Position		&x(Distance const &x);
-  Position		&y(Distance const &y);
-  Distance		&xDist();
-  Distance		&yDist();
-  const Distance	&xDist() const;
-  const Distance	&yDist() const;
 
   Angle			angle() const;
-  Distance		distance() const;
-  Distance		distance(const Position &other) const;
+  float			distance() const;
+  float			distance(const Position &other) const;
+  float			squaredDistance() const;
+  float			squaredDistance(const Position &other) const;
 };
 
 std::ostream	&operator<<(std::ostream &s, Position const &pos);

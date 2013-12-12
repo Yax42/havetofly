@@ -11,7 +11,7 @@
 #include "Ball.hh"
 
 Ball::Ball(const Player &player, const Angle &a) :
-	AThrowable(player.pos(), RatioPosition(a, 6), 30, Position(1, 1), player)
+	AThrowable(player.pos(), Position(a, 6), 30, Position(1, 1), player)
 {
   _hit.add(20, Position(), _pos);
   _val1 = 20;
@@ -22,7 +22,7 @@ void		Ball::move()
   //std::cout << _val1 << _alive <<std::endl;
   if (_val1 == 0)
     _alive = false;
-  _speed.y(_speed.yRatio() + 0.1);
+  _speed.y = _speed.y + 0.1;
 }
 
 void		Ball::print(Graphics &g) const

@@ -14,7 +14,7 @@
 
 const int	MovePlayer::nbIt = 10;
 
-MovePlayer::MovePlayer(RatioPosition &speed, Position &pos,
+MovePlayer::MovePlayer(Position &speed, Position &pos,
     std::vector<bool>  &event, IAction *&doing, Player *player) :
 	_speed(speed), _pos(pos), _event(event), _doing(doing), _player(player)
 {
@@ -31,27 +31,29 @@ void	MovePlayer::init()
 void	MovePlayer::proc()
 {
   _count++;
+  //_pos = _initPos;
   _pos = _initPos + ((_speed * _count) / nbIt);
-  if (_pos.x() <= BODY_SIZE)
+  //std::cout << ((_speed * _count) / nbIt) << std::endl;
+  if (_pos.x <= BODY_SIZE)
     {
       _event[Event::LEFT_WALL] = true;
       _event[Event::WALL] = true;
-      _pos.x(BODY_SIZE);
+      _pos.x = BODY_SIZE;
     }
-  else if (_pos.x() >= Game::w() - BODY_SIZE)
+  else if (_pos.x >= Game::w() - BODY_SIZE)
     {
-      _pos.x(Game::w() - BODY_SIZE);
+      _pos.x = Game::w() - BODY_SIZE;
       _event[Event::RIGHT_WALL] = true;
       _event[Event::WALL] = true;
     }
-  if (_pos.y() <= BODY_SIZE)
+  if (_pos.y <= BODY_SIZE)
     {
       _event[Event::CEILING] = true;
-      _pos.y(BODY_SIZE);
+      _pos.y = BODY_SIZE;
     }
-  else if (_pos.y() >= Game::h() + Game::deep)
+  else if (_pos.y >= Game::h() + Game::deep)
     {
-      _pos.y(Game::h() + Game::deep);
+      _pos.y = Game::h() + Game::deep;
       _event[Event::FLOOR] = true;
     }
   for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)

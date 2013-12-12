@@ -37,7 +37,7 @@ IAction		*AutoGun::step()
 {
   if (_player.key[Key::VERT])
     _sign = _player.key[Key::VERT] * -_player.orient();
-  _angle += Angle(Ratio(_sign * 4000, 0));
+  _angle += Angle(_sign * 0.3);
   if(_count > RELOADING && _count < 200)
     {
       if (_count % 10 == 0 && _open)

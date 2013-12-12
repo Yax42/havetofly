@@ -75,11 +75,12 @@ void		Bones::print(Graphics &g)
 
 void	Bones::check()
 {
-  for (int i = 0; i < Bones::COUNT; i++)
-    _angle[i] = angle[i];
   if (_orient > 0)
     for (int i = 0; i < Bones::COUNT; i++)
-      _angle[i] = _angle[i].mirrorX();
+      _angle[i] = angle[i].mirrorX();
+  else
+    for (int i = 0; i < Bones::COUNT; i++)
+      _angle[i] = angle[i];
   _angle[BODY] += Angle(90, 0);
 }
 
