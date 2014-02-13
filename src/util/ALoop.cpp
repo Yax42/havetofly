@@ -16,7 +16,7 @@ ALoop::ALoop(int fps) : _quit(false), _wait(fps)
 
 void	ALoop::loop()
 {
-  pthread_create(&_thread, 0, startThreadWrapper, this);
+  int ret = pthread_create(&_thread, 0, startThreadWrapper, this);
 }
 
 void		*ALoop::startThreadWrapper(void *obj)

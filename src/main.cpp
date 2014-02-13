@@ -12,7 +12,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <unistd.h>
+
 #include <string>
 
 #include "Math.hh"
@@ -55,7 +55,10 @@ void	run()
 
   dis.loop();
   gl.loop();
-
+  while (1)
+  {
+	  Sleep(100);
+  }
   gl.join();
   dis.quit();
   dis.join();

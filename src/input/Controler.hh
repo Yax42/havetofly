@@ -12,12 +12,10 @@
 # define CONTROLER_HH_
 
 # include "Key.hh"
-# include <linux/joystick.h>
 
 class Controler
 {
 private:
-  js_event		_event;
   int			_id;
   int			_fd;
   std::vector<int>	_axe;

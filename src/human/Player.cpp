@@ -274,7 +274,7 @@ int		Player::closeWall() const
 Position	Player::closePos() const
 {
   Player	*target = NULL;
-  float		max(10000);
+  float		max = 10000;
 
   for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
     if (*i != this && (*i)->alive())

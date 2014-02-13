@@ -16,8 +16,8 @@
 class Line
 {
 private:
-  Distance	_a;
-  Distance	_b;
+  /*Distance	_a;
+  Distance	_b;*/
 
 public:
   ~Line(){}

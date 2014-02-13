@@ -33,10 +33,17 @@ Display::Display(int h, int w) : ALoop(120), _g(h, w)
 
 void	Display::print()
 {
+	std::cout << "Thread Display --> Mutex LOck" << std::endl;
   mutex.lock();
   if (_target != NULL)
+  {
     _target->print(_g);
+	std::cout << "Thread Display --> i'm on it" << std::endl;
+  }
+  else
+	  std::cout << "Thread Display --> NULL" << std::endl;
   mutex.unlock();
+  std::cout << "Thread Display --> Mutex UnLOck" << std::endl;
 }
 
 void	Display::initLoop()

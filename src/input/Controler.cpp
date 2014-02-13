@@ -11,12 +11,14 @@
 #include <cstdio>
 #include <errno.h>
 
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <iostream>
 #include <sstream>
+#include <stdlib.h>
+
+#include <SDL/SDL.h>
 
 #include "MyTime.hh"
 #include "Exception.hh"
@@ -25,7 +27,6 @@
 #define STICK_TO_SPEED(x)	(x >> 5)
 
 #define clean()			{if (_fd != -1)		\
-				  close(_fd);		\
 				_fd = -1;		\
 				_axe.clear();		\
 				_but.clear();		\
@@ -58,7 +59,30 @@ bool	Controler::isOk() const
 /***********/
 void			Controler::update()
 {
-  char			tmp;
+	char		tmp;
+	std::string		name;
+	SDL_Joystick *joystick; // on crée le joystick
+	if (SDL_NumJoysticks() > 0)
+	{
+		joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
+		_fd = 1;
+		tmp = SDL_JoystickNumAxes(joystick);
+		if (tmp < 2 || tmp > 50)
+			clean();
+		_axe.resize(tmp);
+		tmp = SDL_JoystickNumButtons(joystick);
+		if (tmp < 6 || tmp > 80)
+			clean();
+		_but.resize(tmp);
+		name = SDL_JoystickName(_id);
+		_name[name.copy(_name, name.length(), 0)] = '\0';
+
+	}
+	else
+	{
+		clean();
+	}
+  /*char			tmp;
   std::stringstream	stm;
 
   stm << "/dev/input/js" << _id;
@@ -79,7 +103,7 @@ void			Controler::update()
   _but.resize(tmp);
   ioctl(_fd, JSIOCGNAME(sizeof(_name)), &_name);
 
-  fcntl(_fd, F_SETFL, O_NONBLOCK);
+  fcntl(_fd, F_SETFL, O_NONBLOCK);*/
   //std::cout << _name << " Axe[" << _axe.size() <<
   //  "] Buttons [" << _but.size() << "]" << std::endl;
 }
@@ -88,18 +112,21 @@ void	Controler::proc()
 {
   if (_fd == -1)
     return ;
-  while (read(_fd, &_event, sizeof(_event)) > 0)
-    {
-      _event.type &= ~JS_EVENT_INIT;
-      if (_event.type == JS_EVENT_BUTTON)
-        {
-	  if (_event.value == 1)
-	    _lastBut = _event.number;
- 	  _but[_event.number] = _event.value;
-        }
-      else if (_event.type == JS_EVENT_AXIS)
-	  _axe[_event.number] = STICK_TO_SPEED(_event.value);
-    }
+  SDL_Event evenements;
+  switch(evenements.type)
+	{
+		case SDL_JOYBUTTONDOWN:
+			_lastBut = evenements.jbutton.button;
+			_but[evenements.jbutton.button] = 1;
+			break;
+		case SDL_JOYBUTTONUP:
+			_but[evenements.jbutton.button] = 0;
+			break;
+		case SDL_JOYAXISMOTION:
+			if(evenements.jaxis.axis == 0)  
+			_axe[evenements.jaxis.axis] = STICK_TO_SPEED(evenements.jaxis.value);
+			break;
+	}
 }
 
 /**********/
@@ -108,7 +135,7 @@ void	Controler::proc()
 Key			Controler::getKey()
 {
   Key			k;
-  std::stringstream	stm;
+  /*std::stringstream	stm;
   int			fd;
 
   stm << ".config/" << _name;
@@ -136,13 +163,13 @@ Key			Controler::getKey()
       else
 	k.ptr(i) = &_but[_patern[i]];
     }
-  close(fd);
+  close(fd);*/
   return (k);
 }
 
 void		Controler::saveKey() const
 {
-  if (_fd == -1)
+  /*if (_fd == -1)
     return ;
 
   int			fd;
@@ -154,7 +181,7 @@ void		Controler::saveKey() const
   if (fd == -1)
     throw(Exception("Cannot create/open file in .config."));
   write(fd, _patern, sizeof(_patern));
-  close(fd);
+  close(fd);*/
 }
 
 /***************/

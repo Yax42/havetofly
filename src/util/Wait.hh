@@ -11,8 +11,8 @@
 #ifndef WAIT_HH_
 # define WAIT_HH_
 
-# include <sys/time.h>
-
+# include <time.h>
+# include <WinSock.h>
 class Wait
 {
 private:

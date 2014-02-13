@@ -11,7 +11,7 @@
 #include "DeathRay.hh"
 
 DeathRay::DeathRay(const Player &player, const Angle &a) :
-	AThrowable(player.pos(), RatioPosition(a, 6), 30, Position(1, 1), player),
+AThrowable(player.pos(), player.speed(), 30, Position(1, 1), player),
 	_player(NULL)
 {
   _hit.add(20, Position(), _pos);

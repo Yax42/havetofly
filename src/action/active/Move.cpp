@@ -17,13 +17,13 @@ Move::Move(Player &player) : PassiveAction(player, MOVE)
 
 bool		Move::request()
 {
-  static const Distance 	MAX = 2; //2/3
-  static const Distance 	MIN = -2; //2/3
-  static const Distance		SPEED = 0.0333; //2/3
+  static const float 	MAX = 2; //2/3
+  static const float 	MIN = -2; //2/3
+  static const float		SPEED = 0.0333; //2/3
 
   if (_player.key(Key::HOR))
     {
-      _player.sx(_player.sx() + Distance(_player.key(Key::HOR), 0) * SPEED);
+      _player.sx(_player.sx() + MAX * SPEED);
       if (_player.key(Key::HOR) < 0)
 	_player.orient(-1);
       else if (_player.key(Key::HOR) > 0)

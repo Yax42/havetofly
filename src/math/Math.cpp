@@ -16,10 +16,10 @@
 #include "Math.hh"
 #include "Angle.hh"
 
-const float		Math::maxRad = M_PI * 2;
-const float		Math::Pi = M_PI;
-const float		Math::PiTwo = M_PI * 2;
-const float		Math::PiHalf = M_PI / 2;
+const float		Math::maxRad = ((float)M_PI * 2);
+const float		Math::Pi = ((float)M_PI);
+const float		Math::PiTwo = ((float)M_PI * 2);
+const float		Math::PiHalf = ((float)M_PI / 2);
 
 
 float	Math::sqrt(float v)
@@ -30,17 +30,17 @@ float	Math::sqrt(float v)
 float		Math::toRad(float deg)
 {
 
-  return (deg * M_PI / 180);
+  return (deg * (float)M_PI / 180);
 }
 
 float		Math::toDeg(float rad)
 {
-  return (rad * 180 / M_PI);
+  return (rad * 180 / (float)M_PI);
 }
 
 int		Math::abs(int v)
 {
-  return (::fabs(v));
+  return (::fabs((double)v));
 }
 
 float		Math::abs(float v)

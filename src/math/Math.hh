@@ -27,6 +27,7 @@
 # define MSIGN(x)			(((x) > 0) - ((x) < 0))
 # define MSIGN_(x)			(((x) >= 0) - ((x) < 0))
 # define MMAX(x, y)			(((x) > (y)) ? x : y)
+# define M_PI	 3.141592654
 
 //# define HALF_PI			(M_PI / 2)
 
