@@ -2,9 +2,9 @@
 // Input.hh for input in /home/brunie_j/local/my/havetofly/src/input
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Sat Apr 13 22:34:54 2013 Brunier Jean
+// Started on	Sat Apr 13 22:34:54 2013 Brunier Jean
 // Last update Mon May 06 23:34:55 2013 Brunier Jean
 //
 
@@ -24,38 +24,38 @@
 class Input
 {
 private:
-  bool				_quitKey;
-  int				_kb[SDLK_LAST];
-  SDL_Event			_event;
-  std::vector<Controler *>	_ctrl;
-  int				_axe[2];
+	bool				_quitKey;
+	int				_kb[SDLK_LAST];
+	SDL_Event			_event;
+	std::vector<Controler *>	_ctrl;
+	int				_axe[2];
 
 /* SINGLETON */
 private:
-  static Input		*_inst;
+	static Input		*_inst;
 private:
-  virtual ~Input();
-  Input();
-  Input(const Input &other);
-  Input &operator=(const Input &other);
+	virtual ~Input();
+	Input();
+	Input(const Input &other);
+	Input &operator=(const Input &other);
 public:
-  static void		create();
-  static Input		*get();
-  static void		destroy();
+	static void		create();
+	static Input		*get();
+	static void		destroy();
 /******/
 
 public:
-  bool		operator[](int i);
-  bool		operator()(int i);
-  bool		isQuit();
-  void		update();
-  int		nbCtrl() const;
-  Key		getKBKey();
-  Key		getCtrlKey(int id);
-  void		proc();
-  int		getLastBut(int id);
-  char		*getPatern(int id);
-  void		saveKey(int id) const;
+	bool		operator[](int i);
+	bool		operator()(int i);
+	bool		isQuit();
+	void		update();
+	int		nbCtrl() const;
+	Key		getKBKey();
+	Key		getCtrlKey(int id);
+	void		proc();
+	int		getLastBut(int id);
+	char		*getPatern(int id);
+	void		saveKey(int id) const;
 };
 
 #endif /* !INPUT_HH_ */

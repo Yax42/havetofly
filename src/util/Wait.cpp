@@ -2,9 +2,9 @@
 // Wait.cpp for util in /home/diallo_e/tmp/havetofly/src/util
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login\t <brunie_j@epitech.net>
 //
-// Started on  Sun Apr 14 01:03:17 2013 Brunier Jean
+// Started on	Sun Apr 14 01:03:17 2013 Brunier Jean
 // Last update Wed Apr 24 16:50:58 2013 aliou diallo
 //
 

@@ -2,9 +2,9 @@
 // Stun.hh for active in /home/brunie_j/local/my/havetofly/src/action/active
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Wed Apr 17 23:22:45 2013 Brunier Jean
+// Started on	Wed Apr 17 23:22:45 2013 Brunier Jean
 // Last update Tue Apr 23 15:58:34 2013 Brunier Jean
 //
 
@@ -16,16 +16,16 @@
 class Stun : public AAction
 {
 public:
-  Stun(Player &player);
-  virtual ~Stun(){}
-  virtual void		init(int v = 0);
-  virtual bool		allow(int a);
-  virtual IAction	*step();
-  virtual int		val();
-  virtual bool		request();
-  virtual void		upBones();
-  virtual void		set(int val = 0);
-  virtual void		print(Graphics &g) const;
+	Stun(Player &player);
+	virtual ~Stun(){}
+	virtual void		init(int v = 0);
+	virtual bool		allow(int a);
+	virtual IAction	*step();
+	virtual int		val();
+	virtual bool		request();
+	virtual void		upBones();
+	virtual void		set(int val = 0);
+	virtual void		print(Graphics &g) const;
 };
 
 

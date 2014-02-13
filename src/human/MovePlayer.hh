@@ -2,9 +2,9 @@
 // MovePlayer.hh for human in /home/brunie_j/local/my/havetofly/src/human
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Fri Apr 19 22:29:58 2013 Brunier Jean
+// Started on	Fri Apr 19 22:29:58 2013 Brunier Jean
 // Last update Tue Apr 23 01:05:59 2013 Brunier Jean
 //
 
@@ -20,24 +20,24 @@
 class MovePlayer
 {
 public:
-  static const int	nbIt;
+	static const int	nbIt;
 
 private:
-  Position		&_speed;
-  Position		&_pos;
-  std::vector<bool>	&_event;
-  IAction		*&_doing;
-  Player		*_player;
-  Position		_initPos;
-  int			_count;
+	Position		&_speed;
+	Position		&_pos;
+	std::vector<bool>	&_event;
+	IAction		*&_doing;
+	Player		*_player;
+	Position		_initPos;
+	int			_count;
 
 
 public:
-  ~MovePlayer(){}
-  MovePlayer(Position &speed, Position &pos,
-      std::vector<bool> &event, IAction *&doing, Player *player);
-  void	init();
-  void	proc();
+	~MovePlayer(){}
+	MovePlayer(Position &speed, Position &pos,
+			std::vector<bool> &event, IAction *&doing, Player *player);
+	void	init();
+	void	proc();
 };
 
 #endif /* !MOVEPLAYER_HH_ */

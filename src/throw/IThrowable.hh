@@ -2,9 +2,9 @@
 // IThrowable.hh for throw in /home/brunie_j/local/my/havetofly/src/throw
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Tue Apr 23 02:52:56 2013 Brunier Jean
+// Started on	Tue Apr 23 02:52:56 2013 Brunier Jean
 // Last update Tue Apr 23 20:14:01 2013 Brunier Jean
 //
 
@@ -17,14 +17,14 @@ class Graphics;
 class IThrowable
 {
 public:
-  virtual ~IThrowable(){}
-  virtual bool		isAlive() const = 0;
-  virtual void		init() = 0;
-  virtual void		proc() = 0;
-  virtual void		move() = 0;
-  virtual void		effect(Player &p) = 0;
-  virtual void		print(Graphics &g) const = 0;
-  virtual void		printHB(Graphics &g) const = 0;
+	virtual ~IThrowable(){}
+	virtual bool		isAlive() const = 0;
+	virtual void		init() = 0;
+	virtual void		proc() = 0;
+	virtual void		move() = 0;
+	virtual void		effect(Player &p) = 0;
+	virtual void		print(Graphics &g) const = 0;
+	virtual void		printHB(Graphics &g) const = 0;
 };
 
 #endif /* !ITHROWABLE_HH_ */

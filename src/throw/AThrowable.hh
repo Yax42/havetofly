@@ -2,9 +2,9 @@
 // AThrowable.hh for throw in /home/brunie_j/local/my/havetofly/src/throw
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Mon Apr 22 01:23:19 2013 Brunier Jean
+// Started on	Mon Apr 22 01:23:19 2013 Brunier Jean
 // Last update Sun May 05 21:57:31 2013 Brunier Jean
 //
 
@@ -22,31 +22,31 @@
 class AThrowable : public IThrowable
 {
 public:
-  static const int	SIZE;
+	static const int	SIZE;
 protected:
-  Position		_pos;
-  Position		_speed;
-  bool			_alive;
-  int			_orient;
-  Hit			_hit;
-  const Player		&_player;
-  int			_val1;
+	Position		_pos;
+	Position		_speed;
+	bool			_alive;
+	int			_orient;
+	Hit			_hit;
+	const Player		&_player;
+	int			_val1;
 private:
-  Position		_initPos;
-  int			_count;
+	Position		_initPos;
+	int			_count;
 
 public:
-  virtual ~AThrowable(){}
-  AThrowable(const Position &pos, const Position &speed,
-      int stun, const Position &hitSpeed, const Player &player,
-      int type = Hit::ORIENT, bool addStun = false);
-  bool			isAlive() const;
-  void			init();
-  void			proc();
-  virtual void		move();
-  virtual void		effect(Player &p);
-  virtual void		print(Graphics &g) const = 0;
-  virtual void		printHB(Graphics &g) const;
+	virtual ~AThrowable(){}
+	AThrowable(const Position &pos, const Position &speed,
+			int stun, const Position &hitSpeed, const Player &player,
+			int type = Hit::ORIENT, bool addStun = false);
+	bool			isAlive() const;
+	void			init();
+	void			proc();
+	virtual void		move();
+	virtual void		effect(Player &p);
+	virtual void		print(Graphics &g) const = 0;
+	virtual void		printHB(Graphics &g) const;
 };
 
 #endif /* !ATHROWABLE_HH_ */

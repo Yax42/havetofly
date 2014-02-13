@@ -2,9 +2,9 @@
 ** Time.hh for src in /home/brunie_j/local/nibbler/nibbler/src
 **
 ** Made by Brunier Jean
-** Login   <brunie_j@epitech.net>
+** Login	 <brunie_j@epitech.net>
 **
-** Started on  Tue Mar 05 15:11:02 2013 Brunier Jean
+** Started on	Tue Mar 05 15:11:02 2013 Brunier Jean
 ** Last update Wed Mar 20 10:51:43 2013 Brunier Jean
 */
 
@@ -14,12 +14,12 @@
 # define MTIME	(MyTime::get())
 class MyTime
 {
-  private:
-    static int	_time;
-  public:
-    static void	run();
-    static int	get();
-    static void	reset();
+	private:
+		static int	_time;
+	public:
+		static void	run();
+		static int	get();
+		static void	reset();
 };
 
 #endif /* !TIME_HH_ */

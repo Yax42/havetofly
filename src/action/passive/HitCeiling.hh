@@ -2,9 +2,9 @@
 // HitCeiling.hh for passive in /home/brunie_j/local/my/havetofly/src/action/passive
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Mon Apr 22 00:24:42 2013 Brunier Jean
+// Started on	Mon Apr 22 00:24:42 2013 Brunier Jean
 // Last update Mon Apr 29 23:04:39 2013 Brunier Jean
 //
 
@@ -16,9 +16,9 @@
 class HitCeiling : public PassiveAction
 {
 public:
-  HitCeiling(Player &player);
-  virtual ~HitCeiling() {}
-  virtual void		check();
+	HitCeiling(Player &player);
+	virtual ~HitCeiling() {}
+	virtual void		check();
 };
 
 #endif /* !HITCEILING_HH_ */

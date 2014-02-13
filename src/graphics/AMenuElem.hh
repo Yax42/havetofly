@@ -2,9 +2,9 @@
 // AMenuElem.hh for graphics in /home/brunie_j/local/my/havetofly/src/graphics
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Mon Apr 22 00:01:01 2013 Brunier Jean
+// Started on	Mon Apr 22 00:01:01 2013 Brunier Jean
 // Last update Mon Apr 22 00:02:43 2013 Brunier Jean
 //
 
@@ -14,9 +14,9 @@
 class AMenuElem
 {
 private:
-  AMenuElem		*_goal;
-  virtual void		print();
-  //checkSouris();
+	AMenuElem		*_goal;
+	virtual void		print();
+	//checkSouris();
 
 
 };

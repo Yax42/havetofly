@@ -2,9 +2,9 @@
 // Controler.cpp for input in /home/brunie_j/local/my/havetofly/src/input
 //
 // Made by Brunier Jean
-// Login   <brunie_j@epitech.net>
+// Login	 <brunie_j@epitech.net>
 //
-// Started on  Thu Apr 18 17:34:29 2013 Brunier Jean
+// Started on	Thu Apr 18 17:34:29 2013 Brunier Jean
 // Last update Tue May 07 10:03:10 2013 Brunier Jean
 //
 
@@ -30,28 +30,28 @@
 				_fd = -1;		\
 				_axe.clear();		\
 				_but.clear();		\
-    				return ;}
+						return ;}
 
 Controler::~Controler()
 {
-  clean();
+	clean();
 }
 
 Controler::Controler(int id) : _id(id)
 {
-  _patern[0] = 0;
-  _patern[1] = 1;
-  for (int i = 2; i < 8; i++)
-    _patern[i] = i - 2;
-  _lastBut = -1;
-  _fd = -1;
-  update();
-  _null = 0;
+	_patern[0] = 0;
+	_patern[1] = 1;
+	for (int i = 2; i < 8; i++)
+		_patern[i] = i - 2;
+	_lastBut = -1;
+	_fd = -1;
+	update();
+	_null = 0;
 }
 
 bool	Controler::isOk() const
 {
-  return (_fd != -1);
+	return (_fd != -1);
 }
 
 /***********/
@@ -82,38 +82,38 @@ void			Controler::update()
 	{
 		clean();
 	}
-  /*char			tmp;
-  std::stringstream	stm;
+	/*char			tmp;
+	std::stringstream	stm;
 
-  stm << "/dev/input/js" << _id;
-  if (access(stm.str().c_str(), R_OK) == -1)
-    clean();
-  if (_fd != -1)
-    return ;
-  _fd = open(stm.str().c_str(), O_RDONLY);
-  if (_fd == -1)
-    clean();
-  ioctl(_fd, JSIOCGAXES, &tmp);
-  if (tmp < 2 || tmp > 50)
-    clean();
-  _axe.resize(tmp);
-  ioctl(_fd, JSIOCGBUTTONS, &tmp);
-  if (tmp < 6 || tmp > 80)
-    clean();
-  _but.resize(tmp);
-  ioctl(_fd, JSIOCGNAME(sizeof(_name)), &_name);
+	stm << "/dev/input/js" << _id;
+	if (access(stm.str().c_str(), R_OK) == -1)
+		clean();
+	if (_fd != -1)
+		return ;
+	_fd = open(stm.str().c_str(), O_RDONLY);
+	if (_fd == -1)
+		clean();
+	ioctl(_fd, JSIOCGAXES, &tmp);
+	if (tmp < 2 || tmp > 50)
+		clean();
+	_axe.resize(tmp);
+	ioctl(_fd, JSIOCGBUTTONS, &tmp);
+	if (tmp < 6 || tmp > 80)
+		clean();
+	_but.resize(tmp);
+	ioctl(_fd, JSIOCGNAME(sizeof(_name)), &_name);
 
-  fcntl(_fd, F_SETFL, O_NONBLOCK);*/
-  //std::cout << _name << " Axe[" << _axe.size() <<
-  //  "] Buttons [" << _but.size() << "]" << std::endl;
+	fcntl(_fd, F_SETFL, O_NONBLOCK);*/
+	//std::cout << _name << " Axe[" << _axe.size() <<
+	//	"] Buttons [" << _but.size() << "]" << std::endl;
 }
 
 void	Controler::proc()
 {
-  if (_fd == -1)
-    return ;
-  SDL_Event evenements;
-  switch(evenements.type)
+	if (_fd == -1)
+		return ;
+	SDL_Event evenements;
+	switch(evenements.type)
 	{
 		case SDL_JOYBUTTONDOWN:
 			_lastBut = evenements.jbutton.button;
@@ -123,7 +123,7 @@ void	Controler::proc()
 			_but[evenements.jbutton.button] = 0;
 			break;
 		case SDL_JOYAXISMOTION:
-			if(evenements.jaxis.axis == 0)  
+			if(evenements.jaxis.axis == 0)	
 			_axe[evenements.jaxis.axis] = STICK_TO_SPEED(evenements.jaxis.value);
 			break;
 	}
@@ -134,54 +134,54 @@ void	Controler::proc()
 /**********/
 Key			Controler::getKey()
 {
-  Key			k;
-  /*std::stringstream	stm;
-  int			fd;
+	Key			k;
+	/*std::stringstream	stm;
+	int			fd;
 
-  stm << ".config/" << _name;
+	stm << ".config/" << _name;
 
-  if (_fd == -1 ||
-      (fd = open(stm.str().c_str(), O_RDONLY)) == -1)
-    {
-      for (int i = 0; i < 8; i++)
-        k.ptr(i) = &_null;
-      return (k);
-    }
+	if (_fd == -1 ||
+			(fd = open(stm.str().c_str(), O_RDONLY)) == -1)
+		{
+			for (int i = 0; i < 8; i++)
+				k.ptr(i) = &_null;
+			return (k);
+		}
 
-  read(fd, _patern, sizeof(_patern));
-  for (int i = 0; i < 2; i++)
-    {
-      if (_patern[i] == -1)
+	read(fd, _patern, sizeof(_patern));
+	for (int i = 0; i < 2; i++)
+		{
+			if (_patern[i] == -1)
 	k.ptr(i) = &_null;
-      else
+			else
 	k.ptr(i) = &_axe[_patern[i]];
-    }
-  for (int i = 2; i < 8; i++)
-    {
-      if (_patern[i] == -1)
+		}
+	for (int i = 2; i < 8; i++)
+		{
+			if (_patern[i] == -1)
 	k.ptr(i) = &_null;
-      else
+			else
 	k.ptr(i) = &_but[_patern[i]];
-    }
-  close(fd);*/
-  return (k);
+		}
+	close(fd);*/
+	return (k);
 }
 
 void		Controler::saveKey() const
 {
-  /*if (_fd == -1)
-    return ;
+	/*if (_fd == -1)
+		return ;
 
-  int			fd;
-  std::stringstream	stm;
+	int			fd;
+	std::stringstream	stm;
 
-  mkdir(".config", 0666);
-  stm << ".config/" << _name;
-  fd = open(stm.str().c_str(), O_WRONLY | O_CREAT, 0666);
-  if (fd == -1)
-    throw(Exception("Cannot create/open file in .config."));
-  write(fd, _patern, sizeof(_patern));
-  close(fd);*/
+	mkdir(".config", 0666);
+	stm << ".config/" << _name;
+	fd = open(stm.str().c_str(), O_WRONLY | O_CREAT, 0666);
+	if (fd == -1)
+		throw(Exception("Cannot create/open file in .config."));
+	write(fd, _patern, sizeof(_patern));
+	close(fd);*/
 }
 
 /***************/
@@ -191,12 +191,12 @@ void		Controler::saveKey() const
 
 char		*Controler::getPatern()
 {
-  return (_patern);
+	return (_patern);
 }
 
 int		Controler::getLastBut()
 {
-  int		tmp = _lastBut;
-  _lastBut = -1;
-  return (tmp);
+	int		tmp = _lastBut;
+	_lastBut = -1;
+	return (tmp);
 }
