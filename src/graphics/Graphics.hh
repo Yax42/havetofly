@@ -11,7 +11,17 @@
 #ifndef	GRAPHICS_HH_
 # define GRAPHICS_HH_
 
+#ifdef WIN32
+	# include <time.h>
+	# include <WinSock.h>
+	#include <sys/timeb.h>
+	#include <Windows.h>
+#else
+	#include <sys/time.h>
+	#include <unistd.h>
+#endif
 # include <SDL/SDL.h>
+
 # include "Position.hh"
 # include "Angle.hh"
 # include "Color.hh"
@@ -25,6 +35,8 @@ private:
 	int		_maxX;
 	SDL_Surface	*_screen;
 	bool		_fs;
+	timeval		_time;
+	int		_frame;
 
 public:
 	~Graphics();

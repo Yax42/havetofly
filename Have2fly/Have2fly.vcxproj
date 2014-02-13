@@ -204,6 +204,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\util;$(SolutionDir)\src\throw;$(SolutionDir)\src\menu;$(SolutionDir)\src\math;$(SolutionDir)\src\input;$(SolutionDir)\src\human;$(SolutionDir)\src\hit;$(SolutionDir)\src\graphics;$(SolutionDir)\src\game;$(SolutionDir)\src\action;$(SolutionDir)\src\action\passive;$(SolutionDir)\src\action\active;$(SolutionDir)\src\action\active\y;$(SolutionDir)\src\action\active\x;$(SolutionDir)\src\action\active\b;$(SolutionDir)\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <CompileAs>CompileAsCpp</CompileAs>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

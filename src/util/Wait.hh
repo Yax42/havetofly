@@ -11,8 +11,16 @@
 #ifndef WAIT_HH_
 # define WAIT_HH_
 
-# include <time.h>
-# include <WinSock.h>
+	#ifdef WIN32
+		# include <time.h>
+		# include <WinSock.h>
+		#include <sys/timeb.h>
+		#include <Windows.h>
+	#else
+		#include <sys/time.h>
+		#include <unistd.h>
+	#endif
+
 class Wait
 {
 private:

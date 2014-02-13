@@ -37,6 +37,7 @@ bool		ALoop::actualLoop()
 		return (false);
 			endLoop();
 	}
+		//if (!_isThread)
 			_wait.proc();
 		}
 	endLoop();

@@ -9,6 +9,8 @@
 */
 
 #include <iostream>
+#include <sstream>
+#include <SDL/SDL.h>
 
 #include "Graphics.hh"
 #include "Exception.hh"
@@ -37,6 +39,14 @@ Graphics::Graphics(int h, int w) : _h(h), _w(w), _minX(0), _maxX(w)
 		_screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
 	SDL_JoystickEventState(SDL_ENABLE);
 	SDL_WM_SetCaption("You'd butter fly", NULL);
+	#ifdef WIN32
+		struct _timeb timebuffer;
+		_ftime (&timebuffer);
+		_time.tv_sec = timebuffer.time;
+	#else
+		gettimeofday(&_time, NULL);
+	#endif
+	_frame = 0;
 }
 
 int	Graphics::h()
@@ -65,6 +75,29 @@ void	Graphics::switchFS()
 void	Graphics::printScreen()
 {
 	SDL_Flip(_screen);
+
+	timeval		curtime;
+	#ifdef WIN32
+		struct _timeb timebuffer;
+		_ftime (&timebuffer);
+		curtime.tv_sec = timebuffer.time;
+	#else
+		gettimeofday(&curtime, NULL);
+	#endif
+
+	if (curtime.tv_sec > _time.tv_sec)
+	{
+		std::ostringstream oss;
+		oss << _frame;
+		std::string result = "[FPS:" + oss.str() + "] "+"You'd butter fly";
+		SDL_WM_SetCaption(result.c_str(), NULL);
+		_time = curtime;
+		std::cout << "FPS=" << _frame << std::endl;
+		_frame = 0;
+	}
+	else
+		_frame++;
+
 }
 
 void		Graphics::resetScreen(const Color &color)
