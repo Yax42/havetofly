@@ -37,7 +37,11 @@ void		Wait::proc()
 	time = _uspi - (_t2.tv_sec - _t1.tv_sec) * 1000000 +
 	(_t2.tv_usec - _t1.tv_usec);
 	if (time > 0)
-		Sleep(time);
+#ifdef WIN32
+	Sleep(time / 1000);
+#else
+#endif
+
 	_ftime (&timebuffer);
 	_t1.tv_sec = timebuffer.time;
 	_t1.tv_usec = timebuffer.millitm * 1000;
