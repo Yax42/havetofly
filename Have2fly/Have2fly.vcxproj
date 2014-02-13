@@ -201,7 +201,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\WARBIRDs On£\Desktop\Have2fly\src;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\util;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\throw;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\menu;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\math;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\input;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\human;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\hit;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\graphics;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\game;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\passive;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\y;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\x;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\b;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\util;$(SolutionDir)\src\throw;$(SolutionDir)\src\menu;$(SolutionDir)\src\math;$(SolutionDir)\src\input;$(SolutionDir)\src\human;$(SolutionDir)\src\hit;$(SolutionDir)\src\graphics;$(SolutionDir)\src\game;$(SolutionDir)\src\action;$(SolutionDir)\src\action\passive;$(SolutionDir)\src\action\active;$(SolutionDir)\src\action\active\y;$(SolutionDir)\src\action\active\x;$(SolutionDir)\src\action\active\b;$(SolutionDir)\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
