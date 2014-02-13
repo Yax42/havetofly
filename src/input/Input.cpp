@@ -143,20 +143,22 @@ void	Input::proc()
 	for (int i = 0; i < NB_CTRL; i++)
 		_ctrl[i]->proc();
 	while(SDL_PollEvent(&_event))
+	{
+		switch(_event.type)
 		{
-			switch(_event.type)
-			{
-				case SDL_KEYDOWN:
-					_kb[_event.key.keysym.sym] = 1;
-					break;
-				case SDL_KEYUP:
-					_kb[_event.key.keysym.sym] = 0;
-					break;
-				case SDL_QUIT:
-					_quitKey = true;
-					break;
-			}
+		case SDL_KEYDOWN:
+			_kb[_event.key.keysym.sym] = 1;
+			break;
+		case SDL_KEYUP:
+			_kb[_event.key.keysym.sym] = 0;
+			break;
+		case SDL_QUIT:
+			_quitKey = true;
+			break;
 		}
+	}
+	if (SDL_NumJoysticks() > 0)
+		SDL_JoystickUpdate();
 	_axe[0] = (_kb[SDLK_d] ? 1000 : (_kb[SDLK_a] ? -1000 : 0));
 	_axe[1] = (_kb[SDLK_w] ? -1000 : (_kb[SDLK_s] ? 1000 : 0));
 }

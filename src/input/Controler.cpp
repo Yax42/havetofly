@@ -27,14 +27,14 @@
 #include "Exception.hh"
 #include "Controler.hh"
 
+int			Controler::Null = 0;
+
 #define STICK_TO_SPEED(x)	(x >> 5)
 
-#define clean()			\
-{						\
-	_joystick = NULL;	\
-	_axe.clear();		\
-	_but.clear();		\
-	return;				\
+#define deadClean()						\
+{										\
+	clean();							\
+	return;								\
 }
 
 Controler::~Controler()
@@ -45,13 +45,18 @@ Controler::~Controler()
 Controler::Controler(int id) : _id(id)
 {
 	_joystick = NULL;
-	_patern[0] = 0;
-	_patern[1] = 1;
-	for (int i = 2; i < 8; i++)
-		_patern[i] = i - 2;
-	_lastBut = -1;
+	for (int i =0; i < Key::COUNT; i++)
+		_keys[i] = 0;
 	update();
-	_null = 0;
+}
+
+void		Controler::clean()
+{
+	if (_joystick != NULL)
+		SDL_JoystickClose(_joystick);
+	_joystick = NULL;
+	for (int i =0; i < Key::COUNT; i++)
+		_keys[i] = 0;
 }
 
 bool	Controler::isOk() const
@@ -65,27 +70,14 @@ bool	Controler::isOk() const
 void			Controler::update()
 {
 	int			tmp;
-	std::string		name;
 
-	if (SDL_NumJoysticks() > 0)
-	{
-		_joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
-
-		tmp = SDL_JoystickNumAxes(_joystick);
-		if (tmp < 2 || tmp > 50)
-			clean();
-		_axe.resize(tmp);
-		tmp = SDL_JoystickNumButtons(_joystick);
-		if (tmp < 6 || tmp > 80)
-			clean();
-		_but.resize(tmp);
-		name = SDL_JoystickName(_id);
-		_name[name.copy(_name, name.length(), 0)] = '\0';
-	}
-	else
-	{
-		clean();
-	}
+	if (SDL_NumJoysticks() <= _id)
+		deadClean();
+	if (SDL_JoystickOpened(_id))
+		deadClean();
+	_joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
+	if (_joystick == NULL)
+		deadClean();
 	/*char			tmp;
 	std::stringstream	stm;
 
@@ -114,24 +106,11 @@ void			Controler::update()
 
 void	Controler::proc()
 {
-	if (!isOk())
-		return ;
-	SDL_Event evenements;
-
-	switch(evenements.type)
-	{
-		case SDL_JOYBUTTONDOWN:
-			_lastBut = evenements.jbutton.button;
-			_but[evenements.jbutton.button] = 1;
-			break;
-		case SDL_JOYBUTTONUP:
-			_but[evenements.jbutton.button] = 0;
-			break;
-		case SDL_JOYAXISMOTION:
-			if(evenements.jaxis.axis == 0)	
-			_axe[evenements.jaxis.axis] = STICK_TO_SPEED(evenements.jaxis.value);
-			break;
-	}
+	_keys[0] = SDL_JoystickGetAxis(_joystick, 0);
+	_keys[1] = SDL_JoystickGetAxis(_joystick, 1);
+	for (int i = 2; i < 8; i++)
+		_keys[i] = SDL_JoystickGetAxis(_joystick, i);
+	
 }
 
 /**********/
@@ -140,53 +119,22 @@ void	Controler::proc()
 Key			Controler::getKey()
 {
 	Key			k;
-	/*std::stringstream	stm;
-	int			fd;
 
-	stm << ".config/" << _name;
-
-	if (_fd == -1 ||
-			(fd = open(stm.str().c_str(), O_RDONLY)) == -1)
-		{
-			for (int i = 0; i < 8; i++)
-				k.ptr(i) = &_null;
-			return (k);
-		}
-
-	read(fd, _patern, sizeof(_patern));
-	for (int i = 0; i < 2; i++)
-		{
-			if (_patern[i] == -1)
-	k.ptr(i) = &_null;
-			else
-	k.ptr(i) = &_axe[_patern[i]];
-		}
-	for (int i = 2; i < 8; i++)
-		{
-			if (_patern[i] == -1)
-	k.ptr(i) = &_null;
-			else
-	k.ptr(i) = &_but[_patern[i]];
-		}
-	close(fd);*/
+	if (!isOk())
+	{
+		for (int i = 0; i < Key::COUNT; i++)
+			k.ptr(i) = &Null;
+	}
+	else
+	{
+		for (int i = 0; i < Key::COUNT; i++)
+			k.ptr(i) = &_keys[i];
+	}
 	return (k);
 }
 
 void		Controler::saveKey() const
 {
-	/*if (_fd == -1)
-		return ;
-
-	int			fd;
-	std::stringstream	stm;
-
-	mkdir(".config", 0666);
-	stm << ".config/" << _name;
-	fd = open(stm.str().c_str(), O_WRONLY | O_CREAT, 0666);
-	if (fd == -1)
-		throw(Exception("Cannot create/open file in .config."));
-	write(fd, _patern, sizeof(_patern));
-	close(fd);*/
 }
 
 /***************/
@@ -196,12 +144,10 @@ void		Controler::saveKey() const
 
 char		*Controler::getPatern()
 {
-	return (_patern);
+	return (NULL);
 }
 
 int		Controler::getLastBut()
 {
-	int		tmp = _lastBut;
-	_lastBut = -1;
-	return (tmp);
+	return (0);
 }

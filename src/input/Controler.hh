@@ -24,26 +24,24 @@ private:
 	js_event		_event;
 	int			_fd;
 #endif
-	int			_id;
-	std::vector<int>	_axe;
-	std::vector<int>	_but;
-	char				_patern[8];
-	int					_lastBut;
-	char				_name[80];
-	int					_null;
+	static int			Null;
+	int					_id;
+	int					_keys[Key::COUNT];
+
 	SDL_Joystick		*_joystick; // on crée le joystick
 
 public:
 	~Controler();
 	Controler(int id);
 	void		proc();
-	Key		getKey();
+	Key			getKey();
 	bool		isOk() const;
 	void		update();
 	bool		didAct();
-	int		getLastBut();
+	int			getLastBut();
 	char		*getPatern();
 	void		saveKey() const;
+	void		clean();
 };
 
 
