@@ -157,8 +157,7 @@ void	Input::proc()
 			break;
 		}
 	}
-	if (SDL_NumJoysticks() > 0)
-		SDL_JoystickUpdate();
+	SDL_JoystickUpdate();
 	_axe[0] = (_kb[SDLK_d] ? 1000 : (_kb[SDLK_a] ? -1000 : 0));
 	_axe[1] = (_kb[SDLK_w] ? -1000 : (_kb[SDLK_s] ? 1000 : 0));
 }

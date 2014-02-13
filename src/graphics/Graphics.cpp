@@ -33,7 +33,7 @@ Graphics::~Graphics()
 
 Graphics::Graphics(int h, int w) : _h(h), _w(w), _minX(0), _maxX(w)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) == -1)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1)
 		throw(Exception("Cannot init SDL"));
 	_fs = false;
 		_screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);

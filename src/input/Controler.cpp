@@ -73,9 +73,10 @@ void			Controler::update()
 
 	if (SDL_NumJoysticks() <= _id)
 		deadClean();
-	if (SDL_JoystickOpened(_id))
-		deadClean();
-	_joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
+	/*if (SDL_JoystickOpened(_id))
+		deadClean();*/
+	if (!SDL_JoystickOpened(_id))
+		_joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
 	if (_joystick == NULL)
 		deadClean();
 	/*char			tmp;
@@ -108,8 +109,8 @@ void	Controler::proc()
 {
 	_keys[0] = SDL_JoystickGetAxis(_joystick, 0);
 	_keys[1] = SDL_JoystickGetAxis(_joystick, 1);
-	for (int i = 2; i < 8; i++)
-		_keys[i] = SDL_JoystickGetAxis(_joystick, i);
+	for (int i = 0; i < 6; i++)
+		_keys[i+2] = SDL_JoystickGetButton(_joystick, i);
 	
 }
 
