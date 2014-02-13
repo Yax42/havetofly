@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\action\AAction.hh" />
+    <None Include="..\src\action\ActionFactory.hh" />
+    <None Include="..\src\action\active\a\DoubleJump.hh" />
+    <None Include="..\src\action\active\a\WallJump.hh" />
+    <None Include="..\src\action\active\b\EffectiveTV.hh" />
+    <None Include="..\src\action\active\b\Television.hh" />
+    <None Include="..\src\action\active\b\ThrowShuriken.hh" />
+    <None Include="..\src\action\active\b\tmp" />
+    <None Include="..\src\action\active\HitLagg.hh" />
+    <None Include="..\src\action\active\Move.hh" />
+    <None Include="..\src\action\active\StickCeiling.hh" />
+    <None Include="..\src\action\active\StickWall.hh" />
+    <None Include="..\src\action\active\Stun.hh" />
+    <None Include="..\src\action\active\x\Curve.hh" />
+    <None Include="..\src\action\active\x\DownDash.hh" />
+    <None Include="..\src\action\active\x\HorDash.hh" />
+    <None Include="..\src\action\active\x\HorTP.hh" />
+    <None Include="..\src\action\active\x\Shield.hh" />
+    <None Include="..\src\action\active\x\Spin.hh" />
+    <None Include="..\src\action\active\x\UpPunch.hh" />
+    <None Include="..\src\action\active\y\AutoGun.hh" />
+    <None Include="..\src\action\active\y\GunJump.hh" />
+    <None Include="..\src\action\active\y\ThrowBall.hh" />
+    <None Include="..\src\action\IAction.hh" />
+    <None Include="..\src\action\PassiveAction.hh" />
+    <None Include="..\src\action\passive\Death.hh" />
+    <None Include="..\src\action\passive\Gravity.hh" />
+    <None Include="..\src\action\passive\HitCeiling.hh" />
+    <None Include="..\src\action\passive\HitWall.hh" />
+    <None Include="..\src\action\passive\Inertie.hh" />
+    <None Include="..\src\action\passive\Move.hh" />
+    <None Include="..\src\action\passive\Tech.hh" />
+    <None Include="..\src\action\passive\Tempo.hh" />
+    <None Include="..\src\const.hh" />
+    <None Include="..\src\game\Game.hh" />
+    <None Include="..\src\game\GameLoader.hh" />
+    <None Include="..\src\graphics\AMenuElem.hh" />
+    <None Include="..\src\graphics\APrintable.hh" />
+    <None Include="..\src\graphics\Display.hh" />
+    <None Include="..\src\graphics\Graphics.hh" />
+    <None Include="..\src\hit\Hit.hh" />
+    <None Include="..\src\hit\Hitbox.hh" />
+    <None Include="..\src\human\Bones.hh" />
+    <None Include="..\src\human\Event.hh" />
+    <None Include="..\src\human\MovePlayer.hh" />
+    <None Include="..\src\human\Player.hh" />
+    <ClInclude Include="..\src\input\Controler.hh">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <None Include="..\src\input\Input.hh" />
+    <None Include="..\src\input\Key.hh" />
+    <None Include="..\src\math\Angle.hh" />
+    <None Include="..\src\math\Circle.hh" />
+    <None Include="..\src\math\Line.hh" />
+    <None Include="..\src\math\Math.hh" />
+    <None Include="..\src\math\Position.hh" />
+    <None Include="..\src\menu\SetKeys.hh" />
+    <None Include="..\src\throw\AThrowable.hh" />
+    <None Include="..\src\throw\Ball.hh" />
+    <None Include="..\src\throw\Blast.hh" />
+    <None Include="..\src\throw\DeathRay.hh" />
+    <None Include="..\src\throw\IThrowable.hh" />
+    <None Include="..\src\throw\Shuriken.hh" />
+    <None Include="..\src\util\ALoop.hh" />
+    <None Include="..\src\util\Color.hh" />
+    <None Include="..\src\util\Exception.hh" />
+    <None Include="..\src\util\Mutex.hh" />
+    <None Include="..\src\util\MyTime.hh" />
+    <None Include="..\src\util\Wait.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\action\AAction.cpp" />
+    <ClCompile Include="..\src\action\ActionFactory.cpp" />
+    <ClCompile Include="..\src\action\active\a\DoubleJump.cpp" />
+    <ClCompile Include="..\src\action\active\a\WallJump.cpp" />
+    <ClCompile Include="..\src\action\active\b\EffectiveTV.cpp" />
+    <ClCompile Include="..\src\action\active\b\Television.cpp" />
+    <ClCompile Include="..\src\action\active\b\ThrowShuriken.cpp" />
+    <ClCompile Include="..\src\action\active\HitLagg.cpp" />
+    <ClCompile Include="..\src\action\active\Move.cpp" />
+    <ClCompile Include="..\src\action\active\StickCeiling.cpp" />
+    <ClCompile Include="..\src\action\active\StickWall.cpp" />
+    <ClCompile Include="..\src\action\active\Stun.cpp" />
+    <ClCompile Include="..\src\action\active\x\Curve.cpp" />
+    <ClCompile Include="..\src\action\active\x\DownDash.cpp" />
+    <ClCompile Include="..\src\action\active\x\HorDash.cpp" />
+    <ClCompile Include="..\src\action\active\x\HorTP.cpp" />
+    <ClCompile Include="..\src\action\active\x\Shield.cpp" />
+    <ClCompile Include="..\src\action\active\x\Spin.cpp" />
+    <ClCompile Include="..\src\action\active\x\UpPunch.cpp" />
+    <ClCompile Include="..\src\action\active\y\AutoGun.cpp" />
+    <ClCompile Include="..\src\action\active\y\GunJump.cpp" />
+    <ClCompile Include="..\src\action\active\y\ThrowBall.cpp" />
+    <ClCompile Include="..\src\action\PassiveAction.cpp" />
+    <ClCompile Include="..\src\action\passive\Death.cpp" />
+    <ClCompile Include="..\src\action\passive\Gravity.cpp" />
+    <ClCompile Include="..\src\action\passive\HitCeiling.cpp" />
+    <ClCompile Include="..\src\action\passive\HitWall.cpp" />
+    <ClCompile Include="..\src\action\passive\Inertie.cpp" />
+    <ClCompile Include="..\src\action\passive\Move.cpp" />
+    <ClCompile Include="..\src\action\passive\Tech.cpp" />
+    <ClCompile Include="..\src\action\passive\Tempo.cpp" />
+    <ClCompile Include="..\src\game\Game.cpp" />
+    <ClCompile Include="..\src\game\GameLoader.cpp" />
+    <ClCompile Include="..\src\graphics\APrintable.cpp" />
+    <ClCompile Include="..\src\graphics\Display.cpp" />
+    <ClCompile Include="..\src\graphics\Graphics.cpp" />
+    <ClCompile Include="..\src\hit\Hit.cpp" />
+    <ClCompile Include="..\src\hit\Hitbox.cpp" />
+    <ClCompile Include="..\src\human\Bones.cpp" />
+    <ClCompile Include="..\src\human\MovePlayer.cpp" />
+    <ClCompile Include="..\src\human\Player.cpp" />
+    <ClCompile Include="..\src\input\Controler.cpp" />
+    <ClCompile Include="..\src\input\Input.cpp" />
+    <ClCompile Include="..\src\input\Key.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\math\Angle.cpp" />
+    <ClCompile Include="..\src\math\Circle.cpp" />
+    <ClCompile Include="..\src\math\Line.cpp" />
+    <ClCompile Include="..\src\math\Math.cpp" />
+    <ClCompile Include="..\src\math\Position.cpp" />
+    <ClCompile Include="..\src\menu\SetKeys.cpp" />
+    <ClCompile Include="..\src\throw\AThrowable.cpp" />
+    <ClCompile Include="..\src\throw\Ball.cpp" />
+    <ClCompile Include="..\src\throw\Blast.cpp" />
+    <ClCompile Include="..\src\throw\DeathRay.cpp" />
+    <ClCompile Include="..\src\throw\Shuriken.cpp" />
+    <ClCompile Include="..\src\util\ALoop.cpp" />
+    <ClCompile Include="..\src\util\Color.cpp" />
+    <ClCompile Include="..\src\util\Exception.cpp" />
+    <ClCompile Include="..\src\util\Mutex.cpp" />
+    <ClCompile Include="..\src\util\MyTime.cpp" />
+    <ClCompile Include="..\src\util\Wait.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{03523A58-38A6-4889-AF67-0C1FA8E86429}</ProjectGuid>
+    <RootNamespace>Have2fly</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\WARBIRDs On£\Desktop\Have2fly\src;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\util;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\throw;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\menu;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\math;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\input;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\human;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\hit;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\graphics;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\game;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\passive;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\y;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\x;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\b;C:\Users\WARBIRDs On£\Desktop\Have2fly\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL.lib;SDLmain.lib;pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\util;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\throw;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\menu;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\math;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\input;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\human;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\hit;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\graphics;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\game;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\action;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\action\passive;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\action\active;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\action\active\y;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\action\active\x;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\action\active\b;C:\Users\WARBIRDs OnE\Documents\have2fly\Have2fly\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL.lib;SDLmain.lib;pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>D:\Microsoft Visual Studio 10.0\VC\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

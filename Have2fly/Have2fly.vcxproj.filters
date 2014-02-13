@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\action">
+      <UniqueIdentifier>{8a41533a-1891-4670-84e8-a7edea23ddee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{683e6dbe-cd3f-4930-b5e2-12ab17073c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{4b00e16f-4d36-4f1e-852d-327b695f64f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hit">
+      <UniqueIdentifier>{9965e2e4-079f-442a-b7c0-632aebe23b64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\human">
+      <UniqueIdentifier>{be256337-493f-442f-a784-3f6e73cbfe28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input">
+      <UniqueIdentifier>{bef33c42-3be8-48f9-8446-2010f7c67244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{8ebfc950-8dec-4d3a-8a7b-54dd5405b6ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\menu">
+      <UniqueIdentifier>{0b534714-7686-4d56-bed0-51751ca07125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{12954227-93c4-4d9e-a8e4-d3bbbfe7d9cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\throw">
+      <UniqueIdentifier>{9f6dd934-c625-4003-a2ff-1df2f0598a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active">
+      <UniqueIdentifier>{fc83edcf-a92b-44dd-a017-8671435bbe50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\passive">
+      <UniqueIdentifier>{1daf1cf3-9050-4995-9c27-b3fbdc1cd0f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\a">
+      <UniqueIdentifier>{572e72de-b658-4778-b6c3-04e864d58c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\b">
+      <UniqueIdentifier>{81bff2e9-cc39-4a78-ae0a-fd647638baf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\x">
+      <UniqueIdentifier>{63426119-294e-4ff7-99bc-8c32728770e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\y">
+      <UniqueIdentifier>{03b16a1f-266d-45fe-a46e-77e57a0432be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\const.hh">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\src\action\active\a\WallJump.hh">
+      <Filter>Source Files\action\active\a</Filter>
+    </None>
+    <None Include="..\src\action\active\a\DoubleJump.hh">
+      <Filter>Source Files\action\active\a</Filter>
+    </None>
+    <None Include="..\src\action\active\b\ThrowShuriken.hh">
+      <Filter>Source Files\action\active\b</Filter>
+    </None>
+    <None Include="..\src\action\active\b\tmp">
+      <Filter>Source Files\action\active\b</Filter>
+    </None>
+    <None Include="..\src\action\active\b\EffectiveTV.hh">
+      <Filter>Source Files\action\active\b</Filter>
+    </None>
+    <None Include="..\src\action\active\b\Television.hh">
+      <Filter>Source Files\action\active\b</Filter>
+    </None>
+    <None Include="..\src\action\active\x\HorTP.hh">
+      <Filter>Source Files\action\active\x</Filter>
+    </None>
+    <None Include="..\src\action\active\x\Shield.hh">
+      <Filter>Source Files\action\active\x</Filter>
+    </None>
+    <None Include="..\src\action\active\x\Spin.hh">
+      <Filter>Source Files\action\active\x</Filter>
+    </None>
+    <None Include="..\src\action\active\x\UpPunch.hh">
+      <Filter>Source Files\action\active\x</Filter>
+    </None>
+    <None Include="..\src\action\active\x\Curve.hh">
+      <Filter>Source Files\action\active\x</Filter>
+    </None>
+    <None Include="..\src\action\active\x\DownDash.hh">
+      <Filter>Source Files\action\active\x</Filter>
+    </None>
+    <None Include="..\src\action\active\x\HorDash.hh">
+      <Filter>Source Files\action\active\x</Filter>
+    </None>
+    <None Include="..\src\action\active\y\ThrowBall.hh">
+      <Filter>Source Files\action\active\y</Filter>
+    </None>
+    <None Include="..\src\action\active\y\AutoGun.hh">
+      <Filter>Source Files\action\active\y</Filter>
+    </None>
+    <None Include="..\src\action\active\y\GunJump.hh">
+      <Filter>Source Files\action\active\y</Filter>
+    </None>
+    <None Include="..\src\action\active\Stun.hh">
+      <Filter>Source Files\action\active</Filter>
+    </None>
+    <None Include="..\src\action\active\HitLagg.hh">
+      <Filter>Source Files\action\active</Filter>
+    </None>
+    <None Include="..\src\action\active\Move.hh">
+      <Filter>Source Files\action\active</Filter>
+    </None>
+    <None Include="..\src\action\active\StickCeiling.hh">
+      <Filter>Source Files\action\active</Filter>
+    </None>
+    <None Include="..\src\action\active\StickWall.hh">
+      <Filter>Source Files\action\active</Filter>
+    </None>
+    <None Include="..\src\action\passive\HitWall.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\passive\Inertie.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\passive\Move.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\passive\Tech.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\passive\Tempo.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\passive\Death.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\passive\Gravity.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\passive\HitCeiling.hh">
+      <Filter>Source Files\action\passive</Filter>
+    </None>
+    <None Include="..\src\action\PassiveAction.hh">
+      <Filter>Source Files\action</Filter>
+    </None>
+    <None Include="..\src\action\AAction.hh">
+      <Filter>Source Files\action</Filter>
+    </None>
+    <None Include="..\src\action\ActionFactory.hh">
+      <Filter>Source Files\action</Filter>
+    </None>
+    <None Include="..\src\action\IAction.hh">
+      <Filter>Source Files\action</Filter>
+    </None>
+    <None Include="..\src\game\GameLoader.hh">
+      <Filter>Source Files\game</Filter>
+    </None>
+    <None Include="..\src\game\Game.hh">
+      <Filter>Source Files\game</Filter>
+    </None>
+    <None Include="..\src\graphics\Display.hh">
+      <Filter>Source Files\graphics</Filter>
+    </None>
+    <None Include="..\src\graphics\Graphics.hh">
+      <Filter>Source Files\graphics</Filter>
+    </None>
+    <None Include="..\src\graphics\AMenuElem.hh">
+      <Filter>Source Files\graphics</Filter>
+    </None>
+    <None Include="..\src\graphics\APrintable.hh">
+      <Filter>Source Files\graphics</Filter>
+    </None>
+    <None Include="..\src\hit\Hitbox.hh">
+      <Filter>Source Files\hit</Filter>
+    </None>
+    <None Include="..\src\hit\Hit.hh">
+      <Filter>Source Files\hit</Filter>
+    </None>
+    <None Include="..\src\human\MovePlayer.hh">
+      <Filter>Source Files\human</Filter>
+    </None>
+    <None Include="..\src\human\Player.hh">
+      <Filter>Source Files\human</Filter>
+    </None>
+    <None Include="..\src\human\Bones.hh">
+      <Filter>Source Files\human</Filter>
+    </None>
+    <None Include="..\src\human\Event.hh">
+      <Filter>Source Files\human</Filter>
+    </None>
+    <None Include="..\src\input\Key.hh">
+      <Filter>Source Files\input</Filter>
+    </None>
+    <None Include="..\src\input\Input.hh">
+      <Filter>Source Files\input</Filter>
+    </None>
+    <None Include="..\src\math\Math.hh">
+      <Filter>Source Files\math</Filter>
+    </None>
+    <None Include="..\src\math\Position.hh">
+      <Filter>Source Files\math</Filter>
+    </None>
+    <None Include="..\src\math\Angle.hh">
+      <Filter>Source Files\math</Filter>
+    </None>
+    <None Include="..\src\math\Circle.hh">
+      <Filter>Source Files\math</Filter>
+    </None>
+    <None Include="..\src\math\Line.hh">
+      <Filter>Source Files\math</Filter>
+    </None>
+    <None Include="..\src\menu\SetKeys.hh">
+      <Filter>Source Files\menu</Filter>
+    </None>
+    <None Include="..\src\throw\DeathRay.hh">
+      <Filter>Source Files\throw</Filter>
+    </None>
+    <None Include="..\src\throw\IThrowable.hh">
+      <Filter>Source Files\throw</Filter>
+    </None>
+    <None Include="..\src\throw\Shuriken.hh">
+      <Filter>Source Files\throw</Filter>
+    </None>
+    <None Include="..\src\throw\AThrowable.hh">
+      <Filter>Source Files\throw</Filter>
+    </None>
+    <None Include="..\src\throw\Ball.hh">
+      <Filter>Source Files\throw</Filter>
+    </None>
+    <None Include="..\src\throw\Blast.hh">
+      <Filter>Source Files\throw</Filter>
+    </None>
+    <None Include="..\src\util\Exception.hh">
+      <Filter>Source Files\util</Filter>
+    </None>
+    <None Include="..\src\util\Mutex.hh">
+      <Filter>Source Files\util</Filter>
+    </None>
+    <None Include="..\src\util\MyTime.hh">
+      <Filter>Source Files\util</Filter>
+    </None>
+    <None Include="..\src\util\Wait.hh">
+      <Filter>Source Files\util</Filter>
+    </None>
+    <None Include="..\src\util\ALoop.hh">
+      <Filter>Source Files\util</Filter>
+    </None>
+    <None Include="..\src\util\Color.hh">
+      <Filter>Source Files\util</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\a\WallJump.cpp">
+      <Filter>Source Files\action\active\a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\a\DoubleJump.cpp">
+      <Filter>Source Files\action\active\a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\b\ThrowShuriken.cpp">
+      <Filter>Source Files\action\active\b</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\b\EffectiveTV.cpp">
+      <Filter>Source Files\action\active\b</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\b\Television.cpp">
+      <Filter>Source Files\action\active\b</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\Shield.cpp">
+      <Filter>Source Files\action\active\x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\Spin.cpp">
+      <Filter>Source Files\action\active\x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\UpPunch.cpp">
+      <Filter>Source Files\action\active\x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\Curve.cpp">
+      <Filter>Source Files\action\active\x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\DownDash.cpp">
+      <Filter>Source Files\action\active\x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\HorDash.cpp">
+      <Filter>Source Files\action\active\x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\HorTP.cpp">
+      <Filter>Source Files\action\active\x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\y\ThrowBall.cpp">
+      <Filter>Source Files\action\active\y</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\y\AutoGun.cpp">
+      <Filter>Source Files\action\active\y</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\y\GunJump.cpp">
+      <Filter>Source Files\action\active\y</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\Stun.cpp">
+      <Filter>Source Files\action\active</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\HitLagg.cpp">
+      <Filter>Source Files\action\active</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\Move.cpp">
+      <Filter>Source Files\action\active</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\StickCeiling.cpp">
+      <Filter>Source Files\action\active</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\StickWall.cpp">
+      <Filter>Source Files\action\active</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\Inertie.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\Move.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\Tech.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\Tempo.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\Death.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\Gravity.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\HitCeiling.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\passive\HitWall.cpp">
+      <Filter>Source Files\action\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\PassiveAction.cpp">
+      <Filter>Source Files\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\AAction.cpp">
+      <Filter>Source Files\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\ActionFactory.cpp">
+      <Filter>Source Files\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game\GameLoader.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game\Game.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\Graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\APrintable.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\Display.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hit\Hitbox.cpp">
+      <Filter>Source Files\hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hit\Hit.cpp">
+      <Filter>Source Files\hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\human\Player.cpp">
+      <Filter>Source Files\human</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\human\Bones.cpp">
+      <Filter>Source Files\human</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\human\MovePlayer.cpp">
+      <Filter>Source Files\human</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\input\Key.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\input\Controler.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\input\Input.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\Position.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\Angle.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\Circle.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\Line.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\math\Math.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\menu\SetKeys.cpp">
+      <Filter>Source Files\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\throw\DeathRay.cpp">
+      <Filter>Source Files\throw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\throw\Shuriken.cpp">
+      <Filter>Source Files\throw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\throw\AThrowable.cpp">
+      <Filter>Source Files\throw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\throw\Ball.cpp">
+      <Filter>Source Files\throw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\throw\Blast.cpp">
+      <Filter>Source Files\throw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Mutex.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\MyTime.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Wait.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\ALoop.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Color.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Exception.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\input\Controler.hh">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
