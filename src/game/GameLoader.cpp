@@ -17,7 +17,7 @@
 
 int	GameLoader::_score[20];
 
-GameLoader::GameLoader(int h, int w) : ALoop(2), _h(h), _w(w), _ret(true)
+GameLoader::GameLoader(int h, int w) : ALoop(2, false), _h(h), _w(w), _ret(true)
 {
 	for (int i = 0; i < 20; i++)
 		_score[i] = 0;

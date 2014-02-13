@@ -10,13 +10,16 @@
 
 #include "ALoop.hh"
 
-ALoop::ALoop(int fps) : _quit(false), _wait(fps)
+ALoop::ALoop(int fps, bool isThread) : _quit(false), _wait(fps), _isThread(isThread)
 {
 }
 
 void	ALoop::loop()
 {
-	int ret = pthread_create(&_thread, 0, startThreadWrapper, this);
+	if (_isThread)
+		int ret = pthread_create(&_thread, 0, startThreadWrapper, this);
+	else
+		startThreadWrapper(this);
 }
 
 void		*ALoop::startThreadWrapper(void *obj)
@@ -42,6 +45,8 @@ bool		ALoop::actualLoop()
 
 bool		ALoop::join()
 {
+	if (!_isThread)
+		return true;
 	void		*ret;
 
 	pthread_join(_thread, &ret);

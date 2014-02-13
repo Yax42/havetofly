@@ -12,18 +12,26 @@
 # define CONTROLER_HH_
 
 # include "Key.hh"
+#ifdef UNIX
+	#include <linux/joystick.h>
+#endif
+
 
 class Controler
 {
 private:
-	int			_id;
+#ifdef UNIX
+	js_event		_event;
 	int			_fd;
+#endif
+	int			_id;
 	std::vector<int>	_axe;
 	std::vector<int>	_but;
-	char			_patern[8];
-	int			_lastBut;
-	char			_name[80];
-	int			_null;
+	char				_patern[8];
+	int					_lastBut;
+	char				_name[80];
+	int					_null;
+	SDL_Joystick		*_joystick; // on crée le joystick
 
 public:
 	~Controler();

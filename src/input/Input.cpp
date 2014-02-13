@@ -146,15 +146,15 @@ void	Input::proc()
 		{
 			switch(_event.type)
 			{
-	case SDL_KEYDOWN:
-		_kb[_event.key.keysym.sym] = 1;
-		break;
-	case SDL_KEYUP:
-		_kb[_event.key.keysym.sym] = 0;
-		break;
-	case SDL_QUIT:
-		_quitKey = true;
-		break;
+				case SDL_KEYDOWN:
+					_kb[_event.key.keysym.sym] = 1;
+					break;
+				case SDL_KEYUP:
+					_kb[_event.key.keysym.sym] = 0;
+					break;
+				case SDL_QUIT:
+					_quitKey = true;
+					break;
 			}
 		}
 	_axe[0] = (_kb[SDLK_d] ? 1000 : (_kb[SDLK_a] ? -1000 : 0));

@@ -23,9 +23,10 @@ protected:
 private:
 	Wait			_wait;
 	pthread_t		_thread;
+	bool			_isThread;
 
 public:
-	ALoop(int fps);
+	ALoop(int fps, bool isThread = true);
 	virtual ~ALoop() {}
 	void			loop();
 	bool			join();

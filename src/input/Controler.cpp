@@ -16,9 +16,12 @@
 #include <fcntl.h>
 #include <iostream>
 #include <sstream>
-#include <stdlib.h>
-
-#include <SDL/SDL.h>
+#ifdef WIN32
+	#include <stdlib.h>
+	#include <SDL/SDL.h>
+#else
+	#include <unistd.h>
+#endif
 
 #include "MyTime.hh"
 #include "Exception.hh"
@@ -26,11 +29,13 @@
 
 #define STICK_TO_SPEED(x)	(x >> 5)
 
-#define clean()			{if (_fd != -1)		\
-				_fd = -1;		\
-				_axe.clear();		\
-				_but.clear();		\
-						return ;}
+#define clean()			\
+{						\
+	_joystick = NULL;	\
+	_axe.clear();		\
+	_but.clear();		\
+	return;				\
+}
 
 Controler::~Controler()
 {
@@ -39,19 +44,19 @@ Controler::~Controler()
 
 Controler::Controler(int id) : _id(id)
 {
+	_joystick = NULL;
 	_patern[0] = 0;
 	_patern[1] = 1;
 	for (int i = 2; i < 8; i++)
 		_patern[i] = i - 2;
 	_lastBut = -1;
-	_fd = -1;
 	update();
 	_null = 0;
 }
 
 bool	Controler::isOk() const
 {
-	return (_fd != -1);
+	return _joystick != NULL;
 }
 
 /***********/
@@ -59,24 +64,23 @@ bool	Controler::isOk() const
 /***********/
 void			Controler::update()
 {
-	char		tmp;
+	int			tmp;
 	std::string		name;
-	SDL_Joystick *joystick; // on crée le joystick
+
 	if (SDL_NumJoysticks() > 0)
 	{
-		joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
-		_fd = 1;
-		tmp = SDL_JoystickNumAxes(joystick);
+		_joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
+
+		tmp = SDL_JoystickNumAxes(_joystick);
 		if (tmp < 2 || tmp > 50)
 			clean();
 		_axe.resize(tmp);
-		tmp = SDL_JoystickNumButtons(joystick);
+		tmp = SDL_JoystickNumButtons(_joystick);
 		if (tmp < 6 || tmp > 80)
 			clean();
 		_but.resize(tmp);
 		name = SDL_JoystickName(_id);
 		_name[name.copy(_name, name.length(), 0)] = '\0';
-
 	}
 	else
 	{
@@ -110,9 +114,10 @@ void			Controler::update()
 
 void	Controler::proc()
 {
-	if (_fd == -1)
+	if (!isOk())
 		return ;
 	SDL_Event evenements;
+
 	switch(evenements.type)
 	{
 		case SDL_JOYBUTTONDOWN:
