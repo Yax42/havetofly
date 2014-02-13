@@ -110,6 +110,7 @@ bool		Game::iterLoop()
 			killAll();
 		}
 	_time++;
+
 	return (true);
 }
 

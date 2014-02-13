@@ -11,15 +11,27 @@
 #ifndef WAIT_HH_
 # define WAIT_HH_
 
-	#ifdef WIN32
-		# include <time.h>
-		# include <WinSock.h>
-		#include <sys/timeb.h>
-		#include <Windows.h>
-	#else
-		#include <sys/time.h>
-		#include <unistd.h>
-	#endif
+#ifdef WIN32
+	# include <time.h>
+	# include <WinSock.h>
+	#include <sys/timeb.h>
+	#include <Windows.h>
+#else
+	#include <sys/time.h>
+	#include <unistd.h>
+#endif
+
+#ifdef WIN32
+#define GetTime(t)								\
+{												\
+	struct _timeb timebuffer;					\
+	_ftime (&timebuffer);						\
+	t.tv_sec = timebuffer.time;					\
+	t.tv_usec = timebuffer.millitm * 1000;		\
+}
+#else
+	#define GetTime(t)	gettimeofday(&t, NULL);
+#endif
 
 class Wait
 {

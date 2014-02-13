@@ -21,9 +21,12 @@ class ALoop
 protected:
 	bool			_quit;
 private:
+	bool			_printFps;
 	Wait			_wait;
 	pthread_t		_thread;
 	bool			_isThread;
+	int				_nbFrame;
+	int				_nbSec;
 
 public:
 	ALoop(int fps, bool isThread = true);
@@ -31,7 +34,9 @@ public:
 	void			loop();
 	bool			join();
 	void			quit();
+	void			printFps(bool v) { _printFps = v; }
 private:
+	void			handleFps();
 	bool			actualLoop();
 	static void		*startThreadWrapper(void *);
 	virtual bool		ifLoop();

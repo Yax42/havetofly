@@ -35,8 +35,6 @@ private:
 	int		_maxX;
 	SDL_Surface	*_screen;
 	bool		_fs;
-	timeval		_time;
-	int		_frame;
 
 public:
 	~Graphics();

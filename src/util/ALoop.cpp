@@ -8,9 +8,12 @@
 // Last update Sun Apr 21 20:26:58 2013 Brunier Jean
 //
 
+#include <sstream>
+#include <SDL/SDL.h>
+
 #include "ALoop.hh"
 
-ALoop::ALoop(int fps, bool isThread) : _quit(false), _wait(fps), _isThread(isThread)
+ALoop::ALoop(int fps, bool isThread) : _quit(false), _printFps(false), _wait(fps), _isThread(isThread)
 {
 }
 
@@ -20,6 +23,8 @@ void	ALoop::loop()
 		int ret = pthread_create(&_thread, 0, startThreadWrapper, this);
 	else
 		startThreadWrapper(this);
+	_nbSec = 0;
+	_nbFrame = 0;
 }
 
 void		*ALoop::startThreadWrapper(void *obj)
@@ -31,15 +36,15 @@ bool		ALoop::actualLoop()
 {
 	initLoop();
 	while (ifLoop())
+	{
+		if (!iterLoop() || _quit)
 		{
-			if (!iterLoop() || _quit)
-				{
-		return (false);
+			return (false);
 			endLoop();
-	}
-		//if (!_isThread)
-			_wait.proc();
 		}
+		handleFps();
+		_wait.proc();
+	}
 	endLoop();
 	return (true);
 }
@@ -70,4 +75,25 @@ bool		ALoop::ifLoop()
 void		ALoop::quit()
 {
 	_quit = true;
+}
+
+void		ALoop::handleFps()
+{
+	if (_printFps)
+	{
+		timeval		curtime;
+		GetTime(curtime);
+		if (curtime.tv_sec > _nbSec)
+		{
+			std::ostringstream oss;
+			oss << _nbFrame;
+			std::string result = "[FPS:" + oss.str() + "] "+"You'd butter fly";
+			SDL_WM_SetCaption(result.c_str(), NULL);
+			//std::cout << "FPS=" << _frame << std::endl;
+			_nbSec = curtime.tv_sec;
+			_nbFrame = 0;
+		}
+		else
+			_nbFrame++;
+	}
 }
