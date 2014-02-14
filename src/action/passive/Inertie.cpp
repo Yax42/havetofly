@@ -37,6 +37,8 @@ void		Inertie::upBones()
 
 	_bones.angle[Bones::HAND1] = Angle(MGRAD_CAP(MTIME * 3, 10, 50), 0);
 	_bones.angle[Bones::ELBOW1] = Angle(MGRAD_CAP(MTIME, 195, 30), 0);
+	_bones.angle[Bones::HAND2] = Angle(MGRAD_CAP(MTIME * 4, 10, 50), 0);
+	_bones.angle[Bones::ELBOW2] = Angle(MGRAD_CAP(MTIME, 225, 30), 0);
 
 	if (_player[THROW_SHURIKEN]->val())
 		{

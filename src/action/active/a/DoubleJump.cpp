@@ -16,7 +16,7 @@ DoubleJump::DoubleJump(Player &player) : AAction(player, DOUBLE_JUMP, NULL)
 
 void	DoubleJump::init(int)
 {
-	_player.sy(-3.333);
+	_player.sy(-5);
 	_open = 0;
 }
 

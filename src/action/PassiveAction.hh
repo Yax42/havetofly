@@ -19,10 +19,10 @@ public:
 	PassiveAction(Player &player, int id);
 	virtual ~PassiveAction(){}
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual IAction		*step();
 	virtual bool		request();
 	virtual void		check();
-	virtual int		val();
+	virtual int			val();
 	virtual void		upBones();
 };
 

@@ -258,6 +258,9 @@
     <None Include="..\src\util\Color.hh">
       <Filter>Source Files\util</Filter>
     </None>
+    <None Include="..\src\action\Dummy.hh">
+      <Filter>Source Files\action</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">

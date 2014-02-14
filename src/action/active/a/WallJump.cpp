@@ -19,9 +19,9 @@ void	WallJump::init(int)
 //	_player[IAction::DOUBLE_JUMP]->set();
 	_count = 50;
 	if (_player(Event::LEFT_WALL))
-		_player = Position(-2.5, 2); //2/3
+		_player = Position(-10, 2); //2/3
 	else if (_player(Event::RIGHT_WALL))
-		_player = Position(-2.5, -2); //2/3
+		_player = Position(-10, -2); //2/3
 	else
 		throw(Exception("Wall jump without sticking the wall."));
 }

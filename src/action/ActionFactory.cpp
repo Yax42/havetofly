@@ -39,47 +39,43 @@
 #include "HorTP.hh"
 #include "Television.hh"
 #include "EffectiveTV.hh"
+#include "Dummy.hh"
+
+#define SetAction(iaction, actionClass)		\
+{											\
+	if (action == IAction::iaction)			\
+		return (new actionClass(p));		\
+}\
 
 IAction		*ActionFactory::get(int action, Player &p)
 {
-	if (action == IAction::MOVE)
-		return (new Move(p));
-	if (action == IAction::INERTIE)
-		return (new Inertie(p));
-	if (action == IAction::GRAVITY)
-		return (new Gravity(p));
-	if (action == IAction::DOUBLE_JUMP)
-		return (new DoubleJump(p));
-	if (action == IAction::HIT_WALL)
-		return (new HitWall(p));
-	if (action == IAction::STICK_CEILING)
-		return (new StickCeiling(p));
-	if (action == IAction::STICK_WALL)
-		return (new StickWall(p));
-	if (action == IAction::WALL_JUMP)
-		return (new WallJump(p));
+	SetAction(MOVE, Move);
+	SetAction(INERTIE, Inertie);
+	SetAction(GRAVITY, Gravity);
+	SetAction(DOUBLE_JUMP,  DoubleJump);
+	SetAction(HIT_WALL, HitWall);
+	SetAction(STICK_CEILING, StickCeiling);
+	SetAction(STICK_WALL, StickWall);
+	SetAction(WALL_JUMP, WallJump);
+	SetAction(STUN, Stun);
+	SetAction(TECH, Tech);
+	SetAction(TEMPO, Tempo);
+	SetAction(HIT_LAGG, HitLagg);
+	SetAction(DEATH, Death);
+	SetAction(HIT_CEILING, HitCeiling);
+
+	return (new DummyAction(p));
+		//
 	if (action == IAction::DOWN_DASH)
 		return (new DownDash(p));
-	if (action == IAction::STUN)
-		return (new Stun(p));
 	if (action == IAction::HOR_DASH)
 		return (new HorDash(p));
-	if (action == IAction::DEATH)
-		return (new Death(p));
 	if (action == IAction::SPIN)
 		return (new Spin(p));
-	if (action == IAction::TECH)
-		return (new Tech(p));
 	if (action == IAction::SHIELD)
 		return (new Shield(p));
 	if (action == IAction::UP_PUNCH)
 		return (new UpPunch(p));
-	if (action == IAction::TEMPO)
-		return (new Tempo(p));
-	if (action == IAction::HIT_CEILING)
-		return (new HitCeiling(p));
-	if (action == IAction::HIT_LAGG)
-		return (new HitLagg(p));
 	if (action == IAction::THROW_BALL)
 		return (new ThrowBall(p));
 	if (action == IAction::THROW_SHURIKEN)

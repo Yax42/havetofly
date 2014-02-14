@@ -20,7 +20,9 @@ void	StickCeiling::init(int)
 }
 
 IAction		*StickCeiling::step()
-{
+{	
+//	_player[IAction::INERTIE]->request();
+//	_player[IAction::MOVE]->request();
 	if (_player.key[Key::HOR] < 0)
 		_player.orient(-1);
 	else if (_player.key[Key::HOR] > 0)

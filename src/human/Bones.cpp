@@ -48,13 +48,13 @@ void		Bones::print(Graphics &g)
 	_pos[BODY] =	Position(_angle[BODY], _size[BODY]);
 	_pos[HEAD] =	Position(_angle[HEAD] + _angle[BODY] + Angle(180, 0), _size[HEAD]);
 	for (int i = 0; i < 4; i++)
-		{
-			_pos[i * 2 + 1] = ((i % 2) ? Position() : _pos[BODY]) +
-	Position(_angle[i * 2 + 1] +
-	_angle[BODY], _size[i * 2 + 1]);
-			_pos[i * 2] = _pos[i * 2 + 1] + Position(_angle[i * 2] +
-		_angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
-		}
+	{
+		_pos[i * 2 + 1] = ((i % 2) ? Position() : _pos[BODY]) +
+			Position(_angle[i * 2 + 1] +
+			_angle[BODY], _size[i * 2 + 1]);
+		_pos[i * 2] = _pos[i * 2 + 1] + Position(_angle[i * 2] +
+			_angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
+	}
 
 	/*
 	for (int i = 0; i < Bones::HEAD; i++)
@@ -67,10 +67,10 @@ void		Bones::print(Graphics &g)
 		g.circle(_pos[HEAD], _size[HEAD] - i, _color);
 	g.line(center, _pos[BODY], _color, 6);
 	for (int i = 0; i < 4; i++)
-		{
-			g.line(((i % 2) ? center : _pos[BODY]), _pos[i * 2 + 1], _color, 6);
-			g.line(_pos[i * 2 + 1], _pos[i * 2], _color, 6);
-		}
+	{
+		g.line(((i % 2) ? center : _pos[BODY]), _pos[i * 2 + 1], _color, 6);
+		g.line(_pos[i * 2 + 1], _pos[i * 2], _color, 6);
+	}
 }
 
 void	Bones::check()

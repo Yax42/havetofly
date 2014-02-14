@@ -41,6 +41,7 @@
     <None Include="..\src\action\active\y\AutoGun.hh" />
     <None Include="..\src\action\active\y\GunJump.hh" />
     <None Include="..\src\action\active\y\ThrowBall.hh" />
+    <None Include="..\src\action\Dummy.hh" />
     <None Include="..\src\action\IAction.hh" />
     <None Include="..\src\action\PassiveAction.hh" />
     <None Include="..\src\action\passive\Death.hh" />

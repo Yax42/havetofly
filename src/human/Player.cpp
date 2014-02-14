@@ -141,10 +141,10 @@ void		Player::process()
 		_action[i]->check();
 	for (int i = 0; i < IAction::COUNT; i++)
 		if (_doing->allow(i) && _action[i]->request())
-			{
-	_doing = _action[i];
-	_doing->init();
-			}
+		{
+			_doing = _action[i];
+			_doing->init();
+		}
 	_doing = _doing->step();
 	_doing->upBones();
 }

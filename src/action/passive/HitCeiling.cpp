@@ -15,23 +15,31 @@ HitCeiling::HitCeiling(Player &player) : PassiveAction(player, IAction::HIT_CEIL
 	_count = 0;
 }
 
+
 void		HitCeiling::check()
 {
+	if (_player(Event::CEILING) && _player.currentAction() != STICK_CEILING && !_player[DOUBLE_JUMP]->val())
+	{
+		_player.sy(-_player.sy() * 0.3);
+		_player.sx(_player.sx() + _player.orient() * 2);
+	}
+	/*
 	if (_count)
 		_count--;
 	else if (_player(Event::CEILING) && _player.currentAction() != STICK_CEILING)
+	{
+		_count = 3;
+		if (_player[TECH]->val())
 		{
-			_count = 3;
-			if (_player[TECH]->val())
-				{
-		_player.sy(1);
-		_player.setAction(IAction::INERTIE);
-	}
-			else
-				{
-		_player.setAction(IAction::STUN, 50);
-		_player.sy(3);
-		_player.sx(0);
-	}
+			_player.sy(1);
+			_player.setAction(IAction::INERTIE);
 		}
+		else
+		{
+			_player.setAction(IAction::STUN, 50);
+			_player.sy(3);
+			_player.sx(0);
+		}
+	}
+	*/
 }

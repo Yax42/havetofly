@@ -26,7 +26,7 @@
 #include "Mutex.hh"
 
 #define MAP_H	768
-#define MAP_W	512
+#define MAP_W	1024
 
 void	print_help()
 {
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 		print_help();
 	if (ac > 1)
 		g_debug = atoi(av[1]);
-	g_debug = 1;
+	//g_debug = 4;
 
 	try
 		{
