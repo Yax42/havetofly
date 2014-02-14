@@ -9,7 +9,7 @@
 //
 
 #include <sstream>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 #include "ALoop.hh"
 
@@ -92,8 +92,8 @@ void		ALoop::handleFps()
 			std::ostringstream oss;
 			oss << _nbFrame;
 			std::string result = "[FPS:" + oss.str() + "] "+"You'd butter fly";
-			SDL_WM_SetCaption(result.c_str(), NULL);
-			//std::cout << "FPS=" << _frame << std::endl;
+			//SDL_WM_SetCaption(result.c_str(), NULL);
+			std::cout << "FPS=" << result << std::endl;
 			_nbSec = curtime.tv_sec;
 			_nbFrame = 0;
 		}

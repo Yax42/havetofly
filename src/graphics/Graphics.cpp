@@ -10,7 +10,6 @@
 
 #include <iostream>
 #include <sstream>
-#include <SDL/SDL.h>
 
 #include "Graphics.hh"
 #include "Exception.hh"
@@ -29,6 +28,7 @@
 
 Graphics::~Graphics()
 {
+	SDL_DestroyWindow(_window);
 	SDL_Quit();
 }
 
@@ -36,10 +36,31 @@ Graphics::Graphics(int h, int w) : _h(h), _w(w), _minX(0), _maxX(w)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1)
 		throw(Exception("Cannot init SDL"));
+	SDL_CreateWindowAndRenderer(w, h, SDL_INIT_JOYSTICK, &_window, &_renderer);
+	if (!_window && !_renderer)
+		throw(Exception("Cannot create window or renderer fail."));
+	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255); 
+	SDL_RenderClear(_renderer); 
+	SDL_RenderPresent(_renderer);
+	_fs = false;
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+	SDL_RenderSetLogicalSize(_renderer, w, h);
+	_screen = SDL_CreateRGBSurface(0, w, h, 32, 
+                                        0, 
+                                        0, 
+                                        0, 
+                                        0);
+	_texture = SDL_CreateTexture(_renderer, 
+                                            SDL_PIXELFORMAT_ARGB8888, 
+                                            SDL_TEXTUREACCESS_STREAMING, 
+                                            w, h);
+	SDL_SetWindowTitle(_window, "You'd butter fly");
+/*	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1)
+		throw(Exception("Cannot init SDL"));
 	_fs = false;
 		_screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
 	SDL_JoystickEventState(SDL_ENABLE);
-	SDL_WM_SetCaption("You'd butter fly", NULL);
+	SDL_WM_SetCaption("You'd butter fly", NULL);*/
 }
 
 int	Graphics::h()
@@ -60,14 +81,18 @@ void	Graphics::switchFS()
 	SDL_FreeSurface(_screen);
 	_fs = !_fs;
 	if (_fs)
-		_screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN | SDL_INIT_JOYSTICK);
+		SDL_SetWindowFullscreen(_window,SDL_WINDOW_FULLSCREEN);
 	else
-		_screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
+		SDL_SetWindowFullscreen(_window,0);
 }
 
 void	Graphics::printScreen()
 {
-	SDL_Flip(_screen);
+	//SDL_Flip(_screen);
+	SDL_UpdateTexture(_texture, NULL, _screen->pixels, _screen->pitch); 
+	SDL_RenderClear(_renderer); 
+	SDL_RenderCopy(_renderer, _texture, NULL, NULL); 
+	SDL_RenderPresent(_renderer);
 }
 
 void		Graphics::resetScreen(const Color &color)

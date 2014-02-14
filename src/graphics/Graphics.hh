@@ -20,7 +20,7 @@
 	#include <sys/time.h>
 	#include <unistd.h>
 #endif
-# include <SDL/SDL.h>
+# include <SDL2/SDL.h>
 
 # include "Position.hh"
 # include "Angle.hh"
@@ -33,7 +33,10 @@ private:
 	int		_w;
 	int		_minX;
 	int		_maxX;
+	SDL_Window	*_window;
+	SDL_Renderer	*_renderer;
 	SDL_Surface	*_screen;
+	SDL_Texture *_texture;
 	bool		_fs;
 
 public:

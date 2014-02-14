@@ -11,7 +11,7 @@
 #ifndef INPUT_HH_
 # define INPUT_HH_
 
-# include <SDL/SDL.h>
+# include <SDL2/SDL.h>
 # include <vector>
 
 # include "Key.hh"
@@ -25,7 +25,7 @@ class Input
 {
 private:
 	bool				_quitKey;
-	int				_kb[SDLK_LAST];
+	int				_kb[SDL_NUM_SCANCODES];
 	SDL_Event			_event;
 	std::vector<Controler *>	_ctrl;
 	int				_axe[2];

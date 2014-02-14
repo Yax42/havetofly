@@ -16,9 +16,9 @@
 #include <fcntl.h>
 #include <iostream>
 #include <sstream>
+#include <SDL2/SDL.h>
 #ifdef WIN32
 	#include <stdlib.h>
-	#include <SDL/SDL.h>
 #else
 	#include <unistd.h>
 #endif
@@ -75,7 +75,7 @@ void			Controler::update()
 		deadClean();
 	/*if (SDL_JoystickOpened(_id))
 		deadClean();*/
-	if (!SDL_JoystickOpened(_id))
+	if (!SDL_JoystickGetAttached(_joystick))
 		_joystick = SDL_JoystickOpen(_id); // on l'assigne au numéro 0
 	if (_joystick == NULL)
 		deadClean();

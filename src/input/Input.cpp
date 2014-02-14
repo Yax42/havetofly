@@ -52,7 +52,7 @@ Input::Input() : _quitKey(false)
 {
 	for (int i = 0; i < NB_CTRL; i++)
 		_ctrl.push_back(new Controler(i));
-	for (int i = 0; i < SDLK_LAST; i++)
+	for (int i = 0; i < SDL_NUM_SCANCODES; i++)
 		_kb[i] = 0;
 }
 
