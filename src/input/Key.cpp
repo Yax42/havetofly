@@ -11,6 +11,7 @@
 #include "Math.hh"
 #include "Key.hh"
 
+#define	IGNORED_CAP 200
 Key::Key()
 {
 }
@@ -19,17 +20,16 @@ int	Key::operator[](int i) const
 {
 	if (i > VERT)
 		return (_delta[i]);
-	if (MPOS(*_val[i]) < 500)
+	if (MPOS(*_val[i]) < IGNORED_CAP)
 		return (0);
-	if ((MPOS(*_val[VERT]) + 200 > MPOS(*_val[HOR])) ==
-			(i == VERT))
+	if ((MPOS(*_val[VERT]) + 200 > MPOS(*_val[HOR])) == (i == VERT))
 		return (MSIGN(*_val[i]));
 	return (0);
 }
 
 int	Key::operator()(int i) const
 {
-	if (i <= VERT && *_val[i] > -500 && *_val[i] < 500)
+	if (i <= VERT && *_val[i] > -IGNORED_CAP && *_val[i] < IGNORED_CAP)
 		return (0);
 	return (*_val[i]);
 }
@@ -55,7 +55,28 @@ int	Key::cur() const
 		return (Y);
 	return (0);
 }
+
 int	*&Key::ptr(int i)
 {
 	return (_val[i]);
+}
+
+float		Key::angle() const
+{
+	float hor = 0;
+	float vert = 0;
+	if (MPOS(*_val[VERT]) >= IGNORED_CAP)
+		vert = *_val[VERT];
+	if (MPOS(*_val[HOR]) >= IGNORED_CAP)
+		hor = *_val[HOR];
+	if (hor == 0 && vert == 0)
+		return 0;
+	return Math::acos(hor / Math::sqrt(hor * hor + vert * vert)) * Math::sign(vert);
+}
+
+Position		Key::direction() const
+{
+	float ang = angle();
+
+	return Position(Math::cos(ang), Math::sin(ang));
 }

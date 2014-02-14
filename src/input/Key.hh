@@ -12,6 +12,7 @@
 # define KEY_HH_
 
 # include <vector>
+# include "Position.hh"
 
 class Key
 {
@@ -36,6 +37,8 @@ private:
 public:
 	Key();
 	~Key(){}
+	float	angle() const;
+	Position	direction() const;
 	int	operator[](int i) const;
 	int	operator()(int i) const;
 	void	update();
