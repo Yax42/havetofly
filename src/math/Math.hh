@@ -43,7 +43,7 @@ public:
 
 public:
 	static float		sign(float v) { return MSIGN(v); }
-	static float		max(float v1, float v2) { return MMAX(v1, v2); }
+	static float		hf_max(float v1, float v2) { return MMAX(v1, v2); }
 
 	static float		sqrt(float d);
 	static float		toRad(float deg);

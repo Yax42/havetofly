@@ -176,13 +176,13 @@ void		Graphics::sponge(Position const &pos, float ray, int nb, float size, const
 	Position	pos2;
 
 	for (float i = angle.rad(); i < goal; i += angleOffset)
-		{
-			pos1 = Position(Angle(i), ray - size) + pos;
-			pos2 = Position(Angle(i + angleOffset / 2), ray + size) + pos;
-			line(pos1, pos2, color);
-			pos1 = Position(Angle(i + angleOffset), ray - size) + pos;
-			line(pos2, pos1, color);
-		}
+	{
+		pos1 = Position(Angle(i), ray - size) + pos;
+		pos2 = Position(Angle(i + angleOffset / 2), ray + size) + pos;
+		line(pos1, pos2, color);
+		pos1 = Position(Angle(i + angleOffset), ray - size) + pos;
+		line(pos2, pos1, color);
+	}
 }
 
 void		Graphics::circle(Position const &pos, float size, const Color &color)
@@ -192,12 +192,12 @@ void		Graphics::circle(Position const &pos, float size, const Color &color)
 	float		invSize = 1 / size;
 
 	for (int i = 0; i < max; i++)
-		{
-			pxPos.x = size * Math::cos(i * invSize);
-			pxPos.y = size * Math::sin(i * invSize);
-			pxPos += pos;
-			printPixel(pxPos, color);
-		}
+	{
+		pxPos.x = size * Math::cos(i * invSize);
+		pxPos.y = size * Math::sin(i * invSize);
+		pxPos += pos;
+		printPixel(pxPos, color);
+	}
 }
 
 void		Graphics::circleFull(Position const &pos, float size, const Color &color)
@@ -207,12 +207,12 @@ void		Graphics::circleFull(Position const &pos, float size, const Color &color)
 	float		invSize = 1 / size;
 
 	for (int i = 0; i < max; i++)
-		{
-			pxPos.x = size * Math::cos(i * invSize);
-			pxPos.y = size * Math::sin(i * invSize);
-			pxPos += pos;
-			line(pxPos, pos, color);
-		}
+	{
+		pxPos.x = size * Math::cos(i * invSize);
+		pxPos.y = size * Math::sin(i * invSize);
+		pxPos += pos;
+		line(pxPos, pos, color);
+	}
 }
 
 void		Graphics::circleLaid(Position const &pos, float size, const Color &color, const Color &color2)

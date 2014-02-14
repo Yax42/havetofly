@@ -29,12 +29,12 @@ Player::~Player()
 }
 
 Player::Player(const Position &pos, int team, const Key &k, int color) :
- 	 _pos(pos), _alive(true), _team(team), _keys(k),
-		_color(color), key(_keys), _orient(1),
+	_pos(pos), _alive(true), _team(team), _keys(k),
+	_color(color), key(_keys), _orient(1),
 	_bones(_pos, _color, rand() % 0xFFFFFF, _orient),
 	_mp(_speed, _pos, _event, _doing, this)
 {
-			_hit = NULL;
+	_hit = NULL;
 	_event.resize(Event::COUNT);
 	_action.resize(IAction::COUNT);
 	for (int i = 0; i < IAction::COUNT; i++)

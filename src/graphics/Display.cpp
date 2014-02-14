@@ -27,9 +27,9 @@ void	Display::setTarget(APrintable *target)
 	mutex.unlock();
 }
 
-Display::Display(int h, int w) : ALoop(20000), _g(h, w)
+Display::Display(int h, int w) : ALoop(120), _g(h, w)
 {
-	//printFps(true);
+	printFps(true);
 }
 
 void	Display::print()

@@ -9,6 +9,7 @@
 //
 
 #include <sstream>
+#include <iostream>
 #include <SDL2/SDL.h>
 
 #include "ALoop.hh"

@@ -24,9 +24,7 @@
 #include "GameLoader.hh"
 #include "Game.hh"
 #include "Mutex.hh"
-
-#define MAP_H	768
-#define MAP_W	1024
+#include "const.hh"
 
 void	print_help()
 {

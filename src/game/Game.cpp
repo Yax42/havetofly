@@ -170,37 +170,39 @@ void	Game::print(Graphics &g)
 	g.setCap(0,256);
 	g.resetScreen(0);
 	for (int i = 0; i < (int) _players.size(); i++)
+	{
+		cpt = 0;
+		for (Players::iterator j = _players.begin(); j != _players.end(); ++j)
 		{
-			cpt = 0;
-			for (Players::iterator j = _players.begin(); j != _players.end(); ++j)
-				{
-		if ((*j)->team() != i)
-			continue ;
-		g.rectangle(Position(i * 52 + 30, cpt * 30 + 10),
-			Position(i * 52 + 50, cpt * 30 + 30),
-			(*j)->color());
-		if (cpt++ == 0)
-			g.line (Position(i * 52 + 60, 0), Position(i * 52 + 60, 256), Color::WHITE);
-	}
-			for (int j = 0; j < GameLoader::getScore(i) % 4; j++)
-				g.circle(scorePos(i, j), 5, Color::RED);
-			for (int j = 0; j < (GameLoader::getScore(i) / 4) % 4; j++)
-				g.circle(scorePos(i, j), 9, Color::BLUE);
-			for (int j = 0; j < (GameLoader::getScore(i) / 16) % 4; j++)
-				g.circle(scorePos(i, j), 13, Color::YELLOW);
-			for (int j = 0; j < (GameLoader::getScore(i) / 64); j++)
-				g.circle(scorePos(i, j), 19, Color::GREEN);
+			if ((*j)->team() != i)
+				continue ;
+			g.rectangle(Position(i * 52 + 30, cpt * 30 + 10),
+				Position(i * 52 + 50, cpt * 30 + 30),
+				(*j)->color());
+			if (cpt++ == 0)
+				g.line (Position(i * 52 + 60, 0), Position(i * 52 + 60, 256), Color::WHITE);
 		}
+		for (int j = 0; j < GameLoader::getScore(i) % 4; j++)
+			g.circle(scorePos(i, j), 5, Color::RED);
+		for (int j = 0; j < (GameLoader::getScore(i) / 4) % 4; j++)
+			g.circle(scorePos(i, j), 9, Color::BLUE);
+		for (int j = 0; j < (GameLoader::getScore(i) / 16) % 4; j++)
+			g.circle(scorePos(i, j), 13, Color::YELLOW);
+		for (int j = 0; j < (GameLoader::getScore(i) / 64); j++)
+			g.circle(scorePos(i, j), 19, Color::GREEN);
+	}
 
-	g.setCap(256, 512 + 256);
+	g.setCap(0, MAP_W);
 	if ((DEBUG & 128) == 0)
 		g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
 	for (Players::iterator i = _players.begin(); i != _players.end(); ++i)
-		{
-			if ((*i)->alive())
-	(*i)->print(g);
-		}
+	{
+		if ((*i)->alive())
+			(*i)->print(g);
+	}
+	/*
 	g.setCap(512 + 256, g.w());
 	g.resetScreen(0);
+	*/
 	g.setCap();
 }

@@ -11,8 +11,10 @@
 #ifndef CONST_HH_
 # define CONST_HH_
 
-# define BODY_SIZE	24 // 2/3
-extern const int	&DEBUG;
-# define PLANE_DEBUG	((DEBUG & 32) != 0)
+	#define MAP_H	768
+	#define MAP_W	1024
+	#define BODY_SIZE	24 // 2/3
+	extern const int	&DEBUG;
+	#define PLANE_DEBUG	((DEBUG & 32) != 0)
 
 #endif /* !CONST_HH_ */

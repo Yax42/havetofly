@@ -41,11 +41,11 @@ bool	GameLoader::iterLoop()
 
 	Input_.update();
 	if (DEBUG & 256)
-		game->add(Position(400, 256), 100, Input_.getKBKey(),	color[5]);
+		game->add(Position(400, 450), 100, Input_.getKBKey(),	color[5]);
 	for (i = 0; i < Input_.nbCtrl(); i++)
-		game->add(Position(400, 236 + i * 10), i, Input_.getCtrlKey(i),	color[i]);
+		game->add(Position(400, 512 + i * 10), i, Input_.getCtrlKey(i),	color[i]);
 	if (DEBUG || Input_.nbCtrl() == 0)
-		game->add(Position(400, 236 + i * 10), i, Input_.getKBKey(), color[i]);
+		game->add(Position(400, 470 + i * 10), i, Input_.getKBKey(), color[i]);
 	ret = game->loop();
 	scoring();
 	Game::destroy();
