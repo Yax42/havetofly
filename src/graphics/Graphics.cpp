@@ -89,15 +89,15 @@ void	Graphics::switchFS()
 void	Graphics::printScreen()
 {
 	//SDL_Flip(_screen);
-	SDL_UpdateTexture(_texture, NULL, _screen->pixels, _screen->pitch); 
-	SDL_RenderClear(_renderer); 
-	SDL_RenderCopy(_renderer, _texture, NULL, NULL); 
+	//SDL_UpdateTexture(_texture, NULL, _screen->pixels, _screen->pitch); 
+	//SDL_RenderClear(_renderer); 
+	//SDL_RenderCopy(_renderer, _texture, NULL, NULL); 
 	SDL_RenderPresent(_renderer);
 }
 
 void		Graphics::resetScreen(const Color &color)
 {
-	SDL_Rect	rect;
+	/*SDL_Rect	rect;
 
 	rect.h = _h;
 	rect.w = _maxX - _minX;
@@ -105,7 +105,11 @@ void		Graphics::resetScreen(const Color &color)
 	rect.y = 0;
 
 	//SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color);
-	SDL_FillRect(_screen, &rect, color.getInt());
+	SDL_FillRect(_screen, &rect, color.getInt());*/
+
+	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
+	SDL_RenderClear(_renderer);
+
 }
 
 void	Graphics::resetLocal(const Color &color)
@@ -247,8 +251,11 @@ void		Graphics::line(Position const &pos1, Position const &pos2, const Color &co
 	Angle		angle = vect.angle();
 	int		range = vect.distance();
 
-	for (int i = 0; i <= range; i++)
-		printPixel(pos1 + Position(angle, i), color);
+	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
+	SDL_RenderDrawLine(_renderer, pos1.x, pos1.y, pos2.x, pos2.y);
+
+	/*for (int i = 0; i <= range; i++)
+		printPixel(pos1 + Position(angle, i), color);*/
 }
 
 void		Graphics::line(Position const &pos1, Position const &pos2, const Color &color, int thick)
@@ -294,12 +301,14 @@ void		Graphics::bend(Position const &pos1, float ray1,
 /*********/
 void	Graphics::printPixel(Position const &pos, const Color &color)
 {
-	if (pos.x >= 0 && pos.x + _minX < _maxX && pos.y >= 0 && pos.y < _screen->h)
+	/*if (pos.x >= 0 && pos.x + _minX < _maxX && pos.y >= 0 && pos.y < _screen->h)
 	{
 		int	offset = static_cast<int> (pos.y) * _screen->pitch / 4 +
 			static_cast<int> (pos.x) + _minX;
 		*(static_cast<int *> (_screen->pixels) + offset) = color.getInt();
-	}
+	}*/
+	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
+	SDL_RenderDrawLine(_renderer, pos.x, pos.y, pos.x + 1, pos.y + 1);
 }
 
 /*
