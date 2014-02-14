@@ -22,17 +22,17 @@ bool		Move::request()
 	static const float	SPEED = 0.00007; //2/3
 
 	if (_player.key(Key::HOR))
-		{
-			_player.sx(_player.sx() + _player.key(Key::HOR) * SPEED);
-			if (_player.key(Key::HOR) < 0)
-	_player.orient(-1);
-			else if (_player.key(Key::HOR) > 0)
-	_player.orient(1);
+	{
+		_player.sx(_player.sx() + _player.key(Key::HOR) * SPEED);
+		if (_player.key(Key::HOR) < 0)
+			_player.orient(-1);
+		else if (_player.key(Key::HOR) > 0)
+			_player.orient(1);
 
-			if (_player.sx() > MAX)
-	_player.sx(MAX);
-			if (_player.sx() < MIN)
-	_player.sx(MIN);
-		}
+		if (_player.sx() > MAX)
+			_player.sx(MAX);
+		if (_player.sx() < MIN)
+			_player.sx(MIN);
+	}
 	return (false);
 }

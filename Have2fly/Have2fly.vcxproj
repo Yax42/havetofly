@@ -28,7 +28,6 @@
     <None Include="..\src\action\active\b\ThrowShuriken.hh" />
     <None Include="..\src\action\active\b\tmp" />
     <None Include="..\src\action\active\HitLagg.hh" />
-    <None Include="..\src\action\active\Move.hh" />
     <None Include="..\src\action\active\StickCeiling.hh" />
     <None Include="..\src\action\active\StickWall.hh" />
     <None Include="..\src\action\active\Stun.hh" />
@@ -98,7 +97,6 @@
     <ClCompile Include="..\src\action\active\b\Television.cpp" />
     <ClCompile Include="..\src\action\active\b\ThrowShuriken.cpp" />
     <ClCompile Include="..\src\action\active\HitLagg.cpp" />
-    <ClCompile Include="..\src\action\active\Move.cpp" />
     <ClCompile Include="..\src\action\active\StickCeiling.cpp" />
     <ClCompile Include="..\src\action\active\StickWall.cpp" />
     <ClCompile Include="..\src\action\active\Stun.cpp" />

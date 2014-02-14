@@ -120,9 +120,6 @@
     <None Include="..\src\action\active\HitLagg.hh">
       <Filter>Source Files\action\active</Filter>
     </None>
-    <None Include="..\src\action\active\Move.hh">
-      <Filter>Source Files\action\active</Filter>
-    </None>
     <None Include="..\src\action\active\StickCeiling.hh">
       <Filter>Source Files\action\active</Filter>
     </None>
@@ -315,9 +312,6 @@
       <Filter>Source Files\action\active</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\HitLagg.cpp">
-      <Filter>Source Files\action\active</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\Move.cpp">
       <Filter>Source Files\action\active</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\StickCeiling.cpp">
