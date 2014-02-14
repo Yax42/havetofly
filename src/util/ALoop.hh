@@ -27,22 +27,25 @@ private:
 	bool			_isThread;
 	int				_nbFrame;
 	int				_nbSec;
+	bool			_returnVal;
 
 public:
 	ALoop(int fps, bool isThread = true);
 	virtual ~ALoop() {}
-	void			loop();
+	bool			loop();
 	bool			join();
 	void			quit();
 	void			printFps(bool v) { _printFps = v; }
-private:
-	void			handleFps();
-	bool			actualLoop();
-	static void		*startThreadWrapper(void *);
+protected:
+	void				handleFps();
 	virtual bool		ifLoop();
 	virtual bool		iterLoop() = 0;
 	virtual void		initLoop();
 	virtual void		endLoop();
+	void				wait() { _wait.proc(); }
+private:
+	virtual bool		actualLoop();
+	static void		*startThreadWrapper(void *);
 };
 
 #endif /* !ALOOP_HH_ */

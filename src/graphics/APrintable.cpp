@@ -18,7 +18,7 @@ void	APrintable::setPrint()
 	Display::setTarget(this);
 }
 
-APrintable::APrintable(int fps) : _quit(false), _wait(fps)
+APrintable::APrintable(int fps) : ALoop(fps, false)
 {
 }
 
@@ -29,20 +29,21 @@ bool	APrintable::cleanLoop(bool v)
 	return (v);
 }
 
-bool	APrintable::loop()
+bool	APrintable::actualLoop()
 {
 	initLoop();
 	Display::setTarget(this);
 	while (ifLoop())
-		{
-			if (Input_[SDLK_ESCAPE])
-	return (cleanLoop(true));
-			if (Input_.isQuit() ||	!iterLoop() || _quit)
-	return (cleanLoop(false));
-			Input::get()->proc();
-			_wait.proc();
-			MyTime::run();
-		}
+	{
+		if (Input_[SDLK_ESCAPE])
+			return (cleanLoop(true));
+		if (Input_.isQuit() ||	!iterLoop() || _quit)
+			return (cleanLoop(false));
+		Input::get()->proc();
+		wait();
+		handleFps();
+		MyTime::run();
+	}
 	return (cleanLoop(true));
 }
 
@@ -51,22 +52,4 @@ void		APrintable::switchPrint(APrintable &next)
 	if (next.loop() == false)
 		quit();
 	Display::setTarget(this);
-}
-
-void		APrintable::endLoop()
-{
-}
-
-void		APrintable::initLoop()
-{
-}
-
-bool		APrintable::ifLoop()
-{
-	return (true);
-}
-
-void		APrintable::quit()
-{
-	_quit = true;
 }

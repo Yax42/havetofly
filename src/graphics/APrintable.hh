@@ -15,28 +15,20 @@
 # include "Graphics.hh"
 # include "Wait.hh"
 # include "MyTime.hh"
+# include "ALoop.hh"
 
-class APrintable
+class APrintable : public ALoop
 {
-protected:
-	bool			_quit;
-private:
-	Wait			_wait;
 public:
 	APrintable(int fps);
 	virtual ~APrintable(){}
 	void			setPrint();
-	bool			loop();
-	void			quit();
+	bool			actualLoop();
 	void			switchPrint(APrintable &next);
-	virtual void		print(Graphics &g) = 0;
+	virtual void	print(Graphics &g) = 0;
 
 private:
 	bool			cleanLoop(bool v);
-	virtual bool		ifLoop();
-	virtual void		initLoop();
-	virtual void		endLoop();
-	virtual bool		iterLoop() = 0;
 };
 
 #endif /* !APRINTABLE_HH_ */

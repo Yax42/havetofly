@@ -25,8 +25,8 @@ const int	Bones::_size[Bones::COUNT] =
 	20,	// KNEE2
 	20,	// HAND2
 	14,	// ELBOW2
-	16,	// HEAD
-	22	// BODY
+	14,	// HEAD
+	18	// BODY
 };
 
 Bones::Bones(const Position &centre, int color, int color2, const int &orient) :

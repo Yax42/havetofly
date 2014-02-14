@@ -17,19 +17,23 @@ ALoop::ALoop(int fps, bool isThread) : _quit(false), _printFps(false), _wait(fps
 {
 }
 
-void	ALoop::loop()
+bool	ALoop::loop()
 {
+	int		ret;
 	if (_isThread)
-		int ret = pthread_create(&_thread, 0, startThreadWrapper, this);
+		ret = pthread_create(&_thread, 0, startThreadWrapper, this);
 	else
 		startThreadWrapper(this);
-	_nbSec = 0;
-	_nbFrame = 0;
+	return _returnVal;
 }
 
 void		*ALoop::startThreadWrapper(void *obj)
 {
-	return ((void *) (((ALoop *) obj)->actualLoop()));
+	ALoop	*loop = (ALoop *) obj;
+	loop->_nbSec = 0;
+	loop->_nbFrame = 0;
+	loop->_returnVal = loop->actualLoop();
+	return NULL;
 }
 
 bool		ALoop::actualLoop()
@@ -43,7 +47,7 @@ bool		ALoop::actualLoop()
 			endLoop();
 		}
 		handleFps();
-		_wait.proc();
+		wait();
 	}
 	endLoop();
 	return (true);

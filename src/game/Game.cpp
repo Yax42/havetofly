@@ -59,6 +59,7 @@ Game::~Game()
 
 Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : (DEBUG & 512) ? 1 : 120), _height(h), _width(w)
 {
+	printFps(true);
 	_height = h;
 	_width = w;
 }

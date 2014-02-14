@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 		print_help();
 	if (ac > 1)
 		g_debug = atoi(av[1]);
-//	g_debug = 1;
+	g_debug = 1;
 
 	try
 		{

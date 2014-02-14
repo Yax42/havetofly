@@ -160,6 +160,8 @@ void	Input::proc()
 	SDL_JoystickUpdate();
 	_axe[0] = (_kb[SDLK_d] ? 1000 : (_kb[SDLK_a] ? -1000 : 0));
 	_axe[1] = (_kb[SDLK_w] ? -1000 : (_kb[SDLK_s] ? 1000 : 0));
+	if (_kb[SDLK_LALT] && _kb[SDLK_F4])
+		_quitKey = true;
 }
 int		Input::getLastBut(int id)
 {
