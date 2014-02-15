@@ -82,6 +82,10 @@ float	Math::atan(const Angle &v)
 	return (::atan(v.rad()));
 }
 
+float	Math::atan2(float v1, float v2)
+{
+	return (::atan2(v1, v2));
+}
 //----------------------------------------------
 
 float	Math::cos(float v)

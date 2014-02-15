@@ -63,34 +63,21 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(HIT_LAGG, HitLagg);
 	SetAction(DEATH, Death);
 	SetAction(HIT_CEILING, HitCeiling);
+	SetAction(HOR_DASH, HorDash);
 
 	return (new DummyAction(p));
 		//
-	if (action == IAction::DOWN_DASH)
-		return (new DownDash(p));
-	if (action == IAction::HOR_DASH)
-		return (new HorDash(p));
-	if (action == IAction::SPIN)
-		return (new Spin(p));
-	if (action == IAction::SHIELD)
-		return (new Shield(p));
-	if (action == IAction::UP_PUNCH)
-		return (new UpPunch(p));
-	if (action == IAction::THROW_BALL)
-		return (new ThrowBall(p));
-	if (action == IAction::THROW_SHURIKEN)
-		return (new ThrowShuriken(p));
-	if (action == IAction::CURVE)
-		return (new Curve(p));
-	if (action == IAction::AUTO_GUN)
-		return (new AutoGun(p));
-	if (action == IAction::GUN_JUMP)
-		return (new GunJump(p));
-	if (action == IAction::HOR_TP)
-		return (new HorTP(p));
-	if (action == IAction::EFFECTIVE_TV)
-		return (new EffectiveTV(p));
-	if (action == IAction::TELEVISION)
-		return (new Television(p));
+	SetAction(DOWN_DASH, DownDash);
+	SetAction(SPIN, Spin);
+	SetAction(SHIELD, Shield);
+	SetAction(UP_PUNCH, UpPunch);
+	SetAction(THROW_BALL, ThrowBall);
+	SetAction(THROW_SHURIKEN, ThrowShuriken);
+	SetAction(CURVE, Curve);
+	SetAction(AUTO_GUN, AutoGun);
+	SetAction(GUN_JUMP, GunJump);
+	SetAction(HOR_TP, HorTP);
+	SetAction(EFFECTIVE_TV, EffectiveTV);
+	SetAction(TELEVISION, Television);
 	throw(Exception("Action not exisiting."));
 }

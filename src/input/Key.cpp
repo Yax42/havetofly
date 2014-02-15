@@ -11,7 +11,7 @@
 #include "Math.hh"
 #include "Key.hh"
 
-#define	IGNORED_CAP 200
+#define	IGNORED_CAP 5000
 Key::Key()
 {
 }
@@ -71,12 +71,20 @@ float		Key::angle() const
 		hor = *_val[HOR];
 	if (hor == 0 && vert == 0)
 		return 0;
-	return Math::acos(hor / Math::sqrt(hor * hor + vert * vert)) * Math::sign(vert);
+	float angle = Math::acos(Math::abs(hor) / Math::sqrt(hor * hor + vert * vert));
+	float ratio = Math::abs(hor) / Math::sqrt(hor * hor + vert * vert);
+	float horNorm = ratio * hor;
+	float vertNorm = ratio * vert;
+
+	return Math::atan2(horNorm, vertNorm);
+
+	//return Math::atan2(b.Y - a.Y,b.X - a.X);
 }
 
 Position		Key::direction() const
 {
 	float ang = angle();
 
-	return Position(Math::cos(ang), Math::sin(ang));
+	float a = *_val[HOR];
+	return Position(Math::sin(ang), Math::cos(ang));
 }

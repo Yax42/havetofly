@@ -66,6 +66,7 @@ public:
 	static float		acos(float v);
 	static float		asin(float v);
 	static float		atan(float v);
+	static float		atan2(float v1, float v2);
 
 
 private:

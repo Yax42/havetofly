@@ -18,16 +18,17 @@ HorDash::HorDash(Player &player) :
 
 void	HorDash::init(int v)
 {
-	if (v == 0 && !PLANE_DEBUG)
+	if (0 && v == 0 && !PLANE_DEBUG)
 		{
 			_player.setAction(TEMPO, id());
-			_player[TEMPO]->set(10);
+			_player[TEMPO]->set(30000);
 		}
 	else
 		{
 			_hit->reset();
 			_count = 30;
-			_player = Position(0, 6 * _player.orient());
+			//_player = Position(0, 6 * _player.orient());
+			_player = _player.key.direction() * 3;
 			_open = 0;
 		}
 }
@@ -56,6 +57,7 @@ IAction		*HorDash::step()
 
 bool		HorDash::request()
 {
+	return true;
 	if (PLANE_DEBUG)
 		return (_player.key[Key::HOR]);
 	return (_open && !_player.key(Key::R) && _player.key[Key::X] == 1 && _player.key[Key::HOR]);
@@ -88,22 +90,24 @@ void		HorDash::upBones()
 	_bones.angle[Bones::ELBOW2] = Angle(100, 0);
 
 	_bones.angle[Bones::HEAD] = Angle(0, 0);
-	_bones.angle[Bones::BODY] = Angle(-90, 0);
+	_bones.angle[Bones::BODY] = Angle(_player.key.angle() + Math::PiHalf);
 }
 
 void		HorDash::print(Graphics &g) const
 {
+	g.line(_bones[Bones::HEAD], _bones[Bones::HEAD] + _player.key.direction() * 30, 
+		Color::fire[rand() % 4]);
 	if (_open)
-		{
-			for (int i = 0; i < 3; i++)
-	g.sponge(_bones[Bones::HEAD], 13 + i * 2, 8, 5, Angle(MTIME * 2, 0), _player.color());
-		}
+	{
+		for (int i = 0; i < 3; i++)
+			g.sponge(_bones[Bones::HEAD], 13 + i * 2, 8, 5, Angle(MTIME * 2, 0), _player.color());
+	}
 	if (isActive())
+	{
+		for (int i = 0; i < 80; i++)
 		{
-			for (int i = 0; i < 80; i++)
-			{
-	g.line(_bones[Bones::BODY], _bones[Bones::FOOT1] + MRAND_POS_CI(30),	Color::fire[rand() % 4]);
-	g.circle(_bones[Bones::FOOT1] + MRAND_POS_CI(30), rand() % 15 + 3,	Color::fire[rand() % 4]);
-			}
+			g.line(_bones[Bones::BODY], _bones[Bones::FOOT1] + MRAND_POS_CI(30),	Color::fire[rand() % 4]);
+			g.circle(_bones[Bones::FOOT1] + MRAND_POS_CI(30), rand() % 15 + 3,	Color::fire[rand() % 4]);
 		}
+	}
 }
