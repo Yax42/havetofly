@@ -114,14 +114,21 @@ Key	Input::getCtrlKey(int id)
 	for (i = 0; i < NB_CTRL; i++)
 	{
 		if (_ctrl[i]->isOk())
-			{
-				if (nb == id)
-			break ;
-	else
-		nb++;
-			}
+		{
+			if (nb == id)
+				break ;
+			else
+				nb++;
+		}
 	}
 	return (_ctrl[i]->getKey());
+}
+
+void	Input::testKeys()
+{
+	for (int i = 0; i < NB_CTRL; i++)
+		if (_ctrl[i]->isOk())
+			_ctrl[i]->testKeys();
 }
 
 void	Input::saveKey(int id) const

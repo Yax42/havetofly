@@ -27,6 +27,9 @@ public:
 	virtual void		upBones();
 	virtual void		check();
 	virtual void		print(Graphics &g) const;
+private:
+	Position				_origin;
+	static const float		_range;
 };
 
 #endif /* !HORDASH_HH_ */

@@ -21,6 +21,8 @@ public:
 		{
 			HOR,
 			VERT,
+			R2,
+			L2,
 			A,
 			X,
 			Y,
@@ -30,20 +32,23 @@ public:
 			COUNT
 		};
 private:
-	int		_prevVal[Key::COUNT];
-	int		*_val[Key::COUNT];
-	int		_delta[Key::COUNT];
+	int					_prevVal[Key::COUNT];
+	int					*_val[Key::COUNT];
+	int					_delta[Key::COUNT];
+	mutable Position	_lastOkDir;
 
 public:
 	Key();
 	~Key(){}
-	float	angle() const;
-	Position	direction() const;
-	int	operator[](int i) const;
-	int	operator()(int i) const;
-	void	update();
-	int	cur() const;
-	int	*&ptr(int i);
+	Angle			angle() const;
+	Position		direction() const;
+	int				operator[](int i) const;
+	int				operator()(int i) const;
+	void			update();
+	int				cur() const;
+	int				*&ptr(int i);
+	float			squaredLength() const;
+	float			length() const;
 };
 
 #endif /* !KEY_HH_ */

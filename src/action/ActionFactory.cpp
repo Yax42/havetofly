@@ -64,6 +64,7 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(DEATH, Death);
 	SetAction(HIT_CEILING, HitCeiling);
 	SetAction(HOR_DASH, HorDash);
+	SetAction(THROW_SHURIKEN, ThrowShuriken);
 
 	return (new DummyAction(p));
 		//
@@ -72,7 +73,6 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(SHIELD, Shield);
 	SetAction(UP_PUNCH, UpPunch);
 	SetAction(THROW_BALL, ThrowBall);
-	SetAction(THROW_SHURIKEN, ThrowShuriken);
 	SetAction(CURVE, Curve);
 	SetAction(AUTO_GUN, AutoGun);
 	SetAction(GUN_JUMP, GunJump);

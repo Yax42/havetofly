@@ -93,7 +93,7 @@ bool		Game::iterLoop()
 		cpt = 0;
 		for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
 			if ((DEBUG & 256) == 0 || cpt++ != 0)
-	(*i)->move();
+				(*i)->move();
 	}
 
 	for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
@@ -106,12 +106,12 @@ bool		Game::iterLoop()
 	for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
 		(*i)->upKeys();
 	if (Input_(SDLK_LALT) && Input_(SDLK_k))
-		{
-			switchPrint(_setKeys);
-			killAll();
-		}
+	{
+		switchPrint(_setKeys);
+		killAll();
+	}
 	_time++;
-
+	//Input_.testKeys();
 	return (true);
 }
 

@@ -15,12 +15,13 @@
 /* CONSTRUCTORS */
 /****************/
 
+const Position	Position::UnitX(0, 1);
+const Position	Position::UnitY(1, 0);
+
 Position::~Position(){}
 
-Position::Position()
+Position::Position() : y(0), x(0)
 {
-	y = 0;
-	x = 0;
 }
 
 Position::Position(float Y, float X) : y(Y), x(X)
@@ -236,6 +237,28 @@ Angle		Position::angle() const
 	if (distance() == 0)
 		return (0);
 	return (Angle(Math::acos(x / distance()) * ((y >= 0) - (y < 0))));
+}
+
+float		Position::dot(const Position &other)
+{
+	return x * other.x + y * other.y;
+}
+
+Position	Position::normalize() const
+{
+	float dist = distance();
+	if (dist == 0)
+		return Position();
+	return Position(y / dist, x / dist);
+}
+
+void		Position::normalized()
+{
+	float dist = distance();
+	if (dist == 0)
+		return ;
+	y /= dist;
+	x /= dist;
 }
 
 std::ostream	&operator<<(std::ostream &s, Position const &pos)

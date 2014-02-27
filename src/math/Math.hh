@@ -32,6 +32,7 @@
 //# define HALF_PI			(M_PI / 2)
 
 class Angle;
+class Position;
 
 class Math
 {
@@ -48,8 +49,10 @@ public:
 	static float		sqrt(float d);
 	static float		toRad(float deg);
 	static float		toDeg(float rad);
-	static int		abs(int v);
+	static int			abs(int v);
 	static float		abs(float v);
+	static int			cap(int x, int min, int max, bool stayIn);
+	static float		cap(float x, float min, float max);
 
 
 	/**TRIGO**/
@@ -68,6 +71,9 @@ public:
 	static float		atan(float v);
 	static float		atan2(float v1, float v2);
 
+	/**POSITION**/
+	static float		angle(const Position &from, const Position &to);
+	static float		angle(const Position &pos);
 
 private:
 	Math();

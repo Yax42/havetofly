@@ -109,8 +109,10 @@ void	Controler::proc()
 {
 	_keys[0] = SDL_JoystickGetAxis(_joystick, 0);
 	_keys[1] = SDL_JoystickGetAxis(_joystick, 1);
+	_keys[2] = SDL_JoystickGetAxis(_joystick, 4);
+	_keys[3] = SDL_JoystickGetAxis(_joystick, 5);
 	for (int i = 0; i < 6; i++)
-		_keys[i+2] = SDL_JoystickGetButton(_joystick, i);
+		_keys[i + 4] = SDL_JoystickGetButton(_joystick, i + 10);
 	
 }
 
@@ -136,6 +138,13 @@ Key			Controler::getKey()
 
 void		Controler::saveKey() const
 {
+}
+
+void		Controler::testKeys() const
+{
+	for (int i = 0; i < SDL_JoystickNumButtons(_joystick); i++)
+		if (SDL_JoystickGetButton(_joystick, i))
+			std::cout << "Beign pressed: " << i << "\n";
 }
 
 /***************/

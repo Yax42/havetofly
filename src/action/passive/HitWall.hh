@@ -19,6 +19,10 @@ public:
 	HitWall(Player &player);
 	virtual ~HitWall() {}
 	virtual void		check();
+	virtual int			val();
+private:
+	int				_lastWallHit;
+	int				_newLastWallHit;
 };
 
 #endif /* !HITWALL_HH_ */

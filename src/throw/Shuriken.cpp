@@ -10,12 +10,10 @@
 
 #include "Shuriken.hh"
 
-Shuriken::Shuriken(const Player &player) :
-	AThrowable(player.pos(),
-	player.closePos(),
-		40, Position(1, 1), player, Hit::NONE, true)
+Shuriken::Shuriken(const Player &player, const Position &pos, const Position &speed, int level) :
+	AThrowable(pos, speed, 40, Position(1, 1), player, Hit::NONE, true), _level(level)
 {
-	_speed = Position(_speed.angle().betweenX(Angle(35, 0), _player.orient()), 7);
+	_speed = speed;
 	_hit.add(12, Position(), _pos);
 }
 
@@ -25,8 +23,8 @@ void		Shuriken::move()
 
 void		Shuriken::print(Graphics &g) const
 {
-	g.sponge(_pos, 8, 6, 3, Angle(MTIME * 8, 0), 0);
-	g.sponge(_pos, 5, 6, 3, Angle(MTIME * 8, 0), 0);
+	g.sponge(_pos, 8, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
+	g.sponge(_pos, 5, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
 }
 
 void		Shuriken::effect(Player &p)
@@ -34,4 +32,24 @@ void		Shuriken::effect(Player &p)
 	if (!p[IAction::TECH]->val())
 		p.hit(&_hit);
 	_alive = false;
+}
+
+Color		Shuriken::getColorFromLevel(int level)
+{
+	switch (level)
+	{
+		case 4:
+			return Color::GREEN;
+			break;
+		case 3:
+			return Color::BLUE;
+			break;
+		case 2:
+			return Color::YELLOW;
+			break;
+		case 1:
+			return Color::RED;
+			break;
+	};
+	return Color::BLACK;
 }

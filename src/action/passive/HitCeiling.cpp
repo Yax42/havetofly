@@ -18,7 +18,7 @@ HitCeiling::HitCeiling(Player &player) : PassiveAction(player, IAction::HIT_CEIL
 
 void		HitCeiling::check()
 {
-	if (_player(Event::CEILING) && _player.currentAction() != STICK_CEILING && !_player[DOUBLE_JUMP]->val())
+	if (0 && _player(Event::CEILING) && _player.currentAction() != STICK_CEILING && !_player[DOUBLE_JUMP]->val())
 	{
 		_player.sy(-_player.sy() * 0.3);
 		_player.sx(_player.sx() + _player.orient() * 2);

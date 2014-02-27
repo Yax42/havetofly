@@ -29,12 +29,12 @@ class Player;
 class AAction : public IAction
 {
 protected:
-	Player		&_player;
-	Hit			*_hit;
-	int			_open;
-	int			_count;
-	Bones			&_bones;
-	int			_id;
+	Player				&_player;
+	Hit					*_hit;
+	int					_open;
+	int					_count;
+	Bones				&_bones;
+	int					_id;
 	std::list<Hitbox>	_hb;
 
 public:
@@ -42,19 +42,19 @@ public:
 	AAction(Player &player, int id, Hit *hit);
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual IAction		*step();
 	virtual bool		hit(Player &ennemy);
-	virtual int		val();
+	virtual int			val();
 	virtual void		set(int v = 0);
 	virtual bool		request();
 	virtual void		check();
-	virtual const	std::list<Hitbox>	&getHB() const;
+	virtual const		std::list<Hitbox>	&getHB() const;
 	virtual void		upBones();
-	virtual int		id() const;
+	virtual int			id() const;
 	virtual void		print(Graphics &g) const;
 	virtual void		printHB(Graphics &g) const;
 	virtual bool		isActive() const;
-	virtual int		hitLagg() const;
+	virtual int			hitLagg() const;
 	virtual void		loadBones();
 
 };

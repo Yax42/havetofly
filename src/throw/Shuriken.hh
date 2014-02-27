@@ -15,12 +15,15 @@
 
 class Shuriken : public AThrowable
 {
+private:
+	int					_level;
 public:
 	virtual ~Shuriken(){}
-	Shuriken(const Player &player);
+	Shuriken(const Player &player, const Position &pos, const Position &speed, int level);
 	virtual void		move();
 	virtual void		print(Graphics &g) const;
 	virtual void		effect(Player &p);
+	static Color		getColorFromLevel(int level);
 };
 
 #endif /* !SHURIKEN_HH_ */

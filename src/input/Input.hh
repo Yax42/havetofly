@@ -54,6 +54,7 @@ public:
 	Key		getCtrlKey(int id);
 	void		proc();
 	int		getLastBut(int id);
+	void		testKeys();
 	char		*getPatern(int id);
 	void		saveKey(int id) const;
 };

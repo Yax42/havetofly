@@ -16,8 +16,7 @@
 class ThrowShuriken : public AAction
 {
 private:
-	const static int	_time;
-	const static int	_timeMax;
+	int				_level;
 public:
 	ThrowShuriken(Player &player);
 	virtual ~ThrowShuriken(){}

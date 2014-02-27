@@ -45,15 +45,8 @@ Graphics::Graphics(int h, int w) : _h(h), _w(w), _minX(0), _maxX(w)
 	_fs = false;
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	SDL_RenderSetLogicalSize(_renderer, w, h);
-	_screen = SDL_CreateRGBSurface(0, w, h, 32, 
-                                        0, 
-                                        0, 
-                                        0, 
-                                        0);
-	_texture = SDL_CreateTexture(_renderer, 
-                                            SDL_PIXELFORMAT_ARGB8888, 
-                                            SDL_TEXTUREACCESS_STREAMING, 
-                                            w, h);
+	_screen = SDL_CreateRGBSurface(0, w, h, 32, 0, 0, 0, 0);
+	_texture = SDL_CreateTexture(_renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, w, h);
 	SDL_SetWindowTitle(_window, "You'd butter fly");
 /*	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1)
 		throw(Exception("Cannot init SDL"));

@@ -14,14 +14,15 @@ WallJump::WallJump(Player &player) : AAction(player, WALL_JUMP, NULL)
 {
 }
 
-void	WallJump::init(int)
+void	WallJump::init(int a)
 {
 //	_player[IAction::DOUBLE_JUMP]->set();
 	_count = 50;
+	_player.sy(a == 0 ? -5 : a);
 	if (_player(Event::LEFT_WALL))
-		_player = Position(-10, 2); //2/3
+		_player.sx(2); //2/3
 	else if (_player(Event::RIGHT_WALL))
-		_player = Position(-10, -2); //2/3
+		_player.sx(-2); //2/3
 	else
 		throw(Exception("Wall jump without sticking the wall."));
 }

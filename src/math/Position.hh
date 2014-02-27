@@ -72,6 +72,14 @@ public:
 	float			distance(const Position &other) const;
 	float			squaredDistance() const;
 	float			squaredDistance(const Position &other) const;
+
+
+	float		dot(const Position &other);
+	Position	normalize() const;
+	void		normalized();
+
+	static const Position	UnitX;
+	static const Position	UnitY;
 };
 
 std::ostream	&operator<<(std::ostream &s, Position const &pos);

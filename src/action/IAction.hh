@@ -37,11 +37,11 @@ public:
 			STICK_CEILING,
 			STICK_WALL,
 			WALL_JUMP,
+			THROW_SHURIKEN,
 /* End of the cool list */
 			AUTO_GUN,
 			GUN_JUMP,
 			THROW_BALL,
-			THROW_SHURIKEN,
 			EFFECTIVE_TV,
 			TELEVISION,
 			SHIELD,
@@ -54,6 +54,7 @@ public:
 /*		  */COUNT, /* End of the list */
 			DUMMY,
 		};
+	enum { FIRST_ACTIVE = MOVE}; // Is this durty?
 	virtual ~IAction(){}
 	virtual bool		allow(int a) = 0;
 	virtual IAction		*step() = 0;

@@ -12,8 +12,10 @@
 #include "Key.hh"
 
 #define	IGNORED_CAP 5000
+
 Key::Key()
 {
+	_lastOkDir = Position(0, 1);
 }
 
 int	Key::operator[](int i) const
@@ -37,10 +39,37 @@ int	Key::operator()(int i) const
 void	Key::update()
 {
 	for (int i = A; i < COUNT; i++)
-		{
-			_delta[i] = *_val[i] - _prevVal[i];
-			_prevVal[i] = *_val[i];
-		}
+	{
+		_delta[i] = *_val[i] - _prevVal[i];
+		_prevVal[i] = *_val[i];
+	}
+
+	float hor = 0;
+	float vert = 0;
+	if (MPOS(*_val[VERT]) >= IGNORED_CAP)
+		vert = *_val[VERT];
+	if (MPOS(*_val[HOR]) >= IGNORED_CAP)
+		hor = *_val[HOR];
+	if (vert != 0 || hor != 0)
+		_lastOkDir = Position(vert, hor).normalize();
+}
+
+float	Key::squaredLength() const
+{
+	float hor = 0;
+	float vert = 0;
+	if (MPOS(*_val[VERT]) >= IGNORED_CAP)
+		vert = *_val[VERT];
+	if (MPOS(*_val[HOR]) >= IGNORED_CAP)
+		hor = *_val[HOR];
+	hor /= 0xFFFFFFFF;
+	vert /= 0xFFFFFFFF;
+	return (hor * hor + vert * vert);
+}
+
+float	Key::length() const
+{
+	return (Math::sqrt(squaredLength()));
 }
 
 int	Key::cur() const
@@ -61,30 +90,12 @@ int	*&Key::ptr(int i)
 	return (_val[i]);
 }
 
-float		Key::angle() const
+Angle		Key::angle() const
 {
-	float hor = 0;
-	float vert = 0;
-	if (MPOS(*_val[VERT]) >= IGNORED_CAP)
-		vert = *_val[VERT];
-	if (MPOS(*_val[HOR]) >= IGNORED_CAP)
-		hor = *_val[HOR];
-	if (hor == 0 && vert == 0)
-		return 0;
-	float angle = Math::acos(Math::abs(hor) / Math::sqrt(hor * hor + vert * vert));
-	float ratio = Math::abs(hor) / Math::sqrt(hor * hor + vert * vert);
-	float horNorm = ratio * hor;
-	float vertNorm = ratio * vert;
-
-	return Math::atan2(horNorm, vertNorm);
-
-	//return Math::atan2(b.Y - a.Y,b.X - a.X);
+	return direction().angle();
 }
 
 Position		Key::direction() const
 {
-	float ang = angle();
-
-	float a = *_val[HOR];
-	return Position(Math::sin(ang), Math::cos(ang));
+	return _lastOkDir;
 }

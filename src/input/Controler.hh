@@ -42,6 +42,7 @@ public:
 	char		*getPatern();
 	void		saveKey() const;
 	void		clean();
+	void		testKeys() const;
 };
 
 
