@@ -65,18 +65,18 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(HIT_CEILING, HitCeiling);
 	SetAction(HOR_DASH, HorDash);
 	SetAction(THROW_SHURIKEN, ThrowShuriken);
+	SetAction(DOWN_DASH, DownDash);
+	SetAction(UP_PUNCH, UpPunch);
 
 	return (new DummyAction(p));
 		//
-	SetAction(DOWN_DASH, DownDash);
-	SetAction(SPIN, Spin);
+	SetAction(HOR_TP, HorTP);
 	SetAction(SHIELD, Shield);
-	SetAction(UP_PUNCH, UpPunch);
+	SetAction(SPIN, Spin);
 	SetAction(THROW_BALL, ThrowBall);
 	SetAction(CURVE, Curve);
 	SetAction(AUTO_GUN, AutoGun);
 	SetAction(GUN_JUMP, GunJump);
-	SetAction(HOR_TP, HorTP);
 	SetAction(EFFECTIVE_TV, EffectiveTV);
 	SetAction(TELEVISION, Television);
 	throw(Exception("Action not exisiting."));

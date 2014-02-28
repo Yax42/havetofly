@@ -28,7 +28,7 @@ private:
 	int				_kb[SDL_NUM_SCANCODES];
 	SDL_Event			_event;
 	std::vector<Controler *>	_ctrl;
-	int				_axe[2];
+	int				_axe[4];
 
 /* SINGLETON */
 private:

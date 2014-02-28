@@ -15,14 +15,19 @@
 
 class DownDash : public AAction
 {
+private:
+	int					_number;
 public:
 	DownDash(Player &player);
 	virtual ~DownDash(){}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual IAction		*step();
+	virtual void		check();
+	virtual int			val();
 	virtual bool		request();
 	virtual void		upBones();
+	virtual void		print(Graphics &g) const;
 };
 
 #endif /* !DOWNDASH_HH_ */

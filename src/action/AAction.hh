@@ -45,6 +45,7 @@ public:
 	virtual IAction		*step();
 	virtual bool		hit(Player &ennemy);
 	virtual int			val();
+	virtual int			get(int);
 	virtual void		set(int v = 0);
 	virtual bool		request();
 	virtual void		check();
@@ -56,7 +57,10 @@ public:
 	virtual bool		isActive() const;
 	virtual int			hitLagg() const;
 	virtual void		loadBones();
+	void				tempo(int time) const;
 
 };
+
+Color		getColorFromLevel(int level);
 
 #endif /* !AACTION_HH_ */

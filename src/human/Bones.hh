@@ -12,6 +12,8 @@
 
 # include "Position.hh"
 
+
+class Player;
 class Graphics;
 
 class Bones
@@ -33,19 +35,18 @@ public:
 		};
 
 private:
-	const Position	&_center;
-	const int		&_orient;
-	int			_color;
-	int			_color2;
+	Player			&_player;
+	int				_color2;
+public:
+	static const int	Size[Bones::COUNT];
 private:
-	static const int	_size[Bones::COUNT];
 	Position		_pos[Bones::COUNT];
 	Angle			_angle[Bones::COUNT];
 public:
 	Angle			angle[Bones::COUNT];
 
 public:
-	Bones(const Position &centre, int color, int color2, const int &orient);
+	Bones(Player &player, int color2);
 	~Bones();
 	void			print(Graphics &g);
 	const Position	&operator[](int id) const;

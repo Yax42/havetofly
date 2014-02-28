@@ -40,7 +40,10 @@ void	HorDash::set(int)
 
 bool	HorDash::allow(int a)
 {
-	return (a == DOWN_DASH || PLANE_DEBUG || a == CURVE);
+	return (a == DOWN_DASH
+			|| PLANE_DEBUG
+			|| a == CURVE
+			|| (a == THROW_SHURIKEN && _player[THROW_SHURIKEN]->val() == 1));
 }
 
 IAction		*HorDash::step()
@@ -75,7 +78,7 @@ bool		HorDash::request()
 {
 	if (PLANE_DEBUG)
 		return true;
-	return (_open && !_player.key(Key::R) && _player.key[Key::X] == 1);
+	return (_open && !_player.key(Key::R2) && _player.key[Key::X] == 1);
 }
 
 void		HorDash::check()
@@ -117,7 +120,7 @@ void		HorDash::print(Graphics &g) const
 	if (_open)
 	{
 		for (int i = 0; i < 3; i++)
-			g.sponge(_bones[Bones::HEAD], 13 + i * 2, 8, 5, Angle(MTIME * 2, 0), _player.color());
+			g.sponge(_bones[Bones::HEAD], 14 + i, 9, 3, _bones.angle[Bones::BODY].rad() * -_player.orient(), _player.color());
 	}
 	if (isActive())
 	{

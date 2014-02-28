@@ -27,10 +27,10 @@ protected:
 	Position		_pos;
 	Position		_speed;
 	bool			_alive;
-	int			_orient;
-	Hit			_hit;
-	const Player		&_player;
-	int			_val1;
+	int				_orient;
+	Hit				_hit;
+	const Player	&_player;
+	int				_val1;
 private:
 	Position		_initPos;
 	int			_count;

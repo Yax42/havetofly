@@ -16,12 +16,18 @@
 Key::Key()
 {
 	_lastOkDir = Position(0, 1);
+	for (int i = 0; i < COUNT; i++)
+	{
+		_delta[i] = 0;
+		_prevVal[i] = 0;
+	}
 }
 
 int	Key::operator[](int i) const
 {
-	if (i > VERT)
+	if (i >= L2)
 		return (_delta[i]);
+
 	if (MPOS(*_val[i]) < IGNORED_CAP)
 		return (0);
 	if ((MPOS(*_val[VERT]) + 200 > MPOS(*_val[HOR])) == (i == VERT))
@@ -33,11 +39,18 @@ int	Key::operator()(int i) const
 {
 	if (i <= VERT && *_val[i] > -IGNORED_CAP && *_val[i] < IGNORED_CAP)
 		return (0);
+	if (i == R2 || i == L2)
+		return *_val[i] > 10000;
 	return (*_val[i]);
 }
 
 void	Key::update()
 {
+	for (int i = L2; i < A; i++)
+	{
+		_delta[i] = (*_val[i] > 10000) - _prevVal[i];
+		_prevVal[i] = *_val[i] > 10000;
+	}
 	for (int i = A; i < COUNT; i++)
 	{
 		_delta[i] = *_val[i] - _prevVal[i];

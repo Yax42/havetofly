@@ -77,6 +77,12 @@ int	AAction::val()
 	return (_count);
 }
 
+int		AAction::get(int)
+{
+	return 0;
+}
+
+
 const std::list<Hitbox>		&AAction::getHB() const
 {
 	return (_hb);
@@ -129,4 +135,31 @@ int		AAction::hitLagg() const
 	if (_hit == NULL)
 		return (0);
 	return _hit->hitLagg();
+}
+
+void		AAction::tempo(int v) const
+{
+	_player.setAction(TEMPO, id());
+	_player[TEMPO]->set(v);
+}
+
+
+Color		getColorFromLevel(int level)
+{
+	switch (level)
+	{
+		case 4:
+			return Color(0, 0xCC, 0);
+			break;
+		case 3:
+			return Color(0, 0, 0xCC);
+			break;
+		case 2:
+			return Color(0x88, 0x88, 0);
+			break;
+		case 1:
+			return Color(0xCC , 0, 0);
+			break;
+	};
+	return Color::BLACK;
 }

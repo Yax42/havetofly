@@ -21,14 +21,14 @@ public:
 		{
 			HOR,
 			VERT,
-			R2,
 			L2,
+			R2,
 			A,
 			X,
 			Y,
 			B,
-			R,
 			L,
+			R,
 			COUNT
 		};
 private:

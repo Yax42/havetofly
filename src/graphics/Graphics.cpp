@@ -107,6 +107,7 @@ void		Graphics::resetScreen(const Color &color)
 
 void	Graphics::resetLocal(const Color &color)
 {
+	return; // [*.*]
 	for (int j = 0; j < _screen->h; j++)
 		for (int i = _minX; i < _maxX; i++)
 			printPixelUnsafe(j, i, color.getInt());
@@ -157,6 +158,7 @@ void		Graphics::rectangleLaid(Position const &pos1, Position const &pos3, const 
 
 void		Graphics::rectangleFull(Position const &pos1, Position const &pos3, const Color &color)
 {
+	return; // [*.*]
 	for (int i = pos1.x; i < pos3.x; i++)
 		for (int j = pos1.y; j < pos3.y; j++)
 			printPixel(Position(j, i), color);
@@ -184,17 +186,27 @@ void		Graphics::sponge(Position const &pos, float ray, int nb, float size, const
 
 void		Graphics::circle(Position const &pos, float size, const Color &color)
 {
+	Position	prev;
 	Position	pxPos;
-	int		max = size * Math::maxRad;
-	float		invSize = 1 / size;
+	int			max = size / 10;
+	if (max < 10)
+		max = 10;
+	int			delta = size * Math::maxRad / max;
+//	int		max = size * Math::maxRad;
+	float		invSize = delta / size;
 
-	for (int i = 0; i < max; i++)
+	prev = pos + Position(0, size);
+	for (int i = 1; i < max; i++)
 	{
 		pxPos.x = size * Math::cos(i * invSize);
 		pxPos.y = size * Math::sin(i * invSize);
 		pxPos += pos;
-		printPixel(pxPos, color);
+		line(prev, pxPos, color);
+		//printPixel(pxPos, color);
+		prev = pxPos;
 	}
+	pxPos = pos + Position(0, size);
+	line(prev, pxPos, color);
 }
 
 void		Graphics::circleFull(Position const &pos, float size, const Color &color)
@@ -294,6 +306,7 @@ void		Graphics::bend(Position const &pos1, float ray1,
 /*********/
 void	Graphics::printPixel(Position const &pos, const Color &color)
 {
+	return;
 	/*if (pos.x >= 0 && pos.x + _minX < _maxX && pos.y >= 0 && pos.y < _screen->h)
 	{
 		int	offset = static_cast<int> (pos.y) * _screen->pitch / 4 +

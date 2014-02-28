@@ -15,17 +15,15 @@
 
 class Shield : public AAction
 {
+private:
+	int			_level;
 public:
 	Shield(Player &player);
 	virtual ~Shield(){}
-	virtual void		init(int v = 0);
-	virtual bool		allow(int a);
-	virtual IAction	*step();
-	virtual bool		request();
-	virtual void		set(int);
-	virtual void		upBones();
 	virtual void		check();
-	virtual int		val();
+	virtual int			val();
+	virtual void		set(int);
+
 	virtual void		print(Graphics &g) const;
 };
 

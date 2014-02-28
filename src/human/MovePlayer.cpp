@@ -35,32 +35,32 @@ void	MovePlayer::proc()
 	_pos = _initPos + ((_speed * _count) / nbIt);
 	//std::cout << ((_speed * _count) / nbIt) << std::endl;
 	if (_pos.x <= BODY_SIZE)
-		{
-			_event[Event::LEFT_WALL] = true;
-			_event[Event::WALL] = true;
-			_pos.x = BODY_SIZE;
-		}
+	{
+		_event[Event::LEFT_WALL] = true;
+		_event[Event::WALL] = true;
+		_pos.x = BODY_SIZE;
+	}
 	else if (_pos.x >= Game::w() - BODY_SIZE)
-		{
-			_pos.x = Game::w() - BODY_SIZE;
-			_event[Event::RIGHT_WALL] = true;
-			_event[Event::WALL] = true;
-		}
+	{
+		_pos.x = Game::w() - BODY_SIZE;
+		_event[Event::RIGHT_WALL] = true;
+		_event[Event::WALL] = true;
+	}
 	if (_pos.y <= BODY_SIZE)
-		{
-			_event[Event::CEILING] = true;
-			_pos.y = BODY_SIZE;
-		}
+	{
+		_event[Event::CEILING] = true;
+		_pos.y = BODY_SIZE;
+	}
 	else if (_pos.y >= Game::h() + Game::deep)
-		{
-			_pos.y = Game::h() + Game::deep;
-			_event[Event::FLOOR] = true;
-		}
+	{
+		_pos.y = Game::h() + Game::deep;
+		_event[Event::FLOOR] = true;
+	}
 	for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
 		if (*i != _player)
 			if (_doing->hit(**i))
-				{
-		_event[Event::DID_HIT] = true;
-			(*_player)[IAction::HIT_LAGG]->init(_doing->hitLagg());
-	}
+			{
+				_event[Event::DID_HIT] = true;
+				(*_player)[IAction::HIT_LAGG]->init(_doing->hitLagg());
+			}
 }

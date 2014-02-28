@@ -20,6 +20,7 @@ public:
 	virtual ~Tech(){}
 	virtual void		check();
 	virtual int		val();
+	virtual int		get(int v);
 	virtual void		print(Graphics &g) const;
 };
 

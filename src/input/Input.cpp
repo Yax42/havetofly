@@ -88,12 +88,14 @@ Key	Input::getKBKey()
 
 	k.ptr(Key::HOR) = &_axe[0];
 	k.ptr(Key::VERT) = &_axe[1];
+	k.ptr(Key::R2) = &_axe[2];
+	k.ptr(Key::L2) = &_axe[3];
 	k.ptr(Key::A) = &_kb[SDLK_h];
 	k.ptr(Key::X) = &_kb[SDLK_j];
 	k.ptr(Key::B) = &_kb[SDLK_k];
 	k.ptr(Key::Y) = &_kb[SDLK_l];
-	k.ptr(Key::R) = &_kb[SDLK_LSHIFT];
-	k.ptr(Key::L) = &_kb[SDLK_SPACE];
+	k.ptr(Key::R) = &_kb[SDLK_e];
+	k.ptr(Key::L) = &_kb[SDLK_q];
 	return (k);
 }
 
@@ -167,6 +169,8 @@ void	Input::proc()
 	SDL_JoystickUpdate();
 	_axe[0] = (_kb[SDLK_d] ? 32000 : (_kb[SDLK_a] ? -32000 : 0));
 	_axe[1] = (_kb[SDLK_w] ? -32000 : (_kb[SDLK_s] ? 32000 : 0));
+	_axe[2] = (_kb[SDLK_LSHIFT] ? 32000 : 0);
+	_axe[3] = (_kb[SDLK_SPACE] ? 32000 : 0);
 	if (_kb[SDLK_LALT] && _kb[SDLK_F4])
 		_quitKey = true;
 }

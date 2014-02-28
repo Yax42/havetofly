@@ -17,24 +17,27 @@ Move::Move(Player &player) : PassiveAction(player, MOVE)
 
 bool		Move::request()
 {
-	static const float 	MAX = 2;
-	static const float 	MIN = -2;
-	static const float	SPEED = 0.00007; //2/3
+	static const float 	MAX = 3;
+	static const float 	MIN = -3;
+	static const float	SPEED = 0.000003; //2/3
 
 	if (_player.key(Key::HOR))
 	{
-		float newSx = _player.sx() + _player.key(Key::HOR) * SPEED;
+		float	curSx = _player.sx();
+		float	newSx = curSx + _player.key(Key::HOR) * SPEED;
 		if (_player.key(Key::HOR) < 0)
 			_player.orient(-1);
 		else if (_player.key(Key::HOR) > 0)
 			_player.orient(1);
 
-		if (newSx > MAX && _player.sx() < MAX)
+		if (newSx > MAX && curSx < MAX)
 			_player.sx(MAX);
-		if (newSx < MIN && _player.sx() > MIN)
+		else if (newSx < MIN && curSx > MIN)
 			_player.sx(MIN);
-		if (newSx >= MIN && newSx <= MAX)
-			_player.sx(newSx);
+		else if ((newSx >= MIN && newSx <= MAX)
+			|| (newSx < MIN && curSx < newSx)
+			|| (newSx > MAX && curSx > newSx))
+				_player.sx(newSx);
 	}
 	return (false);
 }

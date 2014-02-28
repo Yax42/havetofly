@@ -30,7 +30,10 @@ bool	ThrowShuriken::allow(int a)
 IAction		*ThrowShuriken::step()
 {
 	if (_count == 30)
-		_player.doThrow(new Shuriken(_player, _player.pos(), _player.key.direction() * 10, _level--));
+	{
+		_player.doThrow(new Shuriken(_player, _player.pos(), _player.key.direction() * 10, _level));
+		_level -= (_level > 0);
+	}
 	if (_count--)
 		return this;
 	return (_player[INERTIE]);
@@ -38,7 +41,7 @@ IAction		*ThrowShuriken::step()
 
 bool		ThrowShuriken::request()
 {
-	return (_player.key[Key::B] == 1);
+	return (_player.key[Key::B] == 1 && ! _player.key(Key::R2));
 }
 
 void		ThrowShuriken::check()
@@ -53,7 +56,7 @@ void		ThrowShuriken::set(int)
 
 int		ThrowShuriken::val()
 {
-	return (_count < 0);
+	return (_level);
 }
 
 /************/
@@ -79,8 +82,8 @@ void		ThrowShuriken::upBones()
 
 void		ThrowShuriken::print(Graphics &g) const
 {
-	g.sponge(_bones[Bones::HAND2], 5, 6, 3, Angle(MTIME * 8, 0), Shuriken::getColorFromLevel(_level));
-	g.sponge(_bones[Bones::HAND2], 3, 6, 3, Angle(MTIME * 8, 0), Shuriken::getColorFromLevel(_level));
+	g.sponge(_bones[Bones::HAND2], 5, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
+	g.sponge(_bones[Bones::HAND2], 3, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
 
 	if(1);
 	else if (0&& !_open && _count < 20)

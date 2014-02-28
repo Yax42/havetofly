@@ -59,6 +59,12 @@ float		Math::cap(float x, float min, float max)
 	return (x < min) ? min : (x > max) ? max : x;
 }
 
+int		Math::gradCap(int x, int min, int scale)
+{
+	return min + ((x % (scale * 2) >= scale) ? scale - (x % scale) - 1 : x % scale);
+}
+
+
 /*******/
 /*TRIGO*/
 /*******/

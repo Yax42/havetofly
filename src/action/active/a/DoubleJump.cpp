@@ -63,8 +63,8 @@ void		DoubleJump::print(Graphics &g) const
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			g.circle(_bones[Bones::FOOT1], 1 + i, _player.color());
-			g.circle(_bones[Bones::FOOT2], 1 + i, _player.color());
+			g.circle(_bones[Bones::FOOT1], 2 + i, _player.color());
+			g.circle(_bones[Bones::FOOT2], 2 + i, _player.color());
 		}
 		//g.sponge(_bones[Bones::FOOT1], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);
 		//g.sponge(_bones[Bones::FOOT2], 4, 5, 2, Angle(MTIME * 10, 0), (rand() % 2) * 0xFFFFFF);

@@ -29,7 +29,7 @@ public:
 			HIT_CEILING,
 			HIT_LAGG,
 			DEATH,
-/* */ MOVE, /* ACTIVE STARTS HERE */
+/*		*/  MOVE, /* ACTIVE STARTS HERE */
 			STUN,
 			TEMPO,
 			DOUBLE_JUMP,
@@ -39,12 +39,12 @@ public:
 			WALL_JUMP,
 			THROW_SHURIKEN,
 /* End of the cool list */
+			SHIELD,
 			AUTO_GUN,
 			GUN_JUMP,
 			THROW_BALL,
 			EFFECTIVE_TV,
 			TELEVISION,
-			SHIELD,
 			SPIN,
 			HOR_TP,
 			HOR_DASH,
@@ -63,6 +63,7 @@ public:
 	virtual void		init(int v = 0) = 0;
 	virtual bool		hit(Player &ennemy) = 0;
 	virtual void		check() = 0;
+	virtual int			get(int) = 0;
 	virtual int			val() = 0;
 	virtual void		set(int val = 0) = 0;
 	virtual int			id() const = 0;

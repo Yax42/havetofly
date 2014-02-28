@@ -23,7 +23,6 @@ public:
 	virtual void		move();
 	virtual void		print(Graphics &g) const;
 	virtual void		effect(Player &p);
-	static Color		getColorFromLevel(int level);
 };
 
 #endif /* !SHURIKEN_HH_ */

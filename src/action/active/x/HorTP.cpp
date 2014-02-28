@@ -13,16 +13,17 @@
 HorTP::HorTP(Player &player) :
 	AAction(player, HOR_TP, NULL)
 {
+	_open = 220;
 }
 
 void	HorTP::init(int)
 {
 	_pos = _player.pos() - Position(30, 30);
+	_open -= (_open - 40 >= 20) * 40;
 	_count = 20;
-	_player[HOR_DASH]->set();
-	_open = 1;
-	_player = Position(0, 0);
-	_player.tp(Position(0, _player.key[Key::HOR] * 150));
+	//_player[HOR_DASH]->set();
+	_player = Position();
+	_player.tp(Position(0, _player.key[Key::HOR] * _open));
 }
 
 void	HorTP::set(int)
@@ -48,14 +49,12 @@ IAction		*HorTP::step()
 
 bool		HorTP::request()
 {
-	return (_player[HOR_DASH]->val() && _player.key(Key::R) &&
-			_player.key[Key::X] == 1 && _player.key[Key::HOR]);
+	return (_player.key[Key::Y] == 1 && _player.key[Key::HOR]);
 }
 
 void		HorTP::check()
 {
-	if (_count)
-		_count--;
+	_count -= (_count > 0);
 }
 
 void		HorTP::upBones()
@@ -65,7 +64,8 @@ void		HorTP::upBones()
 void		HorTP::print(Graphics &g) const
 {
 	if (_count)
-		for (int i = 0; i < 80; i += (20 - _count))
-			g.line(_pos + Position(i, rand() % 60),
- 			 _pos + Position(i, rand() % 60), Color::BLUE);
+	{
+		for (int i = 0; i < 40; i += (20 - _count))
+			g.line(_pos + Position(i * 2, rand() % 60), _pos + Position(i * 2, rand() % 60), Color::BLUE);
+	}
 }

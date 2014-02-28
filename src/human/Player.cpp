@@ -31,7 +31,7 @@ Player::~Player()
 Player::Player(const Position &pos, int team, const Key &k, int color) :
 	_pos(pos), _alive(true), _team(team), _keys(k),
 	_color(color), key(_keys), _orient(1),
-	_bones(_pos, _color, rand() % 0xFFFFFF, _orient),
+	_bones(*this, rand() % 0xFFFFFF),
 	_mp(_speed, _pos, _event, _doing, this)
 {
 	_hit = NULL;
@@ -299,14 +299,14 @@ void		Player::print(Graphics &g)
 {
 	for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
 		if ((*i)->isAlive())
-			{
-	if (DEBUG & 8)
-					(*i)->printHB(g);
-				(*i)->print(g);
-			}
+		{
+			if (DEBUG & 8)
+				(*i)->printHB(g);
+			(*i)->print(g);
+		}
 	_bones.print(g);
 	for (int j = 0; j < IAction::COUNT; j++)
 		_action[j]->print(g);
 	if (DEBUG & 8)
-			_doing->printHB(g);
+		_doing->printHB(g);
 }

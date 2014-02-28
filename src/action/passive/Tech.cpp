@@ -17,11 +17,10 @@ Tech::Tech(Player &player) : PassiveAction(player, IAction::TECH)
 
 void		Tech::check()
 {
-	if (_open > 0)
-		_open--;
+	_open -= (_open > 0);
 	if (_count > 0)
 		_count--;
-	else if (_player.key[Key::L] == 1)
+	else if (_player.key[Key::L2] == 1 || _player.key[Key::R2] == 1)
 		_count = 80;
 }
 
@@ -32,15 +31,21 @@ int		Tech::val()
 	return (_count >= 40);
 }
 
+int		Tech::get(int v)
+{
+	return _count;
+}
+
 void		Tech::print(Graphics &g) const
 {
 	if (_open)
+	{
+		for (int i = 0; i < 6; i++)
 		{
-			for (int i = 0; i < 6; i++)
-			{
-				g.sponge(_bones[Bones::FOOT1], 10 + i * 4 - _open * 2, 10, 10, Angle(MTIME * 2, 0), 0xFFFFFF);
-			}
+			g.sponge(_bones[Bones::FOOT1], 10 + i * 4 - _open * 2, 10, 10, Angle(MTIME * 2, 0), 0xFFFFFF);
 		}
+	}
+
 	if (_count == 0 || (DEBUG & 16) == 0)
 		return ;
 	if (_count > 40)

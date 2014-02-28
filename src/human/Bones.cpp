@@ -12,10 +12,11 @@
 #include "Graphics.hh"
 #include "Circle.hh"
 #include "Math.hh"
+#include "Player.hh"
 
 #include <iostream>
 
-const int	Bones::_size[Bones::COUNT] =
+const int	Bones::Size[Bones::COUNT] =
 {
 	20,	// FOOT1
 	20,	// KNEE1
@@ -29,8 +30,8 @@ const int	Bones::_size[Bones::COUNT] =
 	18	// BODY
 };
 
-Bones::Bones(const Position &centre, int color, int color2, const int &orient) :
-	_center(centre), _orient(orient), _color(color), _color2(color2)
+Bones::Bones(Player &player, int color2) :
+	_player(player), _color2(color2)
 {
 	(void) _color2;
 }
@@ -41,19 +42,19 @@ Bones::~Bones()
 
 void		Bones::print(Graphics &g)
 {
-	Position	center = _center;
+	Position	center = _player.pos();
 	Position	avg;
 	check();
 
-	_pos[BODY] =	Position(_angle[BODY], _size[BODY]);
-	_pos[HEAD] =	Position(_angle[HEAD] + _angle[BODY] + Angle(180, 0), _size[HEAD]);
+	_pos[BODY] =	Position(_angle[BODY], Size[BODY]);
+	_pos[HEAD] =	Position(_angle[HEAD] + _angle[BODY] + Angle(180, 0), Size[HEAD]);
 	for (int i = 0; i < 4; i++)
 	{
 		_pos[i * 2 + 1] = ((i % 2) ? Position() : _pos[BODY]) +
 			Position(_angle[i * 2 + 1] +
-			_angle[BODY], _size[i * 2 + 1]);
+			_angle[BODY], Size[i * 2 + 1]);
 		_pos[i * 2] = _pos[i * 2 + 1] + Position(_angle[i * 2] +
-			_angle[BODY] + _angle[i * 2 + 1], _size[i * 2]);
+			_angle[BODY] + _angle[i * 2 + 1], Size[i * 2]);
 	}
 
 	/*
@@ -63,19 +64,27 @@ void		Bones::print(Graphics &g)
 	*/
 	for (int i = 0; i < Bones::COUNT; i++)
 		_pos[i] += center;
-	for (int i = 0; i < 3; i++)
-		g.circle(_pos[HEAD], _size[HEAD] - i, _color);
-	g.line(center, _pos[BODY], _color, 6);
+
+	int		tech = _player[IAction::TECH]->get(0);
+	Color	color = tech > 70 ? Color::WHITE : (tech < 40 && tech > 20) ? Color::BLACK : _player.color();
+
+	if (!_player[IAction::HOR_DASH]->val())
+	{
+		for (int i = 0; i < 3; i++)
+			g.circle(_pos[HEAD], Size[HEAD] - i, color);
+	}
+
+	g.line(center, _pos[BODY], color, 6);
 	for (int i = 0; i < 4; i++)
 	{
-		g.line(((i % 2) ? center : _pos[BODY]), _pos[i * 2 + 1], _color, 6);
-		g.line(_pos[i * 2 + 1], _pos[i * 2], _color, 6);
+		g.line(((i % 2) ? center : _pos[BODY]), _pos[i * 2 + 1], color, 6);
+		g.line(_pos[i * 2 + 1], _pos[i * 2], color, 6);
 	}
 }
 
 void	Bones::check()
 {
-	if (_orient > 0)
+	if (_player.orient() > 0)
 		for (int i = 0; i < Bones::COUNT; i++)
 			_angle[i] = angle[i].mirrorX();
 	else

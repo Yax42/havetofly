@@ -53,6 +53,7 @@ public:
 	static float		abs(float v);
 	static int			cap(int x, int min, int max, bool stayIn);
 	static float		cap(float x, float min, float max);
+	static int		gradCap(int x, int min, int scale);
 
 
 	/**TRIGO**/
