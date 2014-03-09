@@ -38,11 +38,10 @@ bool	Stun::allow(int a)
 	return (a < MOVE);
 }
 
-IAction		*Stun::step()
+void	Stun::step()
 {
-	if (_count--)
-		return (this);
-	return (_player[IAction::INERTIE]);
+	if (_count-- == 0)
+		_player.engageAction(INERTIE);
 }
 
 bool		Stun::request()

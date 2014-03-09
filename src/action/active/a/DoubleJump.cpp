@@ -25,9 +25,9 @@ bool	DoubleJump::allow(int)
 	return (false);
 }
 
-IAction		*DoubleJump::step()
+void		DoubleJump::step()
 {
-	return (_player[INERTIE]);
+	_player.engageAction(INERTIE);
 }
 
 bool		DoubleJump::request()

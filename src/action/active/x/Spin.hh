@@ -20,7 +20,7 @@ public:
 	virtual ~Spin(){}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual void		step();
 	virtual bool		request();
 	virtual void		upBones();
 	virtual void		print(Graphics &g) const;

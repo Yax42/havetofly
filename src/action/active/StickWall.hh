@@ -20,7 +20,7 @@ public:
 	virtual ~StickWall() {}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual void		step();
 	virtual bool		request();
 	virtual void		upBones();
 };

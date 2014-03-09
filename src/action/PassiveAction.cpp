@@ -19,9 +19,9 @@ bool	PassiveAction::allow(int)
 	return (true);
 }
 
-IAction		*PassiveAction::step()
+void	PassiveAction::step()
 {
-	return (_player[IAction::INERTIE]);
+	_player.engageAction(INERTIE);
 }
 
 bool		PassiveAction::request()

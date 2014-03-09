@@ -32,15 +32,14 @@ bool	WallJump::allow(int a)
 	return (a < MOVE || (a > MOVE && _count < 35));
 }
 
-IAction		*WallJump::step()
+void	WallJump::step()
 {
 	if (_player.key(Key::HOR) < 0)
 		_player.orient(-1);
 	else if (_player.key(Key::HOR) > 0)
 		_player.orient(1);
 	if (--_count == 0)
-		return (_player[IAction::INERTIE]);
-	return (this);
+		_player.engageAction(INERTIE);
 }
 
 bool		WallJump::request()

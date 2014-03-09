@@ -23,7 +23,7 @@ void	StickWall::init(int)
 {
 }
 
-IAction		*StickWall::step()
+void	StickWall::step()
 {
 	if (_player.sy() < 3.3) // 2/3
 		_player.sy(_player.sy() + 0.00666); //2/3
@@ -33,11 +33,9 @@ IAction		*StickWall::step()
 	if (_player(Event::RIGHT_WALL) && _player.key(Key::HOR) > 200)
 		return (true);
 		*/
-	if (_player(Event::LEFT_WALL) && _player.key(Key::HOR) < -200)
-		return (this);
-	if (_player(Event::RIGHT_WALL) && _player.key(Key::HOR) > 200)
-		return (this);
-	return (_player[IAction::INERTIE]);
+	if ((!_player(Event::LEFT_WALL) || _player.key(Key::HOR) >= -200)
+	&& (!_player(Event::RIGHT_WALL) || _player.key(Key::HOR) <= 200))
+		_player.engageAction(INERTIE);
 }
 
 bool		StickWall::request()

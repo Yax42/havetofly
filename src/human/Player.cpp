@@ -87,15 +87,15 @@ void		Player::tp(const Position &dir)
 void		Player::init()
 {
 	for (Throws i = _throwables.begin(); i != _throwables.end(); ++i)
+	{
+		if (!(*i)->isAlive())
 		{
-			if (!(*i)->isAlive())
-				{
-		delete (*i);
-		i = _throwables.erase(i);
-	}
-			else
-		(*i)->init();
+			delete (*i);
+			i = _throwables.erase(i);
 		}
+		else
+			(*i)->init();
+	}
 	_mp.init();
 	_action[IAction::HIT_LAGG]->check();
 }
@@ -142,11 +142,17 @@ void		Player::process()
 	for (int i = 0; i < IAction::COUNT; i++)
 		if (_doing->allow(i) && _action[i]->request())
 		{
-			_doing = _action[i];
-			_doing->init();
+			engageAction(i);
 		}
-	_doing = _doing->step();
+	_doing->step();
 	_doing->upBones();
+}
+
+void		Player::engageAction(int action, int v)
+{
+			_doing->end();
+			_doing = _action[action];
+			_doing->init(v);
 }
 
 void		Player::upKeys()
@@ -279,10 +285,10 @@ Position	Player::closePos() const
 	for(Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
 		if (*i != this && (*i)->alive())
 			if (_pos.distance((*i)->pos()) < max)
-				{
-		max = _pos.distance((*i)->pos());
-		target = *i;
-	}
+			{
+				max = _pos.distance((*i)->pos());
+				target = *i;
+			}
 	//std::cout << target->pos() << std::endl;
 	if (target)
 		return (target->pos() - _pos);

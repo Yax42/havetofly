@@ -31,33 +31,34 @@ bool	EffectiveTV::allow(int)
 	return (false);
 }
 
-IAction		*EffectiveTV::step()
+void	EffectiveTV::step()
 {
 	if(_open)
-		{
-			_open--;
-			if (_open == 0)
-		_patern = *_paternPtr;
-			else
-	return (this);
-		}
+	{
+		_open--;
+		if (_open == 0)
+			_patern = *_paternPtr;
+		else
+			return ;
+	}
 	if (_ok && _player.key.cur() && _patern.size() > 0)
-		{
-			if (_player.key.cur() == _patern.front())
-	_patern.pop_front();
-			else
-	_ok = false;
-		}
+	{
+		if (_player.key.cur() == _patern.front())
+			_patern.pop_front();
+		else
+			_ok = false;
+	}
 	if (_patern.size() == 0)
-		{
-			_player[STUN]->set(-1);
-			return (_player[INERTIE]);
-		}
+	{
+		_player[STUN]->set(-1);
+		_player.engageAction(INERTIE);
+		return ;
+	}
 	if (_count)
-		return (this);
+		return ;
 	_player[STUN]->set(100);
 	_player = _speed;
-	return (_player[STUN]);
+	_player.engageAction(STUN);
 }
 
 bool		EffectiveTV::request()

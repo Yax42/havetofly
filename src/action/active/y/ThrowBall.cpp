@@ -27,9 +27,9 @@ bool	ThrowBall::allow(int)
 	return (false);
 }
 
-IAction		*ThrowBall::step()
+void	ThrowBall::step()
 {
-	return (_player[INERTIE]);
+	_player.engageAction(INERTIE);
 }
 
 bool		ThrowBall::request()

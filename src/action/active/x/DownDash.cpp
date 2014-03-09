@@ -40,25 +40,25 @@ bool	DownDash::allow(int)
 	return (false);
 }
 
-IAction		*DownDash::step()
+void	DownDash::step()
 {
 	if (--_count == 0)
 	{
 		_player = Position(-3, _player.orient() * -5);
 		//_player[IAction::DOUBLE_JUMP]->set();
-		return (_player[IAction::INERTIE]);
+		_player.engageAction(INERTIE);
 	}
-	if ((_player(Event::LEFT_WALL) && _player.orient() < 0) ||
+	else if ((_player(Event::LEFT_WALL) && _player.orient() < 0) ||
 			(_player(Event::RIGHT_WALL) && _player.orient() > 0))
 	{
-		_player[IAction::WALL_JUMP]->init(-3);
-		return (_player[IAction::WALL_JUMP]);
+		_player.engageAction(WALL_JUMP, -3);
 	}
-
-	if (_player(Event::DID_HIT))
-		_count = 10;
-	_player = Position(5, _player.orient() * 4);
-	return (this);
+	else
+	{
+		if (_player(Event::DID_HIT))
+			_count = 10;
+		_player = Position(5, _player.orient() * 4);
+	}
 }
 
 void		DownDash::check()

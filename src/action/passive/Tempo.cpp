@@ -25,10 +25,8 @@ void		Tempo::set(int v)
 	_count = v;
 }
 
-IAction		*Tempo::step()
+void		Tempo::step()
 {
-	if (_count--)
-		return (this);
-	_player[_open]->init(1);
-	return (_player[_open]);
+	if (--_count == 0)
+		_player.engageAction(_open, 1);
 }

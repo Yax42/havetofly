@@ -51,12 +51,11 @@ bool	AAction::allow(int)
 	return (false);
 }
 
-IAction		*AAction::step()
+void	AAction::step()
 {
 	_count--;
 	if (_count != 0)
-		return (this);
-	return (_player[IAction::INERTIE]);
+		_player.engageAction(IAction::INERTIE);
 }
 
 bool	AAction::hit(Player &ennemy)
@@ -112,6 +111,15 @@ int		AAction::id() const
 	return (_id);
 }
 
+bool		AAction::request()
+{
+	return (false);
+}
+
+void		AAction::end()
+{
+}
+
 void		AAction::print(Graphics &) const
 {
 	/*
@@ -119,11 +127,6 @@ void		AAction::print(Graphics &) const
  std::cout << (a.rad() % Math::maxRad) << " " << a.rad() << std::endl;
 	g.circlePart(_bones[Bones::BODY], 60, a - (Angle(15, 0)), Angle(30, 0), 0xffffff);
 	*/
-}
-
-bool		AAction::request()
-{
-	return (false);
 }
 
 void		AAction::upBones()

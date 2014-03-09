@@ -20,7 +20,7 @@ public:
 	virtual ~UpPunch(){}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual void		step();
 	virtual int		val();
 	virtual void		set(int);
 	virtual bool		request();

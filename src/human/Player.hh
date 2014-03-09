@@ -32,21 +32,21 @@ class Player
 private:
 	Position			_pos;
 	bool				_alive;
-	int				_team;
-	Key				_keys;
-	int				_color;
+	int					_team;
+	Key					_keys;
+	int					_color;
 public:
 	const Key			&key;
 private:
-	int				_orient;
-	Bones				_bones;
-	MovePlayer			_mp;
-	std::vector<bool>		_event;
+	int							_orient;
+	Bones						_bones;
+	MovePlayer					_mp;
+	std::vector<bool>			_event;
 	std::vector<IAction*>		_action;
-	std::list<IThrowable *>	_throwables;
-	Position			_speed;
-	IAction			*_doing;
-	Hit const			*_hit;
+	std::list<IThrowable *>		_throwables;
+	Position					_speed;
+	IAction						*_doing;
+	Hit const					*_hit;
 
 private:
 	Player	&operator=(const Player &other);
@@ -62,6 +62,7 @@ public:
 	void			process();
 	void			upKeys();
 	void			hit(const Hit *hit);
+	void			engageAction(int action, int v = 0);
 
 	/* SETTERS */
 	void			operator=(Position const &speed);

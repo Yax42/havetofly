@@ -60,7 +60,7 @@ bool	UpPunch::allow(int)
 	return (PLANE_DEBUG);
 }
 
-IAction		*UpPunch::step()
+void	UpPunch::step()
 {
 	/*
 	if (_player(Event::CEILING))
@@ -72,9 +72,8 @@ IAction		*UpPunch::step()
 	if (_count-- == 0)
 	{
 		_player.sy(-1);
-		return (_player[INERTIE]);
+		_player.engageAction(INERTIE);
 	}
-	return (this);
 }
 
 bool		UpPunch::request()

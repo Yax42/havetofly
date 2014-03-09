@@ -33,22 +33,21 @@ bool	AutoGun::allow(int a)
 	return (a == WALL_JUMP);
 }
 
-IAction		*AutoGun::step()
+void	AutoGun::step()
 {
 	if (_player.key[Key::VERT])
 		_sign = _player.key[Key::VERT] * -_player.orient();
 	_angle += Angle(_sign * 0.3);
 	if(_count > RELOADING && _count < 200)
+	{
+		if (_count % 10 == 0 && _open)
 		{
-			if (_count % 10 == 0 && _open)
-				{
-					_player.doThrow(new Blast(_player, _angle));
-		_open--;
-	}
+			_player.doThrow(new Blast(_player, _angle));
+			_open--;
 		}
-	if (_count-- && _open && (_player.key(Key::Y) || _count > 189))
-		return (this);
-	return (_player[INERTIE]);
+	}
+	if (_count-- == 0 || _open == 0 || (!_player.key(Key::Y) && _count <= 189))
+		_player.engageAction(INERTIE);
 }
 
 bool		AutoGun::request()

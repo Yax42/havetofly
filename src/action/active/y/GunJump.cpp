@@ -27,9 +27,9 @@ bool	GunJump::allow(int)
 	return (false);
 }
 
-IAction		*GunJump::step()
+void	GunJump::step()
 {
-	return (_player[INERTIE]);
+	return (_player.engageAction(INERTIE));
 }
 
 bool		GunJump::request()

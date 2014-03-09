@@ -19,7 +19,7 @@ public:
 	StickCeiling(Player &player);
 	virtual ~StickCeiling() {}
 	virtual void		init(int v = 0);
-	virtual IAction	*step();
+	virtual void		step();
 	virtual bool		request();
 	virtual void		upBones();
 };

@@ -57,7 +57,7 @@ public:
 	enum { FIRST_ACTIVE = MOVE}; // Is this durty?
 	virtual ~IAction(){}
 	virtual bool		allow(int a) = 0;
-	virtual IAction		*step() = 0;
+	virtual void		step() = 0;
 	//virtual void		focus(Player &player) = 0;
 	virtual bool		request() = 0;
 	virtual void		init(int v = 0) = 0;
@@ -68,6 +68,8 @@ public:
 	virtual void		set(int val = 0) = 0;
 	virtual int			id() const = 0;
 	virtual bool		isActive() const = 0;
+	virtual void		end() = 0;
+
 	virtual const		std::list<Hitbox>	&getHB() const = 0;
 	virtual void		upBones() = 0;
 	virtual void		print(Graphics &g) const = 0;

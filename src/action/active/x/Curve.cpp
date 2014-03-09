@@ -29,22 +29,24 @@ bool	Curve::allow(int a)
 	return (a > MOVE && _count < 13);
 }
 
-IAction		*Curve::step()
+void		Curve::step()
 {
 	if ((_player(Event::LEFT_WALL) && _player.orient() == -1) ||
 			(_player(Event::RIGHT_WALL) && _player.orient() == 1))
-		{
-			_player = Position();
-			return (_player[INERTIE]);
-		}
+	{
+		_player = Position();
+		_player.engageAction(INERTIE);
+		return;
+	}
 	else if (_player(Event::RIGHT_WALL))
 		_player.orient(-1);
 	if (_count < 35 && _count > 5)
 	_player = _player.speed() * Angle(_player.orient() * 6, 0);
-	if (_count--)
-		return (this);
-	_player.sy(2);
-	return (_player[INERTIE]);
+	if (_count-- == 0)
+	{
+		_player.sy(2);
+		_player.engageAction(INERTIE);
+	}
 }
 
 bool		Curve::request()

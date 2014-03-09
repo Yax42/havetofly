@@ -30,11 +30,10 @@ bool	Spin::allow(int a)
 	return (a > MOVE);
 }
 
-IAction		*Spin::step()
+void	Spin::step()
 {
 	if (_player.key[Key::HOR])
 		_player.orient(_player.key[Key::HOR]);
-	return (this);
 }
 
 bool		Spin::request()

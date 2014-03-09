@@ -23,9 +23,9 @@ public:
 	virtual ~AutoGun(){}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual void		step();
 	virtual void		set(int v = 0);
-	virtual int		val();
+	virtual int			val();
 	virtual bool		request();
 	virtual void		upBones();
 	virtual void		check();

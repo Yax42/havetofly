@@ -27,16 +27,15 @@ bool	ThrowShuriken::allow(int a)
 	return (a == GRAVITY);
 }
 
-IAction		*ThrowShuriken::step()
+void	ThrowShuriken::step()
 {
 	if (_count == 30)
 	{
 		_player.doThrow(new Shuriken(_player, _player.pos(), _player.key.direction() * 10, _level));
 		_level -= (_level > 0);
 	}
-	if (_count--)
-		return this;
-	return (_player[INERTIE]);
+	if (_count-- == 0)
+		_player.engageAction(INERTIE);
 }
 
 bool		ThrowShuriken::request()

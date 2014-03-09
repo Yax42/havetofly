@@ -38,22 +38,22 @@ bool	Television::allow(int)
 	return (false);
 }
 
-IAction		*Television::step()
+void	Television::step()
 {
 	if (_count != 90 && _count > 15 && _player.key.cur() &&
-			(_patern.size() == 0 ||
-			 _player.key.cur() != _patern.back()))
+		(_patern.size() == 0 ||
+		_player.key.cur() != _patern.back()))
 		_patern.push_back(_player.key.cur());
 	if (_count--)
-		return (this);
+		return ;
 	if (_didHit)
-		{
-			reinterpret_cast<EffectiveTV *>
-	(_player[EFFECTIVE_TV])->setPatern(_patern);
-			_player[EFFECTIVE_TV]->init();
-			return (_player[EFFECTIVE_TV]);
-		}
-	return (_player[INERTIE]);
+	{
+		reinterpret_cast<EffectiveTV *>
+			(_player[EFFECTIVE_TV])->setPatern(_patern);
+		_player.engageAction(EFFECTIVE_TV);
+	}
+	else
+		_player.engageAction(INERTIE);
 }
 
 bool		Television::request()

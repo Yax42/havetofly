@@ -20,7 +20,7 @@ public:
 	virtual ~Tempo(){}
 	virtual void		init(int v = 0);
 	virtual void		set(int v = 0);
-	virtual IAction	*step();
+	virtual void		step();
 };
 
 #endif /* !TEMPO_HH_ */

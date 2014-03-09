@@ -22,7 +22,7 @@ public:
 	virtual ~HorTP(){}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction	*step();
+	virtual void		step();
 	virtual void		set(int);
 	virtual bool		request();
 	virtual void		upBones();

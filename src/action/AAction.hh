@@ -42,7 +42,7 @@ public:
 	AAction(Player &player, int id, Hit *hit);
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
-	virtual IAction		*step();
+	virtual void		step();
 	virtual bool		hit(Player &ennemy);
 	virtual int			val();
 	virtual int			get(int);
@@ -52,6 +52,8 @@ public:
 	virtual const		std::list<Hitbox>	&getHB() const;
 	virtual void		upBones();
 	virtual int			id() const;
+	virtual void		end();
+
 	virtual void		print(Graphics &g) const;
 	virtual void		printHB(Graphics &g) const;
 	virtual bool		isActive() const;

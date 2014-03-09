@@ -46,32 +46,33 @@ bool	HorDash::allow(int a)
 			|| (a == THROW_SHURIKEN && _player[THROW_SHURIKEN]->val() == 1));
 }
 
-IAction		*HorDash::step()
+void		HorDash::step()
 {
 	if (_origin.squaredDistance(_player.pos()) > _range * _range)
 	{
 		_player = Position(-3, _player.orient());
 		_open = 0;
-		return (_player[INERTIE]);
+		_player.engageAction(INERTIE);
+		return ;
 	}
 	if (_player(Event::WALL))
 	{
 		if (_player.sy() >= -2)
 		{
-			_player[WALL_JUMP]->init(-1);
-			return (_player[WALL_JUMP]);
+			_player.engageAction(WALL_JUMP, -1);
 		}
 		else
 		{
 			_player = Position(-3, _player.orient());
-			return (_player[INERTIE]);
+			_player.engageAction(INERTIE);
 		}
 	}
-
-	Position	speed = _player.key.direction() * 8;
-	_player = speed;
-	_player.orient((speed.x >= 0) - (speed.x < 0));
-	return (this);
+	else
+	{
+		Position	speed = _player.key.direction() * 8;
+		_player = speed;
+		_player.orient((speed.x >= 0) - (speed.x < 0));
+	}
 }
 
 bool		HorDash::request()

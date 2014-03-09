@@ -35,7 +35,7 @@ bool	HorTP::allow(int)
 	return (false);
 }
 
-IAction		*HorTP::step()
+void	HorTP::step()
 {
 /*	if (_open)
 		{
@@ -44,7 +44,7 @@ IAction		*HorTP::step()
 		}
 	if (_player(Event::WALL))
 		_player.tp(Position(50, 0));*/
-	return (_player[INERTIE]);
+	_player.engageAction(INERTIE);
 }
 
 bool		HorTP::request()
