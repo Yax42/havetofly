@@ -13,6 +13,7 @@
 
 ThrowShuriken::ThrowShuriken(Player &player) : AAction(player, THROW_SHURIKEN, NULL)
 {
+	_prevWasLevel3 = 0;
 	_level = 3;
 }
 
@@ -31,7 +32,11 @@ void	ThrowShuriken::step()
 {
 	if (_count == 30)
 	{
-		_player.doThrow(new Shuriken(_player, _player.pos(), _player.key.direction() * 10, _level));
+		if (!_prevWasLevel3 || _level != 3)
+		{
+			_player.doThrow(new Shuriken(_player, _player.pos(), _player.key.direction() * 10, _level));
+		}
+		_prevWasLevel3 = (_level == 3);
 		_level -= (_level > 0);
 	}
 	if (_count-- == 0)

@@ -17,6 +17,8 @@ class ThrowShuriken : public AAction
 {
 private:
 	int				_level;
+	bool			_prevWasLevel3;
+
 public:
 	ThrowShuriken(Player &player);
 	virtual ~ThrowShuriken(){}

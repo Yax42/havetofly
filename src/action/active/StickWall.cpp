@@ -16,7 +16,7 @@ StickWall::StickWall(Player &player) : AAction(player, STICK_WALL, NULL)
 
 bool	StickWall::allow(int a)
 {
-	return (a == WALL_JUMP || a == AUTO_GUN);
+	return (a == WALL_JUMP || a == AUTO_GUN || a == THROW_SHURIKEN);
 }
 
 void	StickWall::init(int)

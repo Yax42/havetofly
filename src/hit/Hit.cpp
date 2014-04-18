@@ -34,16 +34,16 @@ bool	Hit::isThrowable() const
 int	Hit::go(Player &ennemy) const
 {
 	if (_type != NONE)
-		{
-			ennemy.sy(_speed.y);
-			ennemy.sx(_speed.x * ((_type == ORIENT) ? _orient : ennemy.closeWall()));
-		}
+	{
+		ennemy.sy(_speed.y);
+		ennemy.sx(_speed.x * ((_type == ORIENT) ? _orient : ennemy.closeWall()));
+	}
 	ennemy[IAction::HIT_LAGG]->init(_hitLagg);
 	if (_addStun)
-		{
-			ennemy[IAction::STUN]->set(_stun);
-			return (-1);
-		}
+	{
+		ennemy[IAction::STUN]->set(_stun);
+		return (-1);
+	}
 	return (_stun);
 }
 

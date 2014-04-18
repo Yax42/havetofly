@@ -21,12 +21,13 @@ public:
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
 	virtual void		step();
-	virtual int		val();
+	virtual int			val();
 	virtual void		set(int);
 	virtual bool		request();
 	virtual void		upBones();
 	virtual void		check();
 	virtual void		print(Graphics &g) const;
+	virtual void		end();
 private:
 	Position				_origin;
 	static const float		_range;

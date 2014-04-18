@@ -43,7 +43,7 @@ bool	HorDash::allow(int a)
 	return (a == DOWN_DASH
 			|| PLANE_DEBUG
 			|| a == CURVE
-			|| (a == THROW_SHURIKEN && _player[THROW_SHURIKEN]->val() == 1));
+			|| (a == THROW_SHURIKEN));
 }
 
 void		HorDash::step()
@@ -57,15 +57,7 @@ void		HorDash::step()
 	}
 	if (_player(Event::WALL))
 	{
-		if (_player.sy() >= -2)
-		{
-			_player.engageAction(WALL_JUMP, -1);
-		}
-		else
-		{
-			_player = Position(-3, _player.orient());
-			_player.engageAction(INERTIE);
-		}
+		_player.engageAction(WALL_JUMP, -1);
 	}
 	else
 	{
@@ -85,15 +77,21 @@ bool		HorDash::request()
 void		HorDash::check()
 {
 	if (_player(Event::WALL)
-		&& !isActive())
-		//&& (_player(Event::RIGHT_WALL) ^ (_player[HIT_WALL]->val() == 1)
-		//|| _player[HIT_WALL]->val() == 0))
+		&& !isActive()
+		&& (_player(Event::RIGHT_WALL) ^ (_player[HIT_WALL]->val() == 1)
+		|| _player[HIT_WALL]->val() == 0))
 			_open = 1;
 }
 
 int		HorDash::val()
 {
 	return (_open);
+}
+void		HorDash::end()
+{
+	_open = 0;
+	_player.sx(Math::cap(_player.sx(), -4, 4));
+	_player.sy(Math::cap(_player.sy(), -4, 4));
 }
 
 /************/

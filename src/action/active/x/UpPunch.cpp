@@ -33,14 +33,14 @@ void	UpPunch::init(int v)
 {
 	if (v == 0 && !PLANE_DEBUG)
 	{
-		tempo(12);
+		tempo(8);
 	}
 	else
 	{
 		_open = 0;
 		_hit->reset();
-		_count = 50;
-		_player.sy(-3);
+		_count = 40;
+		_player.sy(-5);
 		_player.sx(_player.orient());
 	}
 }

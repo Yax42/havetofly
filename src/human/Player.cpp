@@ -114,22 +114,22 @@ void		Player::procHit()
 	int		tmp;
 
 	if (_hit != NULL)
+	{
+		if (_hit->isThrowable())
+			_event[Event::HIT_THROW] = true;
+		else
+			_event[Event::HIT] = true;
+		tmp = _hit->go(*this);
+		if (tmp != 0)
 		{
-			if (_hit->isThrowable())
-	_event[Event::HIT_THROW] = true;
-			else
-	_event[Event::HIT] = true;
-			tmp = _hit->go(*this);
-			if (tmp != 0)
-				{
-		_doing = _action[IAction::STUN];
-		if (tmp != -1)
-			_doing->init(tmp);
-	}
-			else if (!_hit->isThrowable())
-				_doing = _action[IAction::INERTIE];
-			_hit = NULL;
+			_doing = _action[IAction::STUN];
+			if (tmp != -1)
+				_doing->init(tmp);
 		}
+		else if (!_hit->isThrowable())
+			_doing = _action[IAction::INERTIE];
+		_hit = NULL;
+	}
 }
 
 void		Player::process()
