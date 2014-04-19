@@ -41,9 +41,9 @@ void		DoubleJump::upBones()
 
 void		DoubleJump::check()
 {
-	if (_player(Event::HIT) || _player(Event::CEILING))
+	if (_player(Event::HIT))// || _player(Event::CEILING))
 		_open = 1;
-	if (DEBUG & 4)
+	if (DEBUG & 4 || EASY_MODE)
 		_open = 1;
 }
 

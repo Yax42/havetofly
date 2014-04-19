@@ -39,6 +39,7 @@ void	print_help()
 	std::cout << "			- Night mode\t128"<< std::endl;
 	std::cout << "			- Player2 no move\t256"<< std::endl;
 	std::cout << "			- Very very slow\t512"<< std::endl;
+	std::cout << "			- EasyMode\t1024"<< std::endl;
 	exit(0);
 }
 
@@ -77,7 +78,7 @@ int	main(int ac, char **av)
 		print_help();
 	if (ac > 1)
 		g_debug = atoi(av[1]);
-	g_debug = 5;
+	g_debug = 1 + 1024;
 
 	try
 		{

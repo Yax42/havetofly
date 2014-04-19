@@ -31,6 +31,7 @@ public:
 private:
 	Position				_origin;
 	static const float		_range;
+	Angle					_graphicAngle;
 };
 
 #endif /* !HORDASH_HH_ */

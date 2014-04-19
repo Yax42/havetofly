@@ -9,6 +9,7 @@
 //
 
 #include "StickCeiling.hh"
+#include "Game.hh"
 
 StickCeiling::StickCeiling(Player &player) : AAction(player, STICK_CEILING, NULL)
 {
@@ -27,7 +28,7 @@ void	StickCeiling::step()
 		_player.orient(-1);
 	else if (_player.key[Key::HOR] > 0)
 		_player.orient(1);
-	if (_player.key(Key::VERT) >= 0)
+	if (_player.key(Key::VERT) >= 0 || !Game::isCeilingOn())
 		_player.engageAction(INERTIE);
 }
 

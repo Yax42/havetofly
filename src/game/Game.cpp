@@ -17,6 +17,10 @@
 
 Game		*Game::_inst = NULL;
 const int	Game::deep = 120;
+const int	Game::freeThrow = -Game::deep;
+const int	Game::centerHeartHeight = MAP_H / 2;
+const int	Game::centerHeartRay = 100;
+const Position	Game::centerHeart(Game::centerHeartHeight, MAP_W / 2);
 
 /*************/
 /* SINGLETON */
@@ -62,6 +66,7 @@ Game::Game(int h, int w) : APrintable((DEBUG & 2 ) ? 30 : (DEBUG & 512) ? 1 : 12
 	printFps(true);
 	_height = h;
 	_width = w;
+	_ceilingOn = true;
 }
 
 bool		Game::manyTeams() const
@@ -88,6 +93,7 @@ bool		Game::iterLoop()
 	for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
 		(*i)->init();
 
+	_ceilingOn = true;
 	for (int j = 0; j < MovePlayer::nbIt; j++)
 	{
 		cpt = 0;
@@ -166,6 +172,7 @@ int	Game::time()
 
 void	Game::print(Graphics &g)
 {
+#if 0 // print score
 	int	cpt;
 	g.setCap(0,256);
 	g.resetScreen(0);
@@ -191,10 +198,25 @@ void	Game::print(Graphics &g)
 		for (int j = 0; j < (GameLoader::getScore(i) / 64); j++)
 			g.circle(scorePos(i, j), 19, Color::GREEN);
 	}
+#endif
 
 	g.setCap(0, MAP_W);
 	if ((DEBUG & 128) == 0)
 		g.resetScreen(0xaaee00 | MGRAD_CAP(MTIME / 10, 0, 255));
+	//Terrain
+	{
+		if (!isCeilingOn())// && (time() / 10) % 2 == 0)
+		{
+			for (int i = 0; i < MAP_W; i += 24)
+			{
+				g.circle(Position(0, i), 10, Color::BLACK);
+			}
+			g.line(Position(MAP_H + freeThrow, 0), Position(MAP_H + freeThrow, MAP_W), Color::BLACK, 1);
+		}
+		else
+			g.line(Position(MAP_H + freeThrow, 0), Position(MAP_H + freeThrow, MAP_W), Color::WHITE, 5);
+		g.circle(centerHeart, centerHeartRay, Color::WHITE);
+	}
 	for (Players::iterator i = _players.begin(); i != _players.end(); ++i)
 	{
 		if ((*i)->alive())

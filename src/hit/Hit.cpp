@@ -49,15 +49,17 @@ int	Hit::go(Player &ennemy) const
 
 bool	Hit::focus(Player &ennemy)
 {
+	if (_asleep)
+		return false;
 	for (std::list<Hitbox>::iterator i = _hb.begin(); i != _hb.end(); ++i)
+	{
+		if (std::find(_players.begin(), _players.end(), &ennemy) == _players.end() &&
+			i->touch(ennemy))
 		{
-			if (std::find(_players.begin(), _players.end(), &ennemy) == _players.end() &&
-		i->touch(ennemy))
-				{
 			_players.push_back(&ennemy);
-		return (true);
-				}
+			return (true);
 		}
+	}
 	return (false);
 }
 
@@ -68,6 +70,8 @@ void	Hit::reset()
 
 void	Hit::print(Graphics &g) const
 {
+	if (_asleep)
+		return ;
 	for (std::list<Hitbox>::const_iterator i = _hb.begin(); i != _hb.end(); ++i)
 		i->print(g, 0xFF0000);
 }

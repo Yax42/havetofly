@@ -16,7 +16,8 @@
 class DownDash : public AAction
 {
 private:
-	int					_number;
+	float					_shurikenCancel;
+	Angle				_graphicAngle;
 public:
 	DownDash(Player &player);
 	virtual ~DownDash(){}
@@ -28,6 +29,8 @@ public:
 	virtual bool		request();
 	virtual void		upBones();
 	virtual void		print(Graphics &g) const;
+	bool				checkShurikenCancel();
+	void				updateSpeed();
 };
 
 #endif /* !DOWNDASH_HH_ */

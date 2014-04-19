@@ -35,12 +35,14 @@ private:
 	bool				_addStun;
 	std::list<Hitbox>		_hb;
 	std::list<Player const*>	_players;
+	bool			_asleep;
 
 public:
 	Hit(int stun, const Position &speed, const int &orient,
 			int hitLagg, bool isThrowable, int type, bool addStun = false);
 	~Hit() {}
 	bool	isThrowable() const;
+	void	sleep(bool v) { _asleep = v; }
 	int	go(Player &ennemy) const;
 	bool	focus(Player &ennemy);
 	void	reset();

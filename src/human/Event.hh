@@ -23,6 +23,8 @@ namespace Event
 			DID_HIT,
 			HIT,
 			HIT_THROW,
+			FREE_THROW,
+			CENTER_HEART,
 			COUNT
 		};
 }

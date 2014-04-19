@@ -56,6 +56,15 @@ void	MovePlayer::proc()
 		_pos.y = Game::h() + Game::deep;
 		_event[Event::FLOOR] = true;
 	}
+	else if (_pos.y >= Game::h() + Game::freeThrow)
+	{
+		_event[Event::FREE_THROW] = true;
+		Game::turnCeiling(false);
+	}
+	{
+		if ((_pos - Game::centerHeart).squaredDistance() < Game::centerHeartRay * Game::centerHeartRay)
+			_event[Event::CENTER_HEART] = true;
+	}
 	for (Players::iterator i = Game::players().begin(); i != Game::players().end(); ++i)
 		if (*i != _player)
 			if (_doing->hit(**i))

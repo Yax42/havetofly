@@ -188,7 +188,7 @@ void		Graphics::circle(Position const &pos, float size, const Color &color)
 {
 	Position	prev;
 	Position	pxPos;
-	int			max = size / 10;
+	int			max = size / 5;
 	if (max < 10)
 		max = 10;
 	int			delta = size * Math::maxRad / max;

@@ -15,6 +15,7 @@ const float		HorDash::_range = 200;
 HorDash::HorDash(Player &player) :
 	AAction(player, HOR_DASH, new Hit(10, Position(8, 1), player.orient(), 10, false, Hit::WALL))
 {
+	_graphicAngle = 0;
 //	_hit->add(20, Position(), _player.bones()[Bones::HEAD]);
 }
 
@@ -23,13 +24,19 @@ void	HorDash::init(int v)
 	if (v == 0 && !PLANE_DEBUG)
 	{
 		_player.setAction(TEMPO, id());
-		_player[TEMPO]->set(10);
+		_player[TEMPO]->set(15);
 	}
 	else
 	{
 		//_hit->reset();
 		//_player = Position(0, 6 * _player.orient());
 		_origin = _player.pos();
+		_count = 40;
+		Position	speed = _player.key.direction() * 8;
+		_player = speed;
+		_player.orient((speed.x >= 0) - (speed.x < 0));
+		//_graphicAngle = (_player.key.angle().rad() + Math::PiHalf) * (-_player.orient());
+
 	}
 }
 
@@ -48,16 +55,19 @@ bool	HorDash::allow(int a)
 
 void		HorDash::step()
 {
-	if (_origin.squaredDistance(_player.pos()) > _range * _range)
+	//if (_origin.squaredDistance(_player.pos()) > _range * _range)
+	if (--_count == 0)
 	{
 		_player = Position(-3, _player.orient());
 		_open = 0;
 		_player.engageAction(INERTIE);
 		return ;
 	}
-	if (_player(Event::WALL))
+	if (_player(Event::WALL) || _player(Event::CEILING))
 	{
-		_player.engageAction(WALL_JUMP, -1);
+		_player = Position();
+		_player.engageAction(INERTIE);
+		//_player.engageAction(WALL_JUMP, -1);
 	}
 	else
 	{
@@ -71,16 +81,22 @@ bool		HorDash::request()
 {
 	if (PLANE_DEBUG)
 		return true;
-	return (_open && !_player.key(Key::R2) && _player.key[Key::X] == 1);
+	//return (_open && !_player.key(Key::R2) && _player.key[Key::X] == 1);
+
+	return (_open && _player.key[Key::Y] == 1 && !_player.key(Key::R2) && _player.key[Key::HOR]);
 }
 
 void		HorDash::check()
 {
 	if (_player(Event::WALL)
-		&& !isActive()
-		&& (_player(Event::RIGHT_WALL) ^ (_player[HIT_WALL]->val() == 1)
-		|| _player[HIT_WALL]->val() == 0))
+		&& !isActive())
+	{
+		if (EASY_MODE)
 			_open = 1;
+		if (_player(Event::RIGHT_WALL) ^ (_player[HIT_WALL]->val() == 1)
+		|| _player[HIT_WALL]->val() == 0)
+			_open = 1;
+	}
 }
 
 int		HorDash::val()
@@ -110,6 +126,7 @@ void		HorDash::upBones()
 	_bones.angle[Bones::ELBOW2] = Angle(100, 0);
 
 	_bones.angle[Bones::HEAD] = Angle(0, 0);
+	//_bones.angle[Bones::BODY] = _graphicAngle;
 	_bones.angle[Bones::BODY] = Angle((_player.key.angle().rad() + Math::PiHalf) * (-_player.orient()));
 }
 
@@ -128,6 +145,6 @@ void		HorDash::print(Graphics &g) const
 			g.line(_bones[Bones::BODY], _bones[Bones::FOOT1] + MRAND_POS_CI(30),	Color::fire[rand() % 4]);
 			g.circle(_bones[Bones::FOOT1] + MRAND_POS_CI(30), rand() % 15 + 3,	Color::fire[rand() % 4]);
 		}
-		g.circle(_origin, _range, _player.color());
+		//g.circle(_origin, _range, _player.color());
 	}
 }

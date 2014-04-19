@@ -25,6 +25,11 @@ class Game : public APrintable
 {
 public:
 	static const int	deep;
+	static const int	freeThrow;
+	static const int	centerHeartHeight;
+	static const int	centerHeartRay;
+	static const Position	centerHeart;
+
 private:
 	int		_height;
 	int		_width;
@@ -32,6 +37,7 @@ private:
 	int		_alone;
 	SetKeys	_setKeys;
 	int		_time;
+	bool	_ceilingOn;
 
 /* SINGLETON */
 private:
@@ -52,6 +58,8 @@ public:
 	static int		h();
 	static int		w();
 	static int		time();
+	static bool		isCeilingOn() { return _inst->_ceilingOn; }
+	static void		turnCeiling(bool v) { _inst->_ceilingOn = v; }
 	/*
 	static Position	center() const;
 	*/

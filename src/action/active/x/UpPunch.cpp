@@ -31,13 +31,13 @@ void		UpPunch::loadBones()
 
 void	UpPunch::init(int v)
 {
+	_open = 0;
 	if (v == 0 && !PLANE_DEBUG)
 	{
 		tempo(8);
 	}
 	else
 	{
-		_open = 0;
 		_hit->reset();
 		_count = 40;
 		_player.sy(-5);
@@ -69,6 +69,7 @@ void	UpPunch::step()
 		_count = 0;
 	}
 	*/
+	_open = 0;
 	if (_count-- == 0)
 	{
 		_player.sy(-1);
@@ -100,6 +101,8 @@ void		UpPunch::upBones()
 
 void		UpPunch::check()
 {
+	if (_player(Event::CENTER_HEART) || EASY_MODE)
+		_open = true;
 }
 
 void		UpPunch::print(Graphics &g) const

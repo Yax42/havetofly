@@ -15,6 +15,8 @@
 	#define MAP_W	1024
 	#define BODY_SIZE	24 // 2/3
 	extern const int	&DEBUG;
-	#define PLANE_DEBUG	((DEBUG & 32) != 0)
+
+#define PLANE_DEBUG	((DEBUG & 32) != 0)
+#define EASY_MODE ((DEBUG & 1024) != 0)
 
 #endif /* !CONST_HH_ */

@@ -52,6 +52,8 @@ void	Player::operator=(Position const &speed)
 
 int		Player::operator()(int event)
 {
+	if (event == Event::CEILING && !Game::isCeilingOn())
+		return false;
 	return (_event[event]);
 }
 
