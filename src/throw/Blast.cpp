@@ -10,7 +10,7 @@
 
 #include "Blast.hh"
 
-Blast::Blast(const Player &player, const Angle &a) :
+Blast::Blast(Player &player, const Angle &a) :
 	AThrowable(player.bones()[Bones::FOOT2], Position(a, 10), 30, Position(a, 5), player)
 {
 	_hit.add(5, Position(), _pos);

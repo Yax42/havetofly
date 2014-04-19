@@ -13,7 +13,7 @@
 const float		HorDash::_range = 200;
 
 HorDash::HorDash(Player &player) :
-	AAction(player, HOR_DASH, new Hit(10, Position(8, 1), player.orient(), 10, false, Hit::WALL))
+	AAction(player, HOR_DASH, NULL)// new Hit(10, Position(8, 1), player.orient(), 10, false, Hit::WALL))
 {
 	_graphicAngle = 0;
 //	_hit->add(20, Position(), _player.bones()[Bones::HEAD]);

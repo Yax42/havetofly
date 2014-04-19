@@ -10,7 +10,7 @@
 
 #include "DeathRay.hh"
 
-DeathRay::DeathRay(const Player &player, const Angle &a) :
+DeathRay::DeathRay(Player &player, const Angle &a) :
 AThrowable(player.pos(), player.speed(), 30, Position(1, 1), player),
 	_player(NULL)
 {

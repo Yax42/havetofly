@@ -17,7 +17,8 @@ class DownDash : public AAction
 {
 private:
 	float					_shurikenCancel;
-	Angle				_graphicAngle;
+	Angle					_graphicAngle;
+	bool					_prevWasCancelAndNotWalled;
 public:
 	DownDash(Player &player);
 	virtual ~DownDash(){}

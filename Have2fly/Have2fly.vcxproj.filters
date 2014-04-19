@@ -261,6 +261,12 @@
     <None Include="..\src\action\Dummy.hh">
       <Filter>Source Files\action</Filter>
     </None>
+    <None Include="..\src\action\active\b\ThrowChain.hh">
+      <Filter>Source Files\action\active\b</Filter>
+    </None>
+    <None Include="..\src\throw\Chain.hh">
+      <Filter>Source Files\throw</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -445,6 +451,12 @@
     </ClCompile>
     <ClCompile Include="..\src\util\Exception.cpp">
       <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\b\ThrowChain.cpp">
+      <Filter>Source Files\action\active\b</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\throw\Chain.cpp">
+      <Filter>Source Files\throw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

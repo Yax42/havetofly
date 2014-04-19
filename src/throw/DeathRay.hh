@@ -20,7 +20,7 @@ private:
 	int			steps;
 public:
 	virtual ~DeathRay(){}
-	DeathRay(const Player &player, const Angle &a);
+	DeathRay(Player &player, const Angle &a);
 	virtual void		move();
 	virtual void		effect(Player &p);
 	virtual void		print(Graphics &g) const;

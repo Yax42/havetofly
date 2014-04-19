@@ -37,6 +37,8 @@ protected:
 	int					_id;
 	std::list<Hitbox>	_hb;
 
+	bool			allowPassive(int a);
+
 public:
 	virtual ~AAction();
 	AAction(Player &player, int id, Hit *hit);

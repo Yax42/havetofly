@@ -38,6 +38,10 @@ public:
 			STICK_WALL,
 			WALL_JUMP,
 			THROW_SHURIKEN,
+			DOWN_DASH,
+			HOR_DASH,
+			UP_PUNCH,
+			THROW_CHAIN,
 /* End of the cool list */
 			SHIELD,
 			AUTO_GUN,
@@ -47,9 +51,6 @@ public:
 			TELEVISION,
 			SPIN,
 			HOR_TP,
-			HOR_DASH,
-			UP_PUNCH,
-			DOWN_DASH,
 			CURVE,
 /*		  */COUNT, /* End of the list */
 			DUMMY,

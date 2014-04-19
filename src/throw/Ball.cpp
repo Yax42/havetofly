@@ -10,7 +10,7 @@
 
 #include "Ball.hh"
 
-Ball::Ball(const Player &player, const Angle &a) :
+Ball::Ball(Player &player, const Angle &a) :
 	AThrowable(player.pos(), Position(a, 6), 30, Position(1, 1), player)
 {
 	_hit.add(20, Position(), _pos);

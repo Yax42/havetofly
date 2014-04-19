@@ -24,6 +24,10 @@ Position::Position() : y(0), x(0)
 {
 }
 
+Position::Position(float v) : y(v), x(v)
+{
+}
+
 Position::Position(float Y, float X) : y(Y), x(X)
 {
 }

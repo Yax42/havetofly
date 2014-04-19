@@ -17,7 +17,7 @@ class Blast : public AThrowable
 {
 public:
 	virtual ~Blast(){}
-	Blast(const Player &player, const Angle &a);
+	Blast(Player &player, const Angle &a);
 	virtual void		move();
 	virtual void		print(Graphics &g) const;
 };

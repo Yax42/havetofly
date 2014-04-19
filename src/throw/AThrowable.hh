@@ -29,16 +29,16 @@ protected:
 	bool			_alive;
 	int				_orient;
 	Hit				_hit;
-	const Player	&_player;
+	Player			&_player;
 	int				_val1;
 private:
 	Position		_initPos;
-	int			_count;
+	int				_count;
 
 public:
 	virtual ~AThrowable(){}
 	AThrowable(const Position &pos, const Position &speed,
-			int stun, const Position &hitSpeed, const Player &player,
+			int stun, const Position &hitSpeed, Player &player,
 			int type = Hit::ORIENT, bool addStun = false);
 	bool			isAlive() const;
 	void			init();
@@ -47,6 +47,7 @@ public:
 	virtual void		effect(Player &p);
 	virtual void		print(Graphics &g) const = 0;
 	virtual void		printHB(Graphics &g) const;
+	virtual void		effectWall() { _alive = false; }
 };
 
 #endif /* !ATHROWABLE_HH_ */

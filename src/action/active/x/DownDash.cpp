@@ -16,6 +16,7 @@ DownDash::DownDash(Player &player) :
 {
 	_hit->add(15, Position(), _bones[Bones::FOOT1]);
 	_hit->add(15, Position(), _bones[Bones::FOOT2]);
+	_prevWasCancelAndNotWalled = false;
 }
 
 void	DownDash::init(int v)
@@ -36,7 +37,7 @@ void	DownDash::init(int v)
 		_hit->sleep(true);
 		_count = 45;
 		_player = Position();
-		_shurikenCancel = -1.f;
+		_shurikenCancel = 0;
 		_graphicAngle = Angle(30, 0);
 	}
 }
@@ -48,17 +49,22 @@ bool	DownDash::allow(int)
 
 bool		DownDash::checkShurikenCancel()
 {
-	if (_player.key[Key::B])
+	if (!_player.key(Key::Y) && !_prevWasCancelAndNotWalled)
 	{
+		_prevWasCancelAndNotWalled = true;
 		float	next = (float(_player.y()) / float(Game::h()));
-		next *= 7 * next;
+		next *= 5;
 		if (_shurikenCancel < next)
 		{
 			_shurikenCancel = next;
 			return true;
 		}
 	}
-	return false;
+	else
+	{
+		_prevWasCancelAndNotWalled = false;
+		return false;
+	}
 }
 
 void		DownDash::updateSpeed()
@@ -72,7 +78,6 @@ void	DownDash::step()
 	_count--;
 	if (_count >= 30)
 	{
-		checkShurikenCancel();
 	}
 	if (_count == 30)
 	{
@@ -83,9 +88,8 @@ void	DownDash::step()
 			_player = Position(5, _player.orient() * 4);
 		_graphicAngle = (_player.speed().angle().rad() - Math::PiHalf) * (-_player.orient());
 		*/
-		if (_shurikenCancel == -1.f)
+		if (!checkShurikenCancel())
 		{
-			_shurikenCancel = 0;
 			_hit->sleep(false);
 		}
 		updateSpeed();
@@ -100,6 +104,7 @@ void	DownDash::step()
 	else if ((_player(Event::LEFT_WALL) && _player.orient() < 0) ||
 			(_player(Event::RIGHT_WALL) && _player.orient() > 0))
 	{
+		_prevWasCancelAndNotWalled = false;
 		_player.engageAction(WALL_JUMP, -3);
 	}
 	else

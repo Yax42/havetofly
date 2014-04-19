@@ -140,6 +140,11 @@ int		AAction::hitLagg() const
 	return _hit->hitLagg();
 }
 
+bool	AAction::allowPassive(int a)
+{
+	return (a == GRAVITY || a == INERTIE || a == MOVE);
+}
+
 void		AAction::tempo(int v) const
 {
 	_player.setAction(TEMPO, id());

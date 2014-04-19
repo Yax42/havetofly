@@ -26,6 +26,7 @@ public:
 	/* CONSTRUCTORS */
 	~Position();
 	Position();
+	Position(float v);
 	Position(float y, float x);
 	Position(const Angle &angle, float d);
 	Position(Position const &other);

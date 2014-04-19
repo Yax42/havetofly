@@ -23,6 +23,7 @@
     <None Include="..\src\action\ActionFactory.hh" />
     <None Include="..\src\action\active\a\DoubleJump.hh" />
     <None Include="..\src\action\active\a\WallJump.hh" />
+    <None Include="..\src\action\active\b\ThrowChain.hh" />
     <None Include="..\src\action\active\b\EffectiveTV.hh" />
     <None Include="..\src\action\active\b\Television.hh" />
     <None Include="..\src\action\active\b\ThrowShuriken.hh" />
@@ -79,6 +80,7 @@
     <None Include="..\src\throw\AThrowable.hh" />
     <None Include="..\src\throw\Ball.hh" />
     <None Include="..\src\throw\Blast.hh" />
+    <None Include="..\src\throw\Chain.hh" />
     <None Include="..\src\throw\DeathRay.hh" />
     <None Include="..\src\throw\IThrowable.hh" />
     <None Include="..\src\throw\Shuriken.hh" />
@@ -94,6 +96,7 @@
     <ClCompile Include="..\src\action\ActionFactory.cpp" />
     <ClCompile Include="..\src\action\active\a\DoubleJump.cpp" />
     <ClCompile Include="..\src\action\active\a\WallJump.cpp" />
+    <ClCompile Include="..\src\action\active\b\ThrowChain.cpp" />
     <ClCompile Include="..\src\action\active\b\EffectiveTV.cpp" />
     <ClCompile Include="..\src\action\active\b\Television.cpp" />
     <ClCompile Include="..\src\action\active\b\ThrowShuriken.cpp" />
@@ -143,6 +146,7 @@
     <ClCompile Include="..\src\throw\AThrowable.cpp" />
     <ClCompile Include="..\src\throw\Ball.cpp" />
     <ClCompile Include="..\src\throw\Blast.cpp" />
+    <ClCompile Include="..\src\throw\Chain.cpp" />
     <ClCompile Include="..\src\throw\DeathRay.cpp" />
     <ClCompile Include="..\src\throw\Shuriken.cpp" />
     <ClCompile Include="..\src\util\ALoop.cpp" />

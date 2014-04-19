@@ -11,7 +11,7 @@
 #include "Shuriken.hh"
 Color		getColorFromLevel(int level);
 
-Shuriken::Shuriken(const Player &player, const Position &pos, const Position &speed, int level) :
+Shuriken::Shuriken(Player &player, const Position &pos, const Position &speed, int level) :
 	AThrowable(pos, speed, 15 + 8 * _level, Position(1, 1), player, Hit::NONE, true), _level(level)
 {
 	_speed = speed;

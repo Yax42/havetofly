@@ -25,7 +25,7 @@ void	ThrowShuriken::init(int)
 
 bool	ThrowShuriken::allow(int a)
 {
-	return (a == GRAVITY);
+	return allowPassive(a);
 }
 
 void	ThrowShuriken::step()

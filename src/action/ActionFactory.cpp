@@ -38,6 +38,7 @@
 #include "GunJump.hh"
 #include "HorTP.hh"
 #include "Television.hh"
+#include "ThrowChain.hh"
 #include "EffectiveTV.hh"
 #include "Dummy.hh"
 
@@ -67,6 +68,7 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(THROW_SHURIKEN, ThrowShuriken);
 	SetAction(DOWN_DASH, DownDash);
 	SetAction(UP_PUNCH, UpPunch);
+	SetAction(THROW_CHAIN, ThrowChain);
 
 	return (new DummyAction(p));
 		//

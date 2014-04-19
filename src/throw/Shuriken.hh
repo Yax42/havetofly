@@ -19,7 +19,7 @@ private:
 	int					_level;
 public:
 	virtual ~Shuriken(){}
-	Shuriken(const Player &player, const Position &pos, const Position &speed, int level);
+	Shuriken(Player &player, const Position &pos, const Position &speed, int level);
 	virtual void		move();
 	virtual void		print(Graphics &g) const;
 	virtual void		effect(Player &p);
