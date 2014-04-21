@@ -16,7 +16,8 @@ Chain::Chain(Player &player, const Position &speed) :
 	_speed = speed;
 	_hit.add(12, Position(), _pos);
 	_didGrab = false;
-	_life = 15;
+	_life = 30;
+	_grabbedHuman = false;
 }
 
 void		Chain::move()
@@ -25,16 +26,29 @@ void		Chain::move()
 		_alive = false;
 	if (_didGrab)
 	{
+		if (_grabbedHuman)
+		{
+			_pos = _victim->pos();
+		}
 	}
-}
-
-void		Chain::print(Graphics &g) const
-{
-	g.line(_player.bones()[Bones::HAND1], _pos, Color::BLACK);
 }
 
 void		Chain::effect(Player &p)
 {
+	if (_didGrab)
+		return;
+	_didGrab = true;
+	_grabbedHuman = true;
+	_victim = &p;
+	_life = 40;
+	_speed = 0;
+	Position dir = (_pos - _player.bones()[Bones::HAND2]).normalize();
+
+	_player.sx(_player.sx() + dir.x * 5);
+	_player.sy(dir.y * 5);
+
+	p.sx(p.sx() + -dir.x * 5);
+	p.sy(-dir.y * 5);
 }
 
 void		Chain::effectWall()
@@ -44,6 +58,32 @@ void		Chain::effectWall()
 	_didGrab = true;
 	_life = 40;
 	_speed = 0;
-	_player = _player.speed() +
-		(_pos - _player.bones()[Bones::HAND2]).normalize() * 5;
+	Position dir = (_pos - _player.bones()[Bones::HAND2]).normalize();
+	//_player = _player.speed() + (_pos - _player.bones()[Bones::HAND2]).normalize() * 5;
+	_player.sx(_player.sx() + dir.x * 5);
+	_player.sy(dir.y * 5);
+}
+
+void		Chain::print(Graphics &g) const
+{
+	static const float ray = 10;
+
+	Position	dir = (_pos - _player.bones()[Bones::HAND1]);
+	Position	dirNorm = dir.normalize();
+	Angle		dirAngle = dirNorm.angle();
+
+	Position p1 = _pos - (dirNorm * ray);
+	float didGrabFactor = _didGrab ? 1 : 2;
+	Position p2 = p1 + Position(dirAngle - Angle(45, 0), ray * didGrabFactor);
+	Position p3 = p1 + Position(dirAngle + Angle(45, 0), ray * didGrabFactor);
+	if (_didGrab)
+	{
+		Position p4 = _pos + (dirNorm * ray);
+		g.line(p4, p2, Color::BLACK);
+		g.line(p4, p3, Color::BLACK);
+	}
+
+	g.line(_player.bones()[Bones::HAND1], p1, Color::BLACK);
+	g.line(p1, p2, Color::BLACK);
+	g.line(p1, p3, Color::BLACK);
 }

@@ -81,7 +81,7 @@ Angle		Angle::operator+(Angle const &a) const
 
 Angle		Angle::operator-(Angle const &a) const
 {
-	return (a._rad - _rad);
+	return (_rad - a._rad);
 }
 
  Angle		&Angle::operator-=(Angle const &a)

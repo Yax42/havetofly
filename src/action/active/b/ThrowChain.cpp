@@ -19,7 +19,8 @@ ThrowChain::ThrowChain(Player &player) :
 
 void	ThrowChain::init(int v)
 {
-	_count = 50;
+	_count = 20;
+	_player.doThrow(new Chain(_player, _player.key.direction() * 10));
 }
 
 bool	ThrowChain::allow(int a)
@@ -32,7 +33,6 @@ void	ThrowChain::step()
 	_count--;
 	if (_count == 40)
 	{
-		_player.doThrow(new Chain(_player, _player.key.direction() * 20));
 	}
 	else if (_count == 0)
 	{

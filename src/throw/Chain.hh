@@ -19,6 +19,7 @@ private:
 	bool	_didGrab;
 	bool	_grabbedHuman;
 	int		_life;
+	Player	*_victim;
 public:
 	virtual ~Chain(){}
 	Chain(Player &player, const Position &speed);
