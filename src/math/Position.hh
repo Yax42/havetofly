@@ -55,6 +55,7 @@ public:
 	Position		operator-(float v) const;
 	Position		operator*(float v) const;
 	Position		operator/(float v) const;
+	Position		operator-() const { return Position(-y, -x); }
 	Position		&operator+=(float v);
 	Position		&operator-=(float v);
 	Position		&operator*=(float v);

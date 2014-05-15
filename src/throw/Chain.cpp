@@ -33,6 +33,13 @@ void		Chain::move()
 	}
 }
 
+void	Chain::movePlayer(Position &dir, Player &p)
+{
+	// this is the less worse way to handle the chain.
+	p.sx(p.sx() + dir.x * 5);
+	p.sy(dir.y * 5);
+}
+
 void		Chain::effect(Player &p)
 {
 	if (_didGrab)
@@ -44,11 +51,8 @@ void		Chain::effect(Player &p)
 	_speed = 0;
 	Position dir = (_pos - _player.bones()[Bones::HAND2]).normalize();
 
-	_player.sx(_player.sx() + dir.x * 5);
-	_player.sy(dir.y * 5);
-
-	p.sx(p.sx() + -dir.x * 5);
-	p.sy(-dir.y * 5);
+	movePlayer(dir, _player);
+	movePlayer(-dir, p);
 }
 
 void		Chain::effectWall()
@@ -60,8 +64,7 @@ void		Chain::effectWall()
 	_speed = 0;
 	Position dir = (_pos - _player.bones()[Bones::HAND2]).normalize();
 	//_player = _player.speed() + (_pos - _player.bones()[Bones::HAND2]).normalize() * 5;
-	_player.sx(_player.sx() + dir.x * 5);
-	_player.sy(dir.y * 5);
+	movePlayer(dir, _player);
 }
 
 void		Chain::print(Graphics &g) const

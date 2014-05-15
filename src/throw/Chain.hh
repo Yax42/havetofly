@@ -20,6 +20,9 @@ private:
 	bool	_grabbedHuman;
 	int		_life;
 	Player	*_victim;
+
+private:
+	void				movePlayer(Position &dir, Player &p);
 public:
 	virtual ~Chain(){}
 	Chain(Player &player, const Position &speed);

@@ -15,12 +15,14 @@
 ThrowChain::ThrowChain(Player &player) :
 	AAction(player, THROW_CHAIN, NULL)
 {
+	_usable = true;
 }
 
 void	ThrowChain::init(int v)
 {
 	_count = 20;
 	_player.doThrow(new Chain(_player, _player.key.direction() * 10));
+	_usable = false;
 }
 
 bool	ThrowChain::allow(int a)
@@ -42,11 +44,13 @@ void	ThrowChain::step()
 
 void		ThrowChain::check()
 {
+	if (_player(Event::FREE_THROW))
+		_usable = true;
 }
 
 bool		ThrowChain::request()
 {
-	return (_player.key[Key::X] == 1 && !_player.key(Key::R2));
+	return (_usable && _player.key[Key::X] == 1 && !_player.key(Key::R2));
 }
 
 int			ThrowChain::val()

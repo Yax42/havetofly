@@ -17,6 +17,7 @@ class ThrowChain : public AAction
 {
 private:
 	Angle					_graphicAngle;
+	bool					_usable;
 public:
 	ThrowChain(Player &player);
 	virtual ~ThrowChain(){}
