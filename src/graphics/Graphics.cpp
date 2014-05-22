@@ -16,6 +16,19 @@
 #include "Math.hh"
 #include "Wait.hh"
 
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+    Uint32 rmask = 0xff000000;
+    Uint32 gmask = 0x00ff0000;
+    Uint32 bmask = 0x0000ff00;
+    Uint32 amask = 0x000000ff;
+#else
+    Uint32 rmask = 0x000000ff;
+    Uint32 gmask = 0x0000ff00;
+    Uint32 bmask = 0x00ff0000;
+    Uint32 amask = 0xff000000;
+#endif
+
+
 #define	GRADUAL_CAP(x, max)		(((x) % (max * 2) >= max) ?	\
 	 					max - ((x) % (max) - 1 :	\
 					(x) % (max))
@@ -28,6 +41,7 @@
 
 Graphics::~Graphics()
 {
+	SDL_DestroyRenderer(_renderer);
 	SDL_DestroyWindow(_window);
 	SDL_Quit();
 }
@@ -36,7 +50,7 @@ Graphics::Graphics(int h, int w) : _h(h), _w(w), _minX(0), _maxX(w)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1)
 		throw(Exception("Cannot init SDL"));
-	SDL_CreateWindowAndRenderer(w, h, SDL_INIT_JOYSTICK, &_window, &_renderer);
+	SDL_CreateWindowAndRenderer(w, h, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC, &_window, &_renderer);
 	if (!_window && !_renderer)
 		throw(Exception("Cannot create window or renderer fail."));
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255); 
@@ -45,15 +59,12 @@ Graphics::Graphics(int h, int w) : _h(h), _w(w), _minX(0), _maxX(w)
 	_fs = false;
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	SDL_RenderSetLogicalSize(_renderer, w, h);
-	_screen = SDL_CreateRGBSurface(0, w, h, 32, 0, 0, 0, 0);
-	_texture = SDL_CreateTexture(_renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, w, h);
+	_screen = SDL_CreateRGBSurface(0, w, h, 32, 
+                                        0, 
+                                        0, 
+                                        0, 
+                                        0);
 	SDL_SetWindowTitle(_window, "You'd butter fly");
-/*	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) == -1)
-		throw(Exception("Cannot init SDL"));
-	_fs = false;
-		_screen = SDL_SetVideoMode(w, h, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_INIT_JOYSTICK);
-	SDL_JoystickEventState(SDL_ENABLE);
-	SDL_WM_SetCaption("You'd butter fly", NULL);*/
 }
 
 int	Graphics::h()
@@ -81,25 +92,11 @@ void	Graphics::switchFS()
 
 void	Graphics::printScreen()
 {
-	//SDL_Flip(_screen);
-	//SDL_UpdateTexture(_texture, NULL, _screen->pixels, _screen->pitch); 
-	//SDL_RenderClear(_renderer); 
-	//SDL_RenderCopy(_renderer, _texture, NULL, NULL); 
 	SDL_RenderPresent(_renderer);
 }
 
 void		Graphics::resetScreen(const Color &color)
 {
-	/*SDL_Rect	rect;
-
-	rect.h = _h;
-	rect.w = _maxX - _minX;
-	rect.x = _minX;
-	rect.y = 0;
-
-	//SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color);
-	SDL_FillRect(_screen, &rect, color.getInt());*/
-
 	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
 	SDL_RenderClear(_renderer);
 
@@ -107,7 +104,6 @@ void		Graphics::resetScreen(const Color &color)
 
 void	Graphics::resetLocal(const Color &color)
 {
-	return; // [*.*]
 	for (int j = 0; j < _screen->h; j++)
 		for (int i = _minX; i < _maxX; i++)
 			printPixelUnsafe(j, i, color.getInt());
@@ -128,25 +124,26 @@ void	Graphics::setCap(int min, int max)
 /**********/
 void		Graphics::square(Position const &pos1, Position const &pos3, const Color &color)
 {
-	Position	tmp((pos3 - pos1) / 2);
-	Position	pos2(Position(tmp.angle() + Math::toRad(90), tmp.distance()) + tmp + pos1);
-	Position	pos4(Position(tmp.angle() + Math::toRad(-90), tmp.distance()) + tmp + pos1);
+	SDL_Rect rect;
 
-	Graphics::line(pos1, pos2, color);
-	Graphics::line(pos3, pos2, color);
-	Graphics::line(pos3, pos4, color);
-	Graphics::line(pos1, pos4, color);
+	rect.x = pos1.x;
+	rect.y = pos1.y;
+	rect.w = pos3.x - pos1.x;
+	rect.h = pos3.y - pos1.y;
+	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
+	SDL_RenderDrawRect(_renderer, &rect);
 }
 
 void		Graphics::rectangle(Position const &pos1, Position const &pos3, const Color &color)
 {
-	Position	pos2(pos1.y, pos3.x);
-	Position	pos4(pos3.y, pos1.x);
+	SDL_Rect rect;
 
-	Graphics::line(pos1, pos2, color);
-	Graphics::line(pos3, pos2, color);
-	Graphics::line(pos3, pos4, color);
-	Graphics::line(pos1, pos4, color);
+	rect.x = pos1.x;
+	rect.y = pos1.y;
+	rect.w = pos3.x - pos1.x;
+	rect.h = pos3.y - pos1.y;
+	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
+	SDL_RenderDrawRect(_renderer, &rect);
 }
 
 void		Graphics::rectangleLaid(Position const &pos1, Position const &pos3, const Color &color1, const Color &color2)
@@ -158,10 +155,14 @@ void		Graphics::rectangleLaid(Position const &pos1, Position const &pos3, const 
 
 void		Graphics::rectangleFull(Position const &pos1, Position const &pos3, const Color &color)
 {
-	return; // [*.*]
-	for (int i = pos1.x; i < pos3.x; i++)
-		for (int j = pos1.y; j < pos3.y; j++)
-			printPixel(Position(j, i), color);
+	SDL_Rect rect;
+
+	rect.x = pos1.x;
+	rect.y = pos1.y;
+	rect.w = pos3.x - pos1.x;
+	rect.h = pos3.y - pos1.y;
+	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
+	SDL_RenderFillRect(_renderer, &rect);
 }
 
 /**********/
@@ -186,41 +187,98 @@ void		Graphics::sponge(Position const &pos, float ray, int nb, float size, const
 
 void		Graphics::circle(Position const &pos, float size, const Color &color)
 {
-	Position	prev;
-	Position	pxPos;
-	int			max = size / 5;
-	if (max < 10)
-		max = 10;
-	int			delta = size * Math::maxRad / max;
-//	int		max = size * Math::maxRad;
-	float		invSize = delta / size;
-
-	prev = pos + Position(0, size);
-	for (int i = 1; i < max; i++)
+	SDL_Texture *texture;
+	if ((texture = textureExist(ATexture::CIRCLE, size, &color)))
 	{
-		pxPos.x = size * Math::cos(i * invSize);
-		pxPos.y = size * Math::sin(i * invSize);
-		pxPos += pos;
-		line(prev, pxPos, color);
-		//printPixel(pxPos, color);
-		prev = pxPos;
+		SDL_Rect SrcR;
+		SDL_Rect DestR;
+
+		SrcR.x = 0;
+		SrcR.y = 0;
+		SrcR.w = size*2;
+		SrcR.h = size*2;
+
+		DestR.x = pos.x - size;
+		DestR.y = pos.y - size;
+		DestR.w = size*2;
+		DestR.h = size*2;
+		SDL_RenderCopy(_renderer, texture, &SrcR, &DestR); 
 	}
-	pxPos = pos + Position(0, size);
-	line(prev, pxPos, color);
+	else
+	{
+		Position	pxPos;
+		int		max = size * Math::maxRad;
+		float		invSize = 1 / size;
+		SDL_Surface	*surface = SDL_CreateRGBSurface(0,size*2,size*2,32,0,0,0,0);
+		surface->format->Amask = amask;
+		surface->format->Ashift = 24;
+		texture = SDL_CreateTexture(_renderer, 
+                                            SDL_PIXELFORMAT_ARGB8888, 
+                                            SDL_TEXTUREACCESS_STATIC, 
+                                            size * 2, size * 2);
+		Position	texPos(size, size);
+
+		for (int i = 0; i < max; i++)
+		{
+			pxPos.x = size * Math::cos(i * invSize);
+			pxPos.y = size * Math::sin(i * invSize);
+			pxPos += texPos;
+			printPixel(surface, pxPos, color);
+		}
+		Uint32 colorkey = SDL_MapRGB( surface->format, 0, 0, 0);
+		int ret = SDL_SetColorKey(surface, SDL_TRUE, colorkey);
+		texture = SDL_CreateTextureFromSurface(_renderer, surface);
+		addTexture(ATexture::CIRCLE, texture, size, &color);
+		SDL_FreeSurface(surface);
+	}
 }
 
 void		Graphics::circleFull(Position const &pos, float size, const Color &color)
 {
-	Position	pxPos;
-	float		max = size * Math::maxRad;
-	float		invSize = 1 / size;
-
-	for (int i = 0; i < max; i++)
+	SDL_Texture *texture;
+	if ((texture = textureExist(ATexture::CIRCLEFULL, size, &color)))
 	{
-		pxPos.x = size * Math::cos(i * invSize);
-		pxPos.y = size * Math::sin(i * invSize);
-		pxPos += pos;
-		line(pxPos, pos, color);
+		SDL_Rect SrcR;
+		SDL_Rect DestR;
+
+		SrcR.x = 0;
+		SrcR.y = 0;
+		SrcR.w = size*2;
+		SrcR.h = size*2;
+
+		DestR.x = pos.x - size;
+		DestR.y = pos.y - size;
+		DestR.w = size*2;
+		DestR.h = size*2;
+		SDL_RenderCopy(_renderer, texture, &SrcR, &DestR); 
+	}
+	else
+	{
+		Position	pxPos;
+		float		max = size * Math::maxRad;
+		float		invSize = 1 / size;
+		SDL_Surface	*surface = SDL_CreateRGBSurface(0,size*2, size*2,32,0,0,0,0);
+				surface->format->Amask = amask;
+		surface->format->Ashift = 24;
+		SDL_Texture *texture = SDL_CreateTexture(_renderer, 
+                                            SDL_PIXELFORMAT_ARGB8888, 
+                                            SDL_TEXTUREACCESS_STATIC, 
+                                            size * 2, size * 2);
+		Position	texPos(size, size);
+
+		for (int i = 0; i < max; i++)
+		{
+			pxPos.x = size * Math::cos(i * invSize);
+			pxPos.y = size * Math::sin(i * invSize);
+			pxPos += texPos;
+			line(surface, pxPos, texPos, color);
+		}
+		Uint32 colorkey = SDL_MapRGB( surface->format, 0, 0, 0);
+		SDL_SetColorKey(surface, SDL_TRUE, colorkey);
+		SDL_UpdateTexture(texture, NULL, surface->pixels, surface->pitch); 
+		//texture = SDL_CreateTextureFromSurface(_renderer, surface);
+		addTexture(ATexture::CIRCLEFULL, texture, size, &color);
+		SDL_FreeSurface(surface);
 	}
 }
 
@@ -250,6 +308,17 @@ void		Graphics::circlePart(Position const &pos, float ray,
 /********/
 /* LINE */
 /********/
+
+void		Graphics::line(SDL_Surface *surface, Position const &pos1, Position const &pos2, const Color &color)
+{
+	Position	vect = pos2 - pos1;
+	Angle		angle = vect.angle();
+	int		range = vect.distance();
+
+	for (int i = 0; i <= range; i++)
+		printPixel(surface, pos1 + Position(angle, i), color);
+}
+
 void		Graphics::line(Position const &pos1, Position const &pos2, const Color &color)
 {
 	Position	vect = pos2 - pos1;
@@ -258,22 +327,12 @@ void		Graphics::line(Position const &pos1, Position const &pos2, const Color &co
 
 	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
 	SDL_RenderDrawLine(_renderer, pos1.x, pos1.y, pos2.x, pos2.y);
-
-	/*for (int i = 0; i <= range; i++)
-		printPixel(pos1 + Position(angle, i), color);*/
 }
 
 void		Graphics::line(Position const &pos1, Position const &pos2, const Color &color, int thick)
 {
-	/*
-	if (pos1.x() == pos2.x() && pos1.y() == pos2.y())
-		return ;
-	*/
-	//std::cout << pos1 << pos2 << " " << thick << std::endl;
-
 	Position	vect = pos2 - pos1;
 	Angle		angle = vect.angle();
-	//Angle		angleOut[] = { vect.angle() + Angle(0, 0), vect.angle() + Angle(0, 0) };
 
 	for (int j = 0; j < thick; j++)
 	{
@@ -281,10 +340,6 @@ void		Graphics::line(Position const &pos1, Position const &pos2, const Color &co
 		line(pos1 + Position(0, val) * angle + Position(val, 0) * angle,
 				 pos2 + Position(0, val) * (angle + Angle(180, 0)) + (Position(val, 0) * angle), color);
 	}
-		/*
-		line(pos1 + Position(0, j) * angle + (Position(j / 2, 0) * angleOut[j % 2]),
-				 pos2 + Position(0, j) * (angle + Angle(180, 0)) + (Position(j / 2, 0) * angleOut[j % 2]), color);
-	 */
 }
 
 void		Graphics::curveLine(Position const &pos1, Position const &pos2,
@@ -294,33 +349,41 @@ void		Graphics::curveLine(Position const &pos1, Position const &pos2,
 	line(pos2, pos3, color);
 }
 
-/*
-void		Graphics::bend(Position const &pos1, float ray1,
-	Position const &pos2, float ray2, const Color &color)
-{
-	curveLine(pos1, Circle(pos1, ray1) == Circle(pos2, ray2), pos2, color);
-}*/
-
 /*********/
 /* PIXEL */
 /*********/
 void	Graphics::printPixel(Position const &pos, const Color &color)
 {
-	return;
-	/*if (pos.x >= 0 && pos.x + _minX < _maxX && pos.y >= 0 && pos.y < _screen->h)
-	{
-		int	offset = static_cast<int> (pos.y) * _screen->pitch / 4 +
-			static_cast<int> (pos.x) + _minX;
-		*(static_cast<int *> (_screen->pixels) + offset) = color.getInt();
-	}*/
 	SDL_SetRenderDrawColor(_renderer, color.r, color.g, color.b, 255);
-	SDL_RenderDrawLine(_renderer, pos.x, pos.y, pos.x + 1, pos.y + 1);
+	SDL_RenderDrawPoint(_renderer, pos.x, pos.y);
 }
 
-/*
-void	Graphics::printPixelUnsafe(Position const &pos, const Color &color)
+void	Graphics::printPixel(SDL_Surface *surface, Position const &pos, const Color &color)
 {
-	*(static_cast<int *> (_screen->pixels) + pos.y() *
-		_screen->pitch / 4 + pos.x()) = color.getInt();
+	if (pos.x >= 0 && pos.x + _minX < _maxX && pos.y >= 0 && pos.y < surface->h)
+	{
+		int	offset = static_cast<int> (pos.y) * surface->pitch / 4 +
+			static_cast<int> (pos.x) + _minX;
+		*(static_cast<int *> (surface->pixels) + offset) = color.getInt();
+	}
 }
-*/
+
+/**********/
+/* TEXTURE*/
+/**********/
+void	Graphics::addTexture(ATexture::typetexture type, SDL_Texture* texture, float size, const Color* color)
+{
+	ATexture *newtexture = new ATexture(texture, color, size, type);
+
+	_listTexture.push_back(newtexture);
+}
+
+SDL_Texture		*Graphics::textureExist(ATexture::typetexture type, float size, const Color* color) const
+{
+	for (std::vector<ATexture*>::const_iterator it = _listTexture.begin() ; it != _listTexture.end(); ++it)
+	{
+		if ((*it)->isSame(type, size, color))
+			return ((*it)->getTexture());
+	}
+	return NULL;
+}

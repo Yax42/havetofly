@@ -267,6 +267,9 @@
     <None Include="..\src\throw\Chain.hh">
       <Filter>Source Files\throw</Filter>
     </None>
+    <None Include="..\..\..\havetofly\src\graphics\ATexture.hh">
+      <Filter>Source Files\graphics</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -457,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="..\src\throw\Chain.cpp">
       <Filter>Source Files\throw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\havetofly\src\graphics\ATexture.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

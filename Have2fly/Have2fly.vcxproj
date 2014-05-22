@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\havetofly\src\graphics\ATexture.hh" />
     <None Include="..\src\action\AAction.hh" />
     <None Include="..\src\action\ActionFactory.hh" />
     <None Include="..\src\action\active\a\DoubleJump.hh" />
@@ -92,6 +93,7 @@
     <None Include="..\src\util\Wait.hh" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\havetofly\src\graphics\ATexture.cpp" />
     <ClCompile Include="..\src\action\AAction.cpp" />
     <ClCompile Include="..\src\action\ActionFactory.cpp" />
     <ClCompile Include="..\src\action\active\a\DoubleJump.cpp" />
