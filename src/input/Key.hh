@@ -21,6 +21,8 @@ public:
 		{
 			HOR,
 			VERT,
+			HOR2,
+			VERT2,
 			L2,
 			R2,
 			A,
@@ -31,19 +33,27 @@ public:
 			R,
 			COUNT
 		};
+	enum
+	{
+		FIRST_ANALOG = HOR,
+		LAST_ANALOG = VERT2,
+		FIRST_BUTTON = L2,
+	};
 private:
 	int					_prevVal[Key::COUNT];
 	int					*_val[Key::COUNT];
 	int					_delta[Key::COUNT];
-	mutable Position	_lastOkDir;
+	mutable Position	_lastOkDir[2];
 
 public:
 	Key();
 	~Key(){}
-	Angle			angle() const;
-	Position		direction() const;
-	int				operator[](int i) const;
-	int				operator()(int i) const;
+	Angle			angle(int id = 0) const;
+	Position		direction(int id = 0) const;
+	int				operator[](int keyDown) const;
+	int				getKeyDown(int i) const { return (*this)[i]; }
+	int				operator()(int key) const;
+	int				getKey(int i) const { return (*this)(i); }
 	void			update();
 	int				cur() const;
 	int				*&ptr(int i);

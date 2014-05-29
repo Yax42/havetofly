@@ -40,7 +40,9 @@
 #include "Television.hh"
 #include "ThrowChain.hh"
 #include "EffectiveTV.hh"
+#include "UpAir.hh"
 #include "Dummy.hh"
+#include "DownAir.hh"
 
 #define SetAction(iaction, actionClass)		\
 {											\
@@ -69,6 +71,8 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(DOWN_DASH, DownDash);
 	SetAction(UP_PUNCH, UpPunch);
 	SetAction(THROW_CHAIN, ThrowChain);
+	SetAction(UP_AIR, UpAir);
+	SetAction(DOWN_AIR, DownAir);
 
 	return (new DummyAction(p));
 		//

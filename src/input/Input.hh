@@ -29,6 +29,7 @@ private:
 	SDL_Event			_event;
 	std::vector<Controler *>	_ctrl;
 	int				_axe[4];
+	int				_dummy;
 
 /* SINGLETON */
 private:

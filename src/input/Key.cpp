@@ -15,7 +15,8 @@
 
 Key::Key()
 {
-	_lastOkDir = Position(0, 1);
+	_lastOkDir[0] = Position(0, 1);
+	_lastOkDir[1] = Position(0, 1);
 	for (int i = 0; i < COUNT; i++)
 	{
 		_delta[i] = 0;
@@ -25,19 +26,32 @@ Key::Key()
 
 int	Key::operator[](int i) const
 {
-	if (i >= L2)
+	if (i <= LAST_ANALOG)
+	{
+		if (MPOS(*_val[i]) < IGNORED_CAP)
+			return 0;
+		if (i == VERT || i == HOR)
+		{
+			if ((MPOS(*_val[VERT]) + 200 > MPOS(*_val[HOR])) == (i == VERT))
+				return (MSIGN(*_val[i]));
+			else
+				return 0;
+		}
+		else
+		{
+			if ((MPOS(*_val[VERT2]) + 200 > MPOS(*_val[HOR2])) == (i == VERT2))
+				return (MSIGN(*_val[i]));
+			else
+				return 0;
+		}
+	}
+	else
 		return (_delta[i]);
-
-	if (MPOS(*_val[i]) < IGNORED_CAP)
-		return (0);
-	if ((MPOS(*_val[VERT]) + 200 > MPOS(*_val[HOR])) == (i == VERT))
-		return (MSIGN(*_val[i]));
-	return (0);
 }
 
 int	Key::operator()(int i) const
 {
-	if (i <= VERT && *_val[i] > -IGNORED_CAP && *_val[i] < IGNORED_CAP)
+	if (i <= LAST_ANALOG && MPOS(*_val[i]) < IGNORED_CAP)
 		return (0);
 	if (i == R2 || i == L2)
 		return *_val[i] > 10000;
@@ -57,14 +71,17 @@ void	Key::update()
 		_prevVal[i] = *_val[i];
 	}
 
-	float hor = 0;
-	float vert = 0;
-	if (MPOS(*_val[VERT]) >= IGNORED_CAP)
-		vert = *_val[VERT];
-	if (MPOS(*_val[HOR]) >= IGNORED_CAP)
-		hor = *_val[HOR];
-	if (vert != 0 || hor != 0)
-		_lastOkDir = Position(vert, hor).normalize();
+	for (int i = 0; i < 4; i += 2)
+	{
+		float hor = 0;
+		float vert = 0;
+		if (MPOS(*_val[VERT + i]) >= IGNORED_CAP)
+			vert = *_val[VERT + i];
+		if (MPOS(*_val[HOR + i]) >= IGNORED_CAP)
+			hor = *_val[HOR + i];
+		if (vert != 0 || hor != 0)
+			_lastOkDir[i / 2] = Position(vert, hor).normalize();
+	}
 }
 
 float	Key::squaredLength() const
@@ -103,12 +120,12 @@ int	*&Key::ptr(int i)
 	return (_val[i]);
 }
 
-Angle		Key::angle() const
+Angle		Key::angle(int id) const
 {
-	return direction().angle();
+	return direction(id).angle();
 }
 
-Position		Key::direction() const
+Position		Key::direction(int id) const
 {
-	return _lastOkDir;
+	return _lastOkDir[id];
 }

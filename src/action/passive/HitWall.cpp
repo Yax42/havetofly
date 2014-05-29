@@ -28,7 +28,7 @@ void		HitWall::check()
 	{
 		_newLastWallHit = _player(Event::RIGHT_WALL) - _player(Event::LEFT_WALL); // 1 or -1;
 		_count = 3;
-		if (_player.currentAction() == IAction::STUN)
+		if (_player.currentActionId() == IAction::STUN)
 		{
 			if (_player[TECH]->val())
 			{

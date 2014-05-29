@@ -50,6 +50,7 @@ Input::~Input()
 
 Input::Input() : _quitKey(false)
 {
+	_dummy = 0;
 	for (int i = 0; i < NB_CTRL; i++)
 		_ctrl.push_back(new Controler(i));
 	for (int i = 0; i < SDL_NUM_SCANCODES; i++)
@@ -88,6 +89,8 @@ Key	Input::getKBKey()
 
 	k.ptr(Key::HOR) = &_axe[0];
 	k.ptr(Key::VERT) = &_axe[1];
+	k.ptr(Key::HOR2) = &_dummy;
+	k.ptr(Key::VERT2) = &_dummy;
 	k.ptr(Key::R2) = &_axe[2];
 	k.ptr(Key::L2) = &_axe[3];
 	k.ptr(Key::A) = &_kb[SDLK_h];

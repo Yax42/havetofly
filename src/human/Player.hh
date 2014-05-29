@@ -66,7 +66,7 @@ public:
 
 	/* SETTERS */
 	void			operator=(Position const &speed);
-	int			operator()(int event);
+	int				operator()(int event);
 	//int			key(int k);
 	void			orient(int o);
 	void			tp(const Position &dir);
@@ -80,24 +80,25 @@ public:
 
 	/* POSITION */
 	Position const	&pos() const;
-	int			x() const;
-	int			y() const;
+	int				x() const;
+	int				y() const;
 
 	/* ACTION */
 	void			doThrow(IThrowable *item);
-	int			currentAction() const;
-	IAction		*operator[](int action);
+	int				currentActionId() const;
+	IAction			*currentAction();
+	IAction			*operator[](int action);
 	void			setAction(int id, int initVal = 0);
 
 	/* GETTERS */
-	int			closeWall() const;
+	int				closeWall() const;
 	Position 		closePos() const;
 	Bones			&bones();
 	const Bones		&bones() const;
 	void			kill();
 	bool			alive() const;
-	int			team() const;
-	int			color() const;
+	int				team() const;
+	int				color() const;
 	const int		&orient() const;
 	const std::list<Hitbox>	&getHB() const;
 	operator const Hitbox() const;

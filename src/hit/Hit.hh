@@ -24,31 +24,33 @@ public:
 			ORIENT,
 			NONE,
 			WALL,
+			METEOR,
 		};
 private:
-	int				_stun;
-	Position			_speed;
-	const int			&_orient;
-	int				_hitLagg;
-	bool				_isThrowable;
-	int				_type;
-	bool				_addStun;
-	std::list<Hitbox>		_hb;
+	int							_stun;
+	Position					_speed;
+	const int					&_orient;
+	int							_hitLagg;
+	bool						_isThrowable;
+	int							_type;
+	bool						_addStun;
+	std::list<Hitbox>			_hb;
 	std::list<Player const*>	_players;
-	bool			_asleep;
+	bool						_asleep;
 
 public:
 	Hit(int stun, const Position &speed, const int &orient,
 			int hitLagg, bool isThrowable, int type, bool addStun = false);
 	~Hit() {}
-	bool	isThrowable() const;
-	void	sleep(bool v) { _asleep = v; }
-	int	go(Player &ennemy) const;
-	bool	focus(Player &ennemy);
-	void	reset();
-	void	add(float ray, const Position &center, const Position &playerPos);
-	void	print(Graphics &g) const;
-	int	hitLagg() const;
+	bool				isThrowable() const;
+	void				sleep(bool v) { _asleep = v; }
+	void				go(Player &ennemy) const;
+	bool				focus(Player &ennemy);
+	void				reset();
+	void				add(float ray, const Position &center, const Position &playerPos);
+	void				print(Graphics &g) const;
+	int					hitLagg() const;
+	void				setSpeed(const Position &speed) { _speed = speed; }
 };
 
 #endif /* !HIT_HH_ */

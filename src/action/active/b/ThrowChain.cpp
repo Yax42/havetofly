@@ -21,7 +21,10 @@ ThrowChain::ThrowChain(Player &player) :
 void	ThrowChain::init(int v)
 {
 	_count = 20;
-	_player.doThrow(new Chain(_player, _player.key.direction() * 10));
+	Position dir = _player.key.direction();
+	dir.x = (dir.x >= 0 ? 1 : -1);
+	dir.y = (dir.y >= 0 ? 1 : -1);
+	_player.doThrow(new Chain(_player, dir * 10));
 	_usable = false;
 }
 
@@ -50,7 +53,7 @@ void		ThrowChain::check()
 
 bool		ThrowChain::request()
 {
-	return (_usable && _player.key[Key::X] == 1 && !_player.key(Key::R2));
+	return ((DEBUG & 1024 ||_usable) && _player.key[Key::X] == 1 && !_player.key(Key::R2));
 }
 
 int			ThrowChain::val()

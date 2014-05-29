@@ -16,6 +16,18 @@
 class Stun : public AAction
 {
 public:
+	enum
+	{
+		RESET_TIME = -1,
+		METEOR_LOCKED = -2,
+		METEOR = -3,
+		ADDITIVE = -5,
+		NORMAL_STUN = -4,
+	};
+private:
+	bool				_meteorCancel;
+	int					_state;
+public:
 	Stun(Player &player);
 	virtual ~Stun(){}
 	virtual void		init(int v = 0);

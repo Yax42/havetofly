@@ -97,3 +97,19 @@ const Position		&Bones::operator[](int id) const
 {
 	return (_pos[id]);
 }
+
+void			Bones::set(int knee1, int foot1, int knee2, int foot2,
+						int elbow1, int hand1, int elbow2, int hand2,
+						int head, int body)
+{
+	angle[BODY] = Angle(body, 0);
+	angle[HEAD] = Angle(head, 0);
+	angle[ELBOW2] = Angle(elbow2, 0);
+	angle[HAND2] = Angle(hand2, 0);
+	angle[KNEE2] = Angle(knee2, 0);
+	angle[FOOT2] = Angle(foot2, 0);
+	angle[ELBOW1] = Angle(elbow1, 0);
+	angle[HAND1] = Angle(hand1, 0);
+	angle[KNEE1] = Angle(knee1, 0);
+	angle[FOOT1] = Angle(foot1, 0);
+}

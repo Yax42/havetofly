@@ -1,5 +1,6 @@
+
 //
-// DownDash.hh for active in /home/brunie_j/local/my/havetofly/src/action/active
+// UpAir.hh for active in /home/brunie_j/local/my/havetofly/src/action/active
 //
 // Made by Brunier Jean
 // Login	 <brunie_j@epitech.net>
@@ -8,21 +9,18 @@
 // Last update Fri Apr 19 13:54:54 2013 Brunier Jean
 //
 
-#ifndef DOWNDASH_HH_
-# define DOWNDASH_HH_
+#ifndef UP_AIR_HH_
+# define UP_AIR_HH_
 
 # include "AAction.hh"
 
-class DownDash : public AAction
+class UpAir : public AAction
 {
 private:
-	//float					_shurikenCancel;
-	Angle					_graphicAngle;
-	bool					_isCanceled;
-	float					_heightFactor;
+	static const float				Power;
 public:
-	DownDash(Player &player);
-	virtual ~DownDash(){}
+	UpAir(Player &player);
+	virtual ~UpAir(){}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
 	virtual void		step();
@@ -31,8 +29,6 @@ public:
 	virtual bool		request();
 	virtual void		upBones();
 	virtual void		print(Graphics &g) const;
-	//bool				checkShurikenCancel();
-	void				updateSpeed();
 };
 
-#endif /* !DOWNDASH_HH_ */
+#endif /* !UP_AIR_HH_ */

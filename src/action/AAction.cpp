@@ -64,7 +64,7 @@ bool	AAction::hit(Player &ennemy)
 		return (false);
 	if (_hit->focus(ennemy))
 		{
-			if (ennemy.currentAction() != IAction::SHIELD)
+			if (ennemy.currentActionId() != IAction::SHIELD)
 				ennemy.hit(_hit);
 			return (true);
 		}
@@ -102,7 +102,7 @@ void		AAction::printHB(Graphics &g) const
 
 bool		AAction::isActive() const
 {
-	return (_player.currentAction() == id());
+	return (_player.currentActionId() == id());
 }
 
 

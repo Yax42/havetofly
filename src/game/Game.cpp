@@ -74,12 +74,12 @@ bool		Game::manyTeams() const
 	int		team = -1;
 
 	for (Players::const_iterator i = _players.begin(); i != _players.end(); ++i)
-		{
-			if (team == -1 && (*i)->alive())
-	team = (*i)->team();
-			else if ((*i)->alive() && (*i)->team() != team)
-	return (true);
-		}
+	{
+		if (team == -1 && (*i)->alive())
+			team = (*i)->team();
+		else if ((*i)->alive() && (*i)->team() != team)
+			return (true);
+	}
 	return (false);
 }
 
@@ -106,8 +106,13 @@ bool		Game::iterLoop()
 		(*i)->procHit();
 
 	for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
+	{
 		if ((**i)[IAction::HIT_LAGG]->val() == 0)
 			(*i)->process();
+		else
+			(**i)[IAction::HIT_LAGG]->step();
+	}
+	
 
 	for(Players::iterator i = _players.begin(); i != _players.end(); ++i)
 		(*i)->upKeys();

@@ -49,7 +49,7 @@ bool	Television::hit(Player &ennemy)
 		return (false);
 	if (_hit->focus(ennemy))
 		{
-			if (ennemy.currentAction() != IAction::SHIELD)
+			if (ennemy.currentActionId() != IAction::SHIELD)
 				ennemy.hit(_hit);
 			return (true);
 		}

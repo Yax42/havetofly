@@ -16,10 +16,16 @@ Stun::Stun(Player &player) : AAction(player, STUN, NULL)
 
 void	Stun::set(int val)
 {
-	if (val == -1)
+	if (val == METEOR_LOCKED)
+		_meteorCancel = false;
+	else if (val < RESET_TIME)
+		_state = val;
+	else if (val == RESET_TIME)
 		_count = 0;
-	else
+	else if (_state == ADDITIVE)
 		_count += val;
+	else
+		_count = val;
 }
 
 int	Stun::val()
@@ -29,13 +35,16 @@ int	Stun::val()
 
 void	Stun::init(int v)
 {
+	_meteorCancel = true;
+	_state = NORMAL_STUN;
 	if (v != 0)
 		_count = v;
 }
 
 bool	Stun::allow(int a)
 {
-	return (a < MOVE);
+	return (a == GRAVITY || a == INERTIE ||
+	(a == DOUBLE_JUMP && _meteorCancel && _state == METEOR));
 }
 
 void	Stun::step()

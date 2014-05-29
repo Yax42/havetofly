@@ -19,8 +19,9 @@ public:
 	HitLagg(Player &player);
 	virtual ~HitLagg(){}
 	virtual void		init(int v);
-	virtual int		val();
+	virtual int			val();
 	virtual void		check();
+	virtual void		step();
 };
 
 #endif /* !HITLAGG_HH_ */

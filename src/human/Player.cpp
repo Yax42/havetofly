@@ -113,23 +113,14 @@ void		Player::move()
 
 void		Player::procHit()
 {
-	int		tmp;
-
 	if (_hit != NULL)
 	{
 		if (_hit->isThrowable())
 			_event[Event::HIT_THROW] = true;
 		else
 			_event[Event::HIT] = true;
-		tmp = _hit->go(*this);
-		if (tmp != 0)
-		{
-			_doing = _action[IAction::STUN];
-			if (tmp != -1)
-				_doing->init(tmp);
-		}
-		else if (!_hit->isThrowable())
-			_doing = _action[IAction::INERTIE];
+		_hit->go(*this);
+		//if (!_hit->isThrowable()) _doing = _action[IAction::INERTIE];
 		_hit = NULL;
 	}
 }
@@ -152,9 +143,9 @@ void		Player::process()
 
 void		Player::engageAction(int action, int v)
 {
-			_doing->end();
-			_doing = _action[action];
-			_doing->init(v);
+	_doing->end();
+	_doing = _action[action];
+	_doing->init(v);
 }
 
 void		Player::upKeys()
@@ -181,7 +172,12 @@ void	Player::setAction(int id, int initVal)
 	_doing->init(initVal);
 }
 
-int	Player::currentAction() const
+IAction		*Player::currentAction()
+{
+	return _doing;
+}
+
+int	Player::currentActionId() const
 {
 	return (_doing->id());
 }

@@ -12,6 +12,7 @@
 
 #include "Hit.hh"
 #include "Player.hh"
+#include "Stun.hh"
 
 Hit::Hit(int stun, Position const &speed, const int &orient,
 		int hitLagg, bool isThrowable, int type, bool addStun) :
@@ -31,20 +32,21 @@ bool	Hit::isThrowable() const
 	return (_isThrowable);
 }
 
-int	Hit::go(Player &ennemy) const
+void	Hit::go(Player &ennemy) const
 {
 	if (_type != NONE)
-	{
 		ennemy.sy(_speed.y);
-		ennemy.sx(_speed.x * ((_type == ORIENT) ? _orient : ennemy.closeWall()));
-	}
+	else if (_type == ORIENT)
+		ennemy.sx(_speed.x * _orient);
+	else if (_type == WALL)
+		ennemy.sx(_speed.x * ennemy.closeWall());
+	ennemy.engageAction(IAction::STUN);
 	ennemy[IAction::HIT_LAGG]->init(_hitLagg);
 	if (_addStun)
-	{
-		ennemy[IAction::STUN]->set(_stun);
-		return (-1);
-	}
-	return (_stun);
+		ennemy[IAction::STUN]->set(Stun::ADDITIVE);
+	if (_type == METEOR)
+		ennemy[IAction::STUN]->set(Stun::METEOR);
+	ennemy[IAction::STUN]->set(_stun);
 }
 
 bool	Hit::focus(Player &ennemy)

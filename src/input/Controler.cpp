@@ -107,13 +107,11 @@ void			Controler::update()
 
 void	Controler::proc()
 {
-	_keys[0] = SDL_JoystickGetAxis(_joystick, 0);
-	_keys[1] = SDL_JoystickGetAxis(_joystick, 1);
-	_keys[2] = SDL_JoystickGetAxis(_joystick, 4);
-	_keys[3] = SDL_JoystickGetAxis(_joystick, 5);
-	for (int i = 0; i < 6; i++)
-		_keys[i + 4] = SDL_JoystickGetButton(_joystick, i + 10);
-	
+	int i = 0;
+	for (; i < 6; i++)
+		_keys[i] = SDL_JoystickGetAxis(_joystick, i);
+	for (; i < Key::COUNT; i++)
+		_keys[i] = SDL_JoystickGetButton(_joystick, i + 4);
 }
 
 /**********/

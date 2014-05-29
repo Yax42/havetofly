@@ -49,82 +49,64 @@
     <Filter Include="Source Files\action\passive">
       <UniqueIdentifier>{1daf1cf3-9050-4995-9c27-b3fbdc1cd0f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\action\active\a">
-      <UniqueIdentifier>{572e72de-b658-4778-b6c3-04e864d58c3b}</UniqueIdentifier>
+    <Filter Include="Source Files\action\active\agressive">
+      <UniqueIdentifier>{4c1d8ab2-8ebe-4954-bd26-ce23074c27a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\action\active\b">
-      <UniqueIdentifier>{81bff2e9-cc39-4a78-ae0a-fd647638baf0}</UniqueIdentifier>
+    <Filter Include="Source Files\action\active\defensive">
+      <UniqueIdentifier>{4cd5541b-a923-48f8-a244-30c54b37f299}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\action\active\x">
+    <Filter Include="Source Files\action\active\mobility">
+      <UniqueIdentifier>{d6590786-02d1-48ce-b74a-97d959cd268d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\agressive\aerial">
+      <UniqueIdentifier>{043caa67-ff8f-44d4-8bef-434f09e0e3c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\unused">
+      <UniqueIdentifier>{fc8e0527-2e1b-4bed-b7c5-740ea3594d0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\unused\x">
       <UniqueIdentifier>{63426119-294e-4ff7-99bc-8c32728770e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\action\active\y">
+    <Filter Include="Source Files\action\active\unused\y">
       <UniqueIdentifier>{03b16a1f-266d-45fe-a46e-77e57a0432be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\unused\b">
+      <UniqueIdentifier>{81bff2e9-cc39-4a78-ae0a-fd647638baf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\action\active\passive">
+      <UniqueIdentifier>{bd64300f-8053-4992-8ff3-66132b5b5990}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\const.hh">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="..\src\action\active\a\WallJump.hh">
-      <Filter>Source Files\action\active\a</Filter>
-    </None>
-    <None Include="..\src\action\active\a\DoubleJump.hh">
-      <Filter>Source Files\action\active\a</Filter>
-    </None>
-    <None Include="..\src\action\active\b\ThrowShuriken.hh">
-      <Filter>Source Files\action\active\b</Filter>
-    </None>
     <None Include="..\src\action\active\b\tmp">
-      <Filter>Source Files\action\active\b</Filter>
+      <Filter>Source Files\action\active\unused\b</Filter>
     </None>
     <None Include="..\src\action\active\b\EffectiveTV.hh">
-      <Filter>Source Files\action\active\b</Filter>
+      <Filter>Source Files\action\active\unused\b</Filter>
     </None>
     <None Include="..\src\action\active\b\Television.hh">
-      <Filter>Source Files\action\active\b</Filter>
+      <Filter>Source Files\action\active\unused\b</Filter>
     </None>
     <None Include="..\src\action\active\x\HorTP.hh">
-      <Filter>Source Files\action\active\x</Filter>
-    </None>
-    <None Include="..\src\action\active\x\Shield.hh">
-      <Filter>Source Files\action\active\x</Filter>
+      <Filter>Source Files\action\active\unused\x</Filter>
     </None>
     <None Include="..\src\action\active\x\Spin.hh">
-      <Filter>Source Files\action\active\x</Filter>
-    </None>
-    <None Include="..\src\action\active\x\UpPunch.hh">
-      <Filter>Source Files\action\active\x</Filter>
+      <Filter>Source Files\action\active\unused\x</Filter>
     </None>
     <None Include="..\src\action\active\x\Curve.hh">
-      <Filter>Source Files\action\active\x</Filter>
-    </None>
-    <None Include="..\src\action\active\x\DownDash.hh">
-      <Filter>Source Files\action\active\x</Filter>
-    </None>
-    <None Include="..\src\action\active\x\HorDash.hh">
-      <Filter>Source Files\action\active\x</Filter>
+      <Filter>Source Files\action\active\unused\x</Filter>
     </None>
     <None Include="..\src\action\active\y\ThrowBall.hh">
-      <Filter>Source Files\action\active\y</Filter>
+      <Filter>Source Files\action\active\unused\y</Filter>
     </None>
     <None Include="..\src\action\active\y\AutoGun.hh">
-      <Filter>Source Files\action\active\y</Filter>
+      <Filter>Source Files\action\active\unused\y</Filter>
     </None>
     <None Include="..\src\action\active\y\GunJump.hh">
-      <Filter>Source Files\action\active\y</Filter>
-    </None>
-    <None Include="..\src\action\active\Stun.hh">
-      <Filter>Source Files\action\active</Filter>
-    </None>
-    <None Include="..\src\action\active\HitLagg.hh">
-      <Filter>Source Files\action\active</Filter>
-    </None>
-    <None Include="..\src\action\active\StickCeiling.hh">
-      <Filter>Source Files\action\active</Filter>
-    </None>
-    <None Include="..\src\action\active\StickWall.hh">
-      <Filter>Source Files\action\active</Filter>
+      <Filter>Source Files\action\active\unused\y</Filter>
     </None>
     <None Include="..\src\action\passive\HitWall.hh">
       <Filter>Source Files\action\passive</Filter>
@@ -261,73 +243,79 @@
     <None Include="..\src\action\Dummy.hh">
       <Filter>Source Files\action</Filter>
     </None>
-    <None Include="..\src\action\active\b\ThrowChain.hh">
-      <Filter>Source Files\action\active\b</Filter>
-    </None>
     <None Include="..\src\throw\Chain.hh">
       <Filter>Source Files\throw</Filter>
+    </None>
+    <None Include="..\src\action\active\aerial\UpAir.hh">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
+    </None>
+    <None Include="..\src\action\active\a\WallJump.hh">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </None>
+    <None Include="..\src\action\active\a\DoubleJump.hh">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </None>
+    <None Include="..\src\action\active\b\ThrowChain.hh">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </None>
+    <None Include="..\src\action\active\b\ThrowShuriken.hh">
+      <Filter>Source Files\action\active\agressive</Filter>
+    </None>
+    <None Include="..\src\action\active\x\Shield.hh">
+      <Filter>Source Files\action\active\defensive</Filter>
+    </None>
+    <None Include="..\src\action\active\x\UpPunch.hh">
+      <Filter>Source Files\action\active\agressive</Filter>
+    </None>
+    <None Include="..\src\action\active\x\DownDash.hh">
+      <Filter>Source Files\action\active\agressive</Filter>
+    </None>
+    <None Include="..\src\action\active\x\HorDash.hh">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </None>
+    <None Include="..\src\action\active\Stun.hh">
+      <Filter>Source Files\action\active\passive</Filter>
+    </None>
+    <None Include="..\src\action\active\HitLagg.hh">
+      <Filter>Source Files\action\active\passive</Filter>
+    </None>
+    <None Include="..\src\action\active\StickCeiling.hh">
+      <Filter>Source Files\action\active\passive</Filter>
+    </None>
+    <None Include="..\src\action\active\StickWall.hh">
+      <Filter>Source Files\action\active\passive</Filter>
+    </None>
+    <None Include="..\src\action\active\aerial\DownAir.hh">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\action\active\a\WallJump.cpp">
-      <Filter>Source Files\action\active\a</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\a\DoubleJump.cpp">
-      <Filter>Source Files\action\active\a</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\b\ThrowShuriken.cpp">
-      <Filter>Source Files\action\active\b</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\action\active\b\EffectiveTV.cpp">
-      <Filter>Source Files\action\active\b</Filter>
+      <Filter>Source Files\action\active\unused\b</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\b\Television.cpp">
-      <Filter>Source Files\action\active\b</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\x\Shield.cpp">
-      <Filter>Source Files\action\active\x</Filter>
+      <Filter>Source Files\action\active\unused\b</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\x\Spin.cpp">
-      <Filter>Source Files\action\active\x</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\x\UpPunch.cpp">
-      <Filter>Source Files\action\active\x</Filter>
+      <Filter>Source Files\action\active\unused\x</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\x\Curve.cpp">
-      <Filter>Source Files\action\active\x</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\x\DownDash.cpp">
-      <Filter>Source Files\action\active\x</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\x\HorDash.cpp">
-      <Filter>Source Files\action\active\x</Filter>
+      <Filter>Source Files\action\active\unused\x</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\x\HorTP.cpp">
-      <Filter>Source Files\action\active\x</Filter>
+      <Filter>Source Files\action\active\unused\x</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\y\ThrowBall.cpp">
-      <Filter>Source Files\action\active\y</Filter>
+      <Filter>Source Files\action\active\unused\y</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\y\AutoGun.cpp">
-      <Filter>Source Files\action\active\y</Filter>
+      <Filter>Source Files\action\active\unused\y</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\active\y\GunJump.cpp">
-      <Filter>Source Files\action\active\y</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\Stun.cpp">
-      <Filter>Source Files\action\active</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\HitLagg.cpp">
-      <Filter>Source Files\action\active</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\StickCeiling.cpp">
-      <Filter>Source Files\action\active</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\action\active\StickWall.cpp">
-      <Filter>Source Files\action\active</Filter>
+      <Filter>Source Files\action\active\unused\y</Filter>
     </ClCompile>
     <ClCompile Include="..\src\action\passive\Inertie.cpp">
       <Filter>Source Files\action\passive</Filter>
@@ -452,11 +440,50 @@
     <ClCompile Include="..\src\util\Exception.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\action\active\b\ThrowChain.cpp">
-      <Filter>Source Files\action\active\b</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\throw\Chain.cpp">
       <Filter>Source Files\throw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\aerial\UpAir.cpp">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\a\DoubleJump.cpp">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\a\WallJump.cpp">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\b\ThrowChain.cpp">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\b\ThrowShuriken.cpp">
+      <Filter>Source Files\action\active\agressive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\Shield.cpp">
+      <Filter>Source Files\action\active\defensive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\UpPunch.cpp">
+      <Filter>Source Files\action\active\agressive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\DownDash.cpp">
+      <Filter>Source Files\action\active\agressive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\x\HorDash.cpp">
+      <Filter>Source Files\action\active\mobility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\HitLagg.cpp">
+      <Filter>Source Files\action\active\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\StickCeiling.cpp">
+      <Filter>Source Files\action\active\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\StickWall.cpp">
+      <Filter>Source Files\action\active\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\Stun.cpp">
+      <Filter>Source Files\action\active\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\aerial\DownAir.cpp">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

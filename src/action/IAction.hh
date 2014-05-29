@@ -42,7 +42,11 @@ public:
 			HOR_DASH,
 			UP_PUNCH,
 			THROW_CHAIN,
+			UP_AIR,
 /* End of the cool list */
+			DOWN_AIR,
+			FRONT_AIR,
+			BACK_AIR,
 			SHIELD,
 			AUTO_GUN,
 			GUN_JUMP,

@@ -21,6 +21,8 @@
   <ItemGroup>
     <None Include="..\src\action\AAction.hh" />
     <None Include="..\src\action\ActionFactory.hh" />
+    <None Include="..\src\action\active\aerial\DownAir.hh" />
+    <None Include="..\src\action\active\aerial\UpAir.hh" />
     <None Include="..\src\action\active\a\DoubleJump.hh" />
     <None Include="..\src\action\active\a\WallJump.hh" />
     <None Include="..\src\action\active\b\ThrowChain.hh" />
@@ -94,6 +96,8 @@
   <ItemGroup>
     <ClCompile Include="..\src\action\AAction.cpp" />
     <ClCompile Include="..\src\action\ActionFactory.cpp" />
+    <ClCompile Include="..\src\action\active\aerial\DownAir.cpp" />
+    <ClCompile Include="..\src\action\active\aerial\UpAir.cpp" />
     <ClCompile Include="..\src\action\active\a\DoubleJump.cpp" />
     <ClCompile Include="..\src\action\active\a\WallJump.cpp" />
     <ClCompile Include="..\src\action\active\b\ThrowChain.cpp" />
@@ -204,7 +208,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\util;$(SolutionDir)\src\throw;$(SolutionDir)\src\menu;$(SolutionDir)\src\math;$(SolutionDir)\src\input;$(SolutionDir)\src\human;$(SolutionDir)\src\hit;$(SolutionDir)\src\graphics;$(SolutionDir)\src\game;$(SolutionDir)\src\action;$(SolutionDir)\src\action\passive;$(SolutionDir)\src\action\active;$(SolutionDir)\src\action\active\y;$(SolutionDir)\src\action\active\x;$(SolutionDir)\src\action\active\b;$(SolutionDir)\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\util;$(SolutionDir)\src\throw;$(SolutionDir)\src\menu;$(SolutionDir)\src\math;$(SolutionDir)\src\input;$(SolutionDir)\src\human;$(SolutionDir)\src\hit;$(SolutionDir)\src\graphics;$(SolutionDir)\src\game;$(SolutionDir)\src\action;$(SolutionDir)\src\action\passive;$(SolutionDir)\src\action\active;$(SolutionDir)\src\action\active\y;$(SolutionDir)\src\action\active\x;$(SolutionDir)\src\action\active\b;$(SolutionDir)\src\action\active\aerial;$(SolutionDir)\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <CompileAs>CompileAsCpp</CompileAs>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -237,7 +241,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\util;$(SolutionDir)\src\throw;$(SolutionDir)\src\menu;$(SolutionDir)\src\math;$(SolutionDir)\src\input;$(SolutionDir)\src\human;$(SolutionDir)\src\hit;$(SolutionDir)\src\graphics;$(SolutionDir)\src\game;$(SolutionDir)\src\action;$(SolutionDir)\src\action\passive;$(SolutionDir)\src\action\active;$(SolutionDir)\src\action\active\y;$(SolutionDir)\src\action\active\x;$(SolutionDir)\src\action\active\b;$(SolutionDir)\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\util;$(SolutionDir)\src\throw;$(SolutionDir)\src\menu;$(SolutionDir)\src\math;$(SolutionDir)\src\input;$(SolutionDir)\src\human;$(SolutionDir)\src\hit;$(SolutionDir)\src\graphics;$(SolutionDir)\src\game;$(SolutionDir)\src\action;$(SolutionDir)\src\action\passive;$(SolutionDir)\src\action\active;$(SolutionDir)\src\action\active\y;$(SolutionDir)\src\action\active\x;$(SolutionDir)\src\action\active\b;$(SolutionDir)\src\action\active\aerial;$(SolutionDir)\src\action\active\a;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

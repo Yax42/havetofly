@@ -9,6 +9,7 @@
 //
 
 #include "HitLagg.hh"
+#include "Stun.hh"
 
 HitLagg::HitLagg(Player &player) : PassiveAction(player, HIT_LAGG)
 {
@@ -33,4 +34,10 @@ int		HitLagg::val()
 	if (_open == 0)
 		return (_count);
 	return (0);
+}
+
+void		HitLagg::step()
+{
+	if (_player[DOUBLE_JUMP]->request())
+		_player[STUN]->set(Stun::METEOR_LOCKED);
 }
