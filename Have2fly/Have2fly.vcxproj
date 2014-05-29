@@ -60,6 +60,7 @@
     <None Include="..\src\game\GameLoader.hh" />
     <None Include="..\src\graphics\AMenuElem.hh" />
     <None Include="..\src\graphics\APrintable.hh" />
+    <None Include="..\src\graphics\ATexture.hh" />
     <None Include="..\src\graphics\Display.hh" />
     <None Include="..\src\graphics\Graphics.hh" />
     <None Include="..\src\hit\Hit.hh" />
@@ -130,6 +131,7 @@
     <ClCompile Include="..\src\game\Game.cpp" />
     <ClCompile Include="..\src\game\GameLoader.cpp" />
     <ClCompile Include="..\src\graphics\APrintable.cpp" />
+    <ClCompile Include="..\src\graphics\ATexture.cpp" />
     <ClCompile Include="..\src\graphics\Display.cpp" />
     <ClCompile Include="..\src\graphics\Graphics.cpp" />
     <ClCompile Include="..\src\hit\Hit.cpp" />

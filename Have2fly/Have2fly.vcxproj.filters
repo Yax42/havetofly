@@ -288,6 +288,9 @@
     <None Include="..\src\action\active\aerial\DownAir.hh">
       <Filter>Source Files\action\active\agressive\aerial</Filter>
     </None>
+    <None Include="..\src\graphics\ATexture.hh">
+      <Filter>Source Files\graphics</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -484,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="..\src\action\active\aerial\DownAir.cpp">
       <Filter>Source Files\action\active\agressive\aerial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\ATexture.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

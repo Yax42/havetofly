@@ -21,10 +21,11 @@
 	#include <unistd.h>
 #endif
 # include <SDL2/SDL.h>
-
+# include <vector>
 # include "Position.hh"
 # include "Angle.hh"
 # include "Color.hh"
+# include "ATexture.hh"
 
 class Graphics
 {
@@ -38,6 +39,7 @@ private:
 	SDL_Surface	*_screen;
 	SDL_Texture *_texture;
 	bool		_fs;
+	std::vector<ATexture*> _listTexture;
 
 public:
 	~Graphics();
@@ -64,6 +66,7 @@ public:
 			const Angle &from, const Angle &size, const Color &color);
 
 /* LINE */
+	void	line(SDL_Surface *surface, Position const &pos1, Position const &pos2, const Color &color);
 	void	line(Position const &pos1, Position const &pos2, const Color &color);
 	void	line(Position const &pos1, Position const &pos2, const Color &color, int thick);
 	void	curveLine(Position const &pos1, Position const &pos2, Position const &pos3, const Color &color);
@@ -72,6 +75,11 @@ public:
 
 /* PIXEL */
 	void	printPixel(Position const &pos, const Color &color);
+	void	printPixel(SDL_Surface *, Position const &pos, const Color &color);
+
+/* TEXTURE */
+	void			addTexture(ATexture::typetexture, SDL_Texture*, float, const Color*);
+	SDL_Texture		*textureExist(ATexture::typetexture, float, const Color*) const;
 };
 
 #endif /* GRAPHICS_HH_ */
