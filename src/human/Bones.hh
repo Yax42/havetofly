@@ -50,9 +50,9 @@ public:
 	~Bones();
 	void			print(Graphics &g);
 	const Position	&operator[](int id) const;
-	void			set(int knee1, int foot1, int knee2, int foot2,
-						int elbow1, int hand1, int elbow2, int hand2,
-						int head, int body);
+	void			set(float knee1, float foot1, float knee2, float foot2,
+						float elbow1, float hand1, float elbow2, float hand2,
+						float head, float body);
 private:
 	void			check();
 };

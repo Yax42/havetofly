@@ -78,15 +78,15 @@ int	main(int ac, char **av)
 		print_help();
 	if (ac > 1)
 		g_debug = atoi(av[1]);
-	g_debug = 1 + 1024;
+	g_debug = 1 + 1024 + 8;
 
 	try
-		{
-			run();
-		}
+	{
+		run();
+	}
 	catch (std::exception& e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	return (0);
 }

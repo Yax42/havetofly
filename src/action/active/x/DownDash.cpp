@@ -56,16 +56,23 @@ bool		DownDash::checkShurikenCancel()
 }
 */
 
-void		DownDash::updateSpeed()
+void			DownDash::updateSpeed()
 {
+
+	Position	factors;
 	if (!_isCanceled)
-		_player = Position(7, _player.orient() * (4));
+		factors = Position (7, 4);
+	else if (_count > 15)
+		factors = Position (2, 6);
 	else
-	{
+		factors = Position (6, 1);
+
+	_player = Position(factors.y, _player.orient() * factors.x);
+		/*
 		float	factor = 1.0f - _count / 30.0;
 		factor = 1.f - factor * factor * factor;
-		_player = Position(9 - 9 * factor * _heightFactor , _player.orient() * (4 + factor * 2));
-	}
+		_player = Position(9 - 9 * factor, _player.orient() * (4 + factor * 2));
+		*/
 
 	_graphicAngle = (_player.speed().angle().rad() - Math::PiHalf) * (-_player.orient());
 }
@@ -80,14 +87,15 @@ void	DownDash::step()
 	{
 		_heightFactor = float(_player.y()) / float(Game::h());
 
-		if (_player.key.getKey(Key::Y) != 1)
+		if (_player.key.getKey(Key::Y) != 1 && _player.pos().y > Game::h() / 2)
 			_isCanceled = true;
 		else
 			_hit->sleep(false);
 	}
-	else if (_count == 0)
+	else if ((_count == 0 && !_isCanceled) || (_isCanceled && _count == -15))
 	{
 		_player.sx(_player.sx() / 2);
+		//_player.sy(_player.sy() / 2);
 		_player.engageAction(INERTIE);
 	}
 	else if ((_player(Event::LEFT_WALL) && _player.orient() < 0) ||

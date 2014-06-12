@@ -1,5 +1,5 @@
 //
-// UpAir.hh for active in /home/brunie_j/local/my/havetofly/src/action/active
+// BackAir.hh for active in /home/brunie_j/local/my/havetofly/src/action/active
 //
 // Made by Brunier Jean
 // Login	 <brunie_j@epitech.net>
@@ -8,18 +8,18 @@
 // Last update Fri Apr 19 13:54:54 2013 Brunier Jean
 //
 
-#ifndef UP_AIR_HH_
-# define UP_AIR_HH_
+#ifndef BACK_AIR_HH_
+# define BACK_AIR_HH_
 
 # include "AAction.hh"
 
-class UpAir : public AAction
+class BackAir : public AAction
 {
 private:
 	static const float				Power;
 public:
-	UpAir(Player &player);
-	virtual ~UpAir(){}
+	BackAir(Player &player);
+	virtual ~BackAir(){}
 	virtual void		init(int v = 0);
 	virtual bool		allow(int a);
 	virtual void		step();
@@ -30,4 +30,4 @@ public:
 	virtual void		print(Graphics &g) const;
 };
 
-#endif /* !UP_AIR_HH_ */
+#endif /* !BACK_AIR_HH_ */

@@ -11,7 +11,7 @@
 #include "Math.hh"
 #include "Key.hh"
 
-#define	IGNORED_CAP 5000
+#define	IGNORED_CAP 15000
 
 Key::Key()
 {

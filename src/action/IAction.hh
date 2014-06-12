@@ -43,10 +43,10 @@ public:
 			UP_PUNCH,
 			THROW_CHAIN,
 			UP_AIR,
-/* End of the cool list */
 			DOWN_AIR,
 			FRONT_AIR,
 			BACK_AIR,
+/* End of the cool list */
 			SHIELD,
 			AUTO_GUN,
 			GUN_JUMP,

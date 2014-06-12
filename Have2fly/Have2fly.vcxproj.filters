@@ -291,6 +291,12 @@
     <None Include="..\src\graphics\ATexture.hh">
       <Filter>Source Files\graphics</Filter>
     </None>
+    <None Include="..\src\action\active\aerial\FrontAir.hh">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
+    </None>
+    <None Include="..\src\action\active\aerial\BackAir.hh">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -490,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="..\src\graphics\ATexture.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\aerial\FrontAir.cpp">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\action\active\aerial\BackAir.cpp">
+      <Filter>Source Files\action\active\agressive\aerial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

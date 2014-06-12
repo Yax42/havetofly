@@ -18,12 +18,12 @@
 
 const int	Bones::Size[Bones::COUNT] =
 {
-	20,	// FOOT1
-	20,	// KNEE1
+	24,	// FOOT1
+	24,	// KNEE1
 	20,	// HAND1
 	14,	// ELBOW1
-	20,	// FOOT2
-	20,	// KNEE2
+	24,	// FOOT2
+	24,	// KNEE2
 	20,	// HAND2
 	14,	// ELBOW2
 	14,	// HEAD
@@ -98,9 +98,9 @@ const Position		&Bones::operator[](int id) const
 	return (_pos[id]);
 }
 
-void			Bones::set(int knee1, int foot1, int knee2, int foot2,
-						int elbow1, int hand1, int elbow2, int hand2,
-						int head, int body)
+void			Bones::set(float knee1, float foot1, float knee2, float foot2,
+						float elbow1, float hand1, float elbow2, float hand2,
+						float head, float body)
 {
 	angle[BODY] = Angle(body, 0);
 	angle[HEAD] = Angle(head, 0);

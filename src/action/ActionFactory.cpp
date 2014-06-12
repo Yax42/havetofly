@@ -43,6 +43,8 @@
 #include "UpAir.hh"
 #include "Dummy.hh"
 #include "DownAir.hh"
+#include "FrontAir.hh"
+#include "BackAir.hh"
 
 #define SetAction(iaction, actionClass)		\
 {											\
@@ -73,6 +75,8 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(THROW_CHAIN, ThrowChain);
 	SetAction(UP_AIR, UpAir);
 	SetAction(DOWN_AIR, DownAir);
+	SetAction(FRONT_AIR, FrontAir);
+	SetAction(BACK_AIR, BackAir);
 
 	return (new DummyAction(p));
 		//

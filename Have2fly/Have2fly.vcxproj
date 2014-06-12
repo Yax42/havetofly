@@ -21,7 +21,9 @@
   <ItemGroup>
     <None Include="..\src\action\AAction.hh" />
     <None Include="..\src\action\ActionFactory.hh" />
+    <None Include="..\src\action\active\aerial\BackAir.hh" />
     <None Include="..\src\action\active\aerial\DownAir.hh" />
+    <None Include="..\src\action\active\aerial\FrontAir.hh" />
     <None Include="..\src\action\active\aerial\UpAir.hh" />
     <None Include="..\src\action\active\a\DoubleJump.hh" />
     <None Include="..\src\action\active\a\WallJump.hh" />
@@ -97,7 +99,9 @@
   <ItemGroup>
     <ClCompile Include="..\src\action\AAction.cpp" />
     <ClCompile Include="..\src\action\ActionFactory.cpp" />
+    <ClCompile Include="..\src\action\active\aerial\BackAir.cpp" />
     <ClCompile Include="..\src\action\active\aerial\DownAir.cpp" />
+    <ClCompile Include="..\src\action\active\aerial\FrontAir.cpp" />
     <ClCompile Include="..\src\action\active\aerial\UpAir.cpp" />
     <ClCompile Include="..\src\action\active\a\DoubleJump.cpp" />
     <ClCompile Include="..\src\action\active\a\WallJump.cpp" />
