@@ -18,6 +18,10 @@ class Shield : public AAction
 private:
 	int			_level;
 	Position	_prevSpeed;
+	Position	_origin;
+	Position	_lastPos;
+	static const int	_openRange;
+
 public:
 	Shield(Player &player);
 	virtual ~Shield(){}
@@ -26,6 +30,7 @@ public:
 	virtual void		set(int);
 	virtual bool		request();
 	virtual void		init(int);
+	virtual void		check();
 	virtual void		end();
 	virtual bool		allow(int a);
 

@@ -11,6 +11,8 @@
 #include "Shield.hh"
 #include "Color.hh"
 
+const int	Shield::_openRange = 280;
+
 Shield::Shield(Player &player) :
 	AAction(player, SHIELD, new Hit(90, Position(-2, 2), player.orient(), 10, false, Hit::WALL))
 {
@@ -19,20 +21,22 @@ Shield::Shield(Player &player) :
 
 int		Shield::val()
 {
-
-	if (_count > 20);
-		
 	return (_open == 0);
 }
 
 void	Shield::init(int)
 {
+	_lastPos = _player.pos();
 	_hit->reset();
-	_open = 300;
+	_open = 0;
 	_count = 60;
 	_prevSpeed = _player.speed();
 	_player = Position();
 	_player.invincible(true);
+	_origin = Position();
+	for (int i = Bones::FOOT2; i < Bones::COUNT; i++)
+		_origin += _bones[i];
+	_origin /= Bones::COUNT - Bones::FOOT2;
 }
 
 bool		Shield::allow(int a)
@@ -42,9 +46,10 @@ bool		Shield::allow(int a)
 
 bool		Shield::request()
 {
-	return (_player.key[Key::Y] == 1 &&
-			_player.key[Key::VERT] == 0 &&
-			_player.key[Key::HOR] == 0);
+	return (_player.key[Key::Y] == 1
+		&& _player.key[Key::VERT] == 0
+		&& _player.key[Key::HOR] == 0
+		&& _open);
 }
 
 
@@ -64,10 +69,14 @@ void		Shield::step()
 	}
 }
 
+void		Shield::check()
+{
+	if (_player.pos().squaredDistance(_lastPos) > _openRange * _openRange)
+		_open = 1;
+}
+
 void		Shield::set(int v)
 {
-
-
 }
 
 
@@ -85,7 +94,16 @@ void		Shield::print(Graphics &g) const
 	if (isActive())
 	{
 		for (int i = 0; i < 4; i++)
-			g.sponge(_bones[Bones::BODY], i + 60, 6, 3, Angle(MTIME * 4, 0), 0);
+			g.sponge(_origin, i + 60, 6, 3, Angle(MTIME * 4, 0), 0);
+	}
+	else if (_open)
+	{
+		g.line(_bones[Bones::KNEE1], _bones[Bones::FOOT1], _player.color(), 20);
+		g.line(_bones[Bones::KNEE2], _bones[Bones::FOOT2], _player.color(), 20);
+	}
+	else if (DEBUG & 1024)
+	{
+		g.circle(_lastPos, _openRange, _player.color());
 	}
 
 #if 0
