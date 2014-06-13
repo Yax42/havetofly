@@ -67,4 +67,47 @@ void		ThrowChain::upBones()
 
 void		ThrowChain::print(Graphics &g) const
 {
+	if (_usable)
+	{
+		Color color = _player.color();//0x0088FF;
+		Color dif = _player.color();
+
+		int			range = 24;
+		int			iMax = range;
+		float		delta = (float(range) / iMax);
+		float		offset = 2;
+		int			speed = 2;
+		int			MaxRange = range * offset;
+		int			angleRange(80);
+		int			time = ((MTIME * speed) % (angleRange * 2));
+		int			sign = 1;
+		if (time > angleRange)
+		{
+			time -= angleRange;
+			sign = -1;
+		}
+		time -= angleRange / 2;
+		float	factor =1 - (Math::abs(float(time) / (angleRange / 2)));
+
+		Angle		angle = _bones.angle[Bones::BODY] + Angle(0, 0);
+		if (_player.orient() == 1)
+			angle = angle.mirrorY();
+
+		int limit = range / 2;
+		for (int i = 0; i < iMax; i++)
+		{
+			color -= Color(0x03, 0x03, 0x03);
+
+			for (int j = 0; j < 1; j++)
+			{
+				float	factor2 = 1;
+
+				if (i < limit)
+					factor2 = (i) / float(limit);
+
+				g.circlePart(_bones[Bones::BODY], MaxRange - i * delta * offset,
+					Angle(sign * (time + factor * (i - iMax) * 3), 0) + angle, Angle(27 * factor2, 0), color);
+			}
+		}
+	}
 }

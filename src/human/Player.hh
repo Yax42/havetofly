@@ -35,6 +35,7 @@ private:
 	int					_team;
 	Key					_keys;
 	int					_color;
+	bool				_invincible;
 public:
 	const Key			&key;
 private:
@@ -91,6 +92,8 @@ public:
 	void			setAction(int id, int initVal = 0);
 
 	/* GETTERS */
+	bool			invincible() const { return _invincible; }
+	void			invincible(bool v) { _invincible = v; }
 	int				closeWall() const;
 	Position 		closePos() const;
 	Bones			&bones();

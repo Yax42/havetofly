@@ -16,6 +16,8 @@ Stun::Stun(Player &player) : AAction(player, STUN, NULL)
 
 void	Stun::set(int val)
 {
+	if (_player.invincible())
+		return;
 	if (val == METEOR_LOCKED)
 		_meteorCancel = false;
 	else if (val < RESET_TIME)

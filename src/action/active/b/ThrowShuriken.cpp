@@ -20,7 +20,7 @@ ThrowShuriken::ThrowShuriken(Player &player) : AAction(player, THROW_SHURIKEN, N
 void	ThrowShuriken::init(int)
 {
 	_count = 40;
-	_player.sy(Math::cap(_player.sy(), -5, _level == 0 ? 100 : -_level));
+	_player.sy(Math::cap(_player.sy(), -5, _level == 0 ? 100 : -3));
 }
 
 bool	ThrowShuriken::allow(int a)
@@ -86,16 +86,20 @@ void		ThrowShuriken::upBones()
 
 void		ThrowShuriken::print(Graphics &g) const
 {
-	g.sponge(_bones[Bones::HAND2], 5, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
-	g.sponge(_bones[Bones::HAND2], 3, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
+	if (_level > 0)
+	{
+		g.sponge(_bones[Bones::HAND2], 5, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
+		g.sponge(_bones[Bones::HAND2], 3, 6, 3, Angle(MTIME * 8, 0), getColorFromLevel(_level));
+	}
 
-	if(1);
-	else if (0&& !_open && _count < 20)
+	/*
+	if (0&& !_open && _count < 20)
 	{
 		for (int i = 0; i < 4; i++)
 			g.circle(_bones[Bones::HAND2], (20 - _count) / 2 + 1, 0);
 	}
-	else if (_count > 0)
+	*/
+	if (_count > 0)
 	{
 		for (int i = 0; i < 4; i++)
 			g.sponge(_bones[Bones::HAND2], i + 1, 6, 3, Angle(MTIME * 3, 0), 0);

@@ -17,14 +17,19 @@ class Shield : public AAction
 {
 private:
 	int			_level;
+	Position	_prevSpeed;
 public:
 	Shield(Player &player);
 	virtual ~Shield(){}
-	virtual void		check();
+	virtual void		step();
 	virtual int			val();
 	virtual void		set(int);
+	virtual bool		request();
+	virtual void		init(int);
+	virtual void		end();
 
 	virtual void		print(Graphics &g) const;
 };
+
 
 #endif /* !SHIELD_HH_ */

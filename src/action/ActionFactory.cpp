@@ -77,11 +77,11 @@ IAction		*ActionFactory::get(int action, Player &p)
 	SetAction(DOWN_AIR, DownAir);
 	SetAction(FRONT_AIR, FrontAir);
 	SetAction(BACK_AIR, BackAir);
+	SetAction(SHIELD, Shield);
 
 	return (new DummyAction(p));
 		//
 	SetAction(HOR_TP, HorTP);
-	SetAction(SHIELD, Shield);
 	SetAction(SPIN, Spin);
 	SetAction(THROW_BALL, ThrowBall);
 	SetAction(CURVE, Curve);
