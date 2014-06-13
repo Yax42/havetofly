@@ -25,10 +25,13 @@ bool		Move::request()
 	{
 		float	curSx = _player.sx();
 		float	newSx = curSx + _player.key(Key::HOR) * SPEED;
-		if (_player.key(Key::HOR) < 0)
-			_player.orient(-1);
-		else if (_player.key(Key::HOR) > 0)
-			_player.orient(1);
+		if (0)
+		{
+			if (_player.key(Key::HOR) < 0)
+				_player.orient(-1);
+			else if (_player.key(Key::HOR) > 0)
+				_player.orient(1);
+		}
 
 		if (newSx > MAX && curSx < MAX)
 			_player.sx(MAX);

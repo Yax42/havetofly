@@ -62,6 +62,7 @@ public:
 	virtual int			hitLagg() const;
 	virtual void		loadBones();
 	void				tempo(int time) const;
+	void				UpdateOrient(float dir);
 
 };
 

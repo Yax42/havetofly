@@ -152,6 +152,14 @@ void		AAction::tempo(int v) const
 }
 
 
+void		AAction::UpdateOrient(float dir)
+{
+	if (dir < 0)
+		_player.orient(-1);
+	else if (dir > 0)
+		_player.orient(1);
+}
+
 Color		getColorFromLevel(int level)
 {
 	switch (level)

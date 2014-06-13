@@ -27,6 +27,7 @@ public:
 	virtual bool		request();
 	virtual void		init(int);
 	virtual void		end();
+	virtual bool		allow(int a);
 
 	virtual void		print(Graphics &g) const;
 };

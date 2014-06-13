@@ -35,6 +35,11 @@ void	Shield::init(int)
 	_player.invincible(true);
 }
 
+bool		Shield::allow(int a)
+{
+	return a == THROW_SHURIKEN;
+}
+
 bool		Shield::request()
 {
 	return (_player.key[Key::Y] == 1 &&
@@ -52,6 +57,7 @@ void		Shield::end()
 void		Shield::step()
 {
 	_count --;
+	UpdateOrient(_player.key(Key::HOR));
 	if (_count == 0)
 	{
 		_player.engageAction(INERTIE);

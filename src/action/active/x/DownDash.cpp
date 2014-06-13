@@ -20,6 +20,7 @@ DownDash::DownDash(Player &player) :
 
 void	DownDash::init(int v)
 {
+	UpdateOrient(_player.key(Key::HOR));
 	_hit->reset();
 	_hit->sleep(true);
 	_count = 45;

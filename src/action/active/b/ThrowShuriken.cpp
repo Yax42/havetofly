@@ -20,7 +20,7 @@ ThrowShuriken::ThrowShuriken(Player &player) : AAction(player, THROW_SHURIKEN, N
 void	ThrowShuriken::init(int)
 {
 	_count = 40;
-	_player.sy(Math::cap(_player.sy(), -5, _level == 0 ? 100 : -3));
+	_player.sy(Math::cap(_player.sy(), -5, _level == 0 ? 100 : -2));
 }
 
 bool	ThrowShuriken::allow(int a)
@@ -34,7 +34,14 @@ void	ThrowShuriken::step()
 	{
 		if (!_prevWasLevel3 || _level != 3)
 		{
-			_player.doThrow(new Shuriken(_player, _player.pos(), _player.key.direction() * 10, _level));
+			Position dir = _player.key.direction();
+			if ((dir.x > 0) != (_player.orient() > 0))
+			{
+				dir.y = Math::signNoZero(dir.y);
+				dir.x = 0;
+			}
+
+			_player.doThrow(new Shuriken(_player, _player.pos(), dir * 10, _level));
 		}
 		_prevWasLevel3 = (_level == 3);
 		_level -= (_level > 0);
@@ -45,7 +52,7 @@ void	ThrowShuriken::step()
 
 bool		ThrowShuriken::request()
 {
-	return (_player.key[Key::B] == 1 && ! _player.key(Key::R2));
+	return (_level > 0 && _player.key[Key::B] == 1 && ! _player.key(Key::R2));
 }
 
 void		ThrowShuriken::check()

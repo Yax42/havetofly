@@ -44,6 +44,7 @@ public:
 
 public:
 	static float		sign(float v) { return MSIGN(v); }
+	static float		signNoZero(float v) { return MSIGN_(v); }
 	static float		hf_max(float v1, float v2) { return MMAX(v1, v2); }
 
 	static float		sqrt(float d);

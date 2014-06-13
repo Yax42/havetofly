@@ -21,6 +21,7 @@ bool	StickWall::allow(int a)
 
 void	StickWall::init(int)
 {
+	UpdateOrient(_player(Event::LEFT_WALL) ? -1 : 1);
 }
 
 void	StickWall::step()

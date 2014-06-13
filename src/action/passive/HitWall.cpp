@@ -24,6 +24,7 @@ void		HitWall::check()
 		_count--;
 		_lastWallHit = _newLastWallHit;
 	}
+	else if (_player.currentActionId() == WALL_JUMP);
 	else if (_player(Event::WALL))
 	{
 		_newLastWallHit = _player(Event::RIGHT_WALL) - _player(Event::LEFT_WALL); // 1 or -1;

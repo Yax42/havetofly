@@ -34,10 +34,6 @@ bool	WallJump::allow(int a)
 
 void	WallJump::step()
 {
-	if (_player.key(Key::HOR) < 0)
-		_player.orient(-1);
-	else if (_player.key(Key::HOR) > 0)
-		_player.orient(1);
 	if (--_count == 0)
 		_player.engageAction(INERTIE);
 }

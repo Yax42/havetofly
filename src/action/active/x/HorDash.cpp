@@ -106,6 +106,7 @@ int		HorDash::val()
 void		HorDash::end()
 {
 	_open = 0;
+	UpdateOrient(_player.sx());
 	_player.sx(Math::cap(_player.sx(), -4, 4));
 	_player.sy(Math::cap(_player.sy(), -4, 4));
 }

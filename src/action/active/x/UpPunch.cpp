@@ -38,6 +38,7 @@ void	UpPunch::init(int v)
 	}
 	else
 	{
+		UpdateOrient(_player.key(Key::HOR));
 		_hit->reset();
 		_count = 40;
 		_player.sy(-5);
@@ -135,7 +136,7 @@ void		UpPunch::print(Graphics &g) const
 		//			g.circleLaid(_bones[Bones::HAND1], 5, color[0], color[2]);
 		/*
 		*/
-		for (int i = 0; i < 7; i++)
-			g.circle(_bones[Bones::HAND1], (MTIME / 5 + i) % (12 - _player[DOWN_DASH]->val()) + 1, Color::fire[(i) % 4]);
+		for (int i = 0; i < 3; i++)
+			g.circle(_bones[Bones::HAND1], (MTIME / 5 + i) % (7) + 1, Color::fire[(i) % 4]);
 	}
 }
