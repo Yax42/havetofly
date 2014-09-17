@@ -38,7 +38,7 @@ private:
 	Player			&_player;
 	int				_color2;
 public:
-	static const int	Size[Bones::COUNT];
+	int	Size[Bones::COUNT];
 private:
 	Position		_pos[Bones::COUNT];
 	Angle			_angle[Bones::COUNT];

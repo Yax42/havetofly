@@ -13,27 +13,26 @@
 #include "Circle.hh"
 #include "Math.hh"
 #include "Player.hh"
+#include "UpPunch.hh"
 
 #include <iostream>
 
-const int	Bones::Size[Bones::COUNT] =
-{
-	24,	// FOOT1
-	24,	// KNEE1
-	20,	// HAND1
-	14,	// ELBOW1
-	24,	// FOOT2
-	24,	// KNEE2
-	20,	// HAND2
-	14,	// ELBOW2
-	14,	// HEAD
-	18	// BODY
-};
 
 Bones::Bones(Player &player, int color2) :
 	_player(player), _color2(color2)
 {
 	(void) _color2;
+
+	Size[FOOT1] = 24;
+	Size[KNEE1] = 24;
+	Size[HAND1] = 20;
+	Size[ELBOW1] = 14;
+	Size[FOOT2] = 24;
+	Size[KNEE2] = 24;
+	Size[HAND2] = 20;
+	Size[ELBOW2] = 14;
+	Size[HEAD] = 14;
+	Size[BODY] = 18;
 }
 
 Bones::~Bones()
@@ -45,6 +44,8 @@ void		Bones::print(Graphics &g)
 	Position	center = _player.pos();
 	Position	avg;
 	check();
+	Size[BODY] = 18 + 20 * ((UpPunch *) _player[IAction::UP_PUNCH])->time();
+
 
 	_pos[BODY] =	Position(_angle[BODY], Size[BODY]);
 	_pos[HEAD] =	Position(_angle[HEAD] + _angle[BODY] + Angle(180, 0), Size[HEAD]);

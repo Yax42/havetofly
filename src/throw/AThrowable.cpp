@@ -48,7 +48,7 @@ void	AThrowable::proc()
 	{
 		if (_pos.x <= 0||
 			_pos.x >= Game::w() ||
-			(_pos.y <= 0 && Game::isCeilingOn()))
+			(_pos.y <= 0))// && Game::isCeilingOn()))
 		{
 			effectWall();
 		}

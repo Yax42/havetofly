@@ -34,6 +34,7 @@ Player::Player(const Position &pos, int team, const Key &k, int color) :
 	_bones(*this, rand() % 0xFFFFFF),
 	_mp(_speed, _pos, _event, _doing, this)
 {
+	_invincible = false;
 	_hit = NULL;
 	_event.resize(Event::COUNT);
 	_action.resize(IAction::COUNT);

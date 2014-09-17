@@ -13,28 +13,31 @@
 const float		HorDash::_range = 200;
 
 HorDash::HorDash(Player &player) :
-	AAction(player, HOR_DASH, NULL)// new Hit(10, Position(8, 1), player.orient(), 10, false, Hit::WALL))
+AAction(player, HOR_DASH,  new Hit(20, Position(10, 0), player.orient(), 10, false, Hit::METEOR))
 {
 	_graphicAngle = 0;
-//	_hit->add(20, Position(), _player.bones()[Bones::HEAD]);
+	_hit->add(20, Position(), _player.bones()[Bones::HEAD]);
 }
 
 void	HorDash::init(int v)
 {
 	if (v == 0 && !PLANE_DEBUG)
 	{
+		_hit->sleep(1);
+		_player.orient(_player.key[Key::HOR]);
 		_player.setAction(TEMPO, id());
 		_player[TEMPO]->set(15);
+		_open = 0;
 	}
 	else
 	{
-		//_hit->reset();
+		_hit->sleep(0);
+		_hit->reset();
 		//_player = Position(0, 6 * _player.orient());
 		_origin = _player.pos();
 		_count = 40;
-		Position	speed = _player.key.direction() * 8;
-		_player = speed;
-		_player.orient((speed.x >= 0) - (speed.x < 0));
+		_player = Position(0, _player.orient() * 8);
+		//_player.orient((speed.x >= 0) - (speed.x < 0));
 		//_graphicAngle = (_player.key.angle().rad() + Math::PiHalf) * (-_player.orient());
 
 	}
@@ -42,7 +45,7 @@ void	HorDash::init(int v)
 
 void	HorDash::set(int)
 {
-	_open = 0;
+	_open = 1;
 }
 
 bool	HorDash::allow(int a)
@@ -59,7 +62,8 @@ void		HorDash::step()
 	if (--_count == 0)
 	{
 		_player = Position(-3, _player.orient());
-		_open = 0;
+		if (_hit->didHit())
+			_open = true;
 		_player.engageAction(INERTIE);
 		return ;
 	}
@@ -69,7 +73,7 @@ void		HorDash::step()
 		_player.engageAction(INERTIE);
 		//_player.engageAction(WALL_JUMP, -1);
 	}
-	else
+	else if (false)
 	{
 		Position	speed = _player.key.direction() * 8;
 		_player = speed;
@@ -128,7 +132,7 @@ void		HorDash::upBones()
 
 	_bones.angle[Bones::HEAD] = Angle(0, 0);
 	//_bones.angle[Bones::BODY] = _graphicAngle;
-	_bones.angle[Bones::BODY] = Angle((_player.key.angle().rad() + Math::PiHalf) * (-_player.orient()));
+	_bones.angle[Bones::BODY] = Angle(Math::PiHalf + Math::Pi * (-_player.orient()));
 }
 
 void		HorDash::print(Graphics &g) const

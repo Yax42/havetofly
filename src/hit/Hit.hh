@@ -44,6 +44,7 @@ public:
 	~Hit() {}
 	bool				isThrowable() const;
 	void				sleep(bool v) { _asleep = v; }
+	bool				didHit() { return !_players.empty(); }
 	void				go(Player &ennemy) const;
 	bool				focus(Player &ennemy);
 	void				reset();

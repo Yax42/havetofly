@@ -23,7 +23,8 @@ void	ThrowChain::init(int v)
 	_count = 20;
 	Position dir;
 	dir.x = (_player.orient() >= 0 ? 1 : -1);
-	dir.y = (_player.key(Key::VERT) >= 0 ? 1 : -1);
+	//dir.y = (_player.key(Key::VERT) >= 0 ? 1 : -1);
+	dir.y = -1;
 	_player.doThrow(new Chain(_player, dir * 10));
 	_usable = false;
 }

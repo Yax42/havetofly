@@ -15,6 +15,7 @@ Chain::Chain(Player &player, const Position &speed) :
 {
 	_speed = speed;
 	_hit.add(12, Position(), _pos);
+	_hit.sleep(0);
 	_didGrab = false;
 	_life = 30;
 	_grabbedHuman = false;
@@ -51,8 +52,8 @@ void		Chain::effect(Player &p)
 	_speed = 0;
 	Position dir = (_pos - _player.bones()[Bones::HAND2]).normalize();
 
-	movePlayer(dir, _player);
-	movePlayer(-dir, p);
+	movePlayer(dir * 1.3, _player);
+	movePlayer(-dir * 0.6, p);
 }
 
 void		Chain::effectWall()
@@ -62,7 +63,7 @@ void		Chain::effectWall()
 	_didGrab = true;
 	_life = 40;
 	_speed = 0;
-	Position dir = (_pos - _player.bones()[Bones::HAND2]).normalize();
+	Position dir = (_pos - _player.bones()[Bones::HAND2]).normalize() * 1.5f;
 	//_player = _player.speed() + (_pos - _player.bones()[Bones::HAND2]).normalize() * 5;
 	movePlayer(dir, _player);
 }

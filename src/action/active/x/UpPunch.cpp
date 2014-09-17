@@ -31,6 +31,7 @@ void		UpPunch::loadBones()
 
 void	UpPunch::init(int v)
 {
+	_time = 700;
 	_open = 0;
 	if (v == 0 && !PLANE_DEBUG)
 	{
@@ -40,6 +41,7 @@ void	UpPunch::init(int v)
 	{
 		UpdateOrient(_player.key(Key::HOR));
 		_hit->reset();
+		_hit->sleep(false);
 		_count = 40;
 		_player.sy(-5);
 		_player.sx(_player.orient());
@@ -104,6 +106,12 @@ void		UpPunch::check()
 {
 	if (_player(Event::CENTER_HEART) || EASY_MODE)
 		_open = true;
+	if (_open == true)
+		_time = 0;
+	else if (_time == 0)
+		_open = true;
+	else
+		_time--;
 }
 
 void		UpPunch::print(Graphics &g) const

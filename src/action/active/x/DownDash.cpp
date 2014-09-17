@@ -62,7 +62,7 @@ void			DownDash::updateSpeed()
 
 	Position	factors;
 	if (!_isCanceled)
-		factors = Position (7, 4);
+		factors = Position (7, 7);
 	else if (_count > 15)
 		factors = Position (2, 6);
 	else
@@ -88,9 +88,9 @@ void	DownDash::step()
 	{
 		_heightFactor = float(_player.y()) / float(Game::h());
 
-		if (_player.key.getKey(Key::Y) != 1 && _player.pos().y > Game::h() / 2)
-			_isCanceled = true;
-		else
+		//if (_player.key.getKey(Key::Y) != 1 && _player.pos().y > Game::h() / 2)
+			//_isCanceled = true;
+		//else
 			_hit->sleep(false);
 	}
 	else if ((_count == 0 && !_isCanceled) || (_isCanceled && _count == -15))
@@ -102,7 +102,10 @@ void	DownDash::step()
 	else if ((_player(Event::LEFT_WALL) && _player.orient() < 0) ||
 			(_player(Event::RIGHT_WALL) && _player.orient() > 0))
 	{
-		_player.engageAction(WALL_JUMP, -3);
+		if (_player.pos().y > Game::h() / 2)
+			_player.engageAction(WALL_JUMP, -5);
+		else
+			_player.engageAction(WALL_JUMP, -3);
 	}
 	else
 	{

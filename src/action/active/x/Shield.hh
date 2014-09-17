@@ -16,6 +16,7 @@
 class Shield : public AAction
 {
 private:
+	int			_time;
 	int			_level;
 	Position	_prevSpeed;
 	Position	_origin;

@@ -15,7 +15,10 @@
 
 class UpPunch : public AAction
 {
+private:
+	int		_time;
 public:
+	float		time() { return _time / 700.0f; }
 	UpPunch(Player &player);
 	virtual ~UpPunch(){}
 	virtual void		init(int v = 0);

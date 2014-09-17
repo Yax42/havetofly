@@ -86,6 +86,7 @@ bool		Game::manyTeams() const
 /********/
 /* LOOP */
 /********/
+
 bool		Game::iterLoop()
 {
 	int		cpt;

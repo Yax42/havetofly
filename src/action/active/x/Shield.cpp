@@ -37,6 +37,7 @@ void	Shield::init(int)
 	for (int i = Bones::FOOT2; i < Bones::COUNT; i++)
 		_origin += _bones[i];
 	_origin /= Bones::COUNT - Bones::FOOT2;
+	_time = 200;
 }
 
 bool		Shield::allow(int a)
@@ -71,8 +72,11 @@ void		Shield::step()
 
 void		Shield::check()
 {
-	if (_player.pos().squaredDistance(_lastPos) > _openRange * _openRange)
+	//if (_player.pos().squaredDistance(_lastPos) > _openRange * _openRange)
+	if (_time == 0)
 		_open = 1;
+	else
+		_time--;
 }
 
 void		Shield::set(int v)

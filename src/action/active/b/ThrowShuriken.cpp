@@ -10,6 +10,7 @@
 
 #include "ThrowShuriken.hh"
 #include "Shuriken.hh"
+#include "Game.hh"
 
 ThrowShuriken::ThrowShuriken(Player &player) : AAction(player, THROW_SHURIKEN, NULL)
 {
@@ -20,7 +21,7 @@ ThrowShuriken::ThrowShuriken(Player &player) : AAction(player, THROW_SHURIKEN, N
 void	ThrowShuriken::init(int)
 {
 	_count = 40;
-	_player.sy(Math::cap(_player.sy(), -5, _level == 0 ? 100 : -3));
+	_player.sy(Math::cap(_player.sy(), -5, _level == 0 ? 100 : -5));
 }
 
 bool	ThrowShuriken::allow(int a)
@@ -32,7 +33,7 @@ void	ThrowShuriken::step()
 {
 	if (_count == 30)
 	{
-		if (!_prevWasLevel3 || _level != 3)
+		//if (!_prevWasLevel3 || _level != 3)
 		{
 			Position dir = _player.key.direction();
 			if ((dir.x > 0) != (_player.orient() > 0))
@@ -57,7 +58,7 @@ bool		ThrowShuriken::request()
 
 void		ThrowShuriken::check()
 {
-	if (_player(Event::CEILING))
+	if (_player(Event::CEILING) && !Game::isCeilingOn())
 		_level = 3;
 }
 
