@@ -11,7 +11,7 @@
 #include "UpPunch.hh"
 
 UpPunch::UpPunch(Player &player) : AAction(player, UP_PUNCH,
-		new Hit(130, Position(-2.5, 2), player.orient(), 20, false, Hit::ORIENT))
+		new Hit(110, Position(-2.5, 2), player.orient(), 20, false, Hit::ORIENT))
 {
 	_hit->add(25, Position(-10, 0), _bones[Bones::HAND1]);
 	_open = 1;

@@ -26,10 +26,13 @@ void	StickWall::init(int)
 
 void	StickWall::step()
 {
-	if (_player.sy() < 3.3) // 2/3
-		_player.sy(_player.sy() + 0.00666); //2/3
-	if (_player.sy() < 0)
-		_player.sy(_player.sy() + 0.066); //2/3
+	if (_player.sy() < -3.3) // 2/3
+		_player.sy(-3); // 2/3
+	else if (_player.sy() <= 3.3) // 2/3
+		_player.sy(_player.sy() + 0.0666); //2/3
+	if (_player.sy() > 1)
+		_player.sy(1);
+		//_player.sy(_player.sy() + 0.066); //2/3
 	/*
 	if (_player(Event::RIGHT_WALL) && _player.key(Key::HOR) > 200)
 		return (true);

@@ -92,8 +92,7 @@ bool		HorDash::request()
 
 void		HorDash::check()
 {
-	if (_player(Event::WALL)
-		&& !isActive())
+	if (_player(Event::WALL))
 	{
 		if (EASY_MODE)
 			_open = 1;

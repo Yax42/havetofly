@@ -58,7 +58,7 @@ bool		ThrowShuriken::request()
 
 void		ThrowShuriken::check()
 {
-	if (_player(Event::CEILING) && !Game::isCeilingOn())
+	if (_player(Event::CEILING) && Game::isCeilingOn())
 		_level = 3;
 }
 

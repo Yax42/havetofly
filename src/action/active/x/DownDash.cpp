@@ -12,7 +12,7 @@
 #include "Game.hh"
 
 DownDash::DownDash(Player &player) :
-	AAction(player, DOWN_DASH, new Hit(60, Position(3, 3), player.orient(), 15, false, Hit::ORIENT))
+	AAction(player, DOWN_DASH, new Hit(50, Position(3, 3), player.orient(), 15, false, Hit::ORIENT))
 {
 	_hit->add(15, Position(), _bones[Bones::FOOT1]);
 	_hit->add(15, Position(), _bones[Bones::FOOT2]);

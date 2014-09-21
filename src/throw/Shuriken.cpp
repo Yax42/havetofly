@@ -12,7 +12,7 @@
 Color		getColorFromLevel(int level);
 
 Shuriken::Shuriken(Player &player, const Position &pos, const Position &speed, int level) :
-AThrowable(pos, speed, 40, Position(1, 1), player, Hit::NONE, true), _level(level)
+AThrowable(pos, speed, 20, Position(1, 1), player, Hit::NONE, true), _level(level)
 {
 	_speed = speed;
 	_hit.add(12, Position(), _pos);

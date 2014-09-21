@@ -18,7 +18,7 @@ void	WallJump::init(int a)
 {
 //	_player[IAction::DOUBLE_JUMP]->set();
 	_count = 50;
-	_player.sy(a == 0 ? -5 : a);
+	_player.sy(a == 0 ? -6 : a);
 	if (_player(Event::LEFT_WALL))
 		_player.sx(2); //2/3
 	else if (_player(Event::RIGHT_WALL))

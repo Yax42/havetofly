@@ -14,8 +14,10 @@
 const int	Shield::_openRange = 280;
 
 Shield::Shield(Player &player) :
-	AAction(player, SHIELD, new Hit(90, Position(-2, 2), player.orient(), 10, false, Hit::WALL))
+	AAction(player, SHIELD, new Hit(60, Position(3, 2), player.orient(), 10, false, Hit::WALL))
 {
+	_hit->add(60, Position(), _bones[Bones::HEAD]);
+	_hit->sleep(0);
 	_level = 0;
 }
 
